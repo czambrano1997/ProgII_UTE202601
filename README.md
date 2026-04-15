@@ -22,15 +22,15 @@ El flujo de trabajo se basa en una estructura de ramas independiente para cada e
 ### 1. Preparación del Entorno
 Clona el repositorio en tu máquina local:
 ```bash
-git clone <URL_DEL_REPOSITORIO>
-cd <NOMBRE_DEL_REPOSITORIO>
+git clone https://github.com/czambrano1997/ProgII_UTE202601.git
+cd ProgII_UTE202601
 ```
 
 ### 2. Creación de tu Espacio de Trabajo
 Si aún no tienes tu rama, créala desde `main`:
 ```bash
-git checkout -b estudiante/tu-apellido-tu-nombre
-git push -u origin estudiante/tu-apellido-tu-nombre
+git checkout -b estudiante/apellido_nombre
+git push -u origin estudiante/apellido_nombre
 ```
 
 ### 3. Desarrollo de Módulos
