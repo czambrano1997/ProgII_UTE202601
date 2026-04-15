@@ -56,9 +56,10 @@ django/custom-addons
 ```
 
 ### 4. Ejemplo, cómo agregar módulos
+**En Odoo**
 Añade tus módulos dentro de odoo/custom-addons/ y añadelo a tu addons_path. Por ejemplo:
 ```ini
-addons_path = ..,/ruta/al/repositorio/custom-addons
+addons_path = ..,/ruta/al/repositorio/odoo-custom-addons
 ```
 
 ### 5. Subir cambios al repositorio
@@ -74,7 +75,7 @@ git push origin apellido_nombre
 ## 📝 Convenciones y Buenas Prácticas
 
 - **Commits**: Usa mensajes descriptivos en español (Ej: `feat: agrega modelo de préstamos`).
-- **Nombres de Módulos**: Usa snake_case y prefijos si es necesario (Ej: `ute_gestion_biblioteca`).
+- **Nombres de módulos**: Usa snake_case y prefijos si es necesario (Ej: `ute_gestion_biblioteca`).
 - **Seguridad**: Asegúrate de incluir siempre los archivos de acceso (`ir.model.access.csv`) para tus nuevos modelos.
 
 ---
@@ -97,11 +98,9 @@ Se recomienda usar el script de instalación automática proporcionado por la c�
 
 ## 📚 Recursos útiles
 
-[Documentación oficial de Odoo 19](https://www.odoo.com/documentation/19.0/)
-
-[Guía de desarrollo de módulos Odoo](https://www.odoo.com/documentation/19.0/developer/howtos/backend.html)
-
-[Curso rápido de Git](https://rogerdudler.github.io/git-guide/index.es.html)
+- [Documentación oficial de Odoo 19](https://www.odoo.com/documentation/19.0/)
+- [Guía de desarrollo de módulos Odoo](https://www.odoo.com/documentation/19.0/developer/howtos/backend.html)
+- [Curso rápido de Git](https://rogerdudler.github.io/git-guide/index.es.html)
 
 
 ---
