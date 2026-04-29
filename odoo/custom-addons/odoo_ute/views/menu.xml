@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Se eliminó 'string' y se dejó solo 'name' -->
+    <menuitem 
+        id="menu_odoo_ute_root"
+        name="UTE"/> 
+
+    <menuitem
+        id="teacher_menu"
+        name="Docentes"
+        action="odoo_ute.ou_teacher_action"
+        parent="menu_odoo_ute_root"
+        sequence="10"/>
+
+</odoo>
