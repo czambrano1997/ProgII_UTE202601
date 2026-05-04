@@ -23,6 +23,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/teacher.xml',
+        'views/signature.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode
