@@ -4,7 +4,7 @@
     'summary': "Gestión de docentes y estudiantes de la UTE",
 
     'description': """
-Long description of module's purpose
+	Funcionalidades del módulo de gestión de la UTE
     """,
 
     'author': "Ceider Zambrano",
