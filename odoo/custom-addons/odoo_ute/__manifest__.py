@@ -24,7 +24,6 @@
         'security/ir.model.access.csv',
         'views/teacher.xml',
         'views/menu.xml',
-        # 'views/sale_order.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
