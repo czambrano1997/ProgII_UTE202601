@@ -37,9 +37,13 @@ class TeacherUTE(models.Model):
             if rec.vat and len(rec.vat) < 10:
                 raise ValidationError("La CI/RUC debe tener 10 o 13 caracteres")
     
-    @api.model
+    # @api.model
     def generar_reporte(self):
+        self.ensure_one()
+        variable = None
         print("REPORTE GENERADO")
+        variable = 100
+        print(variable)
 
     # def _compute_display_name(self):
     #     for rec in self:

@@ -21,7 +21,9 @@
 
     # always loaded
     'data': [
+        'security/ute_group.xml',
         'security/ir.model.access.csv',
+        'security/ute_rule.xml',
         'views/teacher.xml',
         'views/signature.xml',
         'views/menu.xml',

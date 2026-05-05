@@ -7,6 +7,10 @@
             <field name="model">ou.teacher</field>
             <field name="arch" type="xml">
                 <form string="Docente">
+                    <header>
+                        <button name="generar_reporte" string="Generar reporte" class="oe_highlight" type="object"/>
+<!--                        <field name="state" widget="statusbar" statusbar_visible="" statusbar_colors="{'KEY_IS_STATE':'VALUE_IS_COLOR'}"/>-->
+                    </header>
                     <sheet>
                         <group>
                             <group>
@@ -19,7 +23,8 @@
                                 <field name="email" widget="email"/>
                                 <field name="phone" widget="phone"/>
                                 <field name="validate_email"/>
-                                <field name="signature_primary"/>
+                                <field name="signature_primary" groups="odoo_ute.group_ute_user" readonly="1"/>
+                                <field name="signature_primary" groups="odoo_ute.group_ute_manager"/>
                             </group>
                         </group>
                     </sheet>
