@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="rule_ute_user_own_records" model="ir.rule">
+            <field name="name">UTE: El usuario solo ve sus propios registros</field>
+            <field name="model_id" ref="model_ou_teacher"/>
+            <field name="groups" eval="[(4, ref('odoo_ute.group_ute_user'))]"/>
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+
+    </data>
+</odoo>
