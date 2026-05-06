@@ -1,14 +1,14 @@
 {
-    'name': "Administración de la UTE",
+    'name': "ute_modulo",
 
-    'summary': "Gestión de docentes y estudiantes de la UTE",
+    'summary': "Short (1 phrase/line) summary of the module's purpose",
 
     'description': """
-	Funcionalidades del módulo de gestión de la UTE.
+Long description of module's purpose
     """,
 
-    'author': "Ceider Zambrano",
-    'website': "https://gezaforge.com",
+    'author': "My Company",
+    'website': "https://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -21,16 +21,13 @@
 
     # always loaded
     'data': [
-        'security/ute_group.xml',
-        'security/ir.model.access.csv',
-        'security/ute_rule.xml',
-        'views/teacher.xml',
-        'views/signature.xml',
-        'views/menu.xml',
+        # 'security/ir.model.access.csv',
+        'views/views.xml',
+        'views/templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
-        #'demo/demo.xml',
+        'demo/demo.xml',
     ],
 }
 
