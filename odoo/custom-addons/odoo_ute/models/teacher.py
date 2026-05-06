@@ -6,7 +6,7 @@ class TeacherUTE(models.Model):
     _name = 'ou.teacher'
     _description = 'Docentes de la UTE'
 
-    name = fields.Char(string="Nombre", required=True)
+    name = fields.Char(string="Apodo", required=True)
     last_name = fields.Char(string="Apellido", required=True)
     email = fields.Char(string="Correo")
     phone = fields.Char(string="Teléfono")
