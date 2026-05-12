@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="ou_horario" model="ir.ui.view">
+            <field name="name">ou.horario.form</field>
+            <field name="model">ou.horario</field>
+            <field name="arch" type="xml">
+                <form string="ou_horario">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- List View -->
+        <record id="ou_horario_list" model="ir.ui.view">
+            <field name="name">ou.horario.list</field>
+            <field name="model">ou.horario</field>
+            <field name="arch" type="xml">
+                <list string="ou_horario">
+                    <field name="name"/>
+                    <!-- Add your fields here -->
+                </list>
+            </field>
+        </record>
+        
+        <!-- Action -->
+        <record id="action_ou_horario" model="ir.actions.act_window">
+            <field name="name">ou.horario</field>
+            <field name="res_model">ou.horario</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first ou.horario!
+                </p>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

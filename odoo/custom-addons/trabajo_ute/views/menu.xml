@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+<menuitem id="menu_root_horario"
+    name="Transporte"
+    sequence="10"/>
+
+    <menuitem id="menu_menu_horario"
+        name="Horario"
+        action="action_ou_horario"
+        parent="menu_root_horario"
+        sequence="10"/>
+
+</odoo>
