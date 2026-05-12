@@ -1,0 +1,1 @@
+import . from kodigo_wasi_service

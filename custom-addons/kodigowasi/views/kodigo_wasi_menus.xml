@@ -1,0 +1,49 @@
+<odoo>
+    <!-- Menú principal -->
+    <menuitem id="menu_kodigo_wasi_root"
+              name="KodigoWasi"
+              sequence="10"
+              web_icon="kodigo_wasi,static/description/icon.png"/>
+
+    <!-- Talleres -->
+    <menuitem id="menu_kw_taller"
+              name="Talleres"
+              parent="menu_kodigo_wasi_root"
+              action="kw_taller_action"
+              sequence="10"/>
+
+    <!-- Participantes -->
+    <menuitem id="menu_kw_participante"
+              name="Participantes"
+              parent="menu_kodigo_wasi_root"
+              action="kw_participante_action"
+              sequence="20"/>
+
+    <!-- Instructores -->
+    <menuitem id="menu_kw_instructor"
+              name="Instructores"
+              parent="menu_kodigo_wasi_root"
+              action="kw_instructor_action"
+              sequence="30"/>
+
+    <!-- Sesiones -->
+    <menuitem id="menu_kw_sesion"
+              name="Sesiones"
+              parent="menu_kodigo_wasi_root"
+              action="kw_sesion_action"
+              sequence="40"/>
+
+    <!-- Inscripciones -->
+    <menuitem id="menu_kw_inscripcion"
+              name="Inscripciones"
+              parent="menu_kodigo_wasi_root"
+              action="kw_inscripcion_action"
+              sequence="50"/>
+
+    <!-- Pagos -->
+    <menuitem id="menu_kw_pago"
+              name="Pagos"
+              parent="menu_kodigo_wasi_root"
+              action="kw_pago_action"
+              sequence="60"/>
+</odoo>

@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kw_taller_user,kw.taller.user,model_kw_taller,group_kodigo_user,1,0,0,0
+access_kw_taller_admin,kw.taller.admin,model_kw_taller,group_kodigo_admin,1,1,1,1
+access_kw_participante_user,kw.participante.user,model_kw_participante,group_kodigo_user,1,0,0,0
+access_kw_participante_admin,kw.participante.admin,model_kw_participante,group_kodigo_admin,1,1,1,1
+access_kw_instructor_user,kw.instructor.user,model_kw_instructor,group_kodigo_user,1,0,0,0
+access_kw_instructor_admin,kw.instructor.admin,model_kw_instructor,group_kodigo_admin,1,1,1,1
+access_kw_sesion_user,kw.sesion.user,model_kw_sesion,group_kodigo_user,1,0,0,0
+access_kw_sesion_admin,kw.sesion.admin,model_kw_sesion,group_kodigo_admin,1,1,1,1
+access_kw_inscripcion_user,kw.inscripcion.user,model_kw_inscripcion,group_kodigo_user,1,0,0,0
+access_kw_inscripcion_admin,kw.inscripcion.admin,model_kw_inscripcion,group_kodigo_admin,1,1,1,1
+access_kw_pago_user,kw.pago.user,model_kw_pago,group_kodigo_user,1,0,0,0
+access_kw_pago_admin,kw.pago.admin,model_kw_pago,group_kodigo_admin,1,1,1,1
