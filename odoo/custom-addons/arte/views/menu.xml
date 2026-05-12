@@ -3,7 +3,6 @@
 
     <!-- <data> -->
         <menuitem id="menu_root_arte" name="arte"/>
-        
         <!-- Menu -->
         <menuitem id="menu_pedido" name="Pedido" action="action_pedido" parent="menu_root_arte" sequence="10"/>
     <!-- </data> -->
