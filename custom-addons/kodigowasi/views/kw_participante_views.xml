@@ -1,0 +1,58 @@
+<odoo>
+    <!-- Form view -->
+    <record id="kw_participante_view_form" model="ir.ui.view">
+        <field name="name">kw.participante.form</field>
+        <field name="model">kw.participante</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="activo"/>
+                    </group>
+                    <group>
+                        <field name="email"/>
+                        <field name="telefono"/>
+                    </group>
+                    <group>
+                        <field name="github_usuario"/>
+                        <field name="nivel_actual"/>
+                    </group>
+                    <field name="fecha_nacimiento"/>
+                    <notebook>
+                        <page string="Inscripciones">
+                            <field name="inscripcion_ids">
+                                <tree>
+                                    <field name="taller_id"/>
+                                    <field name="estado"/>
+                                    <field name="fecha_inscripcion"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view -->
+    <record id="kw_participante_view_tree" model="ir.ui.view">
+        <field name="name">kw.participante.tree</field>
+        <field name="model">kw.participante</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="nivel_actual"/>
+                <field name="activo"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="kw_participante_action" model="ir.actions.act_window">
+        <field name="name">Participantes</field>
+        <field name="res_model">kw.participante</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

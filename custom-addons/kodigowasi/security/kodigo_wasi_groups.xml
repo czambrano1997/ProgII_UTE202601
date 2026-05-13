@@ -1,0 +1,10 @@
+<odoo>
+    <record id="group_kodigo_user" model="res.groups">
+        <field name="name">Usuario de KodigoWasi</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+    <record id="group_kodigo_admin" model="res.groups">
+        <field name="name">Administrador de KodigoWasi</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+</odoo>

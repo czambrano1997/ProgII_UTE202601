@@ -1,0 +1,45 @@
+<odoo>
+    <!-- Form view -->
+    <record id="kw_sesion_view_form" model="ir.ui.view">
+        <field name="name">kw.sesion.form</field>
+        <field name="model">kw.sesion</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="taller_id"/>
+                    </group>
+                    <group>
+                        <field name="fecha_hora"/>
+                        <field name="duracion_minutos"/>
+                        <field name="completada"/>
+                    </group>
+                    <field name="link_meet" widget="url"/>
+                    <field name="contenido" widget="html"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view -->
+    <record id="kw_sesion_view_tree" model="ir.ui.view">
+        <field name="name">kw.sesion.tree</field>
+        <field name="model">kw.sesion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="taller_id"/>
+                <field name="fecha_hora"/>
+                <field name="completada"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="kw_sesion_action" model="ir.actions.act_window">
+        <field name="name">Sesiones</field>
+        <field name="res_model">kw.sesion</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
