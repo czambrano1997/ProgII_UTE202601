@@ -11,6 +11,9 @@
                         <group>
                             <field name="name"/>
                             <field name="cliente"></field>
+                             <field name="correo"/>
+                             <field name="telefono"/>
+
                             <!-- Add your fields here -->
                         </group>
                     </sheet>
@@ -26,6 +29,8 @@
                 <list string="Pedido">
                     <field name="name"/>
                     <field name="cliente"></field>
+                    <field name="correo"/>
+                    <field name="telefono"/>
                     <!-- Add your fields here -->
                 </list>
             </field>

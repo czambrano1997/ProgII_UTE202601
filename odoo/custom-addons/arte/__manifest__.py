@@ -16,6 +16,7 @@
     "data": [
     "security/ir.model.access.csv",
     "views/pedido.xml",
+    "views/factura.xml",
     "views/menu.xml"
     ],
 
@@ -25,4 +26,5 @@
     "installable": True,
     "auto_install": False,
     "application": True
+
 }
