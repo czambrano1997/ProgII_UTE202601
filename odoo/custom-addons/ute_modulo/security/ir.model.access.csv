@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_ute_modulo_ute_modulo,ute_modulo.ute_modulo,model_ute_modulo_ute_modulo,base.group_user,1,1,1,1
+
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_utemodulo_ute_modulo,utemodulo.ute_modulo,model_utemodulo_ute_modulo,base.group_user,1,1,1,1

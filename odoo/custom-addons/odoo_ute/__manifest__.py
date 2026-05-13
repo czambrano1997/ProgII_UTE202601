@@ -26,6 +26,7 @@
         'security/ute_rule.xml',
         'views/teacher.xml',
         'views/signature.xml',
+        'views/students.xml',  
         'views/menu.xml',
     ],
     # only loaded in demonstration mode

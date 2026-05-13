@@ -3,11 +3,11 @@
 
     'summary': "Short (1 phrase/line) summary of the module's purpose",
 
-    'description': """
-Long description of module's purpose
+    'description': """ La creacion del un modulo simple 
+
     """,
 
-    'author': "My Company",
+    'author': "Eidan Chico",
     'website': "https://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -17,11 +17,11 @@ Long description of module's purpose
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','sale'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
     ],
