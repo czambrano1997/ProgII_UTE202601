@@ -1,61 +1,42 @@
 <odoo>
-    <!-- Form view -->
-    <record id="kw_inscripcion_view_form" model="ir.ui.view">
-        <field name="name">kw.inscripcion.form</field>
-        <field name="model">kw.inscripcion</field>
+    <record id="kw_sesion_view_form" model="ir.ui.view">
+        <field name="name">kw.sesion.form</field>
+        <field name="model">kw.sesion</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
                     <group>
+                        <field name="name"/>
                         <field name="taller_id"/>
-                        <field name="participante_id"/>
                     </group>
                     <group>
-                        <field name="fecha_inscripcion"/>
-                        <field name="estado" widget="statusbar"/>
-                        <field name="pago_realizado"/>
+                        <field name="fecha_hora"/>
+                        <field name="duracion_minutos"/>
+                        <field name="completada"/>
                     </group>
-                    <field name="codigo_qr"/>
-                    <notebook>
-                        <page string="Pagos">
-                            <field name="pago_ids">
-                                <tree>
-                                    <field name="monto"/>
-                                    <field name="fecha_pago"/>
-                                    <field name="metodo"/>
-                                    <field name="referencia"/>
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
-                    <footer>
-                        <button name="action_confirmar" string="Confirmar" type="object" class="btn-primary" attrs="{'invisible': [('estado', 'not in', ['interesado'])]}"/>
-                        <button name="action_cancelar" string="Cancelar" type="object" class="btn-secondary" attrs="{'invisible': [('estado', 'in', ['cancelado', 'completado'])]}"/>
-                    </footer>
+                    <field name="link_meet" widget="url"/>
+                    <field name="contenido" widget="html"/>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Tree view -->
-    <record id="kw_inscripcion_view_tree" model="ir.ui.view">
-        <field name="name">kw.inscripcion.tree</field>
-        <field name="model">kw.inscripcion</field>
+    <record id="kw_sesion_view_tree" model="ir.ui.view">
+        <field name="name">kw.sesion.tree</field>
+        <field name="model">kw.sesion</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
+                <field name="name"/>
                 <field name="taller_id"/>
-                <field name="participante_id"/>
-                <field name="estado"/>
-                <field name="fecha_inscripcion"/>
-                <field name="pago_realizado"/>
-            </tree>
+                <field name="fecha_hora"/>
+                <field name="completada"/>
+            </list>
         </field>
     </record>
 
-    <!-- Action -->
-    <record id="kw_inscripcion_action" model="ir.actions.act_window">
-        <field name="name">Inscripciones</field>
-        <field name="res_model">kw.inscripcion</field>
+    <!-- <record id="kw_sesion_action" model="ir.actions.act_window">
+        <field name="name">Sesiones</field>
+        <field name="res_model">kw.sesion</field>
         <field name="view_mode">tree,form</field>
-    </record>
+    </record> -->
 </odoo>

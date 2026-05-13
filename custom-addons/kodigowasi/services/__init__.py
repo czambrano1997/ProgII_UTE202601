@@ -1,1 +1,1 @@
-import . from kodigo_wasi_service
+from . import kodigo_wasi_service

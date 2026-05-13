@@ -1,10 +1,19 @@
 <odoo>
+    <!-- Grupo usuario (solo lectura) -->
     <record id="group_kodigo_user" model="res.groups">
         <field name="name">Usuario de KodigoWasi</field>
-        <field name="category_id" ref="base.module_category_hidden"/>
+        <!-- Cualquier usuario interno hereda acceso de lectura -->
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
+
+    <!-- Grupo administrador (todos los permisos) -->
     <record id="group_kodigo_admin" model="res.groups">
         <field name="name">Administrador de KodigoWasi</field>
-        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('group_kodigo_user'))]"/>
+    </record>
+
+
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_kodigo_admin'))]"/>
     </record>
 </odoo>

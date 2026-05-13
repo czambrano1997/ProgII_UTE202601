@@ -1,5 +1,4 @@
 <odoo>
-    <!-- Form view -->
     <record id="kw_sesion_view_form" model="ir.ui.view">
         <field name="name">kw.sesion.form</field>
         <field name="model">kw.sesion</field>
@@ -22,24 +21,22 @@
         </field>
     </record>
 
-    <!-- Tree view -->
     <record id="kw_sesion_view_tree" model="ir.ui.view">
         <field name="name">kw.sesion.tree</field>
         <field name="model">kw.sesion</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="taller_id"/>
                 <field name="fecha_hora"/>
                 <field name="completada"/>
-            </tree>
+            </list>
         </field>
     </record>
 
-    <!-- Action -->
-    <record id="kw_sesion_action" model="ir.actions.act_window">
+    <!-- <record id="kw_sesion_action" model="ir.actions.act_window">
         <field name="name">Sesiones</field>
         <field name="res_model">kw.sesion</field>
         <field name="view_mode">tree,form</field>
-    </record>
+    </record> -->
 </odoo>

@@ -1,33 +1,33 @@
 <odoo>
-    <!-- Form view -->
-    <record id="kw_participante_view_form" model="ir.ui.view">
-        <field name="name">kw.participante.form</field>
-        <field name="model">kw.participante</field>
+    <record id="kw_taller_view_form" model="ir.ui.view">
+        <field name="name">kw.taller.form</field>
+        <field name="model">kw.taller</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="coding_level"/>
+                        <field name="modalidad"/>
                         <field name="activo"/>
                     </group>
                     <group>
-                        <field name="email"/>
-                        <field name="telefono"/>
+                        <field name="max_cupos"/>
+                        <field name="plazas_disponibles" readonly="1"/>
+                        <field name="precio"/>
+                        <field name="instructor_id"/>
                     </group>
                     <group>
-                        <field name="github_usuario"/>
-                        <field name="nivel_actual"/>
+                        <field name="fecha_inicio"/>
+                        <field name="fecha_fin"/>
                     </group>
-                    <field name="fecha_nacimiento"/>
+                    <field name="description"/>
                     <notebook>
+                        <page string="Sesiones">
+                            <field name="sesion_ids"/>
+                        </page>
                         <page string="Inscripciones">
-                            <field name="inscripcion_ids">
-                                <tree>
-                                    <field name="taller_id"/>
-                                    <field name="estado"/>
-                                    <field name="fecha_inscripcion"/>
-                                </tree>
-                            </field>
+                            <field name="inscripcion_ids"/>
                         </page>
                     </notebook>
                 </sheet>
@@ -35,24 +35,23 @@
         </field>
     </record>
 
-    <!-- Tree view -->
-    <record id="kw_participante_view_tree" model="ir.ui.view">
-        <field name="name">kw.participante.tree</field>
-        <field name="model">kw.participante</field>
+    <record id="kw_taller_view_tree" model="ir.ui.view">
+        <field name="name">kw.taller.tree</field>
+        <field name="model">kw.taller</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
-                <field name="email"/>
-                <field name="nivel_actual"/>
+                <field name="coding_level"/>
+                <field name="fecha_inicio"/>
+                <field name="plazas_disponibles"/>
                 <field name="activo"/>
-            </tree>
+            </list>
         </field>
     </record>
 
-    <!-- Action -->
-    <record id="kw_participante_action" model="ir.actions.act_window">
-        <field name="name">Participantes</field>
-        <field name="res_model">kw.participante</field>
+    <!-- <record id="kw_taller_action" model="ir.actions.act_window">
+        <field name="name">Talleres</field>
+        <field name="res_model">kw.taller</field>
         <field name="view_mode">tree,form</field>
-    </record>
+    </record> -->
 </odoo>

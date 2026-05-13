@@ -1,7 +1,8 @@
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
 from ..services.kodigo_wasi_service import KodigoWasiService
-from ..shared.result import UnwrapError
+from ..shared.logger import KWLogger
+
+_logger = KWLogger(__name__)
 
 
 class KWTaller(models.Model):
@@ -25,9 +26,7 @@ class KWTaller(models.Model):
         ('presencial', 'Presencial'),
         ('hibrido', 'Híbrido'),
     ], string='Modalidad', default='virtual')
-    instructor_id = fields.Many2one(
-        'kw.instructor', string='Instructor', ondelete='restrict'
-    )
+    instructor_id = fields.Many2one('kw.instructor', string='Instructor', ondelete='restrict')
     sesion_ids = fields.One2many('kw.sesion', 'taller_id', string='Sesiones')
     inscripcion_ids = fields.One2many('kw.inscripcion', 'taller_id', string='Inscripciones')
     plazas_disponibles = fields.Integer(
@@ -39,18 +38,15 @@ class KWTaller(models.Model):
     @api.depends('max_cupos', 'inscripcion_ids.estado')
     def _compute_plazas_disponibles(self):
         for taller in self:
-            confirmadas = taller.inscripcion_ids.filtered(
-                lambda i: i.estado == 'confirmado'
-            )
+            confirmadas = taller.inscripcion_ids.filtered(lambda i: i.estado == 'confirmado')
             taller.plazas_disponibles = taller.max_cupos - len(confirmadas)
 
     @api.constrains('fecha_inicio', 'fecha_fin')
     def _check_fechas(self):
         for rec in self:
-            resultado = KodigoWasiService.check_taller_fechas(
-                rec.fecha_inicio, rec.fecha_fin
+            resultado = (
+                KodigoWasiService.check_taller_fechas(rec.fecha_inicio, rec.fecha_fin)
+                .alt(_logger.tap_err("Validación fechas taller"))  # log en consola
             )
-            try:
-                resultado.unwrap()
-            except UnwrapError as e:
-                raise ValidationError(str(e))
+            # lanza ValidationError (visible en cliente) si es Err
+            _logger.raise_validation_if_err(resultado)
