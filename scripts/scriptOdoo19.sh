@@ -71,7 +71,7 @@ fi
 
 info "Creando usuario $DB_USER en PostgreSQL..."
 sudo -u postgres psql -c "CREATE USER $DB_USER;" 2>/dev/null || true
-sudo -u postgres psql -c "ALTER ROLE $DB_USER WITH SUPERUSER CREATEDB;" || error "No se pudo asignar roles a $DB_USER"
+sudo -u postgres psql -c "ALTER ROLE $DB_USER WITH SUPERUSER CREATEDB;" || error "No se pudo asign0000000000000000000000000000000000000000000000000000000000ar roles a $DB_USER"
 sudo -u postgres psql -c "ALTER ROLE $DB_USER WITH ENCRYPTED PASSWORD '$DB_PASSWORD';" || error "No se pudo establecer contraseña para $DB_USER"
 
 info "Modificando $PG_CONF_DIR/postgresql.conf..."
