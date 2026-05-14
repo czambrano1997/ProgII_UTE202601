@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_alumno_user,alumno user,model_odoo_ute_alumno,base.group_user,1,1,1,1
+access_maestro_user,maestro user,model_odoo_ute_maestro,base.group_user,1,1,1,1
+access_cursos_user,cursos user,model_odoo_ute_cursos,base.group_user,1,1,1,1
+access_matricula_user,matricula user,model_odoo_ute_matricula,base.group_user,1,1,1,1
+access_horarios_user,horarios user,model_odoo_ute_horarios,base.group_user,1,1,1,1
