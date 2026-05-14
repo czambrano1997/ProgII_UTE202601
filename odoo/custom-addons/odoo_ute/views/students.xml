@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+<<<<<<< HEAD
 
         <!-- Vista Lista -->
         <record id="students_list" model="ir.ui.view">
@@ -12,10 +12,26 @@
                     <field name="surnames"/>
                     <field name="age"/>
                     <field name="phone"/>
+=======
+        <record id="action_ou_students" model="ir.actions.act_window">
+            <field name="name">Estudiantes</field>
+            <field name="res_model">ou.students</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="view_ou_students_list" model="ir.ui.view">
+            <field name="name">ou.students.list</field>
+            <field name="model">ou.students</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="surnames"/>
+>>>>>>> 4159c1e03c480c0ecec9608bc80bbb8697e392d1
                     <field name="vat"/>
                 </list>
             </field>
         </record>
+<<<<<<< HEAD
 
         <!-- Vista Form -->
         <record id="students_form" model="ir.ui.view">
@@ -45,5 +61,7 @@
             <field name="view_mode">list,form</field>
         </record>
 
+=======
+>>>>>>> 4159c1e03c480c0ecec9608bc80bbb8697e392d1
     </data>
 </odoo>

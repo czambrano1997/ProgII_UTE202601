@@ -26,9 +26,14 @@
         'security/ute_rule.xml',
         'views/teacher.xml',
         'views/signature.xml',
+<<<<<<< HEAD
         'views/students.xml',
         'views/assists.xml',
         'views/menu.xml'
+=======
+        'views/students.xml',  
+        'views/menu.xml',
+>>>>>>> 4159c1e03c480c0ecec9608bc80bbb8697e392d1
     ],
     # only loaded in demonstration mode
     'demo': [

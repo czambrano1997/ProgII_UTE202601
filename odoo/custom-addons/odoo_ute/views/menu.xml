@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Se eliminó 'string' y se dejó solo 'name' -->
-    <menuitem
-            id="menu_odoo_ute_root"
-            groups="odoo_ute.group_ute_user"
-            name="UTE"/>
+    <menuitem id="menu_odoo_ute_root"
+              name="UTE"
+              groups="odoo_ute.group_ute_user"
+              sequence="10"/>
 
-    <menuitem
-            id="teacher_menu"
-            name="Docentes"
-            action="odoo_ute.ou_teacher_action"
-            parent="menu_odoo_ute_root"
-            groups="odoo_ute.group_ute_user"
-            sequence="10"/>
+    <menuitem id="teacher_menu"
+              name="Docentes"
+              parent="menu_odoo_ute_root"
+              action="odoo_ute.ou_teacher_action"
+              groups="odoo_ute.group_ute_user"
+              sequence="10"/>
 
     <menuitem id="menu_signature"
               name="Materia"
-              action="action_ou_signature"
               parent="menu_odoo_ute_root"
+              action="action_ou_signature"
               sequence="20"/>
 
     <menuitem id="menu_students"
+<<<<<<< HEAD
               name="Estudiante"
               action="odoo_ute.students_action"
               parent="menu_odoo_ute_root"
@@ -33,4 +32,11 @@
               parent ="menu_odoo_ute_root"
               sequence ="40"/>
         
+=======
+              name="Estudiantes"
+              parent="menu_odoo_ute_root"
+              action="odoo_ute.action_ou_students"
+              sequence="10"/>
+
+>>>>>>> 4159c1e03c480c0ecec9608bc80bbb8697e392d1
 </odoo>
