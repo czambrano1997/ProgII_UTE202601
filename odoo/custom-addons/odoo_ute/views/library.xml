@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="library_lista" model="ir.ui.view">
+            <field name = "name">Vista del la libreria</field>
+            <field name = "model">library.ute</field>
+            <field name = "arch" type = "xml">
+                <list>
+                    <field name = "name"/>
+                    <field name = "author"/>
+                    <field name = "headquarters"/>
+                    <field name = "hous"/>
+                    <field name = "income"/>
+                </list>
+            </field>
+        </record>
+        
+        
+
+    </data>
+</odoo>
