@@ -1,89 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
+    <data>
 
-  <!-- 1. VISTA LISTA -->
-  <record id="odoo_ute.students_list" model="ir.ui.view">
-    <field name="name">students lista</field>
-    <field name="model">students.ute</field>
-    <field name="arch" type="xml">
-      <list string="Estudiantes">
-        <field name="names"/>
-        <field name="surnames"/>
-        <field name="age"/>
-        <field name="phone"/>
-        <field name="vat"/>
-      </list>
-    </field>
-  </record>
+        <!-- Vista Lista -->
+        <record id="students_list" model="ir.ui.view">
+            <field name="name">students lista</field>
+            <field name="model">students.ute</field>
+            <field name="arch" type="xml">
+                <list string="Estudiantes">
+                    <field name="name"/>
+                    <field name="surnames"/>
+                    <field name="age"/>
+                    <field name="phone"/>
+                    <field name="vat"/>
+                </list>
+            </field>
+        </record>
 
-  <!-- 2. VISTA FORM -->
-  <record id="odoo_ute.students_form" model="ir.ui.view">
-    <field name="name">students form</field>
-    <field name="model">students.ute</field>
-    <field name="arch" type="xml">
-      <form string="Estudiante">
-        <sheet>
-          <group string="Datos Personales">
-            <field name="names"/>
-            <field name="surnames"/>
-            <field name="age"/>
-          </group>
-          <group string="Contacto">
-            <field name="phone"/>
-            <field name="vat"/>
-          </group>
-        </sheet>
-      </form>
-    </field>
-  </record>
+        <!-- Vista Form -->
+        <record id="students_form" model="ir.ui.view">
+            <field name="name">students form</field>
+            <field name="model">students.ute</field>
+            <field name="arch" type="xml">
+                <form string="Estudiante">
+                    <sheet>
+                        <group string="Datos Personales">
+                            <field name="name"/>
+                            <field name="surnames"/>
+                            <field name="age"/>
+                        </group>
+                        <group string="Contacto">
+                            <field name="phone"/>
+                            <field name="vat"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-  <!-- 3. VISTA SEARCH -->
-  <record id="odoo_ute.students_search" model="ir.ui.view">
-    <field name="name">students search</field>
-    <field name="model">students.ute</field>
-    <field name="arch" type="xml">
-      <search string="Buscar Estudiantes">
-        <field name="names" string="Nombre"/>
-        <field name="surnames" string="Apellido"/>
-        <field name="vat" string="CI/RUC"/>
-        <filter string="Mayores de 18"
-                name="filter_mayores"
-                domain="[('age','>=',18)]"/>
-        <group expand="0" string="Agrupar por">
-          <filter string="Edad"
-                  name="group_age"
-                  context="{'group_by':'age'}"/>
-        </group>
-      </search>
-    </field>
-  </record>
+        <!-- Acción -->
+        <record id="students_action" model="ir.actions.act_window">
+            <field name="name">Estudiantes</field>
+            <field name="res_model">students.ute</field>
+            <field name="view_mode">list,form</field>
+        </record>
 
-  <!-- 4. ACCIÓN DE VENTANA -->
-  <record id="odoo_ute.students_action" model="ir.actions.act_window">
-    <field name="name">Estudiantes</field>
-    <field name="res_model">students.ute</field>
-    <field name="view_mode">list,form</field>
-  </record>
-
-  <!-- 5. MENÚS -->
-  <menuitem
-    id="odoo_ute.menu_root"
-    name="UTE"
-    sequence="10"/>
-
-  <menuitem
-    id="odoo_ute.menu_students"
-    name="Estudiantes"
-    parent="odoo_ute.menu_root"
-    sequence="10"/>
-
-  <menuitem
-    id="odoo_ute.menu_students_list"
-    name="Lista de Estudiantes"
-    parent="odoo_ute.menu_students"
-    action="odoo_ute.students_action"
-    sequence="10"/>
-
-</data>
+    </data>
 </odoo>

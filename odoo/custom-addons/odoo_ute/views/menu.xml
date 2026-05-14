@@ -15,10 +15,22 @@
             groups="odoo_ute.group_ute_user"
             sequence="10"/>
 
-    <menuitem id="menu_ignature"
+    <menuitem id="menu_signature"
               name="Materia"
               action="action_ou_signature"
               parent="menu_odoo_ute_root"
               sequence="20"/>
 
+    <menuitem id="menu_students"
+              name="Estudiante"
+              action="odoo_ute.students_action"
+              parent="menu_odoo_ute_root"
+              sequence="30"/>
+
+    <menuitem id = "menu_assists"
+              name="Asistencia"
+              action = "odoo_ute.asists_action"
+              parent ="menu_odoo_ute_root"
+              sequence ="40"/>
+        
 </odoo>

@@ -5,3 +5,13 @@ ou_teacher_base_manager,access_base_user_ou_teacher_manager,model_ou_teacher,odo
 
 ou_signature_base_user,access_base_user_ou_signature_user,model_ou_signature,odoo_ute.group_ute_user,1,1,1,1
 ou_signature_base_manager,access_base_user_ou_signature_manager,model_ou_signature,odoo_ute.group_ute_manager,1,1,1,1
+
+
+students_ute_base_user,access_base_user_students_ute_user,model_students_ute,odoo_ute.group_ute_user,1,1,0,0
+students_ute_base_manager,access_base_user_students_ute_manager,model_students_ute,odoo_ute.group_ute_manager,1,1,1,1
+
+
+
+assists_ute_base_user,access_base_user_assists_ute_user,model_assists_ute,odoo_ute.group_ute_user,1,1,0,0
+assists_ute_base_manager,access_base_user_assists_ute_manager,model_assists_ute,odoo_ute.group_ute_manager,1,1,1,1
+

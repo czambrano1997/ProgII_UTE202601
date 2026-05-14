@@ -1,12 +1,13 @@
 # Aqui se crea el modelo de lo estudiantes 
-from odoo import model,fields,api
+from odoo import models,fields,api
 
-class students(model.Model):
+class students(models.Model):
     
-    _name : 'students.ute'
-    _description : 'students.ute'
+    _name = 'students.ute'
+    _description = 'students.ute'
+    
 
-    names = fields.Char(
+    name = fields.Char(
         string='Nombres',
     )
 

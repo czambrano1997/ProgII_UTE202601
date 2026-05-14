@@ -31,7 +31,7 @@
         
         <!-- Action -->
         <record id="action_ou_signature" model="ir.actions.act_window">
-            <field name="name">ou.signature</field>
+            <field name="name">Materia</field>
             <field name="res_model">ou.signature</field>
             <field name="view_mode">list,form</field>
             <field name="help" type="html">
