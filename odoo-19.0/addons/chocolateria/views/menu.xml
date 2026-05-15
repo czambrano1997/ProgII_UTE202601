@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="menu_chocolateria_root"
+              name="Chocolateria"/>
+
+    <menuitem id="menu_clientes"
+              name="Clientes"
+              parent="menu_chocolateria_root"
+              action="action_cliente"/>
+
+</odoo>
