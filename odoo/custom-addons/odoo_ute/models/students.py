@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Aqui se crea el modelo de lo estudiantes 
 from odoo import models,fields,api
 
@@ -11,33 +10,26 @@ class students(models.Model):
     name = fields.Char(
         string='Nombres',
     )
-=======
-    # Aqui se crea el modelo de lo estudiantes 
-from odoo import models, fields, api
 
-class students(models.Model):
-        
-        _name = 'ou.students'
-        
-
-        name = fields.Char(
-            string='Nombres',
-        )
->>>>>>> 4159c1e03c480c0ecec9608bc80bbb8697e392d1
-
-        surnames = fields.Char(
+    surnames = fields.Char(
             string='Apellidos',
         )
         
-        age = fields.Integer(
+    age = fields.Integer(
             string='Edad',
         )
         
-        phone = fields.Integer(
+    phone = fields.Integer(
             string='telefono',
         )
         
-        vat = fields.Char(
+    vat = fields.Char(
             string="CI/RUC", 
             size=13
+        )
+
+    grade_ids = fields.One2many(
+        comodel_name='grade.line',
+        inverse_name='student_id',
+        string='Notas'
         )

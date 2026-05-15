@@ -20,7 +20,6 @@
               sequence="20"/>
 
     <menuitem id="menu_students"
-<<<<<<< HEAD
               name="Estudiante"
               action="odoo_ute.students_action"
               parent="menu_odoo_ute_root"
@@ -31,12 +30,23 @@
               action = "odoo_ute.asists_action"
               parent ="menu_odoo_ute_root"
               sequence ="40"/>
-        
-=======
-              name="Estudiantes"
-              parent="menu_odoo_ute_root"
-              action="odoo_ute.action_ou_students"
-              sequence="10"/>
 
->>>>>>> 4159c1e03c480c0ecec9608bc80bbb8697e392d1
+    <menuitem id = "menu_library"
+              name="Libreria"
+              action = "odoo_ute.library_actions"
+              parent ="menu_odoo_ute_root"
+              sequence ="50"/>
+    
+    <menuitem id = "menu_book_loand"
+              name="Prestamo de libros"
+              action = "odoo_ute.book_loan_action"
+              parent ="menu_odoo_ute_root"
+              sequence ="60"/>
+
+    <menuitem id="menu_grade_line"
+              name="Notas"
+              action="odoo_ute.grade_line_action"
+              parent="menu_odoo_ute_root"
+              sequence="70"/>
+        
 </odoo>

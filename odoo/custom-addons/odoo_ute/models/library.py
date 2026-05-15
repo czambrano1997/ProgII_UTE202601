@@ -24,6 +24,11 @@ class library(models.Model):
         string='Editoria',
     )
     
+    gender  = fields.Char(
+        string='Genero del libro',
+    )
+    
+
     income  = fields.Date(
         string='Ingreso',
     )

@@ -11,8 +11,35 @@
                     <field name = "headquarters"/>
                     <field name = "hous"/>
                     <field name = "income"/>
+                    <field name = "gender"/>
                 </list>
             </field>
+        </record>
+
+        <record id="library_form" model="ir.ui.view">
+            <field name="name">Vista de la libreria form</field>
+            <field name="model">library.ute</field>
+            <field name="arch" type="xml">
+                <form string="Libreria">
+                    <sheet>
+                        <group string ="Libros añadidos">
+                            <field name = "name"/>
+                            <field name = "author"/>
+                            <field name = "headquarters"/>
+                            <field name = "hous"/>
+                            <field name = "income"/>
+                            <field name = "gender"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        
+        <record id="library_actions" model="ir.actions.act_window">
+            <field name="name">Libreria</field>
+            <field name="res_model">library.ute</field>
+            <field name="view_mode">list,form</field>
         </record>
         
         
