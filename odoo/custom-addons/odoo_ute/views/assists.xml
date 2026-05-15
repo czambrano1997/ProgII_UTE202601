@@ -10,6 +10,7 @@
                     <field name="signature"/>
                     <field name="teachers"/>
                     <field name="assists"/>
+                    <field name="attended"/>
                 </list>
             </field>
         </record>
@@ -27,6 +28,7 @@
                         <group>
                             <field name="teachers"/>
                             <field name="assists"/>
+                             <field name="attended"/>
                         </group>
                     </shect>
                 </form>

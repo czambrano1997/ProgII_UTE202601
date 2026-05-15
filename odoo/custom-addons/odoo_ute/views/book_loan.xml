@@ -11,6 +11,7 @@
                     <field name="book"/>
                     <field name="book_gender"/>
                     <field name="loan_date"/>
+                    <field name="book_observations"/>
                 </list>
             </field>
         </record>
@@ -26,6 +27,7 @@
                             <field name="book"/>
                             <field name="book_gender" readonly="1"/>
                             <field name="loan_date"/>
+                            <field name="book_observations"/>
                         </group>
                     </sheet>
                 </form>
