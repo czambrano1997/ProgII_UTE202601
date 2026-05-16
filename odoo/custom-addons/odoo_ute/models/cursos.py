@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 
 
 class Cursos(models.Model):
-    _name = 'odoo_ute_v2.cursos'
+    _name = 'odoo_ute.cursos'
     _description = 'Curso'
     _rec_name = 'nombre'
     _order = 'nombre'
@@ -15,7 +15,7 @@ class Cursos(models.Model):
     active = fields.Boolean(string='Activo', default=True)
 
     maestro_id = fields.Many2one(
-        'odoo_ute_v2.maestro',
+        'odoo_ute.maestro',
         string='Maestro',
         required=True,
         ondelete='restrict',
@@ -23,10 +23,10 @@ class Cursos(models.Model):
     )
 
     calificacion_ids = fields.One2many(
-        'odoo_ute_v2.calificacion', 'curso_id', string='Calificaciones'
+        'odoo_ute.calificacion', 'curso_id', string='Calificaciones'
     )
     asistencia_ids = fields.One2many(
-        'odoo_ute_v2.asistencia', 'curso_id', string='Registros de asistencia'
+        'odoo_ute.asistencia', 'curso_id', string='Registros de asistencia'
     )
 
     num_calificaciones = fields.Integer(

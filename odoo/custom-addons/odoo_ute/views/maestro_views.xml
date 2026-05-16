@@ -4,8 +4,8 @@
 
         <!-- ── Vista lista ─────────────────────────────────────────────── -->
         <record id="view_maestro_list" model="ir.ui.view">
-            <field name="name">odoo_ute_v2.maestro.list</field>
-            <field name="model">odoo_ute_v2.maestro</field>
+            <field name="name">odoo_ute.maestro.list</field>
+            <field name="model">odoo_ute.maestro</field>
             <field name="arch" type="xml">
                 <list string="Maestros">
                     <field name="name"/>
@@ -18,8 +18,8 @@
 
         <!-- ── Vista formulario ───────────────────────────────────────── -->
         <record id="view_maestro_form" model="ir.ui.view">
-            <field name="name">odoo_ute_v2.maestro.form</field>
-            <field name="model">odoo_ute_v2.maestro</field>
+            <field name="name">odoo_ute.maestro.form</field>
+            <field name="model">odoo_ute.maestro</field>
             <field name="arch" type="xml">
                 <form string="Maestro">
                     <sheet>
@@ -54,7 +54,7 @@
         <!-- ── Acción ─────────────────────────────────────────────────── -->
         <record id="action_maestro" model="ir.actions.act_window">
             <field name="name">Maestros</field>
-            <field name="res_model">odoo_ute_v2.maestro</field>
+            <field name="res_model">odoo_ute.maestro</field>
             <field name="view_mode">list,form</field>
         </record>
 

@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 
 
 class Alumno(models.Model):
-    _name = 'odoo_ute_v2.alumno'
+    _name = 'odoo_ute.alumno'
     _description = 'Alumno'
     _rec_name = 'name'
     _order = 'apellido, nombre'
@@ -22,10 +22,10 @@ class Alumno(models.Model):
     active = fields.Boolean(string='Activo', default=True)
 
     calificacion_ids = fields.One2many(
-        'odoo_ute_v2.calificacion', 'alumno_id', string='Calificaciones'
+        'odoo_ute.calificacion', 'alumno_id', string='Calificaciones'
     )
     asistencia_ids = fields.One2many(
-        'odoo_ute_v2.asistencia', 'alumno_id', string='Asistencias'
+        'odoo_ute.asistencia', 'alumno_id', string='Asistencias'
     )
 
     promedio = fields.Float(

@@ -4,8 +4,8 @@
 
         <!-- ── Vista lista ─────────────────────────────────────────────── -->
         <record id="view_alumno_list" model="ir.ui.view">
-            <field name="name">odoo_ute_v2.alumno.list</field>
-            <field name="model">odoo_ute_v2.alumno</field>
+            <field name="name">odoo_ute.alumno.list</field>
+            <field name="model">odoo_ute.alumno</field>
             <field name="arch" type="xml">
                 <list string="Alumnos">
                     <field name="name"/>
@@ -19,8 +19,8 @@
 
         <!-- ── Vista formulario ───────────────────────────────────────── -->
         <record id="view_alumno_form" model="ir.ui.view">
-            <field name="name">odoo_ute_v2.alumno.form</field>
-            <field name="model">odoo_ute_v2.alumno</field>
+            <field name="name">odoo_ute.alumno.form</field>
+            <field name="model">odoo_ute.alumno</field>
             <field name="arch" type="xml">
                 <form string="Alumno">
                     <sheet>
@@ -65,7 +65,7 @@
         <!-- ── Acción ─────────────────────────────────────────────────── -->
         <record id="action_alumno" model="ir.actions.act_window">
             <field name="name">Alumnos</field>
-            <field name="res_model">odoo_ute_v2.alumno</field>
+            <field name="res_model">odoo_ute.alumno</field>
             <field name="view_mode">list,form</field>
         </record>
 

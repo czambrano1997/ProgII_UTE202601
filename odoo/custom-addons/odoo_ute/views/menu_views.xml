@@ -6,6 +6,7 @@
         <menuitem
             id="menu_ute_root"
             name="Gestión Académica UTE"
+            web_icon="odoo_ute,static/description/icon.png"
             sequence="10"/>
 
         <!-- Submenús -->
@@ -13,35 +14,35 @@
             id="menu_ute_maestros"
             name="Maestros"
             parent="menu_ute_root"
-            action="odoo_ute_v2.action_maestro"
+            action="odoo_ute.action_maestro"
             sequence="10"/>
 
         <menuitem
             id="menu_ute_alumnos"
             name="Alumnos"
             parent="menu_ute_root"
-            action="odoo_ute_v2.action_alumno"
+            action="odoo_ute.action_alumno"
             sequence="20"/>
 
         <menuitem
             id="menu_ute_cursos"
             name="Cursos"
             parent="menu_ute_root"
-            action="odoo_ute_v2.action_cursos"
+            action="odoo_ute.action_cursos"
             sequence="30"/>
 
         <menuitem
             id="menu_ute_calificaciones"
             name="Calificaciones"
             parent="menu_ute_root"
-            action="odoo_ute_v2.action_calificacion"
+            action="odoo_ute.action_calificacion"
             sequence="40"/>
 
         <menuitem
             id="menu_ute_asistencias"
             name="Asistencias"
             parent="menu_ute_root"
-            action="odoo_ute_v2.action_asistencia"
+            action="odoo_ute.action_asistencia"
             sequence="50"/>
 
     </data>

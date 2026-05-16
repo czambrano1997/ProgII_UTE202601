@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 
 
 class Asistencia(models.Model):
-    _name = 'odoo_ute_v2.asistencia'
+    _name = 'odoo_ute.asistencia'
     _description = 'Asistencia'
     _rec_name = 'name'
     _order = 'fecha desc'
@@ -17,14 +17,14 @@ class Asistencia(models.Model):
     )
 
     alumno_id = fields.Many2one(
-        'odoo_ute_v2.alumno',
+        'odoo_ute.alumno',
         string='Alumno',
         required=True,
         ondelete='cascade',
         index=True,
     )
     curso_id = fields.Many2one(
-        'odoo_ute_v2.cursos',
+        'odoo_ute.cursos',
         string='Curso',
         required=True,
         ondelete='restrict',

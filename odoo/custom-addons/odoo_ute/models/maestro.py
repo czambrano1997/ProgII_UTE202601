@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 
 
 class Maestro(models.Model):
-    _name = 'odoo_ute_v2.maestro'
+    _name = 'odoo_ute.maestro'
     _description = 'Maestro'
     _rec_name = 'name'
     _order = 'apellido, nombre'
@@ -22,7 +22,7 @@ class Maestro(models.Model):
     active = fields.Boolean(string='Activo', default=True)
 
     curso_ids = fields.One2many(
-        'odoo_ute_v2.cursos', 'maestro_id', string='Cursos impartidos'
+        'odoo_ute.cursos', 'maestro_id', string='Cursos impartidos'
     )
     num_cursos = fields.Integer(
         string='N° de cursos',
