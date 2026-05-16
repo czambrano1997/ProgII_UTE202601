@@ -2,29 +2,32 @@
 <odoo>
     <data>
 
+<!-- Categoriass -->
         <record model="ir.module.category" id="ute_category">
             <field name="name">UTE</field>
+            <field name="description">Módulo de Gestión Académica UTE</field>
             <field name="sequence">1</field>
         </record>
 
+<!-- Privilegios-->
         <record id="res_groups_privilege_ute" model="res.groups.privilege">
             <field name="name">Acceso UTE</field>
             <field name="category_id" ref="ute_category"/>
         </record>
 
+<!-- Grupo Usuario regla: "solo lectura"-->
         <record id="group_ute_user" model="res.groups">
             <field name="name">Usuario</field>
             <field name="privilege_id" ref="res_groups_privilege_ute"/>
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         </record>
 
+<!-- Grupo Admind regla:"acceso completo"-->
         <record id="group_ute_manager" model="res.groups">
             <field name="name">Administrador</field>
             <field name="privilege_id" ref="res_groups_privilege_ute"/>
             <field name="implied_ids" eval="[(4, ref('group_ute_user'))]"/>
-<!--            <field name="users" eval="[(4, ref('base.user_root'))]"/>-->
         </record>
-
 
     </data>
 </odoo>

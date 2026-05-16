@@ -2,17 +2,42 @@
 <odoo>
     <data>
 
-        <record id="rule_ute_user_own_records" model="ir.rule">
-            <field name="name">UTE: El usuario solo ve sus propios registros</field>
+<!-- Regla 1: Aqui aplico la regla para que el usuario solo vea los docentes creados por el -->
+        <record id="rule_ute_teacher_user_own" model="ir.rule">
+            <field name="name">UTE: uusuario solo ve docentes que creó</field>
             <field name="model_id" ref="model_ou_teacher"/>
             <field name="groups" eval="[(4, ref('odoo_ute.group_ute_user'))]"/>
             <field name="domain_force">[('create_uid', '=', user.id)]</field>
             <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="True"/>
+            <field name="perm_write" eval="False"/>
             <field name="perm_create" eval="False"/>
             <field name="perm_unlink" eval="False"/>
         </record>
+<!-- Regla 2: el administrador puede ver todos los registros hechos -->
+        <record id="rule_ute_teacher_manager_all" model="ir.rule">
+            <field name="name">UTE: Administrador ve todos los docentes o registros</field>
+            <field name="model_id" ref="model_ou_teacher"/>
+            <field name="groups" eval="[(4, ref('odoo_ute.group_ute_manager'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
 
+
+
+<!-- Regla3: el usuario solo ve los estudiantes -->
+        <record id="rule_ute_student_user_own" model="ir.rule">
+            <field name="name">UTE: uusuario solo ve estudiantes que creó</field>
+            <field name="model_id" ref="model_ou_student"/>
+            <field name="groups" eval="[(4, ref('odoo_ute.group_ute_user'))]"/>
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
 
     </data>
 </odoo>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!-- forms -->
+        <record id="ou_course_form" model="ir.ui.view">
+            <field name="name">ou.course.form</field>
+            <field name="model">ou.course</field>
+            <field name="arch" type="xml">
+                <form string="Curso">
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,open,in_progress,finished,cancelled"/>
+                    </header>
+                    <sheet>
+                        <group string="Información del Curso">
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="signature_id"/>
+                                <field name="teacher_id"/>
+                                <field name="period"/>
+                            </group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="capacity"/>
+                                <field name="enrolled_count"/>
+                                <field name="available_spots"/>
+                                <field name="classroom"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Estudiantes">
+                                <field name="student_ids" widget="many2many_tags"/>
+                            </page>
+                            <page string="Horario">
+                                <field name="schedule" placeholder="Ej: Lunes y Miércoles 08:00-10:00"/>
+                            </page>
+                            <page string="Notas del Curso">
+                                <field name="notes"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!-- listas -->
+        <record id="ou_course_list" model="ir.ui.view">
+            <field name="name">ou.course.list</field>
+            <field name="model">ou.course</field>
+            <field name="arch" type="xml">
+                <list string="Cursos">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="signature_id"/>
+                    <field name="teacher_id"/>
+                    <field name="period"/>
+                    <field name="capacity"/>
+                    <field name="enrolled_count"/>
+                    <field name="available_spots"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+<!-- actions -->
+        <record id="action_ou_course" model="ir.actions.act_window">
+            <field name="name">Cursos</field>
+            <field name="res_model">ou.course</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    ¡Registre el primer curso!
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -2,53 +2,91 @@
 <odoo>
     <data>
 
+<!-- Vista-->
         <record id="ou_teacher_form" model="ir.ui.view">
             <field name="name">Vista Docente Form</field>
             <field name="model">ou.teacher</field>
             <field name="arch" type="xml">
                 <form string="Docente">
                     <header>
-                        <button name="generar_reporte" string="Generar reporte" class="oe_highlight" type="object"/>
-<!--                        <field name="state" widget="statusbar" statusbar_visible="" statusbar_colors="{'KEY_IS_STATE':'VALUE_IS_COLOR'}"/>-->
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="active,inactive,retired"/>
+                        <button name="generar_reporte" string="Generar Reporte"
+                                class="oe_highlight" type="object"/>
                     </header>
                     <sheet>
-                        <group>
+                        <group string="Información Personal">
                             <group>
-                                <field name="name" />
-                                <field name="last_name" />
-                                <field name="vat" />
-                                <field name="signature_ids" widget="many2many_tags"/>
+                                <field name="name"/>
+                                <field name="last_name"/>
+                                <field name="full_name"/>
+                                <field name="gender"/>
+                                <field name="birth_date"/>
                             </group>
                             <group>
+                                <field name="vat"/>
                                 <field name="email" widget="email"/>
                                 <field name="phone" widget="phone"/>
                                 <field name="validate_email"/>
-                                <field name="signature_primary" groups="odoo_ute.group_ute_user" readonly="1"/>
-                                <field name="signature_primary" groups="odoo_ute.group_ute_manager"/>
+                                <field name="salary"/>
+                                <field name="active"/>
                             </group>
                         </group>
+                        <group string="Materias">
+                            <field name="signature_primary"
+                                   groups="odoo_ute.group_ute_manager"/>
+                            <field name="signature_primary"
+                                   groups="odoo_ute.group_ute_user" readonly="1"/>
+                            <field name="signature_ids" widget="many2many_tags"/>
+                        </group>
+                        <notebook>
+                            <page string="Cursos Asignados">
+                                <field name="course_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="period"/>
+                                        <field name="state"/>
+                                        <field name="enrolled_count"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Observaciones">
+                                <field name="notes" placeholder="Escriba observaciones..."/>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
         </record>
 
+        <!-- Listas -->
         <record id="ou_teacher_tree" model="ir.ui.view">
-            <field name="name">ou.teacher.tree</field>
+            <field name="name">ou.teacher.list</field>
             <field name="model">ou.teacher</field>
             <field name="arch" type="xml">
-                <list string="Docente">
-                    <field name="name" />
-                    <field name="last_name" />
-                    <field name="vat" />
+                <list string="Docentes">
+                    <field name="full_name"/>
+                    <field name="vat"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="signature_primary"/>
+                    <field name="state"/>
+                    <field name="active"/>
                 </list>
             </field>
         </record>
 
+        <!-- actionss -->
         <record id="ou_teacher_action" model="ir.actions.act_window">
             <field name="name">Docentes</field>
             <field name="res_model">ou.teacher</field>
-            <field name="view_mode">list,form</field> <!-- Se eliminó el punto inicial -->
-        </record> <!-- Se eliminó el punto inicial -->
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    ¡Registró el primer docente!
+                </p>
+            </field>
+        </record>
 
     </data>
 </odoo>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- forms -->
+        <record id="ou_student_form" model="ir.ui.view">
+            <field name="name">ou.student.form</field>
+            <field name="model">ou.student</field>
+            <field name="arch" type="xml">
+                <form string="Estudiante">
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="enrolled,graduated,withdrawn,suspended"/>
+                    </header>
+                    <sheet>
+                        <group string="Información Personal">
+                            <group>
+                                <field name="name"/>
+                                <field name="last_name"/>
+                                <field name="full_name"/>
+                                <field name="gender"/>
+                                <field name="birth_date"/>
+                                <field name="age"/>
+                            </group>
+                            <group>
+                                <field name="vat"/>
+                                <field name="email" widget="email"/>
+                                <field name="phone" widget="phone"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <group string="Información Académica">
+                            <group>
+                                <field name="career_id"/>
+                                <field name="enrollment_date"/>
+                                <field name="gpa"/>
+                            </group>
+                            <group>
+                                <field name="is_honor_student"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Cursos Matriculados">
+                                <field name="course_ids" widget="many2many_tags"/>
+                            </page>
+                            <page string="Observaciones">
+                                <field name="notes" placeholder="Observaciones del estudiante"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- listas -->
+        <record id="ou_student_list" model="ir.ui.view">
+            <field name="name">ou.student.list</field>
+            <field name="model">ou.student</field>
+            <field name="arch" type="xml">
+                <list string="Estudiantes">
+                    <field name="full_name"/>
+                    <field name="vat"/>
+                    <field name="email"/>
+                    <field name="career_id"/>
+                    <field name="gpa"/>
+                    <field name="is_honor_student"/>
+                    <field name="state"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- actions-->
+        <record id="action_ou_student" model="ir.actions.act_window">
+            <field name="name">Estudiantes</field>
+            <field name="res_model">ou.student</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    ¡Registre el primer estudiante!
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
