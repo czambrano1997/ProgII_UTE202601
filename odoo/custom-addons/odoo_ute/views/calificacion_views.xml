@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ── Vista lista ─────────────────────────────────────────────── -->
+        <record id="view_calificacion_list" model="ir.ui.view">
+            <field name="name">odoo_ute_v2.calificacion.list</field>
+            <field name="model">odoo_ute_v2.calificacion</field>
+            <field name="arch" type="xml">
+                <list string="Calificaciones">
+                    <field name="alumno_id"/>
+                    <field name="curso_id"/>
+                    <field name="tipo_evaluacion"/>
+                    <field name="nota"/>
+                    <field name="fecha_evaluacion"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- ── Vista formulario ───────────────────────────────────────── -->
+        <record id="view_calificacion_form" model="ir.ui.view">
+            <field name="name">odoo_ute_v2.calificacion.form</field>
+            <field name="model">odoo_ute_v2.calificacion</field>
+            <field name="arch" type="xml">
+                <form string="Calificación">
+                    <sheet>
+                        <group>
+                            <group string="Datos de la evaluación">
+                                <field name="alumno_id"/>
+                                <field name="curso_id"/>
+                                <field name="tipo_evaluacion"/>
+                                <field name="fecha_evaluacion"/>
+                            </group>
+                            <group string="Resultado">
+                                <field name="nota"/>
+                            </group>
+                        </group>
+                        <group string="Observaciones">
+                            <field name="observaciones" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- ── Acción ─────────────────────────────────────────────────── -->
+        <record id="action_calificacion" model="ir.actions.act_window">
+            <field name="name">Calificaciones</field>
+            <field name="res_model">odoo_ute_v2.calificacion</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+    </data>
+</odoo>

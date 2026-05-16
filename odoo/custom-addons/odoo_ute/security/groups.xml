@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Categoría del módulo -->
+    <record id="module_category_ute" model="ir.module.category">
+        <field name="name">Gestión Académica UTE</field>
+        <field name="sequence">50</field>
+    </record>
+
+    <!-- Usuario: acceso de solo lectura a maestros/alumnos/cursos;
+         puede registrar y editar calificaciones y asistencias -->
+    <record id="group_ute_usuario" model="res.groups">
+        <field name="name">Usuario</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- Administrador: acceso completo a todos los modelos -->
+    <record id="group_ute_admin" model="res.groups">
+        <field name="name">Administrador</field>        
+        <field name="implied_ids" eval="[(4, ref('group_ute_usuario'))]"/>
+    </record>
+</odoo>
