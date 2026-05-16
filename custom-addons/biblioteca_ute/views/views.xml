@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_biblioteca_libro_tree" model="ir.ui.view">
+            <name>biblioteca.libro.tree</name>
+            <model>biblioteca.libro</model>
+            <arch type="xml">
+                <tree string="Libros">
+                    <field name="name"/>
+                </tree>
+            </arch>
+        </record>
+
+        <record id="action_biblioteca_libro" model="ir.actions.act_window">
+            <name>Libros de la UTE</name>
+            <type>ir.actions.act_window</type>
+            <model>biblioteca.libro</model>
+            <view_mode>tree,form</view_mode>
+        </record>
+
+        <menuitem id="menu_biblioteca_root" name="Biblioteca UTE" sequence="10"/>
+
+        <menuitem id="menu_biblioteca_libro" name="Gestión de Libros" parent="menu_biblioteca_root" action="action_biblioteca_libro" sequence="10"/>
+
+    </data>
+</odoo>
