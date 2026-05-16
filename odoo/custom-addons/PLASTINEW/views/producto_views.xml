@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista Tree -->
+    <record id="view_producto_tree" model="ir.ui.view">
+        <field name="name">plasticos.producto.tree</field>
+        <field name="model">plasticos.producto</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="codigo"/>
+                <field name="name"/>
+                <field name="tipo_material"/>
+                <field name="precio"/>
+                <field name="stock"/>
+                <field name="estado"/>
+                <field name="total_vendido"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Form -->
+    <record id="view_producto_form" model="ir.ui.view">
+        <field name="name">plasticos.producto.form</field>
+        <field name="model">plasticos.producto</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="codigo"/>
+                        <field name="descripcion"/>
+                        <field name="tipo_material"/>
+                        <field name="precio"/>
+                        <field name="stock"/>
+                        <field name="es_reciclable"/>
+                        <field name="estado"/>
+                        <field name="categoria_id"/>
+                        <field name="color_ids" widget="many2many_tags"/>
+                        <field name="total_vendido"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="action_producto" model="ir.actions.act_window">
+        <field name="name">Productos</field>
+        <field name="res_model">plasticos.producto</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menú principal -->
+    <menuitem id="menu_plasticos_root" name="Plásticos" sequence="10"/>
+
+    <!-- Submenús con acciones -->
+    <menuitem id="menu_producto" name="Productos" parent="menu_plasticos_root" action="action_producto" sequence="1"/>
+    <menuitem id="menu_cliente" name="Clientes" parent="menu_plasticos_root" action="action_cliente" sequence="2"/>
+    <menuitem id="menu_venta" name="Ventas" parent="menu_plasticos_root" action="action_venta" sequence="3"/>
+    <menuitem id="menu_inventario" name="Inventario" parent="menu_plasticos_root" action="action_inventario" sequence="4"/>
+    <menuitem id="menu_produccion" name="Producción" parent="menu_plasticos_root" action="action_produccion" sequence="5"/>
+</odoo>
