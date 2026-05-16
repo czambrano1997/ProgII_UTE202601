@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+ou_teacher_base_user,access_base_user_ou_teacher_user,model_ou_teacher,odoo_ute.group_ute_user,1,1,0,0
+ou_teacher_base_manager,access_base_user_ou_teacher_manager,model_ou_teacher,odoo_ute.group_ute_manager,1,1,1,1
+
+
+ou_signature_base_user,access_base_user_ou_signature_user,model_ou_signature,odoo_ute.group_ute_user,1,1,1,1
+ou_signature_base_manager,access_base_user_ou_signature_manager,model_ou_signature,odoo_ute.group_ute_manager,1,1,1,1
