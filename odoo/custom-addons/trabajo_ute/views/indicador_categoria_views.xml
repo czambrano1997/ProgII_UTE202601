@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record id="view_indicador_categoria_form" model="ir.ui.view">
+            <field name="name">ou.indicador.categoria.form</field>
+            <field name="model">ou.indicador.categoria</field>
+            <field name="arch" type="xml">
+                <form string="Categoría de Indicador">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Nombre de la categoría..."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                                <field name="tipo_indicador" widget="radio"/>
+                                <field name="peso_porcentaje" widget="percentage"/>
+                            </group>
+                            <group>
+                                <field name="total_subcategorias" readonly="1"/>
+                                <field name="color" widget="color_picker"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Descripción">
+                                <field name="description" placeholder="Describa el propósito de esta categoría..."/>
+                            </page>
+                            <page string="Subcategorías">
+                                <field name="subcategoria_ids">
+                                    <list editable="bottom">
+                                        <field name="name"/>
+                                        <field name="puntaje_maximo"/>
+                                        <field name="descripcion"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- List View -->
+        <record id="view_indicador_categoria_list" model="ir.ui.view">
+            <field name="name">ou.indicador.categoria.list</field>
+            <field name="model">ou.indicador.categoria</field>
+            <field name="arch" type="xml">
+                <list string="Categorías de Indicadores">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="tipo_indicador" decoration-info="tipo_indicador == 'conductor'" decoration-success="tipo_indicador == 'vehiculo'" decoration-warning="tipo_indicador == 'general'"/>
+                    <field name="peso_porcentaje" widget="percentage"/>
+                    <field name="total_subcategorias"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_indicador_categoria_search" model="ir.ui.view">
+            <field name="name">ou.indicador.categoria.search</field>
+            <field name="model">ou.indicador.categoria</field>
+            <field name="arch" type="xml">
+                <search string="Buscar Categorías">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <filter string="Conductor" name="tipo_conductor" domain="[('tipo_indicador', '=', 'conductor')]"/>
+                    <filter string="Vehículo" name="tipo_vehiculo" domain="[('tipo_indicador', '=', 'vehiculo')]"/>
+                    <filter string="Archivadas" name="archivadas" domain="[('active', '=', False)]"/>
+                    <group expand="0" string="Agrupar Por">
+                        <filter string="Tipo" name="group_tipo" context="{'group_by': 'tipo_indicador'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_indicador_categoria" model="ir.actions.act_window">
+            <field name="name">Categorías de Indicadores</field>
+            <field name="res_model">ou.indicador.categoria</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_indicador_categoria_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear primera categoría de indicador
+                </p>
+                <p>
+                    Defina las categorías para clasificar los indicadores de calificación.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record id="view_reporte_calificacion_form" model="ir.ui.view">
+            <field name="name">ou.reporte.calificacion.form</field>
+            <field name="model">ou.reporte.calificacion</field>
+            <field name="arch" type="xml">
+                <form string="Reporte de Calificación">
+                    <header>
+                        <button name="action_generar" string="Generar Reporte" type="object" class="oe_highlight" invisible="state != 'borrador'"/>
+                        <button name="action_regenerar" string="Regenerar" type="object" invisible="state != 'generado'"/>
+                        <button name="action_publicar" string="Publicar" type="object" class="oe_highlight" invisible="state != 'generado'"/>
+                        <button name="action_archivar" string="Archivar" type="object" invisible="state in ('borrador', 'archivado')"/>
+                        <field name="state" widget="statusbar" statusbar_visible="borrador,generado,publicado,archivado"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Nombre del reporte..."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code" readonly="1"/>
+                                <field name="periodo_id"/>
+                                <field name="tipo_reporte"/>
+                            </group>
+                            <group>
+                                <field name="fecha_generacion" readonly="1"/>
+                                <field name="total_evaluados" readonly="1"/>
+                                <field name="promedio_general" readonly="1"/>
+                            </group>
+                        </group>
+                        <group string="Resumen" col="4">
+                            <field name="mejores_calificados" readonly="1"/>
+                            <field name="peores_calificados" readonly="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Detalle del Reporte">
+                                <field name="linea_reporte_ids" readonly="1">
+                                    <list>
+                                        <field name="ranking"/>
+                                        <field name="tipo_entidad"/>
+                                        <field name="nombre_entidad"/>
+                                        <field name="puntaje_total"/>
+                                        <field name="promedio"/>
+                                        <field name="calificacion"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- List View -->
+        <record id="view_reporte_calificacion_list" model="ir.ui.view">
+            <field name="name">ou.reporte.calificacion.list</field>
+            <field name="model">ou.reporte.calificacion</field>
+            <field name="arch" type="xml">
+                <list string="Reportes de Calificación">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="periodo_id"/>
+                    <field name="tipo_reporte"/>
+                    <field name="fecha_generacion"/>
+                    <field name="total_evaluados"/>
+                    <field name="promedio_general"/>
+                    <field name="state" widget="badge"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_reporte_calificacion" model="ir.actions.act_window">
+            <field name="name">Reportes de Calificación</field>
+            <field name="res_model">ou.reporte.calificacion</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Generar primer reporte de calificación
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
