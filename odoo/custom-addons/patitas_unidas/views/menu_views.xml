@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Menú raíz (aparece en el launcher de apps) -->
+        <menuitem
+            id="menu_patitas_unidas_root"
+            name="Patitas Unidas"
+            web_icon="patitas_unidas/static/description/icon.png"
+            sequence="10"/>
+
+
+        <!-- Submenús -->
+        <menuitem
+            id="menu_patitas_mascotas"
+            name="Mascotas"
+            parent="menu_patitas_unidas_root"
+            action="patitas_unidas.action_mascota"
+            sequence="10"/>
+
+        <menuitem
+            id="menu_patitas_solicitudes"
+            name="Solicitudes de Adopción"
+            parent="menu_patitas_unidas_root"
+            action="patitas_unidas.action_solicitud_adopcion"
+            sequence="20"/>
+
+        <menuitem
+            id="menu_patitas_adoptantes"
+            name="Adoptantes"
+            parent="menu_patitas_unidas_root"
+            action="patitas_unidas.action_adoptante"
+            sequence="30"/>
+
+        <menuitem
+            id="menu_patitas_hogares"
+            name="Hogares Adoptivos"
+            parent="menu_patitas_unidas_root"
+            action="patitas_unidas.action_hogar_adoptivo"
+            sequence="40"/>
+
+        <menuitem
+            id="menu_patitas_historial"
+            name="Historial Médico"
+            parent="menu_patitas_unidas_root"
+            action="patitas_unidas.action_historial_medico"
+            sequence="50"/>
+
+    </data>
+</odoo>

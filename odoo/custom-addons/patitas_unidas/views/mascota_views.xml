@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ============================================================
+             MASCOTA — VISTA LISTA
+        ============================================================ -->
+        <record id="view_mascota_list" model="ir.ui.view">
+            <field name="name">patitas.unidas.mascota.list</field>
+            <field name="model">patitas.unidas.mascota</field>
+            <field name="arch" type="xml">
+                <list string="Mascotas">
+                    <field name="name"/>
+                    <field name="species"/>
+                    <field name="breed"/>
+                    <field name="age_months"/>
+                    <field name="state" widget="badge"/>
+                    <field name="foster_home_id"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- ============================================================
+             MASCOTA — VISTA FORMULARIO
+        ============================================================ -->
+        <record id="view_mascota_form" model="ir.ui.view">
+            <field name="name">patitas.unidas.mascota.form</field>
+            <field name="model">patitas.unidas.mascota</field>
+            <field name="arch" type="xml">
+                <form string="Mascota">
+                    <header>
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="available,in_foster,adopted,deceased"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Identificación">
+                                <field name="name"/>
+                                <field name="species"/>
+                                <field name="breed"/>
+                                <field name="age_months"/>
+                            </group>
+                            <group string="Situación">
+                                <field name="foster_home_id"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Historial Médico">
+                                <field name="medical_history_ids">
+                                    <list>
+                                        <field name="date"/>
+                                        <field name="care_type"/>
+                                        <field name="description"/>
+                                        <field name="veterinarian"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Solicitudes de Adopción">
+                                <field name="adoption_requests_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="adopter_id"/>
+                                        <field name="request_date"/>
+                                        <field name="state"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción de ventana -->
+        <record id="action_mascota" model="ir.actions.act_window">
+            <field name="name">Mascotas</field>
+            <field name="res_model">patitas.unidas.mascota</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+    </data>
+</odoo>

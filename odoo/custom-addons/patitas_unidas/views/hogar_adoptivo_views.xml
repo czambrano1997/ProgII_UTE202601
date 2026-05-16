@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Lista de hogares adoptivos -->
+        <record id="view_hogar_adoptivo_list" model="ir.ui.view">
+            <field name="name">patitas.unidas.hogar_adoptivo.list</field>
+            <field name="model">patitas.unidas.hogar_adoptivo</field>
+            <field name="arch" type="xml">
+                <list string="Hogares Adoptivos">
+                    <field name="name"/>
+                    <field name="max_capacity"/>
+                    <field name="current_occupancy"/>
+                    <field name="available_slots"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Formulario de hogar adoptivo -->
+        <record id="view_hogar_adoptivo_form" model="ir.ui.view">
+            <field name="name">patitas.unidas.hogar_adoptivo.form</field>
+            <field name="model">patitas.unidas.hogar_adoptivo</field>
+            <field name="arch" type="xml">
+                <form string="Hogar Adoptivo">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Nombre del cuidador..." required="1"/>
+                            </h1>
+                        </div>
+
+                        <group>
+                            <group string="Configuración">
+                                <field name="max_capacity"/>
+                                <field name="active"/>
+                            </group>
+                            <group string="Ocupación">
+                                <field name="current_occupancy" readonly="1"/>
+                                <field name="available_slots" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Dirección">
+                            <field name="address" nolabel="1"/>
+                        </group>
+
+                        <notebook>
+                            <page string="Mascotas Alojadas">
+                                <field name="pets_ids" readonly="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="species"/>
+                                        <field name="breed"/>
+                                        <field name="age_months"/>
+                                        <field name="state"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción ventana -->
+        <record id="action_hogar_adoptivo" model="ir.actions.act_window">
+            <field name="name">Hogares Adoptivos</field>
+            <field name="res_model">patitas.unidas.hogar_adoptivo</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+    </data>
+</odoo>

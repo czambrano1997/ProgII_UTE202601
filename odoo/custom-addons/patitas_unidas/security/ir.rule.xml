@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- ============================================================
+             REGLAS: SOLICITUD DE ADOPCIÓN
+             Usuario solo ve sus propias solicitudes.
+             Voluntario y Gestor ven todas.
+        ============================================================ -->
+        <record id="rule_solicitud_user_own" model="ir.rule">
+            <field name="name">Solicitud: Usuario ve solo las suyas</field>
+            <field name="model_id" ref="model_patitas_unidas_solicitud_adopcion"/>
+            <field name="groups" eval="[(4, ref('patitas_unidas.group_patitas_user'))]"/>
+            <field name="domain_force">
+                [('create_uid', '=', user.id)]
+            </field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_solicitud_volunteer_all" model="ir.rule">
+            <field name="name">Solicitud: Voluntario ve todas</field>
+            <field name="model_id" ref="model_patitas_unidas_solicitud_adopcion"/>
+            <field name="groups" eval="[(4, ref('patitas_unidas.group_patitas_volunteer'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_solicitud_manager_all" model="ir.rule">
+            <field name="name">Solicitud: Gestor acceso total</field>
+            <field name="model_id" ref="model_patitas_unidas_solicitud_adopcion"/>
+            <field name="groups" eval="[(4, ref('patitas_unidas.group_patitas_manager'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- ============================================================
+             REGLAS: MASCOTA
+             Todos los grupos leen. Voluntario/Gestor escriben sin filtro.
+        ============================================================ -->
+        <record id="rule_mascota_user_read" model="ir.rule">
+            <field name="name">Mascota: Usuario solo lectura</field>
+            <field name="model_id" ref="model_patitas_unidas_mascota"/>
+            <field name="groups" eval="[(4, ref('patitas_unidas.group_patitas_user'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_mascota_manager_all" model="ir.rule">
+            <field name="name">Mascota: Gestor acceso total</field>
+            <field name="model_id" ref="model_patitas_unidas_mascota"/>
+            <field name="groups" eval="[(4, ref('patitas_unidas.group_patitas_manager'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- ============================================================
+             REGLAS: HISTORIAL MÉDICO
+             Solo voluntarios y gestores pueden escribir.
+        ============================================================ -->
+        <record id="rule_historial_user_read" model="ir.rule">
+            <field name="name">Historial Médico: Usuario solo lectura</field>
+            <field name="model_id" ref="model_patitas_unidas_historial_medico"/>
+            <field name="groups" eval="[(4, ref('patitas_unidas.group_patitas_user'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_historial_manager_all" model="ir.rule">
+            <field name="name">Historial Médico: Gestor acceso total</field>
+            <field name="model_id" ref="model_patitas_unidas_historial_medico"/>
+            <field name="groups" eval="[(4, ref('patitas_unidas.group_patitas_manager'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

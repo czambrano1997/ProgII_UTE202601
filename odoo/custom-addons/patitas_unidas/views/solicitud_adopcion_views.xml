@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Lista de solicitudes -->
+        <record id="view_solicitud_adopcion_list" model="ir.ui.view">
+            <field name="name">patitas.unidas.solicitud_adopcion.list</field>
+            <field name="model">patitas.unidas.solicitud_adopcion</field>
+            <field name="arch" type="xml">
+                <list string="Solicitudes de Adopción">
+                    <field name="name"/>
+                    <field name="adopter_id"/>
+                    <field name="pet_id"/>
+                    <field name="request_date"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Formulario de solicitud -->
+        <record id="view_solicitud_adopcion_form" model="ir.ui.view">
+            <field name="name">patitas.unidas.solicitud_adopcion.form</field>
+            <field name="model">patitas.unidas.solicitud_adopcion</field>
+            <field name="arch" type="xml">
+                <form string="Solicitud de Adopción">
+                    <header>
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="draft,pending,approved,completed"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+
+                        <group>
+                            <group string="Datos de la Solicitud">
+                                <field name="adopter_id" options="{'no_create': True}"/>
+                                <field name="pet_id" options="{'no_create': True}"/>
+                                <field name="request_date"/>
+                            </group>
+                            <group string="Seguimiento">
+                                <field name="days_elapsed" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Comentarios">
+                            <field name="comments" nolabel="1"/>
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción ventana -->
+        <record id="action_solicitud_adopcion" model="ir.actions.act_window">
+            <field name="name">Solicitudes de Adopción</field>
+            <field name="res_model">patitas.unidas.solicitud_adopcion</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_patitas_user_mascota,patitas.mascota.user,model_patitas_unidas_mascota,group_patitas_user,1,0,0,0
+access_patitas_user_hogar,patitas.hogar.user,model_patitas_unidas_hogar_adoptivo,group_patitas_user,1,0,0,0
+access_patitas_user_historial,patitas.historial.user,model_patitas_unidas_historial_medico,group_patitas_user,1,0,0,0
+access_patitas_user_solicitud,patitas.solicitud.user,model_patitas_unidas_solicitud_adopcion,group_patitas_user,1,1,1,0
+
+access_patitas_manager_mascota,patitas.mascota.manager,model_patitas_unidas_mascota,group_patitas_manager,1,1,1,1
+access_patitas_manager_hogar,patitas.hogar.manager,model_patitas_unidas_hogar_adoptivo,group_patitas_manager,1,1,1,1
+access_patitas_manager_historial,patitas.historial.manager,model_patitas_unidas_historial_medico,group_patitas_manager,1,1,1,1
+access_patitas_manager_solicitud,patitas.solicitud.manager,model_patitas_unidas_solicitud_adopcion,group_patitas_manager,1,1,1,1
