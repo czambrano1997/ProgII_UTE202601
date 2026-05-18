@@ -1,3 +1,17 @@
+{
+    'name': "Comida",
+    'version': '1.0',
+    'summary': "Gestión de comidas",
+    'description': "Módulo para gestionar comidas con estados y cantidades.",
+    'author': "DANNY",
+    'category': 'Custom',
+    'depends': ['base'],
+    'data': [
+        'views/comida_views.xml',
+    ],
+    'installable': True,
+    'application': True,  # Esto hace que el módulo aparezca en el panel de Aplicaciones
+}
 # -*- coding: utf-8 -*-
 {
     "name": "Comida",
