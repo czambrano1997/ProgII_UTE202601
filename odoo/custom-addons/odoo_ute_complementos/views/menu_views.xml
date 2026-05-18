@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="menu_ute_complementos_root"
+        name="Complementos Academicos"
+        parent="odoo_ute.menu_odoo_ute_root"
+        groups="group_ute_complementos_user,group_ute_complementos_manager"
+        sequence="30"/>
+
+    <menuitem
+        id="menu_ou_academic_plan"
+        name="Planes academicos"
+        action="action_ou_academic_plan"
+        parent="menu_ute_complementos_root"
+        groups="group_ute_complementos_user,group_ute_complementos_manager"
+        sequence="10"/>
+
+    <menuitem
+        id="menu_ou_classroom"
+        name="Aulas"
+        action="action_ou_classroom"
+        parent="menu_ute_complementos_root"
+        groups="group_ute_complementos_user,group_ute_complementos_manager"
+        sequence="20"/>
+
+    <menuitem
+        id="menu_ou_class_schedule"
+        name="Horarios"
+        action="action_ou_class_schedule"
+        parent="menu_ute_complementos_root"
+        groups="group_ute_complementos_user,group_ute_complementos_manager"
+        sequence="30"/>
+
+    <menuitem
+        id="menu_ou_attendance"
+        name="Asistencias"
+        action="action_ou_attendance"
+        parent="menu_ute_complementos_root"
+        groups="group_ute_complementos_user,group_ute_complementos_manager"
+        sequence="40"/>
+
+    <menuitem
+        id="menu_ou_teacher_evaluation"
+        name="Evaluaciones"
+        action="action_ou_teacher_evaluation"
+        parent="menu_ute_complementos_root"
+        groups="group_ute_complementos_user,group_ute_complementos_manager"
+        sequence="50"/>
+</odoo>

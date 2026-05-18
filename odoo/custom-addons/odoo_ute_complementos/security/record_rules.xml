@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rule_ou_academic_plan_user_read" model="ir.rule">
+        <field name="name">Complementos UTE: usuarios leen planes</field>
+        <field name="model_id" ref="model_ou_academic_plan"/>
+        <field name="groups" eval="[(4, ref('group_ute_complementos_user'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_ou_classroom_user_read" model="ir.rule">
+        <field name="name">Complementos UTE: usuarios leen aulas</field>
+        <field name="model_id" ref="model_ou_classroom"/>
+        <field name="groups" eval="[(4, ref('group_ute_complementos_user'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_ou_class_schedule_user_read" model="ir.rule">
+        <field name="name">Complementos UTE: usuarios leen horarios</field>
+        <field name="model_id" ref="model_ou_class_schedule"/>
+        <field name="groups" eval="[(4, ref('group_ute_complementos_user'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_ou_attendance_user_read" model="ir.rule">
+        <field name="name">Complementos UTE: usuarios leen asistencias</field>
+        <field name="model_id" ref="model_ou_attendance"/>
+        <field name="groups" eval="[(4, ref('group_ute_complementos_user'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_ou_teacher_evaluation_user_read" model="ir.rule">
+        <field name="name">Complementos UTE: usuarios leen evaluaciones</field>
+        <field name="model_id" ref="model_ou_teacher_evaluation"/>
+        <field name="groups" eval="[(4, ref('group_ute_complementos_user'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>

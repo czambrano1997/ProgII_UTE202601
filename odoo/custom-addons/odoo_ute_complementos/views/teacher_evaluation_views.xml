@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ou_teacher_evaluation_list" model="ir.ui.view">
+        <field name="name">ou.teacher.evaluation.list</field>
+        <field name="model">ou.teacher.evaluation</field>
+        <field name="arch" type="xml">
+            <list string="Evaluaciones docentes">
+                <field name="name"/>
+                <field name="teacher_id"/>
+                <field name="signature_id"/>
+                <field name="evaluation_date"/>
+                <field name="evaluator"/>
+                <field name="methodology_score"/>
+                <field name="punctuality_score"/>
+                <field name="content_score"/>
+                <field name="average_score"/>
+                <field name="result"/>
+                <field name="approved"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ou_teacher_evaluation_form" model="ir.ui.view">
+        <field name="name">ou.teacher.evaluation.form</field>
+        <field name="model">ou.teacher.evaluation</field>
+        <field name="arch" type="xml">
+            <form string="Evaluacion docente">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="teacher_id"/>
+                            <field name="signature_id"/>
+                            <field name="evaluation_date"/>
+                            <field name="evaluator"/>
+                            <field name="name" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="methodology_score"/>
+                            <field name="punctuality_score"/>
+                            <field name="content_score"/>
+                            <field name="average_score" readonly="1"/>
+                            <field name="result" readonly="1"/>
+                            <field name="approved" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Comentarios">
+                            <field name="comments"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ou_teacher_evaluation" model="ir.actions.act_window">
+        <field name="name">Evaluaciones docentes</field>
+        <field name="res_model">ou.teacher.evaluation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ou_teacher_form_inherit_complementos" model="ir.ui.view">
+        <field name="name">ou.teacher.form.inherit.complementos</field>
+        <field name="model">ou.teacher</field>
+        <field name="inherit_id" ref="odoo_ute.ou_teacher_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='validate_email']" position="after">
+                <field name="full_name" readonly="1"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Complementos">
+                        <group>
+                            <field name="academic_plan_ids" readonly="1"/>
+                            <field name="schedule_ids" readonly="1"/>
+                            <field name="attendance_ids" readonly="1"/>
+                            <field name="evaluation_ids" readonly="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>
