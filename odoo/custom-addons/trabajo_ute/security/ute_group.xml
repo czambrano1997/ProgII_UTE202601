@@ -2,28 +2,41 @@
 <odoo>
     <data>
 
-        <!-- Categoría del módulo -->
-        <record model="ir.module.category" id="module_category_indicadores_ute">
-            <field name="name">Indicadores UTE</field>
-            <field name="sequence">20</field>
-            <field name="description">Gestión de Indicadores de Calificación del Transporte UTE</field>
+        <!-- ============================================ -->
+        <!-- PASO 1: CATEGORÍA DEL MÓDULO                 -->
+        <!-- ============================================ -->
+        <record model="ir.module.category" id="module_category_ute_indicadores">
+            <field name="name">UTE Indicadores</field>
+            <field name="description">Gestión de indicadores y calificaciones UTE</field>
+            <field name="sequence">10</field>
         </record>
 
+        <!-- ============================================ -->
+        <!-- PASO 2: PRIVILEGIO (NUEVO EN ODOO 19)        -->
+        <!-- ============================================ -->
+        <record id="privilege_ute_indicadores" model="res.groups.privilege">
+            <field name="name">Acceso Indicadores</field>
+            <field name="category_id" ref="module_category_ute_indicadores"/>
+        </record>
+
+        <!-- ============================================ -->
+        <!-- PASO 3: GRUPOS (ahora usan privilege_id)     -->
+        <!-- ============================================ -->
+        
         <!-- Grupo Usuario (solo lectura) -->
         <record id="group_indicadores_user" model="res.groups">
-            <field name="name">Usuario Indicadores</field>
-            <field name="category_id" ref="module_category_indicadores_ute"/>
+            <field name="name">Usuario</field>
+            <field name="privilege_id" ref="privilege_ute_indicadores"/>
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
-            <field name="comment">Usuarios con acceso de solo lectura a indicadores y calificaciones.</field>
         </record>
 
         <!-- Grupo Administrador (todos los permisos) -->
         <record id="group_indicadores_manager" model="res.groups">
-            <field name="name">Administrador Indicadores</field>
-            <field name="category_id" ref="module_category_indicadores_ute"/>
+            <field name="name">Administrador</field>
+            <field name="privilege_id" ref="privilege_ute_indicadores"/>
             <field name="implied_ids" eval="[(4, ref('group_indicadores_user'))]"/>
-            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
-            <field name="comment">Administradores con acceso total a indicadores, calificaciones y configuración.</field>
+            <!-- Admin root tiene acceso automático -->
+            <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         </record>
 
     </data>

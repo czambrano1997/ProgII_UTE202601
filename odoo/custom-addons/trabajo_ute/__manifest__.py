@@ -16,7 +16,7 @@
     'depends': ['base', 'mail'],
 
     'data': [
-        'security/groups.xml',
+        'security/ute_group.xml',
         'security/ir.model.access.csv',
         'views/indicador_categoria_views.xml',
         'views/periodo_evaluacion_views.xml',
