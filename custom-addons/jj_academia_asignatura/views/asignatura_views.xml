@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_jj_asignatura_list" model="ir.ui.view">
+        <field name="name">jj.asignatura.list</field>
+        <field name="model">jj.asignatura</field>
+        <field name="arch" type="xml">
+            <list string="Asignaturas">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="career_id"/>
+                <field name="teacher_id"/>
+                <field name="credits"/>
+                <field name="weekly_hours"/>
+                <field name="classroom_capacity"/>
+                <field name="is_virtual"/>
+                <field name="estimated_monthly_cost"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_jj_asignatura_form" model="ir.ui.view">
+        <field name="name">jj.asignatura.form</field>
+        <field name="model">jj.asignatura</field>
+        <field name="arch" type="xml">
+            <form string="Asignatura">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="career_id"/>
+                            <field name="teacher_id"/>
+                            <field name="level"/>
+                            <field name="is_virtual"/>
+                        </group>
+                        <group>
+                            <field name="credits"/>
+                            <field name="weekly_hours"/>
+                            <field name="classroom_capacity"/>
+                            <field name="teacher_hourly_rate"/>
+                            <field name="estimated_monthly_cost" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Descripcion">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_jj_asignatura" model="ir.actions.act_window">
+        <field name="name">Asignaturas</field>
+        <field name="res_model">jj.asignatura</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_jj_asignatura_root" name="JJ Asignaturas" sequence="40" groups="group_jj_asignatura_usuario,group_jj_asignatura_administrador"/>
+    <menuitem id="menu_jj_asignatura" name="Asignaturas" parent="menu_jj_asignatura_root" action="action_jj_asignatura" sequence="10"/>
+</odoo>

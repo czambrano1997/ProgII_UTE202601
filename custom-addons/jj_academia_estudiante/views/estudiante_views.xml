@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_jj_estudiante_list" model="ir.ui.view">
+        <field name="name">jj.estudiante.list</field>
+        <field name="model">jj.estudiante</field>
+        <field name="arch" type="xml">
+            <list string="Estudiantes">
+                <field name="name"/>
+                <field name="document"/>
+                <field name="career_id"/>
+                <field name="semester"/>
+                <field name="average"/>
+                <field name="scholarship"/>
+                <field name="final_monthly_fee"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_jj_estudiante_form" model="ir.ui.view">
+        <field name="name">jj.estudiante.form</field>
+        <field name="model">jj.estudiante</field>
+        <field name="arch" type="xml">
+            <form string="Estudiante">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="document"/>
+                            <field name="age"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="career_id"/>
+                            <field name="semester"/>
+                            <field name="enrollment_date"/>
+                            <field name="average"/>
+                            <field name="status"/>
+                            <field name="scholarship"/>
+                            <field name="scholarship_percent"/>
+                            <field name="final_monthly_fee" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Observaciones">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_jj_estudiante" model="ir.actions.act_window">
+        <field name="name">Estudiantes</field>
+        <field name="res_model">jj.estudiante</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_jj_estudiante_root" name="JJ Estudiantes" sequence="20" groups="group_jj_estudiante_usuario,group_jj_estudiante_administrador"/>
+    <menuitem id="menu_jj_estudiante" name="Estudiantes" parent="menu_jj_estudiante_root" action="action_jj_estudiante" sequence="10"/>
+</odoo>

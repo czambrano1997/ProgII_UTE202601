@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jj_estudiante_usuario,jj.estudiante usuario,model_jj_estudiante,group_jj_estudiante_usuario,1,0,0,0
+access_jj_estudiante_administrador,jj.estudiante administrador,model_jj_estudiante,group_jj_estudiante_administrador,1,1,1,1

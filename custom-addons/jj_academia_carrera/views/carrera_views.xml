@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_jj_carrera_list" model="ir.ui.view">
+        <field name="name">jj.carrera.list</field>
+        <field name="model">jj.carrera</field>
+        <field name="arch" type="xml">
+            <list string="Carreras">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="modality"/>
+                <field name="duration_semesters"/>
+                <field name="monthly_fee"/>
+                <field name="total_estimated_cost"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_jj_carrera_form" model="ir.ui.view">
+        <field name="name">jj.carrera.form</field>
+        <field name="model">jj.carrera</field>
+        <field name="arch" type="xml">
+            <form string="Carrera">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="modality"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="duration_semesters"/>
+                            <field name="monthly_fee"/>
+                            <field name="total_estimated_cost" readonly="1"/>
+                            <field name="start_date"/>
+                            <field name="coordinator_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Descripcion">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_jj_carrera" model="ir.actions.act_window">
+        <field name="name">Carreras</field>
+        <field name="res_model">jj.carrera</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_jj_carrera_root" name="JJ Carreras" sequence="10" groups="group_jj_carrera_usuario,group_jj_carrera_administrador"/>
+    <menuitem id="menu_jj_carrera" name="Carreras" parent="menu_jj_carrera_root" action="action_jj_carrera" sequence="10"/>
+</odoo>

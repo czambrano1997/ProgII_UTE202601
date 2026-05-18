@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_jj_matricula_list" model="ir.ui.view">
+        <field name="name">jj.matricula.list</field>
+        <field name="model">jj.matricula</field>
+        <field name="arch" type="xml">
+            <list string="Matriculas">
+                <field name="name"/>
+                <field name="student_id"/>
+                <field name="subject_id"/>
+                <field name="period"/>
+                <field name="registration_date"/>
+                <field name="amount"/>
+                <field name="paid"/>
+                <field name="final_grade"/>
+                <field name="approved"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_jj_matricula_form" model="ir.ui.view">
+        <field name="name">jj.matricula.form</field>
+        <field name="model">jj.matricula</field>
+        <field name="arch" type="xml">
+            <form string="Matricula">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="student_id"/>
+                            <field name="subject_id"/>
+                            <field name="period"/>
+                            <field name="registration_date"/>
+                            <field name="state"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="paid"/>
+                            <field name="first_grade"/>
+                            <field name="second_grade"/>
+                            <field name="final_grade" readonly="1"/>
+                            <field name="approved" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Observaciones">
+                            <field name="observations"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_jj_matricula" model="ir.actions.act_window">
+        <field name="name">Matriculas</field>
+        <field name="res_model">jj.matricula</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_jj_matricula_root" name="JJ Matriculas" sequence="50" groups="group_jj_matricula_usuario,group_jj_matricula_administrador"/>
+    <menuitem id="menu_jj_matricula" name="Matriculas" parent="menu_jj_matricula_root" action="action_jj_matricula" sequence="10"/>
+</odoo>
