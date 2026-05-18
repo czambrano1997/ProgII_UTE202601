@@ -11,8 +11,10 @@
                         <group>
                             <field name="name"/>
                             <field name="cliente"></field>
+                            <field name="celuda"/>
                              <field name="correo"/>
                              <field name="telefono"/>
+                             <field name="direcion"/>
 
                             <!-- Add your fields here -->
                         </group>
@@ -29,8 +31,11 @@
                 <list string="Pedido">
                     <field name="name"/>
                     <field name="cliente"></field>
+                    <field name="celuda"/>
                     <field name="correo"/>
                     <field name="telefono"/>
+                    <field name="direcion"/>
+
                     <!-- Add your fields here -->
                 </list>
             </field>
