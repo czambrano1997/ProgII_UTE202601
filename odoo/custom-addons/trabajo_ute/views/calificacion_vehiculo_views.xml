@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record id="view_calificacion_vehiculo_form" model="ir.ui.view">
+            <field name="name">ou.calificacion.vehiculo.form</field>
+            <field name="model">ou.calificacion.vehiculo</field>
+            <field name="arch" type="xml">
+                <form string="Calificación de Vehículo">
+                    <header>
+                        <button name="action_calificar" string="Calificar" type="object" class="oe_highlight" invisible="state != 'borrador'"/>
+                        <button name="action_revisar" string="Revisar" type="object" class="oe_highlight" invisible="state != 'calificado'"/>
+                        <button name="action_aprobar" string="Aprobar" type="object" class="oe_highlight" invisible="state != 'revisado'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="borrador,calificado,revisado,aprobado"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Información General">
+                                <field name="periodo_id"/>
+                                <field name="vehiculo_id"/>
+                                <field name="conductor_asignado_id"/>
+                                <field name="fecha_evaluacion"/>
+                                <field name="evaluador_id" readonly="1"/>
+                            </group>
+                            <group string="Resultado">
+                                <field name="puntaje_total" readonly="1"/>
+                                <field name="promedio" readonly="1"/>
+                                <field name="estado_general" readonly="1" widget="badge" decoration-success="estado_general == 'excelente'" decoration-info="estado_general == 'bueno'" decoration-warning="estado_general == 'regular'" decoration-danger="estado_general == 'malo'" decoration-muted="estado_general == 'critico'"/>
+                                <field name="kilometraje"/>
+                            </group>
+                        </group>
+                        <group string="Indicadores de Calificación">
+                            <group>
+                                <field name="estado_mecanico"/>
+                                <field name="estado_exterior"/>
+                                <field name="estado_interior"/>
+                            </group>
+                            <group>
+                                <field name="nivel_combustible"/>
+                                <field name="documentacion"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Mantenimientos">
+                                <field name="mantenimiento_ids">
+                                    <list editable="bottom">
+                                        <field name="fecha_mantenimiento"/>
+                                        <field name="tipo_mantenimiento"/>
+                                        <field name="descripcion"/>
+                                        <field name="costo"/>
+                                        <field name="estado"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Observaciones">
+                                <field name="observaciones"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- List View -->
+        <record id="view_calificacion_vehiculo_list" model="ir.ui.view">
+            <field name="name">ou.calificacion.vehiculo.list</field>
+            <field name="model">ou.calificacion.vehiculo</field>
+            <field name="arch" type="xml">
+                <list string="Calificaciones de Vehículos" decoration-success="estado_general == 'excelente'" decoration-warning="estado_general == 'regular'" decoration-danger="estado_general in ('malo', 'critico')">
+                    <field name="name"/>
+                    <field name="periodo_id"/>
+                    <field name="vehiculo_id"/>
+                    <field name="conductor_asignado_id"/>
+                    <field name="promedio"/>
+                    <field name="estado_general" widget="badge"/>
+                    <field name="kilometraje"/>
+                    <field name="state" widget="badge"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_calificacion_vehiculo" model="ir.actions.act_window">
+            <field name="name">Calificaciones de Vehículos</field>
+            <field name="res_model">ou.calificacion.vehiculo</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear primera calificación de vehículo
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

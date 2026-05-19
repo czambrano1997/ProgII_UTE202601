@@ -2,29 +2,29 @@
 <odoo>
     <data>
 
-        <record model="ir.module.category" id="ute_category">
-            <field name="name">UTE</field>
-            <field name="sequence">1</field>
+        <!-- Categoría del módulo -->
+        <record model="ir.module.category" id="module_category_indicadores_ute">
+            <field name="name">Indicadores UTE</field>
+            <field name="sequence">20</field>
+            <field name="description">Gestión de Indicadores de Calificación del Transporte UTE</field>
         </record>
 
-        <record id="res_groups_privilege_ute" model="res.groups.privilege">
-            <field name="name">Acceso UTE</field>
-            <field name="category_id" ref="ute_category"/>
-        </record>
-
-        <record id="group_ute_user" model="res.groups">
-            <field name="name">Usuario</field>
-            <field name="privilege_id" ref="res_groups_privilege_ute"/>
+        <!-- Grupo Usuario (solo lectura) -->
+        <record id="group_indicadores_user" model="res.groups">
+            <field name="name">Usuario Indicadores</field>
+            <field name="category_id" ref="module_category_indicadores_ute"/>
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Usuarios con acceso de solo lectura a indicadores y calificaciones.</field>
         </record>
 
-        <record id="group_ute_manager" model="res.groups">
-            <field name="name">Administrador</field>
-            <field name="privilege_id" ref="res_groups_privilege_ute"/>
-            <field name="implied_ids" eval="[(4, ref('group_ute_user'))]"/>
-<!--            <field name="users" eval="[(4, ref('base.user_root'))]"/>-->
+        <!-- Grupo Administrador (todos los permisos) -->
+        <record id="group_indicadores_manager" model="res.groups">
+            <field name="name">Administrador Indicadores</field>
+            <field name="category_id" ref="module_category_indicadores_ute"/>
+            <field name="implied_ids" eval="[(4, ref('group_indicadores_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field name="comment">Administradores con acceso total a indicadores, calificaciones y configuración.</field>
         </record>
-
 
     </data>
 </odoo>

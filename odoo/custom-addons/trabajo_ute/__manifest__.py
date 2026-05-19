@@ -1,33 +1,29 @@
+# -*- coding: utf-8 -*-
 {
-    'name': "Transporte UTE",
-
-    'summary': "Gestion del Transporte de la UTE",
-
+    'name': "Indicadores de Calificación UTE",
+    'summary': "Gestión de indicadores y calificaciones del transporte UTE",
     'description': """
-Funcionalidades del gestor de transporte
+        Módulo para la gestión de indicadores de calificación de conductores y vehículos.
     """,
-
     'author': "Luis Arias",
     'website': "https://TransportLA.com",
+    'category': 'Human Resources',
+    'version': '1.0',
+    
+    # DEPENDENCIAS - Agregar 'trabajo_ute' para acceder a ou.conductores y ou.rutas
+    'depends': ['base', 'mail', 'trabajo_ute'],
 
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
-    'version': '0.1',
-
-    # any module necessary for this one to work correctly
-    'depends': ['base'],
-
-    # always loaded
     'data': [
+        'security/groups.xml',
         'security/ir.model.access.csv',
-        'views/horarios.xml',
+        'views/indicador_categoria_views.xml',
+        'views/periodo_evaluacion_views.xml',
+        'views/calificacion_conductor_views.xml',
+        'views/calificacion_vehiculo_views.xml',
+        'views/reporte_calificacion_views.xml',
         'views/menu.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        #'demo/demo.xml',
-    ],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
 }
-

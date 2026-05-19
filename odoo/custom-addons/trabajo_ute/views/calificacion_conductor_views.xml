@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record id="view_calificacion_conductor_form" model="ir.ui.view">
+            <field name="name">ou.calificacion.conductor.form</field>
+            <field name="model">ou.calificacion.conductor</field>
+            <field name="arch" type="xml">
+                <form string="Calificación de Conductor">
+                    <header>
+                        <button name="action_calificar" string="Calificar" type="object" class="oe_highlight" invisible="state != 'borrador'"/>
+                        <button name="action_revisar" string="Revisar" type="object" class="oe_highlight" invisible="state != 'calificado'"/>
+                        <button name="action_aprobar" string="Aprobar" type="object" class="oe_highlight" invisible="state != 'revisado'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="borrador,calificado,revisado,aprobado"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Información General">
+                                <field name="periodo_id"/>
+                                <field name="conductor_id"/>
+                                <field name="fecha_evaluacion"/>
+                                <field name="evaluador_id" readonly="1"/>
+                            </group>
+                            <group string="Resultado">
+                                <field name="puntaje_total" readonly="1"/>
+                                <field name="promedio" readonly="1"/>
+                                <field name="calificacion_letra" readonly="1"/>
+                                <field name="color_calificacion" widget="color_picker" readonly="1"/>
+                            </group>
+                        </group>
+                        <group string="Indicadores de Calificación">
+                            <group>
+                                <field name="puntaje_puntualidad" widget="gauge" options="{'max_value': 10}"/>
+                                <field name="puntaje_conducta" widget="gauge" options="{'max_value': 10}"/>
+                                <field name="puntaje_cumplimiento" widget="gauge" options="{'max_value': 10}"/>
+                            </group>
+                            <group>
+                                <field name="puntaje_mantenimiento" widget="gauge" options="{'max_value': 10}"/>
+                                <field name="puntaje_productividad" widget="gauge" options="{'max_value': 10}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Detalle por Categoría">
+                                <field name="linea_detalle_ids">
+                                    <list editable="bottom">
+                                        <field name="categoria_id"/>
+                                        <field name="puntaje_obtenido"/>
+                                        <field name="puntaje_maximo" readonly="1"/>
+                                        <field name="porcentaje_logrado" readonly="1" widget="percentage"/>
+                                        <field name="observacion"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Observaciones">
+                                <field name="observaciones" placeholder="Observaciones generales de la evaluación..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- List View -->
+        <record id="view_calificacion_conductor_list" model="ir.ui.view">
+            <field name="name">ou.calificacion.conductor.list</field>
+            <field name="model">ou.calificacion.conductor</field>
+            <field name="arch" type="xml">
+                <list string="Calificaciones de Conductores" decoration-success="promedio >= 9" decoration-warning="promedio >= 6 and promedio &lt; 9" decoration-danger="promedio &lt; 6">
+                    <field name="name"/>
+                    <field name="periodo_id"/>
+                    <field name="conductor_id"/>
+                    <field name="fecha_evaluacion"/>
+                    <field name="promedio"/>
+                    <field name="calificacion_letra"/>
+                    <field name="state" widget="badge"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Pivot View -->
+        <record id="view_calificacion_conductor_pivot" model="ir.ui.view">
+            <field name="name">ou.calificacion.conductor.pivot</field>
+            <field name="model">ou.calificacion.conductor</field>
+            <field name="arch" type="xml">
+                <pivot string="Análisis de Calificaciones">
+                    <field name="periodo_id" type="row"/>
+                    <field name="conductor_id" type="row"/>
+                    <field name="promedio" type="measure"/>
+                    <field name="puntaje_total" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Graph View -->
+        <record id="view_calificacion_conductor_graph" model="ir.ui.view">
+            <field name="name">ou.calificacion.conductor.graph</field>
+            <field name="model">ou.calificacion.conductor</field>
+            <field name="arch" type="xml">
+                <graph string="Gráfico de Calificaciones" type="bar">
+                    <field name="conductor_id"/>
+                    <field name="promedio" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_calificacion_conductor" model="ir.actions.act_window">
+            <field name="name">Calificaciones de Conductores</field>
+            <field name="res_model">ou.calificacion.conductor</field>
+            <field name="view_mode">list,form,pivot,graph</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear primera calificación de conductor
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

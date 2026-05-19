@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record id="view_periodo_evaluacion_form" model="ir.ui.view">
+            <field name="name">ou.periodo.evaluacion.form</field>
+            <field name="model">ou.periodo.evaluacion</field>
+            <field name="arch" type="xml">
+                <form string="Período de Evaluación">
+                    <header>
+                        <button name="action_iniciar" string="Iniciar" type="object" class="oe_highlight" invisible="state != 'borrador'"/>
+                        <button name="action_cerrar" string="Cerrar" type="object" class="oe_highlight" invisible="state != 'en_proceso'"/>
+                        <button name="action_cancelar" string="Cancelar" type="object" invisible="state in ('cerrado', 'cancelado')"/>
+                        <field name="state" widget="statusbar" statusbar_visible="borrador,en_proceso,cerrado"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Nombre del período..."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                                <field name="fecha_inicio"/>
+                                <field name="fecha_fin"/>
+                            </group>
+                            <group>
+                                <field name="duracion_dias" readonly="1"/>
+                                <field name="dias_restantes" readonly="1"/>
+                                <field name="es_vigente" readonly="1" widget="boolean_toggle"/>
+                                <field name="total_calificaciones" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Descripción">
+                                <field name="descripcion" placeholder="Detalles del período de evaluación..."/>
+                            </page>
+                            <page string="Calificaciones">
+                                <field name="calificacion_conductor_ids" readonly="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="conductor_id"/>
+                                        <field name="promedio"/>
+                                        <field name="state"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- List View -->
+        <record id="view_periodo_evaluacion_list" model="ir.ui.view">
+            <field name="name">ou.periodo.evaluacion.list</field>
+            <field name="model">ou.periodo.evaluacion</field>
+            <field name="arch" type="xml">
+                <list string="Períodos de Evaluación" decoration-muted="state == 'cancelado'" decoration-success="state == 'en_proceso'" decoration-info="state == 'cerrado'">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="fecha_inicio"/>
+                    <field name="fecha_fin"/>
+                    <field name="duracion_dias"/>
+                    <field name="dias_restantes"/>
+                    <field name="total_calificaciones"/>
+                    <field name="state" widget="badge" decoration-info="state == 'borrador'" decoration-success="state == 'en_proceso'" decoration-muted="state == 'cerrado'" decoration-danger="state == 'cancelado'"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Calendar View -->
+        <record id="view_periodo_evaluacion_calendar" model="ir.ui.view">
+            <field name="name">ou.periodo.evaluacion.calendar</field>
+            <field name="model">ou.periodo.evaluacion</field>
+            <field name="arch" type="xml">
+                <calendar string="Períodos" date_start="fecha_inicio" date_stop="fecha_fin" color="state">
+                    <field name="name"/>
+                    <field name="state"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_periodo_evaluacion" model="ir.actions.act_window">
+            <field name="name">Períodos de Evaluación</field>
+            <field name="res_model">ou.periodo.evaluacion</field>
+            <field name="view_mode">list,form,calendar</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear primer período de evaluación
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
