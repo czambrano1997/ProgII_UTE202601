@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="universidad_matricula_view_tree" model="ir.ui.view">
+            <field name="name">Matrícula Tree</field>
+            <field name="model">universidad.matricula</field>
+            <field name="arch" type="xml">
+                <list string="Matrículas">
+                    <field name="numero_matricula" />
+                    <field name="estudiante_id" />
+                    <field name="materia_id" />
+                    <field name="fecha_inscripcion" />
+                    <field name="calificacion" />
+                    <field name="nota_letra" />
+                    <field name="resultado" />
+                    <field name="estado" />
+                </list>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_matricula_view_form" model="ir.ui.view">
+            <field name="name">Matrícula Form</field>
+            <field name="model">universidad.matricula</field>
+            <field name="arch" type="xml">
+                <form string="Matrícula">
+                    <header>
+                        <button name="marcar_como_cursando" string="Marcar como Cursando" type="object" class="oe_highlight" invisible="estado != 'inscrito'" />
+                        <button name="marcar_como_calificado" string="Marcar como Calificado" type="object" class="oe_highlight" invisible="estado != 'cursando'" />
+                        <button name="retirar_estudiante" string="Retirar Estudiante" type="object" invisible="estado not in ('inscrito','cursando')" />
+                        <field name="estado" widget="statusbar" options="{'clickable': True}" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="numero_matricula" class="oe_inline" />
+                            </h1>
+                        </div>
+                        <notebook>
+                            <page string="Información de Inscripción" name="info_inscripcion">
+                                <group>
+                                    <group string="Identificación">
+                                        <field name="numero_matricula" readonly="1" />
+                                        <field name="fecha_inscripcion" />
+                                        <field name="fecha_retiro" />
+                                    </group>
+                                    <group string="Estudiante y Materia">
+                                        <field name="estudiante_id" />
+                                        <field name="materia_id" />
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <page string="Calificación Final" name="calificacion_final">
+                                <group>
+                                    <group>
+                                        <field name="calificacion" />
+                                        <field name="nota_letra" readonly="1" />
+                                        <field name="resultado" readonly="1" />
+                                    </group>
+                                    <group>
+                                        <field name="creditos_ganados" readonly="1" />
+                                        <field name="estado" />
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <page string="Componentes de Calificación" name="componentes">
+                                <group>
+                                    <group string="Calificaciones Parciales">
+                                        <field name="tareas" />
+                                        <field name="examenes" />
+                                        <field name="proyecto_final" />
+                                    </group>
+                                    <group string="Asistencia y Participación">
+                                        <field name="asistencia" widget="progressbar" title="Asistencia %" />
+                                        <field name="participacion" widget="progressbar" title="Participación %" />
+                                    </group>
+                                </group>
+                                <group string="Calificación Ponderada">
+                                    <field name="calificacion_ponderada" readonly="1" />
+                                </group>
+                            </page>
+                            
+                            <page string="Observaciones y Notas" name="observaciones">
+                                <group>
+                                    <field name="observaciones" nolabel="1" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" />
+                        <field name="activity_ids" />
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_matricula_view_search" model="ir.ui.view">
+            <field name="name">Matrícula Search</field>
+            <field name="model">universidad.matricula</field>
+            <field name="arch" type="xml">
+                <search string="Buscar Matrícula">
+                    <field name="numero_matricula" />
+                    <field name="estudiante_id" />
+                    <field name="materia_id" />
+                    <separator />
+                    <filter name="filter_aprobados" string="Aprobados" domain="[('resultado', '=', 'aprobado')]" />
+                    <filter name="filter_reprobados" string="Reprobados" domain="[('resultado', '=', 'reprobado')]" />
+                    <filter name="filter_retirados" string="Retirados" domain="[('estado', '=', 'retirado')]" />
+                    <filter name="filter_calificados" string="Calificados" domain="[('estado', '=', 'calificado')]" />
+                    <filter name="filter_baja_asistencia" string="Baja Asistencia" domain="[('asistencia', '&lt;', 60)]" />
+                    <separator />
+                </search>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_matricula_view_kanban" model="ir.ui.view">
+            <field name="name">Matrícula Kanban</field>
+            <field name="model">universidad.matricula</field>
+            <field name="arch" type="xml">
+                <kanban string="Matrículas" default_group_by="resultado">
+                    <field name="id" />
+                    <field name="numero_matricula" />
+                    <field name="estudiante_id" />
+                    <field name="materia_id" />
+                    <field name="calificacion" />
+                    <field name="nota_letra" />
+                    <field name="resultado" />
+                    <field name="estado" />
+                    <field name="asistencia" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <div class="oe_kanban_title">
+                                    <b><t t-esc="record.numero_matricula.value" /></b>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    <div><strong>Estudiante:</strong> <t t-esc="record.estudiante_id.value" /></div>
+                                    <div><strong>Materia:</strong> <t t-esc="record.materia_id.value" /></div>
+                                    <div><strong>Calificación:</strong> <t t-esc="record.calificacion.value.toFixed(2)" /> (<t t-esc="record.nota_letra.value" />)</div>
+                                    <div><strong>Resultado:</strong> <t t-esc="record.resultado.value" /></div>
+                                    <div><strong>Asistencia:</strong> <t t-esc="record.asistencia.value.toFixed(1)" />%</div>
+                                    <div class="text-muted">
+                                        <t t-esc="record.estado.value" />
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_matricula_action" model="ir.actions.act_window">
+            <field name="name">Matrículas</field>
+            <field name="res_model">universidad.matricula</field>
+            <field name="view_mode">kanban,tree,form,search</field>
+            <field name="view_id" ref="universidad_matricula_view_kanban" />
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cree su primera matrícula
+                </p>
+                <p>
+                    Una matrícula es el registro de un estudiante inscrito en una materia.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

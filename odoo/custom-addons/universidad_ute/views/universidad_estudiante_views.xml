@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="universidad_estudiante_view_tree" model="ir.ui.view">
+            <field name="name">Estudiante Tree</field>
+            <field name="model">universidad.estudiante</field>
+            <field name="arch" type="xml">
+                <list string="Estudiantes">
+                    <field name="numero_matricula" />
+                    <field name="name" />
+                    <field name="cedula" />
+                    <field name="carrera_id" />
+                    <field name="semestre_actual" />
+                    <field name="promedio_academico" />
+                    <field name="total_creditos_aprobados" />
+                    <field name="estado_estudiante" />
+                </list>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_estudiante_view_form" model="ir.ui.view">
+            <field name="name">Estudiante Form</field>
+            <field name="model">universidad.estudiante</field>
+            <field name="arch" type="xml">
+                <form string="Estudiante">
+                    <header>
+                        <field name="estado_estudiante" widget="statusbar" options="{'clickable': True}" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" icon="fa-book" disabled="True">
+                                <field name="materia_ids" widget="statinfo" string="Materias" />
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="numero_matricula" class="oe_inline" />
+                                <span> - </span>
+                                <field name="name" class="oe_inline" />
+                            </h1>
+                        </div>
+                        <notebook>
+                            <page string="Información Personal" name="info_personal">
+                                <group>
+                                    <group string="Datos Básicos">
+                                        <field name="numero_matricula" />
+                                        <field name="name" />
+                                        <field name="cedula" />
+                                        <field name="correo" widget="email" />
+                                    </group>
+                                    <group string="Contacto">
+                                        <field name="telefono" />
+                                        <field name="direccion" />
+                                        <field name="fecha_nacimiento" />
+                                        <field name="edad" readonly="1" />
+                                        <field name="genero" />
+                                    </group>
+                                </group>
+                                <group string="Fotografía">
+                                    <field name="foto" widget="image" class="oe_avatar" />
+                                </group>
+                            </page>
+                            
+                            <page string="Información Académica" name="info_academica">
+                                <group>
+                                    <group string="Carrera y Semestre">
+                                        <field name="carrera_id" />
+                                        <field name="semestre_actual" />
+                                        <field name="fecha_ingreso" />
+                                        <field name="especialidad" />
+                                    </group>
+                                    <group string="Expediente">
+                                        <field name="numero_expediente" />
+                                        <field name="estado_estudiante" />
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <page string="Desempeño Académico" name="desempeño">
+                                <group>
+                                    <group>
+                                        <field name="promedio_academico" widget="gauge" title="Promedio Académico" />
+                                    </group>
+                                    <group>
+                                        <field name="total_creditos_aprobados" />
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <page string="Materias Inscritas" name="materias">
+                                <field name="materia_ids" nolabel="1">
+                                    <list>
+                                        <field name="codigo" />
+                                        <field name="nombre" />
+                                        <field name="profesor_id" />
+                                        <field name="semestre" />
+                                        <field name="creditos" />
+                                    </list>
+                                </field>
+                            </page>
+                            
+                            <page string="Matrículas Detalladas" name="matriculas">
+                                <field name="matricula_ids" nolabel="1">
+                                    <list edit="false">
+                                        <field name="numero_matricula" />
+                                        <field name="materia_id" />
+                                        <field name="calificacion" />
+                                        <field name="nota_letra" />
+                                        <field name="creditos_ganados" />
+                                        <field name="resultado" />
+                                    </list>
+                                </field>
+                            </page>
+                            
+                            <page string="Deuda y Pagos" name="deuda">
+                                <group>
+                                    <group>
+                                        <field name="monto_deuda" />
+                                        <field name="currency_id" />
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <page string="Más Información" name="mas_info">
+                                <group>
+                                    <field name="activo" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" />
+                        <field name="activity_ids" />
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_estudiante_view_search" model="ir.ui.view">
+            <field name="name">Estudiante Search</field>
+            <field name="model">universidad.estudiante</field>
+            <field name="arch" type="xml">
+                <search string="Buscar Estudiante">
+                    <field name="name" string="Nombre o Matrícula" filter_domain="['|', ('name', 'ilike', self), ('numero_matricula', 'ilike', self)]" />
+                    <field name="cedula" />
+                    <field name="carrera_id" />
+                    <field name="semestre_actual" />
+                    <separator />
+                    <filter name="filter_activos" string="Activos" domain="[('estado_estudiante', '=', 'activo')]" />
+                    <filter name="filter_graduados" string="Graduados" domain="[('estado_estudiante', '=', 'graduado')]" />
+                    <filter name="filter_bajo_rendimiento" string="Bajo Rendimiento" domain="[('promedio_academico', '&lt;', 70)]" />
+                    <filter name="filter_con_deuda" string="Con Deuda" domain="[('monto_deuda', '&gt;', 0)]" />
+                    <separator />
+                </search>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_estudiante_view_kanban" model="ir.ui.view">
+            <field name="name">Estudiante Kanban</field>
+            <field name="model">universidad.estudiante</field>
+            <field name="arch" type="xml">
+                <kanban string="Estudiantes" default_group_by="estado_estudiante">
+                    <field name="id" />
+                    <field name="numero_matricula" />
+                    <field name="name" />
+                    <field name="cedula" />
+                    <field name="carrera_id" />
+                    <field name="semestre_actual" />
+                    <field name="promedio_academico" />
+                    <field name="total_creditos_aprobados" />
+                    <field name="estado_estudiante" />
+                    <field name="foto" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <div class="oe_kanban_avatar">
+                                    <img t-att-src="kanban_image('universidad.estudiante', 'foto', record.id.value)" alt="Foto del estudiante" />
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <b><t t-esc="record.name.value" /></b>
+                                    <div class="text-muted">
+                                        <t t-esc="record.numero_matricula.value" />
+                                    </div>
+                                    <div>
+                                        <strong>Carrera:</strong> <t t-esc="record.carrera_id.value" />
+                                    </div>
+                                    <div>
+                                        <strong>Semestre:</strong> <t t-esc="record.semestre_actual.value" />
+                                    </div>
+                                    <div>
+                                        <strong>Promedio:</strong> <t t-esc="record.promedio_academico.value.toFixed(2)" />
+                                    </div>
+                                    <div>
+                                        <strong>Créditos:</strong> <t t-esc="record.total_creditos_aprobados.value" />
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_estudiante_action" model="ir.actions.act_window">
+            <field name="name">Estudiantes</field>
+            <field name="res_model">universidad.estudiante</field>
+            <field name="view_mode">kanban,tree,form,search</field>
+            <field name="view_id" ref="universidad_estudiante_view_kanban" />
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cree su primer estudiante
+                </p>
+                <p>
+                    Un estudiante es una persona inscrita en una carrera de la universidad.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

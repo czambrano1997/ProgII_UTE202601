@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_carrera_usuario,carrera_usuario,model_universidad_carrera,group_usuario_universidad,1,0,0,0
+access_carrera_admin,carrera_admin,model_universidad_carrera,group_admin_universidad,1,1,1,1
+access_profesor_usuario,profesor_usuario,model_universidad_profesor,group_usuario_universidad,1,0,0,0
+access_profesor_admin,profesor_admin,model_universidad_profesor,group_admin_universidad,1,1,1,1
+access_materia_usuario,materia_usuario,model_universidad_materia,group_usuario_universidad,1,0,0,0
+access_materia_admin,materia_admin,model_universidad_materia,group_admin_universidad,1,1,1,1
+access_estudiante_usuario,estudiante_usuario,model_universidad_estudiante,group_usuario_universidad,1,0,0,0
+access_estudiante_admin,estudiante_admin,model_universidad_estudiante,group_admin_universidad,1,1,1,1
+access_matricula_usuario,matricula_usuario,model_universidad_matricula,group_usuario_universidad,1,0,0,0
+access_matricula_admin,matricula_admin,model_universidad_matricula,group_admin_universidad,1,1,1,1

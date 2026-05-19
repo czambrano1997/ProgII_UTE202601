@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        
+        <record id="carrera_ingenieria_sistemas" model="universidad.carrera">
+            <field name="codigo">ING-SIS-2024</field>
+            <field name="nombre">Ingeniería en Sistemas</field>
+            <field name="descripcion">Programa académico para formar profesionales en sistemas informáticos y desarrollo de software</field>
+            <field name="facultad">Facultad de Ingeniería</field>
+            <field name="decano">Dr. Juan García López</field>
+            <field name="duracion_semestres">8</field>
+            <field name="creditos_totales">240</field>
+            <field name="porcentaje_aceptacion">45.5</field>
+            <field name="sitio_web">https://www.universidad.edu.ec/ing-sistemas</field>
+            <field name="estado">activa</field>
+            <field name="fecha_creacion">2020-01-15</field>
+        </record>
+        <record id="carrera_ingenieria_civil" model="universidad.carrera">
+            <field name="codigo">ING-CIV-2024</field>
+            <field name="nombre">Ingeniería Civil</field>
+            <field name="descripcion">Programa académico para formar profesionales en ingeniería civil y obras públicas</field>
+            <field name="facultad">Facultad de Ingeniería</field>
+            <field name="decano">Ing. María Rodríguez Pérez</field>
+            <field name="duracion_semestres">8</field>
+            <field name="creditos_totales">260</field>
+            <field name="porcentaje_aceptacion">35.0</field>
+            <field name="estado">activa</field>
+            <field name="fecha_creacion">2019-06-20</field>
+        </record>
+        <record id="carrera_administracion" model="universidad.carrera">
+            <field name="codigo">ADM-2024</field>
+            <field name="nombre">Administración de Empresas</field>
+            <field name="descripcion">Programa académico para formar profesionales en gestión empresarial</field>
+            <field name="facultad">Facultad de Administración</field>
+            <field name="decano">Lic. Carlos Mendoza Silva</field>
+            <field name="duracion_semestres">6</field>
+            <field name="creditos_totales">180</field>
+            <field name="porcentaje_aceptacion">60.0</field>
+            <field name="estado">activa</field>
+            <field name="fecha_creacion">2018-09-10</field>
+        </record>
+        <record id="carrera_contabilidad" model="universidad.carrera">
+            <field name="codigo">CONT-2024</field>
+            <field name="nombre">Contabilidad</field>
+            <field name="descripcion">Programa académico para formar profesionales en contabilidad y auditoria</field>
+            <field name="facultad">Facultad de Administración</field>
+            <field name="decano">CPA. Elena Jiménez Vargas</field>
+            <field name="duracion_semestres">6</field>
+            <field name="creditos_totales">180</field>
+            <field name="porcentaje_aceptacion">50.0</field>
+            <field name="estado">activa</field>
+            <field name="fecha_creacion">2019-03-05</field>
+        </record>
+        <record id="carrera_psicologia" model="universidad.carrera">
+            <field name="codigo">PSI-2024</field>
+            <field name="nombre">Psicología</field>
+            <field name="descripcion">Programa académico para formar profesionales en psicología clínica y organizacional</field>
+            <field name="facultad">Facultad de Ciencias Sociales</field>
+            <field name="decano">Dra. Patricia Esquivel González</field>
+            <field name="duracion_semestres">8</field>
+            <field name="creditos_totales">240</field>
+            <field name="porcentaje_aceptacion">40.0</field>
+            <field name="estado">activa</field>
+            <field name="fecha_creacion">2017-11-20</field>
+        </record>
+        
+        
+        <record id="profesor_juan_perez" model="universidad.profesor">
+            <field name="codigo_profesor">PROF-001</field>
+            <field name="numero_empleado">E-001</field>
+            <field name="name">Juan Carlos Pérez González</field>
+            <field name="cedula">1234567890</field>
+            <field name="correo">juan.perez@universidad.edu.ec</field>
+            <field name="telefono">0987654321</field>
+            <field name="direccion">Calle Principal 123, Apt 4B, Quito</field>
+            <field name="fecha_nacimiento">1970-05-15</field>
+            <field name="genero">masculino</field>
+            <field name="titulo_academico">doctorado</field>
+            <field name="especialidad">Programación y Desarrollo de Software</field>
+            <field name="tipo_contrato">tiempo_completo</field>
+            <field name="fecha_contratacion">2010-01-10</field>
+            <field name="departamento">Departamento de Sistemas</field>
+            <field name="despacho">Oficina 301</field>
+            <field name="extension_telefonica">3001</field>
+            <field name="salario_base">3500.00</field>
+            <field name="horas_semanales">40</field>
+            <field name="estado_profesor">activo</field>
+            <field name="universidad_educacion">Universidad Central del Ecuador</field>
+            <field name="activo">True</field>
+        </record>
+        <record id="profesor_maria_lopez" model="universidad.profesor">
+            <field name="codigo_profesor">PROF-002</field>
+            <field name="numero_empleado">E-002</field>
+            <field name="name">María Isabel López Sánchez</field>
+            <field name="cedula">0987654321</field>
+            <field name="correo">maria.lopez@universidad.edu.ec</field>
+            <field name="telefono">0998765432</field>
+            <field name="direccion">Avenida Colón 456, Quito</field>
+            <field name="fecha_nacimiento">1975-08-22</field>
+            <field name="genero">femenino</field>
+            <field name="titulo_academico">maestria</field>
+            <field name="especialidad">Bases de Datos</field>
+            <field name="tipo_contrato">tiempo_completo</field>
+            <field name="fecha_contratacion">2012-03-15</field>
+            <field name="departamento">Departamento de Sistemas</field>
+            <field name="despacho">Oficina 302</field>
+            <field name="extension_telefonica">3002</field>
+            <field name="salario_base">2800.00</field>
+            <field name="horas_semanales">40</field>
+            <field name="estado_profesor">activo</field>
+            <field name="universidad_educacion">Pontificia Universidad Católica del Ecuador</field>
+            <field name="activo">True</field>
+        </record>
+        <record id="profesor_carlos_rivera" model="universidad.profesor">
+            <field name="codigo_profesor">PROF-003</field>
+            <field name="numero_empleado">E-003</field>
+            <field name="name">Carlos Eduardo Rivera Morales</field>
+            <field name="cedula">1122334455</field>
+            <field name="correo">carlos.rivera@universidad.edu.ec</field>
+            <field name="telefono">0987123456</field>
+            <field name="direccion">Calle de la Paz 789, Quito</field>
+            <field name="fecha_nacimiento">1968-11-30</field>
+            <field name="genero">masculino</field>
+            <field name="titulo_academico">doctorado</field>
+            <field name="especialidad">Ingeniería Civil y Estructuras</field>
+            <field name="tipo_contrato">tiempo_completo</field>
+            <field name="fecha_contratacion">2008-06-01</field>
+            <field name="departamento">Departamento de Ingeniería Civil</field>
+            <field name="despacho">Oficina 201</field>
+            <field name="extension_telefonica">2001</field>
+            <field name="salario_base">3200.00</field>
+            <field name="horas_semanales">40</field>
+            <field name="estado_profesor">activo</field>
+            <field name="universidad_educacion">Escuela Politécnica Nacional</field>
+            <field name="activo">True</field>
+        </record>
+        <record id="profesor_patricia_torres" model="universidad.profesor">
+            <field name="codigo_profesor">PROF-004</field>
+            <field name="numero_empleado">E-004</field>
+            <field name="name">Patricia Montserrat Torres Acosta</field>
+            <field name="cedula">2244668899</field>
+            <field name="correo">patricia.torres@universidad.edu.ec</field>
+            <field name="telefono">0996543210</field>
+            <field name="direccion">Avenida de los Árboles 321, Quito</field>
+            <field name="fecha_nacimiento">1972-02-14</field>
+            <field name="genero">femenino</field>
+            <field name="titulo_academico">maestria</field>
+            <field name="especialidad">Administración Estratégica</field>
+            <field name="tipo_contrato">tiempo_completo</field>
+            <field name="fecha_contratacion">2014-02-01</field>
+            <field name="departamento">Departamento de Administración</field>
+            <field name="despacho">Oficina 401</field>
+            <field name="extension_telefonica">4001</field>
+            <field name="salario_base">2600.00</field>
+            <field name="horas_semanales">40</field>
+            <field name="estado_profesor">activo</field>
+            <field name="universidad_educacion">Universidad Andina Simón Bolívar</field>
+            <field name="activo">True</field>
+        </record>
+        <record id="profesor_luis_reyes" model="universidad.profesor">
+            <field name="codigo_profesor">PROF-005</field>
+            <field name="numero_empleado">E-005</field>
+            <field name="name">Luis Mauricio Reyes Cifuentes</field>
+            <field name="cedula">3355667788</field>
+            <field name="correo">luis.reyes@universidad.edu.ec</field>
+            <field name="telefono">0984567890</field>
+            <field name="direccion">Calle de la República 654, Quito</field>
+            <field name="fecha_nacimiento">1980-07-20</field>
+            <field name="genero">masculino</field>
+            <field name="titulo_academico">maestria</field>
+            <field name="especialidad">Psicología Clínica</field>
+            <field name="tipo_contrato">tiempo_completo</field>
+            <field name="fecha_contratacion">2015-08-15</field>
+            <field name="departamento">Departamento de Ciencias Sociales</field>
+            <field name="despacho">Oficina 501</field>
+            <field name="extension_telefonica">5001</field>
+            <field name="salario_base">2400.00</field>
+            <field name="horas_semanales">40</field>
+            <field name="estado_profesor">activo</field>
+            <field name="universidad_educacion">Universidad de San Francisco de Quito</field>
+            <field name="activo">True</field>
+        </record>
+        
+        
+        <record id="materia_programacion_i" model="universidad.materia">
+            <field name="codigo">PROG-I-001</field>
+            <field name="nombre">Programación I</field>
+            <field name="descripcion">Introducción a los conceptos fundamentales de programación con lenguajes estructurados</field>
+            <field name="semestre">1</field>
+            <field name="creditos">3</field>
+            <field name="horas_semanales">4</field>
+            <field name="profesor_id" ref="profesor_juan_perez" />
+            <field name="estado">activa</field>
+            <field name="semestre_oferta">2024-A</field>
+        </record>
+        <record id="materia_bases_datos" model="universidad.materia">
+            <field name="codigo">BD-001</field>
+            <field name="nombre">Bases de Datos</field>
+            <field name="descripcion">Diseño e implementación de sistemas de bases de datos relacionales</field>
+            <field name="semestre">2</field>
+            <field name="creditos">4</field>
+            <field name="horas_semanales">5</field>
+            <field name="profesor_id" ref="profesor_maria_lopez" />
+            <field name="estado">activa</field>
+            <field name="semestre_oferta">2024-A</field>
+            <field name="prerequisitos">Programación I</field>
+        </record>
+        <record id="materia_estructuras" model="universidad.materia">
+            <field name="codigo">ENG-001</field>
+            <field name="nombre">Estructuras</field>
+            <field name="descripcion">Análisis y diseño de estructuras aplicadas a la ingeniería civil</field>
+            <field name="semestre">3</field>
+            <field name="creditos">4</field>
+            <field name="horas_semanales">5</field>
+            <field name="profesor_id" ref="profesor_carlos_rivera" />
+            <field name="estado">activa</field>
+            <field name="semestre_oferta">2024-A</field>
+        </record>
+        <record id="materia_administracion_empresas" model="universidad.materia">
+            <field name="codigo">ADM-EMP-001</field>
+            <field name="nombre">Administración de Empresas</field>
+            <field name="descripcion">Principios y fundamentos de la administración empresarial moderna</field>
+            <field name="semestre">1</field>
+            <field name="creditos">3</field>
+            <field name="horas_semanales">3</field>
+            <field name="profesor_id" ref="profesor_patricia_torres" />
+            <field name="estado">activa</field>
+            <field name="semestre_oferta">2024-A</field>
+        </record>
+        <record id="materia_psicologia_general" model="universidad.materia">
+            <field name="codigo">PSI-001</field>
+            <field name="nombre">Psicología General</field>
+            <field name="descripcion">Introducción a los conceptos fundamentales de la psicología como ciencia</field>
+            <field name="semestre">1</field>
+            <field name="creditos">3</field>
+            <field name="horas_semanales">4</field>
+            <field name="profesor_id" ref="profesor_luis_reyes" />
+            <field name="estado">activa</field>
+            <field name="semestre_oferta">2024-A</field>
+        </record>
+        <record id="materia_contabilidad_basica" model="universidad.materia">
+            <field name="codigo">CONT-001</field>
+            <field name="nombre">Contabilidad Básica</field>
+            <field name="descripcion">Fundamentos de la contabilidad y principios contables generalmente aceptados</field>
+            <field name="semestre">1</field>
+            <field name="creditos">3</field>
+            <field name="horas_semanales">4</field>
+            <field name="profesor_id" ref="profesor_patricia_torres" />
+            <field name="estado">activa</field>
+            <field name="semestre_oferta">2024-A</field>
+        </record>
+        <record id="materia_programacion_ii" model="universidad.materia">
+            <field name="codigo">PROG-II-001</field>
+            <field name="nombre">Programación II</field>
+            <field name="descripcion">Programación orientada a objetos y patrones de diseño</field>
+            <field name="semestre">2</field>
+            <field name="creditos">4</field>
+            <field name="horas_semanales">5</field>
+            <field name="profesor_id" ref="profesor_juan_perez" />
+            <field name="estado">activa</field>
+            <field name="semestre_oferta">2024-A</field>
+            <field name="prerequisitos">Programación I</field>
+        </record>
+        <record id="materia_calculo_i" model="universidad.materia">
+            <field name="codigo">CALC-I-001</field>
+            <field name="nombre">Cálculo I</field>
+            <field name="descripcion">Límites, continuidad, derivadas e integrales</field>
+            <field name="semestre">1</field>
+            <field name="creditos">4</field>
+            <field name="horas_semanales">5</field>
+            <field name="profesor_id" ref="profesor_maria_lopez" />
+            <field name="estado">activa</field>
+            <field name="semestre_oferta">2024-A</field>
+        </record>
+        <record id="materia_algebra_lineal" model="universidad.materia">
+            <field name="codigo">ALG-001</field>
+            <field name="nombre">Álgebra Lineal</field>
+            <field name="descripcion">Matrices, vectores, espacios vectoriales y transformaciones lineales</field>
+            <field name="semestre">2</field>
+            <field name="creditos">3</field>
+            <field name="horas_semanales">4</field>
+            <field name="profesor_id" ref="profesor_luis_reyes" />
+            <field name="estado">activa</field>
+            <field name="semestre_oferta">2024-A</field>
+        </record>
+        
+        
+        <record id="estudiante_anderson_mora" model="universidad.estudiante">
+            <field name="numero_matricula">EST-001-2024</field>
+            <field name="name">Anderson Gabriel Mora Vélez</field>
+            <field name="cedula">1712345678</field>
+            <field name="correo">anderson.mora@estudiante.edu.ec</field>
+            <field name="telefono">0991234567</field>
+            <field name="direccion">Calle 24 y Avenida Colón, Quito</field>
+            <field name="fecha_nacimiento">2002-03-15</field>
+            <field name="genero">masculino</field>
+            <field name="carrera_id" ref="carrera_ingenieria_sistemas" />
+            <field name="semestre_actual">1</field>
+            <field name="fecha_ingreso">2024-01-10</field>
+            <field name="estado_estudiante">activo</field>
+            <field name="especialidad">Desarrollo Web</field>
+            <field name="numero_expediente">EXP-001-2024</field>
+            <field name="monto_deuda">0.0</field>
+            <field name="activo">True</field>
+        </record>
+        <record id="estudiante_camila_rodriguez" model="universidad.estudiante">
+            <field name="numero_matricula">EST-002-2024</field>
+            <field name="name">Camila Alejandra Rodríguez García</field>
+            <field name="cedula">1798765432</field>
+            <field name="correo">camila.rodriguez@estudiante.edu.ec</field>
+            <field name="telefono">0992345678</field>
+            <field name="direccion">Avenida Amazonas 250, Quito</field>
+            <field name="fecha_nacimiento">2001-07-22</field>
+            <field name="genero">femenino</field>
+            <field name="carrera_id" ref="carrera_ingenieria_sistemas" />
+            <field name="semestre_actual">2</field>
+            <field name="fecha_ingreso">2023-01-15</field>
+            <field name="estado_estudiante">activo</field>
+            <field name="especialidad">Desarrollo Móvil</field>
+            <field name="numero_expediente">EXP-002-2024</field>
+            <field name="monto_deuda">150.0</field>
+            <field name="activo">True</field>
+        </record>
+        <record id="estudiante_diego_sanchez" model="universidad.estudiante">
+            <field name="numero_matricula">EST-003-2024</field>
+            <field name="name">Diego Patricio Sánchez López</field>
+            <field name="cedula">1654321098</field>
+            <field name="correo">diego.sanchez@estudiante.edu.ec</field>
+            <field name="telefono">0993456789</field>
+            <field name="direccion">Calle Pichincha 445, Quito</field>
+            <field name="fecha_nacimiento">2002-11-08</field>
+            <field name="genero">masculino</field>
+            <field name="carrera_id" ref="carrera_ingenieria_civil" />
+            <field name="semestre_actual">1</field>
+            <field name="fecha_ingreso">2024-01-10</field>
+            <field name="estado_estudiante">activo</field>
+            <field name="especialidad">Estructuras y Cimentaciones</field>
+            <field name="numero_expediente">EXP-003-2024</field>
+            <field name="monto_deuda">0.0</field>
+            <field name="activo">True</field>
+        </record>
+        <record id="estudiante_elena_torres" model="universidad.estudiante">
+            <field name="numero_matricula">EST-004-2024</field>
+            <field name="name">Elena Sofía Torres Moreno</field>
+            <field name="cedula">1876543210</field>
+            <field name="correo">elena.torres@estudiante.edu.ec</field>
+            <field name="telefono">0994567890</field>
+            <field name="direccion">Avenida de la República 567, Quito</field>
+            <field name="fecha_nacimiento">2001-05-30</field>
+            <field name="genero">femenino</field>
+            <field name="carrera_id" ref="carrera_administracion" />
+            <field name="semestre_actual">3</field>
+            <field name="fecha_ingreso">2022-08-01</field>
+            <field name="estado_estudiante">activo</field>
+            <field name="especialidad">Gestión Financiera</field>
+            <field name="numero_expediente">EXP-004-2024</field>
+            <field name="monto_deuda">0.0</field>
+            <field name="activo">True</field>
+        </record>
+        <record id="estudiante_fernando_guzman" model="universidad.estudiante">
+            <field name="numero_matricula">EST-005-2024</field>
+            <field name="name">Fernando Manuel Guzmán Mendez</field>
+            <field name="cedula">1765432109</field>
+            <field name="correo">fernando.guzman@estudiante.edu.ec</field>
+            <field name="telefono">0995678901</field>
+            <field name="direccion">Calle 9 de Octubre 890, Quito</field>
+            <field name="fecha_nacimiento">2002-01-12</field>
+            <field name="genero">masculino</field>
+            <field name="carrera_id" ref="carrera_contabilidad" />
+            <field name="semestre_actual">2</field>
+            <field name="fecha_ingreso">2023-08-15</field>
+            <field name="estado_estudiante">activo</field>
+            <field name="especialidad">Auditoría</field>
+            <field name="numero_expediente">EXP-005-2024</field>
+            <field name="monto_deuda">200.0</field>
+            <field name="activo">True</field>
+        </record>
+        <record id="estudiante_gloria_herrera" model="universidad.estudiante">
+            <field name="numero_matricula">EST-006-2024</field>
+            <field name="name">Gloria Marcela Herrera Fuentes</field>
+            <field name="cedula">1843210987</field>
+            <field name="correo">gloria.herrera@estudiante.edu.ec</field>
+            <field name="telefono">0996789012</field>
+            <field name="direccion">Avenida Catorce de Abril 234, Quito</field>
+            <field name="fecha_nacimiento">2001-09-25</field>
+            <field name="genero">femenino</field>
+            <field name="carrera_id" ref="carrera_psicologia" />
+            <field name="semestre_actual">1</field>
+            <field name="fecha_ingreso">2024-02-01</field>
+            <field name="estado_estudiante">activo</field>
+            <field name="especialidad">Psicología Clínica</field>
+            <field name="numero_expediente">EXP-006-2024</field>
+            <field name="monto_deuda">0.0</field>
+            <field name="activo">True</field>
+        </record>
+        <record id="estudiante_hugo_ramirez" model="universidad.estudiante">
+            <field name="numero_matricula">EST-007-2024</field>
+            <field name="name">Hugo Ernesto Ramírez Cortez</field>
+            <field name="cedula">1732109876</field>
+            <field name="correo">hugo.ramirez@estudiante.edu.ec</field>
+            <field name="telefono">0997890123</field>
+            <field name="direccion">Calle Venezuela 567, Quito</field>
+            <field name="fecha_nacimiento">2002-06-18</field>
+            <field name="genero">masculino</field>
+            <field name="carrera_id" ref="carrera_ingenieria_sistemas" />
+            <field name="semestre_actual">1</field>
+            <field name="fecha_ingreso">2024-01-10</field>
+            <field name="estado_estudiante">activo</field>
+            <field name="especialidad">Ciberseguridad</field>
+            <field name="numero_expediente">EXP-007-2024</field>
+            <field name="monto_deuda">0.0</field>
+            <field name="activo">True</field>
+        </record>
+        <record id="estudiante_iris_molina" model="universidad.estudiante">
+            <field name="numero_matricula">EST-008-2024</field>
+            <field name="name">Iris del Carmen Molina Quintero</field>
+            <field name="cedula">1821098765</field>
+            <field name="correo">iris.molina@estudiante.edu.ec</field>
+            <field name="telefono">0998901234</field>
+            <field name="direccion">Avenida Eloy Alfaro 789, Quito</field>
+            <field name="fecha_nacimiento">2001-12-03</field>
+            <field name="genero">femenino</field>
+            <field name="carrera_id" ref="carrera_administracion" />
+            <field name="semestre_actual">2</field>
+            <field name="fecha_ingreso">2023-08-01</field>
+            <field name="estado_estudiante">activo</field>
+            <field name="especialidad">Recursos Humanos</field>
+            <field name="numero_expediente">EXP-008-2024</field>
+            <field name="monto_deuda">0.0</field>
+            <field name="activo">True</field>
+        </record>
+        <record id="estudiante_joaquin_silva" model="universidad.estudiante">
+            <field name="numero_matricula">EST-009-2024</field>
+            <field name="name">Joaquín Roberto Silva Núñez</field>
+            <field name="cedula">1709876543</field>
+            <field name="correo">joaquin.silva@estudiante.edu.ec</field>
+            <field name="telefono">0989012345</field>
+            <field name="direccion">Calle Bolívar 901, Quito</field>
+            <field name="fecha_nacimiento">2002-04-07</field>
+            <field name="genero">masculino</field>
+            <field name="carrera_id" ref="carrera_ingenieria_civil" />
+            <field name="semestre_actual">2</field>
+            <field name="fecha_ingreso">2023-01-15</field>
+            <field name="estado_estudiante">activo</field>
+            <field name="especialidad">Proyectos Viales</field>
+            <field name="numero_expediente">EXP-009-2024</field>
+            <field name="monto_deuda">250.0</field>
+            <field name="activo">True</field>
+        </record>
+        <record id="estudiante_karen_lopez" model="universidad.estudiante">
+            <field name="numero_matricula">EST-010-2024</field>
+            <field name="name">Karen Elizabeth López Vargas</field>
+            <field name="cedula">1876543211</field>
+            <field name="correo">karen.lopez@estudiante.edu.ec</field>
+            <field name="telefono">0990123456</field>
+            <field name="direccion">Avenida Patria 234, Quito</field>
+            <field name="fecha_nacimiento">2001-08-14</field>
+            <field name="genero">femenino</field>
+            <field name="carrera_id" ref="carrera_contabilidad" />
+            <field name="semestre_actual">3</field>
+            <field name="fecha_ingreso">2022-08-15</field>
+            <field name="estado_estudiante">activo</field>
+            <field name="especialidad">Contabilidad Fiscal</field>
+            <field name="numero_expediente">EXP-010-2024</field>
+            <field name="monto_deuda">0.0</field>
+            <field name="activo">True</field>
+        </record>
+        
+        
+        <record id="matricula_anderson_prog1" model="universidad.matricula">
+            <field name="numero_matricula">MAT-001-2024</field>
+            <field name="estudiante_id" ref="estudiante_anderson_mora" />
+            <field name="materia_id" ref="materia_programacion_i" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">calificado</field>
+            <field name="calificacion">85.0</field>
+            <field name="tareas">80.0</field>
+            <field name="examenes">88.0</field>
+            <field name="proyecto_final">87.0</field>
+            <field name="participacion">90.0</field>
+            <field name="asistencia">95.0</field>
+        </record>
+        <record id="matricula_camila_bd" model="universidad.matricula">
+            <field name="numero_matricula">MAT-002-2024</field>
+            <field name="estudiante_id" ref="estudiante_camila_rodriguez" />
+            <field name="materia_id" ref="materia_bases_datos" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">calificado</field>
+            <field name="calificacion">78.5</field>
+            <field name="tareas">75.0</field>
+            <field name="examenes">82.0</field>
+            <field name="proyecto_final">79.0</field>
+            <field name="participacion">80.0</field>
+            <field name="asistencia">88.0</field>
+        </record>
+        <record id="matricula_diego_estructuras" model="universidad.matricula">
+            <field name="numero_matricula">MAT-003-2024</field>
+            <field name="estudiante_id" ref="estudiante_diego_sanchez" />
+            <field name="materia_id" ref="materia_estructuras" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">cursando</field>
+            <field name="calificacion">0.0</field>
+            <field name="tareas">0.0</field>
+            <field name="examenes">0.0</field>
+            <field name="proyecto_final">0.0</field>
+            <field name="participacion">0.0</field>
+            <field name="asistencia">0.0</field>
+        </record>
+        <record id="matricula_elena_administracion" model="universidad.matricula">
+            <field name="numero_matricula">MAT-004-2024</field>
+            <field name="estudiante_id" ref="estudiante_elena_torres" />
+            <field name="materia_id" ref="materia_administracion_empresas" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">calificado</field>
+            <field name="calificacion">82.0</field>
+            <field name="tareas">80.0</field>
+            <field name="examenes">84.0</field>
+            <field name="proyecto_final">82.0</field>
+            <field name="participacion">85.0</field>
+            <field name="asistencia">92.0</field>
+        </record>
+        <record id="matricula_fernando_contabilidad" model="universidad.matricula">
+            <field name="numero_matricula">MAT-005-2024</field>
+            <field name="estudiante_id" ref="estudiante_fernando_guzman" />
+            <field name="materia_id" ref="materia_contabilidad_basica" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">calificado</field>
+            <field name="calificacion">75.0</field>
+            <field name="tareas">72.0</field>
+            <field name="examenes">78.0</field>
+            <field name="proyecto_final">75.0</field>
+            <field name="participacion">75.0</field>
+            <field name="asistencia">85.0</field>
+        </record>
+        <record id="matricula_gloria_psicologia" model="universidad.matricula">
+            <field name="numero_matricula">MAT-006-2024</field>
+            <field name="estudiante_id" ref="estudiante_gloria_herrera" />
+            <field name="materia_id" ref="materia_psicologia_general" />
+            <field name="fecha_inscripcion">2024-02-01</field>
+            <field name="estado">cursando</field>
+            <field name="calificacion">0.0</field>
+            <field name="tareas">0.0</field>
+            <field name="examenes">0.0</field>
+            <field name="proyecto_final">0.0</field>
+            <field name="participacion">0.0</field>
+            <field name="asistencia">0.0</field>
+        </record>
+        <record id="matricula_hugo_programacion" model="universidad.matricula">
+            <field name="numero_matricula">MAT-007-2024</field>
+            <field name="estudiante_id" ref="estudiante_hugo_ramirez" />
+            <field name="materia_id" ref="materia_programacion_i" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">cursando</field>
+            <field name="calificacion">0.0</field>
+            <field name="tareas">0.0</field>
+            <field name="examenes">0.0</field>
+            <field name="proyecto_final">0.0</field>
+            <field name="participacion">0.0</field>
+            <field name="asistencia">0.0</field>
+        </record>
+        <record id="matricula_iris_administracion2" model="universidad.matricula">
+            <field name="numero_matricula">MAT-008-2024</field>
+            <field name="estudiante_id" ref="estudiante_iris_molina" />
+            <field name="materia_id" ref="materia_administracion_empresas" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">calificado</field>
+            <field name="calificacion">79.0</field>
+            <field name="tareas">78.0</field>
+            <field name="examenes">80.0</field>
+            <field name="proyecto_final">79.0</field>
+            <field name="participacion">80.0</field>
+            <field name="asistencia">90.0</field>
+        </record>
+        <record id="matricula_joaquin_calculo" model="universidad.matricula">
+            <field name="numero_matricula">MAT-009-2024</field>
+            <field name="estudiante_id" ref="estudiante_joaquin_silva" />
+            <field name="materia_id" ref="materia_calculo_i" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">calificado</field>
+            <field name="calificacion">72.0</field>
+            <field name="tareas">70.0</field>
+            <field name="examenes">74.0</field>
+            <field name="proyecto_final">72.0</field>
+            <field name="participacion">70.0</field>
+            <field name="asistencia">80.0</field>
+        </record>
+        <record id="matricula_karen_contabilidad2" model="universidad.matricula">
+            <field name="numero_matricula">MAT-010-2024</field>
+            <field name="estudiante_id" ref="estudiante_karen_lopez" />
+            <field name="materia_id" ref="materia_contabilidad_basica" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">calificado</field>
+            <field name="calificacion">88.0</field>
+            <field name="tareas">86.0</field>
+            <field name="examenes">90.0</field>
+            <field name="proyecto_final">88.0</field>
+            <field name="participacion">90.0</field>
+            <field name="asistencia">98.0</field>
+        </record>
+        
+        <record id="matricula_anderson_calculo" model="universidad.matricula">
+            <field name="numero_matricula">MAT-011-2024</field>
+            <field name="estudiante_id" ref="estudiante_anderson_mora" />
+            <field name="materia_id" ref="materia_calculo_i" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">cursando</field>
+            <field name="calificacion">0.0</field>
+            <field name="participacion">0.0</field>
+            <field name="asistencia">0.0</field>
+        </record>
+        <record id="matricula_camila_programacion2" model="universidad.matricula">
+            <field name="numero_matricula">MAT-012-2024</field>
+            <field name="estudiante_id" ref="estudiante_camila_rodriguez" />
+            <field name="materia_id" ref="materia_programacion_ii" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">calificado</field>
+            <field name="calificacion">84.5</field>
+            <field name="tareas">82.0</field>
+            <field name="examenes">86.0</field>
+            <field name="proyecto_final">85.0</field>
+            <field name="participacion">88.0</field>
+            <field name="asistencia">92.0</field>
+        </record>
+        <record id="matricula_diego_calculo" model="universidad.matricula">
+            <field name="numero_matricula">MAT-013-2024</field>
+            <field name="estudiante_id" ref="estudiante_diego_sanchez" />
+            <field name="materia_id" ref="materia_calculo_i" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">cursando</field>
+            <field name="calificacion">0.0</field>
+            <field name="participacion">0.0</field>
+            <field name="asistencia">0.0</field>
+        </record>
+        <record id="matricula_elena_contabilidad" model="universidad.matricula">
+            <field name="numero_matricula">MAT-014-2024</field>
+            <field name="estudiante_id" ref="estudiante_elena_torres" />
+            <field name="materia_id" ref="materia_contabilidad_basica" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">calificado</field>
+            <field name="calificacion">80.0</field>
+            <field name="tareas">78.0</field>
+            <field name="examenes">82.0</field>
+            <field name="proyecto_final">80.0</field>
+            <field name="participacion">82.0</field>
+            <field name="asistencia">90.0</field>
+        </record>
+        <record id="matricula_fernando_administracion" model="universidad.matricula">
+            <field name="numero_matricula">MAT-015-2024</field>
+            <field name="estudiante_id" ref="estudiante_fernando_guzman" />
+            <field name="materia_id" ref="materia_administracion_empresas" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">calificado</field>
+            <field name="calificacion">73.0</field>
+            <field name="tareas">70.0</field>
+            <field name="examenes">75.0</field>
+            <field name="proyecto_final">73.0</field>
+            <field name="participacion">72.0</field>
+            <field name="asistencia">82.0</field>
+        </record>
+        <record id="matricula_gloria_contabilidad" model="universidad.matricula">
+            <field name="numero_matricula">MAT-016-2024</field>
+            <field name="estudiante_id" ref="estudiante_gloria_herrera" />
+            <field name="materia_id" ref="materia_administracion_empresas" />
+            <field name="fecha_inscripcion">2024-02-01</field>
+            <field name="estado">cursando</field>
+            <field name="calificacion">0.0</field>
+            <field name="participacion">0.0</field>
+            <field name="asistencia">0.0</field>
+        </record>
+        <record id="matricula_hugo_calculo" model="universidad.matricula">
+            <field name="numero_matricula">MAT-017-2024</field>
+            <field name="estudiante_id" ref="estudiante_hugo_ramirez" />
+            <field name="materia_id" ref="materia_calculo_i" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">cursando</field>
+            <field name="calificacion">0.0</field>
+            <field name="participacion">0.0</field>
+            <field name="asistencia">0.0</field>
+        </record>
+        <record id="matricula_iris_contabilidad" model="universidad.matricula">
+            <field name="numero_matricula">MAT-018-2024</field>
+            <field name="estudiante_id" ref="estudiante_iris_molina" />
+            <field name="materia_id" ref="materia_contabilidad_basica" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">calificado</field>
+            <field name="calificacion">81.0</field>
+            <field name="tareas">79.0</field>
+            <field name="examenes">83.0</field>
+            <field name="proyecto_final">81.0</field>
+            <field name="participacion">82.0</field>
+            <field name="asistencia">91.0</field>
+        </record>
+        <record id="matricula_joaquin_algebra" model="universidad.matricula">
+            <field name="numero_matricula">MAT-019-2024</field>
+            <field name="estudiante_id" ref="estudiante_joaquin_silva" />
+            <field name="materia_id" ref="materia_algebra_lineal" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">calificado</field>
+            <field name="calificacion">68.0</field>
+            <field name="tareas">65.0</field>
+            <field name="examenes">70.0</field>
+            <field name="proyecto_final">68.0</field>
+            <field name="participacion">68.0</field>
+            <field name="asistencia">75.0</field>
+        </record>
+        <record id="matricula_karen_algebra" model="universidad.matricula">
+            <field name="numero_matricula">MAT-020-2024</field>
+            <field name="estudiante_id" ref="estudiante_karen_lopez" />
+            <field name="materia_id" ref="materia_algebra_lineal" />
+            <field name="fecha_inscripcion">2024-01-10</field>
+            <field name="estado">calificado</field>
+            <field name="calificacion">90.0</field>
+            <field name="tareas">88.0</field>
+            <field name="examenes">92.0</field>
+            <field name="proyecto_final">90.0</field>
+            <field name="participacion">92.0</field>
+            <field name="asistencia">99.0</field>
+        </record>
+    </data>
+</odoo>
