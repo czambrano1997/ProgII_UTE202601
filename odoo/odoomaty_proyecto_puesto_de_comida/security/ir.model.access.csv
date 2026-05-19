@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_odoomaty_proyecto_puesto_de_comida,access_odoomaty_proyecto_puesto_de_comida,model_odoomaty_proyecto_puesto_de_comida,base.group_user,1,1,1,1
