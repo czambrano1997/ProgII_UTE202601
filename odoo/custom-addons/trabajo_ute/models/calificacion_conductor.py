@@ -213,3 +213,4 @@ class CalificacionConductorLinea(models.Model):
                 raise ValidationError('El puntaje obtenido no puede ser negativo.')
             if record.puntaje_maximo > 0 and record.puntaje_obtenido > record.puntaje_maximo:
                 raise ValidationError('El puntaje obtenido no puede superar el puntaje máximo de la categoría.')
+

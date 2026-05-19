@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*-
+=======
+# -- coding: utf-8 --
+>>>>>>> c1b48e8873a20a5a1324a750d1a52238c1f0fcc6
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -57,6 +61,13 @@ class IndicadorCategoria(models.Model):
                 'message': 'Los indicadores de conductor requieren evaluación mensual obligatoria.'
             }}
 
+<<<<<<< HEAD
+=======
+    _sql_constraints = [
+        ('unique_code', 'UNIQUE(code)', 'El código de la categoría debe ser único.'),
+    ]
+
+>>>>>>> c1b48e8873a20a5a1324a750d1a52238c1f0fcc6
 
 class IndicadorSubcategoria(models.Model):
     _name = 'ou.indicador.subcategoria'
