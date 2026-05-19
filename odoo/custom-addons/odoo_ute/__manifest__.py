@@ -7,7 +7,7 @@
 Long description of module's purpose
     """,
 
-    'author': "My Company",
+    'author': "alissonormaza",
     'website': "https://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -17,7 +17,7 @@ Long description of module's purpose
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'sale_managements'],
 
     # always loaded
     'data': [
