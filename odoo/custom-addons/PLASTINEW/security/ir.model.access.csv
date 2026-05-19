@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_producto_usuario,Producto Usuario,model_plasticos_producto,group_plasticos_usuario,1,0,0,0
+access_producto_admin,Producto Admin,model_plasticos_producto,group_plasticos_admin,1,1,1,1
+access_cliente_usuario,Cliente Usuario,model_plasticos_cliente,group_plasticos_usuario,1,0,0,0
+access_cliente_admin,Cliente Admin,model_plasticos_cliente,group_plasticos_admin,1,1,1,1
+access_venta_usuario,Venta Usuario,model_plasticos_venta,group_plasticos_usuario,1,0,0,0
+access_venta_admin,Venta Admin,model_plasticos_venta,group_plasticos_admin,1,1,1,1
+access_venta_line_usuario,Venta Line Usuario,model_plasticos_venta_line,group_plasticos_usuario,1,0,0,0
+access_venta_line_admin,Venta Line Admin,model_plasticos_venta_line,group_plasticos_admin,1,1,1,1
+access_inventario_usuario,Inventario Usuario,model_plasticos_inventario,group_plasticos_usuario,1,0,0,0
+access_inventario_admin,Inventario Admin,model_plasticos_inventario,group_plasticos_admin,1,1,1,1
+access_produccion_usuario,Produccion Usuario,model_plasticos_produccion,group_plasticos_usuario,1,0,0,0
+access_produccion_admin,Produccion Admin,model_plasticos_produccion,group_plasticos_admin,1,1,1,1
+
+access_plasticos_security,plasticos_security access,model_plasticos_security,base.group_user,1,1,1,1
+access_plasticos_security_xml,plasticos_security xml access,model_plasticos_security_xml,base.group_user,1,1,1,1

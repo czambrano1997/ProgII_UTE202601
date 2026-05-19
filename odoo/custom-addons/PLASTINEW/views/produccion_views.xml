@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_produccion_tree" model="ir.ui.view">
+        <field name="name">plasticos.produccion.tree</field>
+        <field name="model">plasticos.produccion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="producto_id"/>
+                <field name="cantidad"/>
+                <field name="producido"/>
+                <field name="progreso" widget="progressbar"/>
+                <field name="estado"/>
+                <field name="prioridad"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_produccion_form" model="ir.ui.view">
+        <field name="name">plasticos.produccion.form</field>
+        <field name="model">plasticos.produccion</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_programar" string="Programar" type="object" class="btn-primary"/>
+                    <button name="action_iniciar" string="Iniciar" type="object" class="btn-success"/>
+                    <button name="action_completar" string="Completar" type="object" class="btn-success"/>
+                    <button name="action_cancelar" string="Cancelar" type="object" class="btn-danger"/>
+                    <field name="estado" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="producto_id"/>
+                        <field name="cantidad"/>
+                        <field name="producido"/>
+                        <field name="progreso"/>
+                        <field name="fecha_inicio"/>
+                        <field name="fecha_fin"/>
+                        <field name="prioridad"/>
+                        <field name="responsable"/>
+                        <field name="observaciones"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_produccion" model="ir.actions.act_window">
+        <field name="name">Producción</field>
+        <field name="res_model">plasticos.produccion</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
