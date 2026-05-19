@@ -20,16 +20,8 @@ export class AttachmentUploader {
         return this.uploadFile(file, options);
     }
 
-    /**
-     * @param {File} file
-     * @param {Object} [options]
-     * @param {import("models").Activity} [options.activity]
-     * @param {import("models").Thread} [options.thread]
-     * @param {boolean} [options.voice]
-     */
     async uploadFile(file, options) {
-        const thread = options?.thread || this.thread;
-        return this.attachmentUploadService.upload(thread, this.composer, file, options);
+        return this.attachmentUploadService.upload(this.thread, this.composer, file, options);
     }
 
     async unlink(attachment) {

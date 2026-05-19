@@ -91,8 +91,12 @@ registerMessageAction("reply-to", {
         if (thread.model === "discuss.channel") {
             return;
         }
-        if (!message.isSelfAuthored && message.model !== "discuss.channel" && message.author) {
-            composer.insertReplyFromNote(message);
+        if (!message.isSelfAuthored && message.model !== "discuss.channel") {
+            const mentionText = `@${message.authorName} `;
+            if (!composer.composerText.includes(mentionText)) {
+                composer.mentionedPartners.add(message.author);
+                composer.insertText(mentionText, 0, { moveCursorToEnd: true });
+            }
         }
         owner.env.inChatter?.toggleComposer("note", { force: true });
         composer.restoredFromFullComposer = false;

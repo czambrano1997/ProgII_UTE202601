@@ -21,9 +21,6 @@ registry.category("web_tour.tours").add("pos_pricelist", {
             Pricelist.waitForUnitTest(),
             Dialog.confirm("Open Register"),
             OfflineUtil.setOfflineMode(),
-            // ensure that even after refreshing the page while being offline all data is correctly reloaded
-            refresh(),
-            Dialog.confirm("Continue with limited functionality"),
             ProductScreen.clickPriceList("Fixed", true, "Public Pricelist"),
             ProductScreen.clickPartnerButton(),
             ProductScreen.clickCustomer("Acme Corporation"),

@@ -49,12 +49,7 @@ export class ModelFieldSelector extends Component {
         this.keepLast = new KeepLast();
         this.state = useState({ isInvalid: false, displayNames: [] });
         onWillStart(() => this.updateState(this.props));
-        onWillUpdateProps((nextProps) => {
-            const modelPathKeys = ["resModel", "path", "allowEmpty"];
-            if (modelPathKeys.some((key) => this.props[key] !== nextProps[key])) {
-                this.updateState(nextProps);
-            }
-        });
+        onWillUpdateProps((nextProps) => this.updateState(nextProps));
     }
 
     openPopover(currentTarget) {

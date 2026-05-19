@@ -10,7 +10,8 @@ class PurchaseOrderLine(models.Model):
     def _compute_analytic_distribution(self):
         ctx_project = self.env['project.project'].browse(self.env.context.get('project_id'))
         project_lines = self.filtered(lambda l: not l.display_type and (ctx_project or l.order_id.project_id))
-        super()._compute_analytic_distribution()
+        empty_project_lines = project_lines.filtered(lambda l: not l.analytic_distribution)
+        super(PurchaseOrderLine, (self - project_lines) + empty_project_lines)._compute_analytic_distribution()
 
         for line in project_lines:
             project = ctx_project or line.order_id.project_id

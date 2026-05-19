@@ -1,4 +1,3 @@
-import { callbacksForCursorUpdate } from "@html_editor/utils/selection";
 import { Plugin } from "../plugin";
 import { isBlock } from "../utils/blocks";
 import { fillEmpty, splitTextNode } from "../utils/dom";
@@ -199,28 +198,17 @@ export class SplitPlugin extends Plugin {
      * @returns {[HTMLElement, HTMLElement]}
      */
     splitElement(element, offset) {
-        const cursor = this.dependencies.selection.preserveSelection();
         /** @type {HTMLElement} **/
         const firstPart = element.cloneNode();
         /** @type {HTMLElement} **/
         const secondPart = element.cloneNode();
-        cursor.update(callbacksForCursorUpdate.before(element, firstPart));
         element.before(firstPart);
-        cursor.update(callbacksForCursorUpdate.after(element, secondPart));
         element.after(secondPart);
         const children = childNodes(element);
-        for (const node of children.slice(0, offset)) {
-            cursor.update(callbacksForCursorUpdate.append(firstPart, node));
-            firstPart.appendChild(node);
-        }
-        for (const node of children.slice(offset)) {
-            cursor.update(callbacksForCursorUpdate.append(secondPart, node));
-            secondPart.appendChild(node);
-        }
-        cursor.update(callbacksForCursorUpdate.remove(element));
+        firstPart.append(...children.slice(0, offset));
+        secondPart.append(...children.slice(offset));
         element.remove();
         this.dispatchTo("after_split_element_handlers", { firstPart, secondPart });
-        cursor.restore();
         return [firstPart, secondPart];
     }
 

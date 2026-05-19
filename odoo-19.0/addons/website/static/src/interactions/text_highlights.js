@@ -60,9 +60,8 @@ export class TextHighlight extends Interaction {
                     svg.remove();
                 }
                 const svgs = makeHighlightSvgs(el, highlightID);
-
-                for (const svg of svgs.toReversed()) {
-                    this.insert(svg, el, "afterbegin");
+                for (const svg of svgs) {
+                    this.insert(svg, el);
                     adaptHighlightPosition(el, svg);
                 }
             }

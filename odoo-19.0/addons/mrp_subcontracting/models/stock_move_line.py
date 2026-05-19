@@ -34,7 +34,5 @@ class StockMoveLine(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         res = super().create(vals_list)
-        context = dict(self.env.context)
-        context.pop('auto_pick_move_lines', None)
-        res.move_id.filtered(lambda m: m.is_subcontract).with_context(context)._sync_subcontracting_productions()
+        res.move_id.filtered(lambda m: m.is_subcontract)._sync_subcontracting_productions()
         return res

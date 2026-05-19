@@ -373,8 +373,7 @@ export class LinkPlugin extends Plugin {
                     const selectionData = this.dependencies.selection.getSelectionData();
                     return (
                         selectionData.documentSelectionIsInEditable &&
-                        isHtmlContentSupported(selectionData.editableSelection) &&
-                        this.isLinkAllowedOnSelection()
+                        isHtmlContentSupported(selectionData.editableSelection)
                     );
                 },
             }
@@ -461,9 +460,8 @@ export class LinkPlugin extends Plugin {
     }
 
     isLinkAllowedOnSelection() {
-        const isLinkCompatible = this.checkPredicates("link_compatible_selection_predicates");
-        if (isLinkCompatible !== undefined) {
-            return isLinkCompatible;
+        if (this.getResource("link_compatible_selection_predicates").some((p) => p())) {
+            return true;
         }
         const targetedNodes = this.dependencies.selection.getTargetedNodes();
         const targetedBlocks = targetedNodes.filter(isBlock);
@@ -513,7 +511,7 @@ export class LinkPlugin extends Plugin {
             linkElement = this.createLink(undefined, selection.textContent());
         }
 
-        const selectionTextContent = cleanZWChars(selection?.textContent());
+        const selectionTextContent = selection?.textContent();
         const isImage = !!findInSelection(selection, "img, .fa");
 
         const applyCallback = (
@@ -1308,10 +1306,7 @@ export class LinkPlugin extends Plugin {
         if (startContainer.nodeType !== Node.TEXT_NODE || startContainer.textContent != "\uFEFF") {
             return;
         }
-        const previousSibling = startContainer.previousSibling;
-        // We must ensure that previous sibling is an element node before
-        // calling `matches` (text nodes do not implement this method).
-        if (previousSibling?.nodeType !== Node.ELEMENT_NODE || !previousSibling.matches("a.btn")) {
+        if (!startContainer.previousSibling?.matches("a.btn")) {
             return;
         }
         // Move before inner FEFF of the button.

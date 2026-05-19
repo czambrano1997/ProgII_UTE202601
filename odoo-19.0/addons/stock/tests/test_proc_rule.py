@@ -374,7 +374,12 @@ class TestProcRule(TransactionCase):
             ('product_id', '=', self.productA.id),
         ])
         self.assertTrue(rr)
-        orderpoint.write({'replenishment_uom_id': self.productA.uom_id})
+        orderpoint.write({
+            'replenishment_uom_id': self.env['uom.uom'].create({
+                'name': 'Test UoM',
+                'relative_factor': 1,
+            })
+        })
         self.assertEqual(orderpoint.qty_to_order, 16.0)  # 15.0 < 14.5 + 15 <= 30.0
         orderpoint.write({
             'replenishment_uom_id': False,

@@ -15,8 +15,7 @@ import {
     setElementToMaxZindex,
     toggleGridMode,
 } from "@html_builder/utils/grid_layout_utils";
-import { hasMediaOnly, isElement, isMediaElement } from "@html_editor/utils/dom_info";
-import { selectElements } from "@html_editor/utils/dom_traversal";
+import { isElement } from "@html_editor/utils/dom_info";
 
 const gridItemSelector = ".row.o_grid_mode > div.o_grid_item";
 
@@ -53,11 +52,6 @@ export class GridLayoutPlugin extends Plugin {
         on_element_dropped_handlers: this.onElementDropped.bind(this),
         // Ignore background grid in history
         savable_mutation_record_predicates: this.ignoreBackgroundGrid.bind(this),
-        // Make sure `o_grid_item_image` elements are not editable, unless they
-        // already have other contents in them (=> compatibility with older
-        // versions).
-        content_editable_providers: this.getContentEditableEls.bind(this),
-        content_not_editable_providers: this.getContentNotEditableEls.bind(this),
     };
 
     setup() {
@@ -774,17 +768,5 @@ export class GridLayoutPlugin extends Plugin {
                 return parentEl === startGridEl && gridArea === startGridArea;
             };
         }
-    }
-
-    getContentEditableEls(rootEl) {
-        return [
-            ...selectElements(rootEl, ".o_grid_item_image > *, .o_grid_item_image > a > *"),
-        ].filter((el) => isMediaElement(el) || el.tagName === "IMG");
-    }
-
-    getContentNotEditableEls(rootEl) {
-        return [...selectElements(rootEl, ".o_grid_item_image")].filter((el) =>
-            hasMediaOnly(el, true)
-        );
     }
 }

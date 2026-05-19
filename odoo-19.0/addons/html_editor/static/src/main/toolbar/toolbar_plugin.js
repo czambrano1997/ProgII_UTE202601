@@ -2,7 +2,7 @@ import { Plugin } from "@html_editor/plugin";
 import { isEmptyTextNode, isZWS } from "@html_editor/utils/dom_info";
 import { reactive } from "@odoo/owl";
 import { composeToolbarButton, Toolbar } from "./toolbar";
-import { hasTouch, isMacOS, isIOS } from "@web/core/browser/feature_detection";
+import { hasTouch, isMacOS } from "@web/core/browser/feature_detection";
 import { registry } from "@web/core/registry";
 import { ToolbarMobile } from "./mobile_toolbar";
 import { debounce } from "@web/core/utils/timing";
@@ -11,7 +11,6 @@ import { withSequence } from "@html_editor/utils/resource";
 import { _t } from "@web/core/l10n/translation";
 import { memoize } from "@web/core/utils/functions";
 import { closestElement } from "@html_editor/utils/dom_traversal";
-import { utils } from "@web/core/ui/ui_service";
 
 /** @typedef { import("@html_editor/core/selection_plugin").EditorSelection } EditorSelection */
 /** @typedef {import("@html_editor/core/selection_plugin").SelectionData} SelectionData */
@@ -201,9 +200,7 @@ export class ToolbarPlugin extends Plugin {
         this.buttonGroups = this.getButtonGroups();
         this.buttonsByNamespace = { DISABLED_NAMESPACE: [] };
 
-        // For IOS devices, they usually shows a native toolbar on top of the selection so
-        // we show the editor toolbar at the bottom to avoid they overlap.
-        this.isMobileToolbar = (utils.isSmall() && hasTouch() && window.visualViewport) || isIOS();
+        this.isMobileToolbar = hasTouch() && window.visualViewport;
 
         if (this.isMobileToolbar) {
             this.overlay = new MobileToolbarOverlay(this.editable);

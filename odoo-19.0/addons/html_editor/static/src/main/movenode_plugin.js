@@ -161,22 +161,16 @@ export class MoveNodePlugin extends Plugin {
         }
 
         const visibleElements = [...this.visibleMovableElements];
-        // Prevent layout thrashing by computing all the rects and styles in
-        // advance.
+        // Prevent layout thrashing by computing all the rects in advance.
         const elementRects = visibleElements.map((element) => element.getBoundingClientRect());
-        const elementStyles = visibleElements.map((element) => {
-            const style = getComputedStyle(element);
-            return {
-                marginTop: parseInt(style.marginTop, 10) || 0,
-                marginBottom: parseInt(style.marginBottom, 10) || 0,
-            };
-        });
         for (const index in visibleElements) {
             const element = visibleElements[index];
             const elementRect = elementRects[index];
             const hookElement = this.elementHookMap.get(element);
 
-            const { marginTop, marginBottom } = elementStyles[index];
+            const style = getComputedStyle(element);
+            const marginTop = parseInt(style.marginTop, 10) || 0;
+            const marginBottom = parseInt(style.marginBottom, 10) || 0;
             let hookBox;
             if (element.tagName === "HR") {
                 hookBox = new DOMRect(

@@ -179,14 +179,9 @@ class InteractionService {
 
     stopInteractions(el = this.el) {
         const interactions = [];
-        const errors = [];
         for (const interaction of this.interactions.slice().reverse()) {
             if (this.shouldStop(el, interaction)) {
-                try {
-                    interaction.destroy();
-                } catch (error) {
-                    errors.push([interaction.interaction.constructor.name, error]);
-                }
+                interaction.destroy();
                 this.activeInteractions.delete(interaction.el, interaction.interaction.constructor);
             } else {
                 interactions.push(interaction);
@@ -205,9 +200,6 @@ class InteractionService {
         this.roots = roots;
         if (el === this.el) {
             this.isActive = false;
-        }
-        for (const [interaction, error] of errors) {
-            throw new Error(`Could not destroy interaction ${interaction}`, error);
         }
     }
 

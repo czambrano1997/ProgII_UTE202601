@@ -65,7 +65,7 @@ export class ListDataSource extends OdooViewsDataSource {
      * @param {string} fieldPath
      */
     addFieldPathToFetch(fieldPath) {
-        if (!this.alreadyFetchedFieldPaths.has(fieldPath)) {
+        if (fieldPath && !this.alreadyFetchedFieldPaths.has(fieldPath)) {
             this.fieldPathsToFetch.add(fieldPath);
         }
     }
@@ -149,9 +149,7 @@ export class ListDataSource extends OdooViewsDataSource {
     async _getReadSpec() {
         const allFieldPaths = await Promise.all(
             [...this.fieldPathsToFetch].map((fieldPath) =>
-                fieldPath
-                    ? this.fieldService.loadPath(this._metaData.resModel, fieldPath)
-                    : { isInvalid: "path" }
+                this.fieldService.loadPath(this._metaData.resModel, fieldPath)
             )
         );
         const validFieldPaths = allFieldPaths.filter((result) => !result.isInvalid);
@@ -196,12 +194,7 @@ export class ListDataSource extends OdooViewsDataSource {
         }
         this.assertIsValid();
         const field = this.fieldPathsToFieldMap[fieldPath];
-        if (!field) {
-            return new EvaluationError(
-                _t("The field %s does not exist or you do not have access to that field", fieldPath)
-            );
-        }
-        return field.string;
+        return field ? field.string : fieldPath;
     }
 
     /**

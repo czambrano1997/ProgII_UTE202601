@@ -192,7 +192,7 @@ export class Navbar extends Component {
         };
         const customer_display_url = `/pos_customer_display/${
             this.pos.config.id
-        }/${getDeviceUuid()}?access_token=${this.pos.config.access_token}`;
+        }/${getDeviceUuid()}`;
 
         this.dialog.add(QrCodeCustomerDisplay, {
             customerDisplayURL: `${this.pos.config._base_url}${customer_display_url}`,

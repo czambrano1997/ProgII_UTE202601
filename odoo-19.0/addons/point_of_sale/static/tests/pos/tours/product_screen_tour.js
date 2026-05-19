@@ -29,9 +29,6 @@ registry.category("web_tour.tours").add("ProductScreenTour", {
             Chrome.startPoS(),
             Dialog.confirm("Open Register"),
             OfflineUtil.setOfflineMode(),
-            // ensure that even after refreshing the page while being offline all data is correctly reloaded
-            refresh(),
-            Dialog.confirm("Continue with limited functionality"),
             ProductScreen.firstProductIsFavorite("Whiteboard Pen"),
             // Make sure we don't have any scroll bar on the product list
             {

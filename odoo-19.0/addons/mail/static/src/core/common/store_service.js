@@ -689,12 +689,6 @@ export class Store extends BaseStore {
         return params;
     }
 
-    notifySendFromMailbox(recordName) {
-        this.env.services.notification.add(_t('Message posted on "%s"', recordName), {
-            type: "info",
-        });
-    }
-
     getNextTemporaryId() {
         const lastMessageId = this.getLastMessageId();
         if (prevLastMessageId === lastMessageId) {

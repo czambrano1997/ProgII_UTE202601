@@ -32,9 +32,8 @@ test("make voice message in chat", async () => {
     patchWithCleanup(patchable, { makeFile: () => file });
     patchWithCleanup(VoicePlayer.prototype, {
         async drawWave(...args) {
-            const res = await super.drawWave(...args);
             voicePlayerDrawing.resolve();
-            return res;
+            return super.drawWave(...args);
         },
         async fetchFile() {
             return super.fetchFile("/mail/static/src/audio/call-invitation.mp3");

@@ -55,15 +55,6 @@ export class InlineCodePlugin extends Plugin {
                 return false;
             }
         },
-        link_compatible_selection_predicates: () => {
-            const targetedNodes = this.dependencies.selection.getTargetedNodes();
-            if (
-                targetedNodes.length &&
-                targetedNodes.every((node) => closestElement(node, "code.o_inline_code"))
-            ) {
-                return false;
-            }
-        },
     };
 
     setup() {

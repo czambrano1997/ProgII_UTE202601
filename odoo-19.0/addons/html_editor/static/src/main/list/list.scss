@@ -51,14 +51,3 @@ ul.o_checklist {
         }
     }
 }
-
-.odoo-editor-editable {
-    li {
-        &[style*="color"],
-        &[class*="text-"] {
-            font[class*="bg-"]:not([class*="text-"]):not([style*="color"]) {
-                color: inherit !important;
-            }
-        }
-    }
-}

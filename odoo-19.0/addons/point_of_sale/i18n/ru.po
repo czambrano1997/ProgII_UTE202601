@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-08 17:35+0000\n"
-"PO-Revision-Date: 2026-05-05 12:52+0000\n"
+"POT-Creation-Date: 2026-04-24 17:35+0000\n"
+"PO-Revision-Date: 2026-04-24 20:59+0000\n"
 "Last-Translator: \"Anastasiia Koroleva (koan)\" <koan@odoo.com>\n"
 "Language-Team: Russian <https://translate.odoo.com/projects/odoo-19/"
 "point_of_sale/ru/>\n"
@@ -1786,11 +1786,6 @@ msgid "Cash Rounding (PoS)"
 msgstr "Округление наличности (PoS)"
 
 #. module: point_of_sale
-#: model_terms:ir.ui.view,arch_db:point_of_sale.pos_session_sales_details
-msgid "Cash Rounding:"
-msgstr ""
-
-#. module: point_of_sale
 #: model_terms:ir.ui.view,arch_db:point_of_sale.res_config_settings_view_form
 msgid "Cash Roundings"
 msgstr "Округление Наличных"
@@ -3007,7 +3002,7 @@ msgid ""
 "Define presets to manage taxes & prices for dine in, take out, members..."
 msgstr ""
 "Определите настройки для управления налогами и ценами для обедов в "
-"ресторане, еды навынос, членов клуба..."
+"ресторане, еды на вынос, членов клуба..."
 
 #. module: point_of_sale
 #: model_terms:ir.actions.act_window,help:point_of_sale.product_template_action_pos_product
@@ -3361,18 +3356,6 @@ msgstr "Вы хотите открыть список клиентов, чтоб
 #: code:addons/point_of_sale/static/src/app/components/popups/retry_print_popup/retry_print_popup.xml:0
 msgid "Download"
 msgstr "Скачать"
-
-#. module: point_of_sale
-#. odoo-javascript
-#: code:addons/point_of_sale/static/src/app/utils/debug/debug_widget.xml:0
-msgid "Download IDB Errors"
-msgstr ""
-
-#. module: point_of_sale
-#. odoo-javascript
-#: code:addons/point_of_sale/static/src/app/utils/debug/debug_widget.xml:0
-msgid "Download IndexedDB error logs from localStorage"
-msgstr ""
 
 #. module: point_of_sale
 #. odoo-javascript
@@ -3922,7 +3905,7 @@ msgstr "Магазин мебели"
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_order__general_customer_note
 msgid "General Customer Note"
-msgstr "Общий комментарий к заказу"
+msgstr "Общее примечание для клиентов"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_res_company__point_of_sale_ticket_unique_code
@@ -9066,7 +9049,7 @@ msgstr "Столы, меню, кухонный дисплей и т. д."
 #. module: point_of_sale
 #: model_terms:ir.ui.view,arch_db:point_of_sale.res_config_settings_view_form
 msgid "Take out / Delivery / Members"
-msgstr "Навынос / Доставка / Участники"
+msgstr "На вынос / Доставка / Участники"
 
 #. module: point_of_sale
 #. odoo-javascript

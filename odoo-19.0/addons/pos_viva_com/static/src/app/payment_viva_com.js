@@ -70,15 +70,14 @@ export class PaymentVivaCom extends PaymentInterface {
             customerTrns = order.partner.name + " - " + order.partner.email;
         }
 
-        line.viva_com_session_id = order.uuid + " - " + uuidv4();
+        line.uiState.vivaSessionId = order.uuid + " - " + uuidv4();
         var data = {
-            sessionId: line.viva_com_session_id,
-            parentSessionId: line.uiState.vivaComParentSessionId,
+            sessionId: line.uiState.vivaSessionId,
             terminalId: line.payment_method_id.viva_com_terminal_id,
             cashRegisterId: this.pos.getCashier().name,
             amount: roundPrecision(Math.abs(line.amount * 100)),
             currencyCode: this.pos.currency.iso_numeric.toString(),
-            merchantReference: line.viva_com_session_id + "/" + this.pos.session.id,
+            merchantReference: line.uiState.vivaSessionId + "/" + this.pos.session.id,
             customerTrns: customerTrns,
             preauth: false,
             maxInstalments: 0,
@@ -97,7 +96,7 @@ export class PaymentVivaCom extends PaymentInterface {
         const line = order.getPaymentlineByUuid(uuid);
 
         var data = {
-            sessionId: line.viva_com_session_id,
+            sessionId: line.uiState.vivaSessionId,
             cashRegisterId: this.pos.getCashier().name,
         };
         return this._call_viva_com(data, "viva_com_send_payment_cancel", line).then((data) => {
@@ -144,13 +143,13 @@ export class PaymentVivaCom extends PaymentInterface {
 
     waitForPaymentConfirmation(paymentLine) {
         return new Promise((resolve) => {
-            const sessionId = paymentLine.viva_com_session_id;
+            const sessionId = paymentLine.uiState.vivaSessionId;
             this.paymentLineResolvers[paymentLine.uuid] = resolve;
             let connectionLost = false;
             const intervalId = setInterval(async () => {
                 const isPaymentStillValid = () =>
                     this.paymentLineResolvers[paymentLine.uuid] &&
-                    sessionId === paymentLine.viva_com_session_id;
+                    sessionId === paymentLine.uiState.vivaSessionId;
                 if (!isPaymentStillValid()) {
                     clearInterval(intervalId);
                     return;

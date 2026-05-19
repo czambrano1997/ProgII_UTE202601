@@ -316,10 +316,10 @@ export class ImagePlugin extends Plugin {
             }
             const cursors = this.dependencies.selection.preserveSelection();
             cursors.update(callbacksForCursorUpdate.remove(targetedImg));
-            const blockEl = closestBlock(targetedImg.parentElement);
+            const parentEl = closestBlock(targetedImg);
             targetedImg.remove();
             cursors.restore();
-            fillEmpty(blockEl);
+            fillEmpty(parentEl);
             this.dependencies.history.addStep();
         }
     }

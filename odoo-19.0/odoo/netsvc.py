@@ -81,7 +81,7 @@ class PostgreSQLHandler(logging.Handler):
                 metadata = {}
                 if modules.module.current_test:
                     with contextlib.suppress(Exception):
-                        metadata['test'] = modules.module.current_test.get_log_metadata(record)
+                        metadata['test'] = modules.module.current_test.get_log_metadata()
 
                 if metadata:
                     cr.execute("""

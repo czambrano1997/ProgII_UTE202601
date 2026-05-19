@@ -22,7 +22,6 @@
                 >
                 <field name="active"/>
                 <field name="alias_email"/>
-                <field name="company_id"/>
                 <templates>
                     <t t-name="menu" groups="hr_recruitment.group_hr_recruitment_user">
                         <div class="container">

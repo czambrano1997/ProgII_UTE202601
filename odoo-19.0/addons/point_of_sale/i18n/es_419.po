@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-08 17:35+0000\n"
-"PO-Revision-Date: 2026-05-07 15:11+0000\n"
+"POT-Creation-Date: 2026-04-24 17:35+0000\n"
+"PO-Revision-Date: 2026-04-23 05:28+0000\n"
 "Last-Translator: \"Fernanda Alvarez (mfar)\" <mfar@odoo.com>\n"
 "Language-Team: Spanish (Latin America) <https://translate.odoo.com/projects/"
 "odoo-19/point_of_sale/es_419/>\n"
@@ -34,9 +34,9 @@ msgid ""
 msgstr ""
 "\n"
 "Este error ocurre porque la cantidad se convierte en cero luego de redondear "
-"durante la conversión. Para solucionarlo, ajusta los factores de conversión "
+"durante la conversión. Para solucionarlo, ajuste los factores de conversión "
 "o el método de redondeo para garantizar que ninguna unidad original se "
-"redondee a cero en la unidad de destino."
+"redondee a cero en la unidad de objetivo."
 
 #. module: point_of_sale
 #. odoo-javascript
@@ -1173,9 +1173,9 @@ msgid ""
 "it's closed\n"
 " In real time: Each order sent to the server create its own picking"
 msgstr ""
-"Al cierre de la sesión: El sistema crea una recolección para la sesión "
-"entera al cerrarla\n"
-" En tiempo real: Cada orden enviada al servidor crea su propia recolección"
+"Al cierre de la sesión: se crea una recolección para la sesión entera cuando "
+"se cierra\n"
+" En tiempo real: cada orden enviada al servidor crea su propia recolección"
 
 #. module: point_of_sale
 #: model:product.template,description_sale:point_of_sale.sport_shoes_product_template
@@ -1783,11 +1783,6 @@ msgstr "Redondeo de efectivo"
 #: model:ir.model.fields,field_description:point_of_sale.field_res_config_settings__pos_cash_rounding
 msgid "Cash Rounding (PoS)"
 msgstr "Redondeo de efectivo (PdV)"
-
-#. module: point_of_sale
-#: model_terms:ir.ui.view,arch_db:point_of_sale.pos_session_sales_details
-msgid "Cash Rounding:"
-msgstr ""
 
 #. module: point_of_sale
 #: model_terms:ir.ui.view,arch_db:point_of_sale.res_config_settings_view_form
@@ -3381,18 +3376,6 @@ msgstr "Descargar"
 #. module: point_of_sale
 #. odoo-javascript
 #: code:addons/point_of_sale/static/src/app/utils/debug/debug_widget.xml:0
-msgid "Download IDB Errors"
-msgstr ""
-
-#. module: point_of_sale
-#. odoo-javascript
-#: code:addons/point_of_sale/static/src/app/utils/debug/debug_widget.xml:0
-msgid "Download IndexedDB error logs from localStorage"
-msgstr ""
-
-#. module: point_of_sale
-#. odoo-javascript
-#: code:addons/point_of_sale/static/src/app/utils/debug/debug_widget.xml:0
 msgid "Download Logs"
 msgstr "Descargar registros"
 
@@ -4342,9 +4325,9 @@ msgid ""
 "based on the greatest product lead time. Otherwise, it will be based on the "
 "shortest."
 msgstr ""
-"Si entregas todos los productos al mismo tiempo, la orden de entrega se "
-"programará según el mayor plazo de entrega del producto. De lo contrario, se "
-"tomará en cuenta el menor."
+"Si entrega todos los productos a la vez, se programará la orden de entrega "
+"según el mayor plazo de entrega del producto. En caso contrario, se tomará "
+"en cuenta el plazo más corto."
 
 #. module: point_of_sale
 #. odoo-javascript
@@ -5585,7 +5568,7 @@ msgstr "Sin conexión a internet"
 #. odoo-python
 #: code:addons/point_of_sale/models/pos_order.py:0
 msgid "No PoS configuration found"
-msgstr "No encontramos ninguna configuración para el PdV"
+msgstr "No se encontró una configuración PdV"
 
 #. module: point_of_sale
 #: model_terms:ir.ui.view,arch_db:point_of_sale.pos_payment_method_view_form
@@ -5662,7 +5645,7 @@ msgstr "Todavía no hay información"
 #. odoo-javascript
 #: code:addons/point_of_sale/static/src/app/components/popups/select_lot_popup/select_lot_popup.js:0
 msgid "No existing Lot/Serial number found..."
-msgstr "No encontramos ningún número de serie o lote existente..."
+msgstr "No se encontró ningún número de serie o lote existente..."
 
 #. module: point_of_sale
 #. odoo-javascript
@@ -6130,7 +6113,7 @@ msgstr "Tipo de operación"
 #. module: point_of_sale
 #: model_terms:ir.ui.view,arch_db:point_of_sale.res_config_settings_view_form
 msgid "Operation types show up in the Inventory dashboard."
-msgstr "Los tipos de operación aparecen en el tablero de Inventario."
+msgstr "Tipos de operación que se muestran en el tablero de Inventario."
 
 #. module: point_of_sale
 #. odoo-javascript
@@ -7122,7 +7105,7 @@ msgstr "Número de órdenes de PdV"
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_pack_operation_lot__pos_order_line_id
 msgid "Pos Order Line"
-msgstr "Línea de la orden del PdV"
+msgstr "Línea de orden de PdV"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_account_bank_statement_line__pos_payment_ids
@@ -7616,7 +7599,7 @@ msgstr "Línea del atributo de la plantilla del producto"
 #. module: point_of_sale
 #: model:ir.model,name:point_of_sale.model_product_template_attribute_value
 msgid "Product Template Attribute Value"
-msgstr "Valor del atributo de la plantilla del producto"
+msgstr "Valor del atributo del modelo de producto"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_order_line__product_uom_id
@@ -8462,7 +8445,7 @@ msgstr "Seleccione los productos a reembolsar y establezca la cantidad"
 #. odoo-javascript
 #: code:addons/point_of_sale/static/src/app/screens/payment_screen/payment_screen.js:0
 msgid "Select the shipping date"
-msgstr "Selecciona la fecha de envío"
+msgstr "Seleccione la fecha de envío"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_order_line__attribute_value_ids
@@ -8488,7 +8471,7 @@ msgstr "Autofacturación"
 #. module: point_of_sale
 #: model_terms:ir.ui.view,arch_db:point_of_sale.res_config_settings_view_form
 msgid "Sell products and deliver them later."
-msgstr "Vende productos y entrégalos después."
+msgstr "Enviar productos y entregarlos después."
 
 #. module: point_of_sale
 #. odoo-javascript
@@ -9275,7 +9258,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/point_of_sale/static/src/app/components/popups/select_lot_popup/select_lot_popup.js:0
 msgid "The Lot/Serial number is already added."
-msgstr "Ya agregaste ese número de serie o lote."
+msgstr "Ya agregó ese número de serie o lote."
 
 #. module: point_of_sale
 #. odoo-javascript
@@ -10927,9 +10910,9 @@ msgid ""
 "are not set.\n"
 "Would you like to proceed anyway?"
 msgstr ""
-"Estás intentando vender productos con números de serie o lote, pero algunos "
-"de ellos no están configurados.\n"
-"¿Quieres continuar de todos modos?"
+"Está tratando de vender productos con números de serie o de lote, pero "
+"algunos no se han establecido.\n"
+"¿Desea continuar?"
 
 #. module: point_of_sale
 #. odoo-javascript
@@ -11019,8 +11002,8 @@ msgid ""
 "You cannot archive '%(picking_type)s' as it is used by POS configuration '%"
 "(config)s'."
 msgstr ""
-"No puedes archivar \"%(picking_type)s\" porque la configuración de PdV \"%"
-"(config)s\" lo usa."
+"No puede archivar \"%(picking_type)s\" porque se utiliza en la configuración "
+"de PdV \"%(config)s\"."
 
 #. module: point_of_sale
 #. odoo-python
@@ -11241,7 +11224,7 @@ msgstr "Debe asignar un Punto de venta a su sesión."
 #: code:addons/point_of_sale/static/src/app/components/popups/closing_popup/closing_popup.xml:0
 #: code:addons/point_of_sale/static/src/app/components/popups/opening_control_popup/opening_control_popup.xml:0
 msgid "You still have"
-msgstr "Todavía tienes"
+msgstr "Todavía tiene"
 
 #. module: point_of_sale
 #. odoo-javascript

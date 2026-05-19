@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-24 14:12+0000\n"
-"PO-Revision-Date: 2026-05-04 02:45+0000\n"
+"PO-Revision-Date: 2026-04-09 07:01+0000\n"
 "Last-Translator: \"Kwanghee Park (kwpa)\" <kwpa@odoo.com>\n"
 "Language-Team: Korean <https://translate.odoo.com/projects/odoo-19/base/ko/>"
 "\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.17\n"
+"X-Generator: Weblate 5.16.2\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_at_reports
@@ -17637,7 +17637,7 @@ msgstr "고객이 Stripe으로 결제할 수 있는 셀프 주문 앱용 애드�
 #. module: base
 #: model:ir.module.module,description:base.module_tests
 msgid "Addons to test Odoo industries code."
-msgstr "Odoo 업종 코드 테스트용 애드온"
+msgstr "Odoo 인더스트리 코드 테스트용 애드온"
 
 #. module: base
 #. odoo-python
@@ -31604,7 +31604,7 @@ msgstr "산업 분류"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_base_industry_data
 msgid "Industry base"
-msgstr "기본 업종 항목"
+msgstr "인더스트리 기본 항목"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_model__info

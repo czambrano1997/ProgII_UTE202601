@@ -80,14 +80,6 @@ export class IconPlugin extends Plugin {
                             node.previousElementSibling?.classList?.contains("fa")
                         );
                     }
-                    // Node is applying style on the icon.
-                    if (
-                        isElement(node) &&
-                        node.children.length === 1 &&
-                        isIconElement(node.children[0])
-                    ) {
-                        return true;
-                    }
                     return false;
                 };
 

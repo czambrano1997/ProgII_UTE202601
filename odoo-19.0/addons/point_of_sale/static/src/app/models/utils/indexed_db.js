@@ -42,14 +42,11 @@ export default class IndexedDB {
         }
         dbInstance.onerror = (event) => {
             const err = event.target.error;
-            const errMsg = err?.message || String(event.target.errorCode);
             logPosMessage(
                 "IndexedDB",
-                "databaseEventListener.onerror",
-                `Error opening IndexedDB: ${errMsg}`,
-                CONSOLE_COLOR,
-                [],
-                true
+                "databaseEventListener",
+                `Error opening IndexedDB: ${err?.message || event.target.errorCode}`,
+                CONSOLE_COLOR
             );
             // Known iOS/Safari WebKit bug: the IDB server process was killed by the OS.
             // No reconnect will succeed — only a page reload restores the daemon.
@@ -149,14 +146,6 @@ export default class IndexedDB {
 
                 timeoutId = setTimeout(() => {
                     if (!finished) {
-                        logPosMessage(
-                            "IndexedDB",
-                            `promises.timeout.${method}`,
-                            `Transaction timeout for store: ${storeName}`,
-                            CONSOLE_COLOR,
-                            [],
-                            true
-                        );
                         reject(new Error("IndexedDB transaction timeout"));
                         try {
                             transaction.abort();
@@ -225,14 +214,6 @@ export default class IndexedDB {
     getNewTransaction(dbStore) {
         try {
             if (!this.db) {
-                logPosMessage(
-                    "IndexedDB",
-                    "getNewTransaction.null",
-                    "db is null",
-                    CONSOLE_COLOR,
-                    [],
-                    true
-                );
                 return false;
             }
 
@@ -242,11 +223,9 @@ export default class IndexedDB {
         } catch (e) {
             logPosMessage(
                 "IndexedDB",
-                `getNewTransaction.${e.name}`,
+                "getNewTransaction",
                 `Error creating transaction: ${e.message}`,
-                CONSOLE_COLOR,
-                [],
-                true
+                CONSOLE_COLOR
             );
             if (e.name === "InvalidStateError") {
                 this.db = null;
@@ -287,15 +266,7 @@ export default class IndexedDB {
             }
             try {
                 this.db.transaction([this.dbStores[0][1]], "readonly").abort();
-            } catch (e) {
-                logPosMessage(
-                    "IndexedDB",
-                    "visibilityProbe.catch",
-                    e?.message || "probe transaction failed",
-                    CONSOLE_COLOR,
-                    [],
-                    true
-                );
+            } catch {
                 this.db = null;
                 this._attemptReconnect();
             }

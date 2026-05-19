@@ -50,9 +50,6 @@ import { debounce } from "@web/core/utils/timing";
  *     };
  */
 
-// Below this size, the power buttons will overlap other menus.
-const MIN_WIDTH_FOR_POWER_BUTTONS = 600;
-
 export class PowerButtonsPlugin extends Plugin {
     static id = "powerButtons";
     static dependencies = [
@@ -151,7 +148,7 @@ export class PowerButtonsPlugin extends Plugin {
             editableRect.bottom > blockRect.top &&
             isEmptyBlock(block) &&
             !descendants(block).some(isEditorTab) &&
-            this.editable.offsetWidth >= MIN_WIDTH_FOR_POWER_BUTTONS &&
+            !this.services.ui.isSmall &&
             !closestElement(documentSelection.anchorNode, "td, th, li") &&
             !block.style.textAlign &&
             this.getResource("power_buttons_visibility_predicates").every((predicate) =>
