@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     
-    <record id="group_plasticos_usuario" model="res.groups">
-        <field name="name">Plásticos / Usuario</field>
-        <field name="category_id" ref="base.module_category_manufacturing"/>
-        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    <record id="module_category_plasticos" model="ir.module.category">
+        <field name="name">Plásticos</field>
+        <field name="description">Gestión de productos plásticos</field>
+        <field name="sequence">20</field>
     </record>
 
     
+    <record id="privilege_plasticos_acceso" model="res.groups.privilege">
+        <field name="name">Acceso Plásticos</field>
+        <field name="category_id" ref="module_category_plasticos"/>
+    </record>
+
+    
+    <record id="group_plasticos_usuario" model="res.groups">
+        <field name="name">Usuario</field>
+        <field name="privilege_id" ref="privilege_plasticos_acceso"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">Solo lectura en el módulo de plásticos</field>
+    </record>
+
     <record id="group_plasticos_admin" model="res.groups">
-        <field name="name">Plásticos / Administrador</field>
-        <field name="category_id" ref="base.module_category_manufacturing"/>
+        <field name="name">Administrador</field>
+        <field name="privilege_id" ref="privilege_plasticos_acceso"/>
         <field name="implied_ids" eval="[(4, ref('group_plasticos_usuario'))]"/>
         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="comment">Acceso total al módulo de plásticos</field>
     </record>
 
-    
+  
     <record id="rule_producto_usuario" model="ir.rule">
         <field name="name">Producto: Usuario solo activos</field>
         <field name="model_id" ref="model_plasticos_producto"/>
