@@ -1,11 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ou_academic_plan_user,ou.academic.plan user,model_ou_academic_plan,group_ute_complementos_user,1,0,0,0
-access_ou_academic_plan_manager,ou.academic.plan manager,model_ou_academic_plan,group_ute_complementos_manager,1,1,1,1
-access_ou_classroom_user,ou.classroom user,model_ou_classroom,group_ute_complementos_user,1,0,0,0
-access_ou_classroom_manager,ou.classroom manager,model_ou_classroom,group_ute_complementos_manager,1,1,1,1
-access_ou_class_schedule_user,ou.class.schedule user,model_ou_class_schedule,group_ute_complementos_user,1,0,0,0
-access_ou_class_schedule_manager,ou.class.schedule manager,model_ou_class_schedule,group_ute_complementos_manager,1,1,1,1
-access_ou_attendance_user,ou.attendance user,model_ou_attendance,group_ute_complementos_user,1,0,0,0
-access_ou_attendance_manager,ou.attendance manager,model_ou_attendance,group_ute_complementos_manager,1,1,1,1
-access_ou_teacher_evaluation_user,ou.teacher.evaluation user,model_ou_teacher_evaluation,group_ute_complementos_user,1,0,0,0
-access_ou_teacher_evaluation_manager,ou.teacher.evaluation manager,model_ou_teacher_evaluation,group_ute_complementos_manager,1,1,1,1
+access_ou_academic_plan_user,ou.academic.plan user,model_ou_academic_plan,odoo_ute.group_ute_user,1,0,0,0
+access_ou_academic_plan_manager,ou.academic.plan manager,model_ou_academic_plan,odoo_ute.group_ute_manager,1,1,1,1
+access_ou_classroom_user,ou.classroom user,model_ou_classroom,odoo_ute.group_ute_user,1,0,0,0
+access_ou_classroom_manager,ou.classroom manager,model_ou_classroom,odoo_ute.group_ute_manager,1,1,1,1
+access_ou_class_schedule_user,ou.class.schedule user,model_ou_class_schedule,odoo_ute.group_ute_user,1,0,0,0
+access_ou_class_schedule_manager,ou.class.schedule manager,model_ou_class_schedule,odoo_ute.group_ute_manager,1,1,1,1
+access_ou_attendance_user,ou.attendance user,model_ou_attendance,odoo_ute.group_ute_user,1,0,0,0
+access_ou_attendance_manager,ou.attendance manager,model_ou_attendance,odoo_ute.group_ute_manager,1,1,1,1
+access_ou_teacher_evaluation_user,ou.teacher.evaluation user,model_ou_teacher_evaluation,odoo_ute.group_ute_user,1,0,0,0
+access_ou_teacher_evaluation_manager,ou.teacher.evaluation manager,model_ou_teacher_evaluation,odoo_ute.group_ute_manager,1,1,1,1

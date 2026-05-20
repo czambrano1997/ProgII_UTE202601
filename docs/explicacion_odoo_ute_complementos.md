@@ -229,15 +229,15 @@ Vistas y menu:
 
 ## Seguridad
 
-Se crearon dos grupos complementarios dentro del privilegio UTE:
+Se reutilizan los grupos del modulo base `odoo_ute`, porque son los mismos que ya permiten ver las opciones `Docentes` y `Materia`:
 
-- `Usuario Complementos`: hereda el acceso de `odoo_ute.group_ute_user`.
-- `Administrador Complementos`: hereda el acceso de `Usuario Complementos` y de `odoo_ute.group_ute_manager`.
+- `Usuario`: grupo `odoo_ute.group_ute_user`.
+- `Administrador`: grupo `odoo_ute.group_ute_manager`.
 
 Permisos por modelo:
 
-- Usuario Complementos: solo lectura.
-- Administrador Complementos: lectura, escritura, creacion y eliminacion.
+- Usuario: solo lectura.
+- Administrador: lectura, escritura, creacion y eliminacion.
 
 Esto esta definido en:
 

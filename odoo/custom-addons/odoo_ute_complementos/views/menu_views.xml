@@ -9,7 +9,7 @@
         name="Planes academicos"
         action="action_ou_academic_plan"
         parent="odoo_ute.menu_odoo_ute_root"
-        groups="group_ute_complementos_user,group_ute_complementos_manager"
+        groups="odoo_ute.group_ute_user,odoo_ute.group_ute_manager"
         sequence="30"/>
 
     <menuitem
@@ -17,7 +17,7 @@
         name="Aulas"
         action="action_ou_classroom"
         parent="odoo_ute.menu_odoo_ute_root"
-        groups="group_ute_complementos_user,group_ute_complementos_manager"
+        groups="odoo_ute.group_ute_user,odoo_ute.group_ute_manager"
         sequence="40"/>
 
     <menuitem
@@ -25,7 +25,7 @@
         name="Horarios"
         action="action_ou_class_schedule"
         parent="odoo_ute.menu_odoo_ute_root"
-        groups="group_ute_complementos_user,group_ute_complementos_manager"
+        groups="odoo_ute.group_ute_user,odoo_ute.group_ute_manager"
         sequence="50"/>
 
     <menuitem
@@ -33,7 +33,7 @@
         name="Asistencias"
         action="action_ou_attendance"
         parent="odoo_ute.menu_odoo_ute_root"
-        groups="group_ute_complementos_user,group_ute_complementos_manager"
+        groups="odoo_ute.group_ute_user,odoo_ute.group_ute_manager"
         sequence="60"/>
 
     <menuitem
@@ -41,6 +41,6 @@
         name="Evaluaciones"
         action="action_ou_teacher_evaluation"
         parent="odoo_ute.menu_odoo_ute_root"
-        groups="group_ute_complementos_user,group_ute_complementos_manager"
+        groups="odoo_ute.group_ute_user,odoo_ute.group_ute_manager"
         sequence="70"/>
 </odoo>
