@@ -7,6 +7,14 @@
             <field name="model">arte.pedido</field>
             <field name="arch" type="xml">
                 <form string="Pedido">
+                   <header>
+                <!-- Use the statusbar widget to display states horizontally -->
+                <field name="state" widget="statusbar" statusbar_visible="pediente,en_progreso,cancelo"/>
+                
+                <!-- Buttons are also placed here to trigger state changes -->
+                <button name="confirma" string="Confirmar" type="object" 
+                        class="oe_highlight" invisible="state == 'confirmando'"/>
+            </header>
                     <sheet>
                         <group>
                             <field name="name"/>
@@ -15,6 +23,7 @@
                              <field name="correo"/>
                              <field name="telefono"/>
                              <field name="direcion"/>
+                            <field name="precio"/> 
 
                             <!-- Add your fields here -->
                         </group>
@@ -35,9 +44,11 @@
                     <field name="correo"/>
                     <field name="telefono"/>
                     <field name="direcion"/>
+                    <field name="precio"/>
 
                     <!-- Add your fields here -->
                 </list>
+              
             </field>
         </record>
 

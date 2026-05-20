@@ -16,6 +16,7 @@
                             <field name="celuda"/>
                             <field name="telefono"/>
                             <field name="direcion"/>
+                            <field name="precio"/>
                             <!-- Add your fields here -->
                         </group>
                     </sheet>
@@ -36,6 +37,7 @@
                             <field name="correo"/>
                             <field name="direcion"/>
                             <field name="telefono"/>
+                            <field name="precio"/>
                     <!-- Add your fields here -->
                 </list>
             </field>
