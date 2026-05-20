@@ -251,16 +251,17 @@ Ademas, los menus del complemento estan protegidos con los grupos de seguridad, 
 
 ## Menus y acciones
 
-El menu principal del modulo base es `UTE`. Dentro de ese menu se agrego:
+El menu principal del modulo base es `UTE`. Los menus del complemento se agregaron directamente al mismo nivel que `Docentes` y `Materia`, para mantener la estructura original del modulo base:
 
 ```text
 UTE
-└── Complementos Academicos
-    ├── Planes academicos
-    ├── Aulas
-    ├── Horarios
-    ├── Asistencias
-    └── Evaluaciones
+├── Docentes
+├── Materia
+├── Planes academicos
+├── Aulas
+├── Horarios
+├── Asistencias
+└── Evaluaciones
 ```
 
 Cada opcion tiene su accion `ir.actions.act_window` y abre su modelo con vista `list,form`.
