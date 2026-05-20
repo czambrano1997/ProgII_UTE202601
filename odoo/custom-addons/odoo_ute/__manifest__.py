@@ -23,6 +23,7 @@
     # always loaded
     'data': [
         'security/ute_group.xml',
+        'security/ir.model.access.csv',
         'security/ute_rule.xml',
         'views/teacher.xml',
         'views/signature.xml',
@@ -32,8 +33,6 @@
         'views/universidad_estudiante_views.xml',
         'views/universidad_matricula_views.xml',
         'views/menu.xml',
-        'security/security.xml',
-        'security/ir.model.access.csv',
         'data/demo.xml',
     ],
     # only loaded in demonstration mode

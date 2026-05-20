@@ -3,14 +3,14 @@
     <data>
 
         <record id="rule_ute_user_own_records" model="ir.rule">
-            <field name="name">UTE: El usuario solo ve sus propios registros</field>
+            <field name="name">UTE: Acceso completo docentes para usuarios internos</field>
             <field name="model_id" ref="model_ou_teacher"/>
-            <field name="groups" eval="[(4, ref('odoo_ute.group_ute_user'))]"/>
-            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">[('id', '!=', False)]</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_unlink" eval="False"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
         </record>
 
 
