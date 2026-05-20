@@ -6,7 +6,7 @@
             id="universidad_menu_root"
             name="Universidad"
             sequence="10"
-            web_icon="universidad_ute,static/description/icon.png" />
+            web_icon="odoo_ute,static/description/icon.png" />
         
         
         <menuitem

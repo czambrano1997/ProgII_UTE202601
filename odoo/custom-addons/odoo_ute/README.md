@@ -1,8 +1,8 @@
-# Módulo Universidad UTE - Odoo 17
+# Módulo odoo_ute - Odoo 19
 
 ## 📋 Descripción General
 
-**universidad_ute** es un módulo completo y profesional para Odoo 17 que implementa un sistema integral de gestión universitaria. Demuestra conceptos avanzados de programación orientada a objetos, herencia, polimorfismo, relaciones complejas en bases de datos y buenas prácticas en el desarrollo de módulos Odoo.
+**odoo_ute** es un módulo completo y profesional para Odoo 19 que implementa un sistema integral de gestión universitaria. Demuestra conceptos avanzados de programación orientada a objetos, herencia, relaciones complejas en bases de datos y buenas prácticas en el desarrollo de módulos Odoo.
 
 ## 🎯 Características Principales
 
@@ -294,7 +294,7 @@ Todos los datos son coherentes y se pueden usar para pruebas inmediatas.
 ## 🏗️ Estructura de Directorios
 
 ```
-universidad_ute/
+odoo_ute/
 ├── __init__.py                 # Inicializador del módulo
 ├── __manifest__.py             # Metadatos del módulo
 ├── models/
@@ -327,7 +327,7 @@ universidad_ute/
 
 ### 1. Copiar el Módulo
 ```bash
-# Copiar la carpeta universidad_ute a:
+# Copiar la carpeta odoo_ute a:
 ~/odoo/custom-addons/
 ```
 
@@ -335,7 +335,7 @@ universidad_ute/
 ```bash
 # En la terminal de Odoo o mediante la interfaz:
 # Aplicaciones > Actualizar Lista de Aplicaciones
-# Buscar "Universidad UTE"
+# Buscar "odoo_ute"
 # Hacer clic en Instalar
 ```
 
