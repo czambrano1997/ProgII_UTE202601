@@ -32,9 +32,9 @@
         'views/universidad_estudiante_views.xml',
         'views/universidad_matricula_views.xml',
         'views/universidad_menus.xml',
+        'security/security.xml',
         'security/ir.model.access.csv',
         'data/demo.xml',
-        'security/security.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
