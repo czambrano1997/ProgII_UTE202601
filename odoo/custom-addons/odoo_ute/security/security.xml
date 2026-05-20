@@ -19,7 +19,7 @@
         
         <record id="carrera_rule_usuario_lectura" model="ir.rule">
             <field name="name">Carrera - Usuario: Lectura</field>
-            <field name="model_id" ref="model_universidad_carrera" />
+            <field name="model_id" ref="odoo_ute.model_universidad_carrera" />
             <field name="domain_force">[('id', '!=', False)]</field>
             <field name="groups" eval="[(4, ref('group_usuario_universidad'))]" />
             <field name="perm_read">True</field>
@@ -30,7 +30,7 @@
         
         <record id="carrera_rule_admin_todos" model="ir.rule">
             <field name="name">Carrera - Administrador: Todos</field>
-            <field name="model_id" ref="model_universidad_carrera" />
+            <field name="model_id" ref="odoo_ute.model_universidad_carrera" />
             <field name="domain_force">[('id', '!=', False)]</field>
             <field name="groups" eval="[(4, ref('group_admin_universidad'))]" />
             <field name="perm_read">True</field>
@@ -41,7 +41,7 @@
         
         <record id="profesor_rule_usuario_lectura" model="ir.rule">
             <field name="name">Profesor - Usuario: Lectura</field>
-            <field name="model_id" ref="model_universidad_profesor" />
+            <field name="model_id" ref="odoo_ute.model_universidad_profesor" />
             <field name="domain_force">[('id', '!=', False)]</field>
             <field name="groups" eval="[(4, ref('group_usuario_universidad'))]" />
             <field name="perm_read">True</field>
@@ -52,7 +52,7 @@
         
         <record id="profesor_rule_admin_todos" model="ir.rule">
             <field name="name">Profesor - Administrador: Todos</field>
-            <field name="model_id" ref="model_universidad_profesor" />
+            <field name="model_id" ref="odoo_ute.model_universidad_profesor" />
             <field name="domain_force">[('id', '!=', False)]</field>
             <field name="groups" eval="[(4, ref('group_admin_universidad'))]" />
             <field name="perm_read">True</field>
@@ -63,7 +63,7 @@
         
         <record id="materia_rule_usuario_lectura" model="ir.rule">
             <field name="name">Materia - Usuario: Lectura</field>
-            <field name="model_id" ref="model_universidad_materia" />
+            <field name="model_id" ref="odoo_ute.model_universidad_materia" />
             <field name="domain_force">[('id', '!=', False)]</field>
             <field name="groups" eval="[(4, ref('group_usuario_universidad'))]" />
             <field name="perm_read">True</field>
@@ -74,7 +74,7 @@
         
         <record id="materia_rule_admin_todos" model="ir.rule">
             <field name="name">Materia - Administrador: Todos</field>
-            <field name="model_id" ref="model_universidad_materia" />
+            <field name="model_id" ref="odoo_ute.model_universidad_materia" />
             <field name="domain_force">[('id', '!=', False)]</field>
             <field name="groups" eval="[(4, ref('group_admin_universidad'))]" />
             <field name="perm_read">True</field>
@@ -85,7 +85,7 @@
         
         <record id="estudiante_rule_usuario_lectura" model="ir.rule">
             <field name="name">Estudiante - Usuario: Lectura</field>
-            <field name="model_id" ref="model_universidad_estudiante" />
+            <field name="model_id" ref="odoo_ute.model_universidad_estudiante" />
             <field name="domain_force">[('id', '!=', False)]</field>
             <field name="groups" eval="[(4, ref('group_usuario_universidad'))]" />
             <field name="perm_read">True</field>
@@ -96,7 +96,7 @@
         
         <record id="estudiante_rule_admin_todos" model="ir.rule">
             <field name="name">Estudiante - Administrador: Todos</field>
-            <field name="model_id" ref="model_universidad_estudiante" />
+            <field name="model_id" ref="odoo_ute.model_universidad_estudiante" />
             <field name="domain_force">[('id', '!=', False)]</field>
             <field name="groups" eval="[(4, ref('group_admin_universidad'))]" />
             <field name="perm_read">True</field>
@@ -107,7 +107,7 @@
         
         <record id="matricula_rule_usuario_lectura" model="ir.rule">
             <field name="name">Matrícula - Usuario: Lectura</field>
-            <field name="model_id" ref="model_universidad_matricula" />
+            <field name="model_id" ref="odoo_ute.model_universidad_matricula" />
             <field name="domain_force">[('id', '!=', False)]</field>
             <field name="groups" eval="[(4, ref('group_usuario_universidad'))]" />
             <field name="perm_read">True</field>
@@ -118,7 +118,7 @@
         
         <record id="matricula_rule_admin_todos" model="ir.rule">
             <field name="name">Matrícula - Administrador: Todos</field>
-            <field name="model_id" ref="model_universidad_matricula" />
+            <field name="model_id" ref="odoo_ute.model_universidad_matricula" />
             <field name="domain_force">[('id', '!=', False)]</field>
             <field name="groups" eval="[(4, ref('group_admin_universidad'))]" />
             <field name="perm_read">True</field>
