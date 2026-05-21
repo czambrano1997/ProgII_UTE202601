@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_libro_user,libro.user,model_biblioteca_libro,salvacion_progra.group_biblioteca_user,1,0,0,0
+access_libro_admin,libro.admin,model_biblioteca_libro,salvacion_progra.group_biblioteca_admin,1,1,1,1
+access_autor_user,autor.user,model_biblioteca_autor,salvacion_progra.group_biblioteca_user,1,0,0,0
+access_autor_admin,autor.admin,model_biblioteca_autor,salvacion_progra.group_biblioteca_admin,1,1,1,1
+access_estudiante_user,estudiante.user,model_biblioteca_estudiante,salvacion_progra.group_biblioteca_user,1,0,0,0
+access_estudiante_admin,estudiante.admin,model_biblioteca_estudiante,salvacion_progra.group_biblioteca_admin,1,1,1,1
+access_sede_user,sede.user,model_biblioteca_sede,salvacion_progra.group_biblioteca_user,1,0,0,0
+access_sede_admin,sede.admin,model_biblioteca_sede,salvacion_progra.group_biblioteca_admin,1,1,1,1
+access_prestamo_user,prestamo.user,model_biblioteca_prestamo,salvacion_progra.group_biblioteca_user,1,0,0,0
+access_prestamo_admin,prestamo.admin,model_biblioteca_prestamo,salvacion_progra.group_biblioteca_admin,1,1,1,1
+access_multa_user,multa.user,model_biblioteca_multa,salvacion_progra.group_biblioteca_user,1,0,0,0
+access_multa_admin,multa.admin,model_biblioteca_multa,salvacion_progra.group_biblioteca_admin,1,1,1,1

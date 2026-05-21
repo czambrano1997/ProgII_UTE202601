@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_biblioteca_libro_search" model="ir.ui.view">
+        <field name="model">biblioteca.libro</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Libros">
+                <field name="name"/><field name="codigo"/><field name="autor_id"/><field name="editorial"/>
+                <field name="sede_id"/>
+                <filter string="Disponibles para Préstamo" name="filter_disponible" domain="[('disponible', '=', True)]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Autor" name="group_by_autor" context="{'group_by': 'autor_id'}"/>
+                    <filter string="Editorial" name="group_by_editorial" context="{'group_by': 'editorial'}"/>
+                    <filter string="Sede / Ubicación" name="group_by_sede" context="{'group_by': 'sede_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_biblioteca_libro" model="ir.actions.act_window">
+        <field name="name">Libros en Inventario</field>
+        <field name="res_model">biblioteca.libro</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_biblioteca_libro_search"/>
+    </record>
+
+    <record id="action_biblioteca_autor" model="ir.actions.act_window">
+        <field name="name">Autores registrados</field>
+        <field name="res_model">biblioteca.autor</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_biblioteca_prestamo" model="ir.actions.act_window">
+        <field name="name">Control de Préstamos</field>
+        <field name="res_model">biblioteca.prestamo</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_biblioteca_multa" model="ir.actions.act_window">
+        <field name="name">Registro de Multas</field>
+        <field name="res_model">biblioteca.multa</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_biblioteca_estudiante" model="ir.actions.act_window">
+        <field name="name">Estudiantes / Lectores</field>
+        <field name="res_model">biblioteca.estudiante</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_biblioteca_sede" model="ir.actions.act_window">
+        <field name="name">Sedes y Salas de Lectura</field>
+        <field name="res_model">biblioteca.sede</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_biblioteca_libro_list" model="ir.ui.view">
+        <field name="model">biblioteca.libro</field>
+        <field name="arch" type="xml">
+            <list string="Inventario de Libros">
+                <field name="imagen" widget="image" options="{'size': [40, 50]}" string="Portada" class="oe_avatar"/>
+                <field name="codigo"/>
+                <field name="name"/>
+                <field name="autor_id"/>
+                <field name="editorial"/>
+                <field name="sede_id"/> <field name="paginas" sum="Total Páginas"/>
+                <field name="disponible" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_biblioteca_libro_form" model="ir.ui.view">
+        <field name="model">biblioteca.libro</field>
+        <field name="arch" type="xml">
+            <form string="Ficha del Libro">
+                <sheet>
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div style="width: 60%;">
+                            <div class="oe_title">
+                                <label for="name" string="Título del Libro"/>
+                                <h1><field name="name" placeholder="Ej. Cien años de soledad"/></h1>
+                            </div>
+                            <group>
+                                <group string="Información de Catalogación">
+                                    <field name="codigo" placeholder="Ingrese el ISBN..."/>
+                                    <field name="autor_id"/>
+                                    <field name="editorial" placeholder="Ej. Editorial Alfaguara"/>
+                                </group>
+                                <group string="Ubicación e Inventario">
+                                    <field name="sede_id" placeholder="Seleccione la sala o sede..."/>
+                                    <field name="paginas"/>
+                                    <field name="fecha_publicacion" placeholder="Ej. 1967"/>
+                                    <field name="disponible" widget="boolean_toggle"/>
+                                </group>
+                            </group>
+                        </div>
+                        <div style="width: 35%; text-align: center; padding: 10px; border: 1px solid #dee2e6; border-radius: 4px; background: #fafafa;">
+                            <field name="imagen" widget="image" options="{'size': [300, 420]}" class="img-fluid"/>
+                        </div>
+                    </div>
+                    <notebook class="mt-4">
+                        <tab string="Sinopsis del Libro">
+                            <field name="resumen" placeholder="Escriba un breve resumen de la trama..."/>
+                        </tab>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_biblioteca_prestamo_list" model="ir.ui.view">
+        <field name="model">biblioteca.prestamo</field>
+        <field name="arch" type="xml">
+            <list string="Préstamos Realizados" decoration-danger="estado == 'atrasado'" decoration-info="estado == 'prestado'" decoration-success="estado == 'devuelto'">
+                <field name="estudiante_id"/>
+                <field name="libro_id"/>
+                <field name="fecha_prestamo"/>
+                <field name="fecha_devolucion"/>
+                <field name="estado" widget="badge" decoration-danger="estado == 'atrasado'" decoration-info="estado == 'prestado'" decoration-success="estado == 'devuelto'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_biblioteca_prestamo_form" model="ir.ui.view">
+        <field name="model">biblioteca.prestamo</field>
+        <field name="arch" type="xml">
+            <form string="Registro de Préstamo">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="estudiante_id" string="Seleccione el Estudiante / Lector"/>
+                        <h1><field name="estudiante_id" options="{'no_quick_create': True}"/></h1>
+                    </div>
+                    <group>
+                        <group string="Datos del Libro">
+                            <field name="libro_id" options="{'no_create': True}"/>
+                        </group>
+                        <group string="Fechas y Control">
+                            <field name="fecha_prestamo"/>
+                            <field name="fecha_devolucion"/>
+                            <field name="estado"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_biblioteca_multa_list" model="ir.ui.view">
+        <field name="model">biblioteca.multa</field>
+        <field name="arch" type="xml">
+            <list string="Multas por Atraso" decoration-danger="estado_pago == 'pendiente'" decoration-success="estado_pago == 'pagado'">
+                <field name="estudiante_id"/>
+                <field name="prestamo_id"/>
+                <field name="fecha_multa"/>
+                <field name="monto" sum="Total Recaudado ($)"/>
+                <field name="estado_pago" widget="badge" decoration-danger="estado_pago == 'pendiente'" decoration-success="estado_pago == 'pagado'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_biblioteca_estudiante_list" model="ir.ui.view">
+        <field name="model">biblioteca.estudiante</field>
+        <field name="arch" type="xml">
+            <list string="Listado de Estudiantes UTE">
+                <field name="matricula"/>
+                <field name="name"/>
+                <field name="correo"/>
+                <field name="carrera"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_biblioteca_estudiante_form" model="ir.ui.view">
+        <field name="model">biblioteca.estudiante</field>
+        <field name="arch" type="xml">
+            <form string="Ficha del Estudiante">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Nombre Completo del Alumno"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Datos Académicos">
+                            <field name="matricula"/>
+                            <field name="carrera"/>
+                        </group>
+                        <group string="Contacto">
+                            <field name="correo"/>
+                        </group>
+                    </group>
+                    <notebook class="mt-4">
+                        <tab string="Historial de Préstamos">
+                            <field name="prestamo_ids" readonly="1">
+                                <list>
+                                    <field name="libro_id"/>
+                                    <field name="fecha_prestamo"/>
+                                    <field name="fecha_devolucion"/>
+                                    <field name="estado" widget="badge"/>
+                                </list>
+                            </field>
+                        </tab>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_biblioteca_sede_list" model="ir.ui.view">
+        <field name="model">biblioteca.sede</field>
+        <field name="arch" type="xml">
+            <list string="Sedes / Salas Disponibles">
+                <field name="name"/>
+                <field name="ubicacion"/>
+                <field name="responsable"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_biblioteca_sede_form" model="ir.ui.view">
+        <field name="model">biblioteca.sede</field>
+        <field name="arch" type="xml">
+            <form string="Ficha de la Sede">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Nombre de la Sala / Sede"/>
+                        <h1><field name="name" placeholder="Ej. Biblioteca Central - Sala A"/></h1>
+                    </div>
+                    <group>
+                        <group string="Ubicación Geográfica">
+                            <field name="ubicacion" placeholder="Ej. Campus Occidental / Campus Matriz"/>
+                        </group>
+                        <group string="Personal a Cargo">
+                            <field name="responsable" placeholder="Nombre del encargado..."/>
+                        </group>
+                    </group>
+                    <notebook class="mt-4">
+                        <tab string="Inventario de Libros en esta Sede">
+                            <field name="libro_ids" readonly="1">
+                                <list>
+                                    <field name="codigo"/>
+                                    <field name="name"/>
+                                    <field name="autor_id"/>
+                                    <field name="disponible" widget="boolean_toggle"/>
+                                </list>
+                            </field>
+                        </tab>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_biblioteca_autor_list" model="ir.ui.view">
+        <field name="model">biblioteca.autor</field>
+        <field name="arch" type="xml">
+            <list><field name="name"/></list>
+        </field>
+    </record>
+
+    <menuitem id="menu_biblioteca_raiz" name="Biblioteca UTE" sequence="1"/>
+    <menuitem id="menu_biblioteca_libros_sub" name="Gestión de Libros" parent="menu_biblioteca_raiz" action="action_biblioteca_libro" sequence="10"/>
+    <menuitem id="menu_biblioteca_prestamos_sub" name="Préstamos" parent="menu_biblioteca_raiz" action="action_biblioteca_prestamo" sequence="15"/>
+    <menuitem id="menu_biblioteca_multas_sub" name="Multas" parent="menu_biblioteca_raiz" action="action_biblioteca_multa" sequence="18"/>
+    <menuitem id="menu_biblioteca_estudiantes_sub" name="Estudiantes" parent="menu_biblioteca_raiz" action="action_biblioteca_estudiante" sequence="19"/>
+    <menuitem id="menu_biblioteca_autores_sub" name="Autores" parent="menu_biblioteca_raiz" action="action_biblioteca_autor" sequence="20"/>
+    
+    <menuitem id="menu_biblioteca_sedes_sub" name="Sedes" parent="menu_biblioteca_raiz" action="action_biblioteca_sede" sequence="25"/>
+</odoo>
