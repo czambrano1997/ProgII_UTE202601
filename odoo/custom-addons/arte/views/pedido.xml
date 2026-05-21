@@ -7,13 +7,30 @@
             <field name="model">arte.pedido</field>
             <field name="arch" type="xml">
                 <form string="Pedido">
+                   <header>
+                <!-- Use the statusbar widget to display states horizontally -->
+                <field name="state" widget="statusbar" statusbar_visible="pediente,en_progreso,cancelo"/>
+                
+                <!-- Buttons are also placed here to trigger state changes -->
+                <button name="confirma" string="Confirmar" type="object" 
+                        class="oe_highlight" invisible="state == 'confirmando'"/>
+            </header>
                     <sheet>
                         <group>
                             <field name="name"/>
                             <field name="cliente"></field>
+<<<<<<< HEAD
                             <field name="direccion"></field>
                             <field name="correo"></field>
                             <field name="precio"></field>
+=======
+                            <field name="celuda"/>
+                             <field name="correo"/>
+                             <field name="telefono"/>
+                             <field name="direcion"/>
+                            <field name="precio"/> 
+
+>>>>>>> 3215ec0fe0e6faa534e39166871ae6060fdfd50c
                             <!-- Add your fields here -->
                         </group>
                     </sheet>
@@ -27,13 +44,25 @@
             <field name="model">arte.pedido</field>
             <field name="arch" type="xml">
                 <list string="Pedido">
+<<<<<<< HEAD
                     
                             <field name="cliente"></field>
                             <field name="direccion"></field>
                             <field name="correo"></field>
                             <field name="precio"></field>
+=======
+                    <field name="name"/>
+                    <field name="cliente"></field>
+                    <field name="celuda"/>
+                    <field name="correo"/>
+                    <field name="telefono"/>
+                    <field name="direcion"/>
+                    <field name="precio"/>
+
+>>>>>>> 3215ec0fe0e6faa534e39166871ae6060fdfd50c
                     <!-- Add your fields here -->
                 </list>
+              
             </field>
         </record>
 

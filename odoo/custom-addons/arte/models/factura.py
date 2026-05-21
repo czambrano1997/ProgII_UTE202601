@@ -16,3 +16,4 @@ class Factura(models.Model):
     correo = fields.Char(related='pedido_id.correo')
     telefono = fields.Char(related='pedido_id.telefono')
     direccion = fields.Char(related='pedido_id.direccion')
+    precio=fields.Char(related='pedido_id.precio')
