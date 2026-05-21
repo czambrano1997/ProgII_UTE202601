@@ -7,13 +7,8 @@
 	Funcionalidades del módulo de gestión de la UTE.
     """,
 
-<<<<<<< HEAD
-    'author': "alissonormaza",
-    'website': "https://www.yourcompany.com",
-=======
     'author': "Ceider Zambrano",
     'website': "https://gezaforge.com",
->>>>>>> 429d1272c840b1f1bfce85079b1d2e792e7e9351
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml

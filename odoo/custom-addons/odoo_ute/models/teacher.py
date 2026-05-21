@@ -1,23 +1,4 @@
 from odoo import models, fields, api
-<<<<<<< HEAD
-
-
-class odoo_ute(models.Model):
-    name = 'odoo_ute.odoo_ute'
-    _description = 'odoo_ute.odoo_ute'
-    
-    name = fields.Char()
-    value = fields.Integer()
-    value2 = fields.Float(compute="_value_pc", store=True)
-    description = fields.Text()
-#
-    @api.depends('value')
-    def _value_pc(self):
-
-       for record in self:
-             record.value2 = float(record.value) / 100
-
-=======
 from odoo.exceptions import ValidationError
 
 
@@ -67,4 +48,3 @@ class TeacherUTE(models.Model):
     # def _compute_display_name(self):
     #     for rec in self:
     #         rec.display_name = rec.last_name + rec.vat
->>>>>>> 429d1272c840b1f1bfce85079b1d2e792e7e9351
