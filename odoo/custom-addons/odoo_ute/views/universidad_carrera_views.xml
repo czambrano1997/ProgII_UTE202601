@@ -1,186 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        
-        <record id="universidad_carrera_view_list" model="ir.ui.view">
-            <field name="name">Carrera List</field>
-            <field name="model">universidad.carrera</field>
-            <field name="arch" type="xml">
-                <list string="Carreras">
-                    <field name="codigo" />
-                    <field name="nombre" />
-                    <field name="facultad" />
-                    <field name="estado" />
-                    <field name="cantidad_estudiantes" />
-                    <field name="duracion_semestres" />
-                </list>
-            </field>
-        </record>
-        
-        
-        <record id="universidad_carrera_view_form" model="ir.ui.view">
-            <field name="name">Carrera Form</field>
-            <field name="model">universidad.carrera</field>
-            <field name="arch" type="xml">
-                <form string="Carrera">
-                    <header>
-                        <field name="estado" widget="statusbar" options="{'clickable': True}" />
-                    </header>
-                    <sheet>
-                        <div class="oe_button_box" name="button_box">
-                            <button class="oe_stat_button" icon="fa-users" disabled="True">
-                                <field name="cantidad_estudiantes" widget="statinfo" string="Estudiantes" />
-                            </button>
-                            <button class="oe_stat_button" icon="fa-book" disabled="True">
-                                <field name="cantidad_materias" widget="statinfo" string="Materias" />
-                            </button>
-                        </div>
-                        <div class="oe_title">
-                            <h1>
-                                <field name="codigo" class="oe_inline" />
-                                <span> - </span>
-                                <field name="nombre" class="oe_inline" />
-                            </h1>
-                        </div>
-                        <notebook>
-                            <page string="Información General" name="info_general">
-                                <group>
-                                    <group string="Datos Básicos">
-                                        <field name="codigo" readonly="1" />
-                                        <field name="nombre" />
-                                        <field name="facultad" />
-                                        <field name="decano" />
-                                    </group>
-                                    <group string="Especificaciones">
-                                        <field name="duracion_semestres" />
-                                        <field name="creditos_totales" />
-                                        <field name="porcentaje_aceptacion" widget="progressbar" />
-                                        <field name="estado" />
-                                    </group>
-                                </group>
-                                <group string="Descripción">
-                                    <field name="descripcion" nolabel="1" />
-                                </group>
-                            </page>
-                            
-                            <page string="Estudiantes Inscritos" name="estudiantes">
-                                <group>
-                                    <field name="cantidad_estudiantes" readonly="1" />
-                                </group>
-                                <field name="estudiante_ids" nolabel="1">
-                                    <list>
-                                        <field name="numero_matricula" />
-                                        <field name="name" />
-                                        <field name="cedula" />
-                                        <field name="semestre_actual" />
-                                        <field name="promedio_academico" />
-                                        <field name="estado_estudiante" />
-                                    </list>
-                                </field>
-                            </page>
-                            
-                            <page string="Materias" name="materias">
-                                <group>
-                                    <field name="cantidad_materias" readonly="1" />
-                                </group>
-                                <field name="materia_ids" nolabel="1">
-                                    <list>
-                                        <field name="codigo" />
-                                        <field name="nombre" />
-                                        <field name="creditos" />
-                                        <field name="profesor_id" />
-                                        <field name="cantidad_estudiantes" />
-                                    </list>
-                                </field>
-                            </page>
-                            
-                            <page string="Requisitos" name="requisitos">
-                                <field name="requisitos" nolabel="1" />
-                            </page>
-                            
-                            <page string="Más Información" name="mas_info">
-                                <group>
-                                    <group string="Contacto">
-                                        <field name="sitio_web" widget="url" />
-                                        <field name="fecha_creacion" />
-                                    </group>
-                                    <group string="Logo">
-                                        <field name="logo" widget="image" />
-                                    </group>
-                                </group>
-                            </page>
-                        </notebook>
-                    </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_ids" />
-                        <field name="activity_ids" />
-                    </div>
-                </form>
-            </field>
-        </record>
-        
-        
-        <record id="universidad_carrera_view_search" model="ir.ui.view">
-            <field name="name">Carrera Search</field>
-            <field name="model">universidad.carrera</field>
-            <field name="arch" type="xml">
-                <search string="Buscar Carrera">
-                    <field name="nombre" string="Nombre o Código" filter_domain="['|', ('nombre', 'ilike', self), ('codigo', 'ilike', self)]" />
-                    <field name="facultad" />
-                    <field name="estado" />
-                    <separator />
-                    <filter name="filter_activa" string="Activas" domain="[('estado', '=', 'activa')]" />
-                    <filter name="filter_inactiva" string="Inactivas" domain="[('estado', '=', 'inactiva')]" />
-                    <separator />
-                </search>
-            </field>
-        </record>
-        
-        
-        <record id="universidad_carrera_view_kanban" model="ir.ui.view">
-            <field name="name">Carrera Kanban</field>
-            <field name="model">universidad.carrera</field>
-            <field name="arch" type="xml">
-                <kanban string="Carreras" default_group_by="estado">
-                    <field name="id" />
-                    <field name="nombre" />
-                    <field name="codigo" />
-                    <field name="estado" />
-                    <field name="cantidad_estudiantes" />
-                    <field name="duracion_semestres" />
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div class="oe_kanban_card oe_kanban_global_click">
-                                <div class="oe_kanban_title">
-                                    <b><t t-esc="record.codigo.value" /> - <t t-esc="record.nombre.value" /></b>
-                                </div>
-                                <div class="oe_kanban_content">
-                                    <ul>
-                                        <li><strong>Estudiantes:</strong> <t t-esc="record.cantidad_estudiantes.value" /></li>
-                                        <li><strong>Semestres:</strong> <t t-esc="record.duracion_semestres.value" /></li>
-                                        <li><strong>Estado:</strong> <t t-esc="record.estado.value" /></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </t>
-                    </templates>
-                </kanban>
-            </field>
-        </record>
-        
-        
-        <record id="universidad_carrera_action" model="ir.actions.act_window">
-            <field name="name">Carreras</field>
-            <field name="res_model">universidad.carrera</field>
-            <field name="view_mode">list,form</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Cree su primera carrera
-                </p>
-                <p>
-                    Una carrera es un programa académico ofrecido por la universidad.
-                </p>
-            </field>
-        </record>
-    </data>
+<data>
+
+<record id="universidad_carrera_view_list" model="ir.ui.view">
+<field name="name">Carrera List</field>
+<field name="model">universidad.carrera</field>
+<field name="arch" type="xml">
+<list string="Carreras">
+<field name="codigo" />
+<field name="nombre" />
+<field name="facultad" />
+<field name="estado" />
+<field name="cantidad_estudiantes" />
+<field name="duracion_semestres" />
+</list>
+</field>
+</record>
+
+
+<record id="universidad_carrera_view_form" model="ir.ui.view">
+<field name="name">Carrera Form</field>
+<field name="model">universidad.carrera</field>
+<field name="arch" type="xml">
+<form string="Carrera">
+<header>
+<field name="estado" widget="statusbar" options="{'clickable': True}" />
+</header>
+<sheet>
+<div class="oe_button_box" name="button_box">
+<button class="oe_stat_button" icon="fa-users" disabled="True">
+<field name="cantidad_estudiantes" widget="statinfo" string="Estudiantes" />
+</button>
+<button class="oe_stat_button" icon="fa-book" disabled="True">
+<field name="cantidad_materias" widget="statinfo" string="Materias" />
+</button>
+</div>
+<div class="oe_title">
+<h1>
+<field name="codigo" class="oe_inline" />
+<span> - </span>
+<field name="nombre" class="oe_inline" />
+</h1>
+</div>
+<notebook>
+<page string="Información General" name="info_general">
+<group>
+<group string="Datos Básicos">
+<field name="codigo" readonly="1" />
+<field name="nombre" />
+<field name="facultad" />
+<field name="decano" />
+</group>
+<group string="Especificaciones">
+<field name="duracion_semestres" />
+<field name="creditos_totales" />
+<field name="porcentaje_aceptacion" widget="progressbar" />
+<field name="estado" />
+</group>
+</group>
+<group string="Descripción">
+<field name="descripcion" nolabel="1" />
+</group>
+</page>
+
+<page string="Estudiantes Inscritos" name="estudiantes">
+<group>
+<field name="cantidad_estudiantes" readonly="1" />
+</group>
+<field name="estudiante_ids" nolabel="1">
+<list>
+<field name="numero_matricula" />
+<field name="name" />
+<field name="cedula" />
+<field name="semestre_actual" />
+<field name="promedio_academico" />
+<field name="estado_estudiante" />
+</list>
+</field>
+</page>
+
+<page string="Materias" name="materias">
+<group>
+<field name="cantidad_materias" readonly="1" />
+</group>
+<field name="materia_ids" nolabel="1">
+<list>
+<field name="codigo" />
+<field name="nombre" />
+<field name="creditos" />
+<field name="profesor_id" />
+<field name="cantidad_estudiantes" />
+</list>
+</field>
+</page>
+
+<page string="Requisitos" name="requisitos">
+<field name="requisitos" nolabel="1" />
+</page>
+
+<page string="Más Información" name="mas_info">
+<group>
+<group string="Contacto">
+<field name="sitio_web" widget="url" />
+<field name="fecha_creacion" />
+</group>
+<group string="Logo">
+<field name="logo" widget="image" />
+</group>
+</group>
+</page>
+</notebook>
+</sheet>
+<div class="oe_chatter">
+<field name="message_ids" />
+<field name="activity_ids" />
+</div>
+</form>
+</field>
+</record>
+
+
+<record id="universidad_carrera_view_search" model="ir.ui.view">
+<field name="name">Carrera Search</field>
+<field name="model">universidad.carrera</field>
+<field name="arch" type="xml">
+<search string="Buscar Carrera">
+<field name="nombre" string="Nombre o Código" filter_domain="['|', ('nombre', 'ilike', self), ('codigo', 'ilike', self)]" />
+<field name="facultad" />
+<field name="estado" />
+<separator />
+<filter name="filter_activa" string="Activas" domain="[('estado', '=', 'activa')]" />
+<filter name="filter_inactiva" string="Inactivas" domain="[('estado', '=', 'inactiva')]" />
+<separator />
+</search>
+</field>
+</record>
+
+
+<record id="universidad_carrera_view_kanban" model="ir.ui.view">
+<field name="name">Carrera Kanban</field>
+<field name="model">universidad.carrera</field>
+<field name="arch" type="xml">
+<kanban string="Carreras" default_group_by="estado">
+<field name="id" />
+<field name="nombre" />
+<field name="codigo" />
+<field name="estado" />
+<field name="cantidad_estudiantes" />
+<field name="duracion_semestres" />
+<templates>
+<t t-name="kanban-box">
+<div class="oe_kanban_card oe_kanban_global_click">
+<div class="oe_kanban_title">
+<b><t t-esc="record.codigo.value" /> - <t t-esc="record.nombre.value" /></b>
+</div>
+<div class="oe_kanban_content">
+<ul>
+<li><strong>Estudiantes:</strong> <t t-esc="record.cantidad_estudiantes.value" /></li>
+<li><strong>Semestres:</strong> <t t-esc="record.duracion_semestres.value" /></li>
+<li><strong>Estado:</strong> <t t-esc="record.estado.value" /></li>
+</ul>
+</div>
+</div>
+</t>
+</templates>
+</kanban>
+</field>
+</record>
+
+
+<record id="universidad_carrera_action" model="ir.actions.act_window">
+<field name="name">Carreras</field>
+<field name="res_model">universidad.carrera</field>
+<field name="view_mode">list,form</field>
+<field name="help" type="html">
+<p class="o_view_nocontent_smiling_face">
+Cree su primera carrera
+</p>
+<p>
+Una carrera es un programa académico ofrecido por la universidad.
+</p>
+</field>
+</record>
+</data>
 </odoo>
