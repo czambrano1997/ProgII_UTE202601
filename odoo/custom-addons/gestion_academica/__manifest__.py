@@ -1,0 +1,22 @@
+{
+    'name': 'Gestión Académica',
+    'version': '1.0',
+    'summary': 'Gestión de estudiantes, profesores, cursos, materias y matrículas',
+    'description': 'Módulo académico desarrollado en Odoo 18 con modelos, campos, relaciones, decoradores, vistas, acciones, menús y seguridad.',
+    'author': 'Alumnos',
+    'category': 'Education',
+    'license': 'LGPL-3',
+    'depends': ['base'],
+    'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'views/estudiante_views.xml',
+        'views/profesor_views.xml',
+        'views/curso_views.xml',
+        'views/materia_views.xml',
+        'views/matricula_views.xml',
+        'views/menu.xml',
+    ],
+    'installable': True,
+    'application': True,
+}
