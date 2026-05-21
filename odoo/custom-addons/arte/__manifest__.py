@@ -17,7 +17,8 @@
     "security/ir.model.access.csv",
     "views/pedido.xml",
     "views/factura.xml",
-    "views/menu.xml"
+    "views/menu.xml",
+    "views/reporte_facurq.xml",
     ],
 
 

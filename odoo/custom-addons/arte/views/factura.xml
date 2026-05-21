@@ -15,7 +15,7 @@
                             <field name="correo"/>
                             <field name="celuda"/>
                             <field name="telefono"/>
-                            <field name="direcion"/>
+                            <field name="direccion"/>
                             <!-- Add your fields here -->
                         </group>
                     </sheet>
@@ -34,7 +34,7 @@
                             <field name="cliente"/>
                             <field name="celuda"/>
                             <field name="correo"/>
-                            <field name="direcion"/>
+                            <field name="direccion"/>
                             <field name="telefono"/>
                     <!-- Add your fields here -->
                 </list>
