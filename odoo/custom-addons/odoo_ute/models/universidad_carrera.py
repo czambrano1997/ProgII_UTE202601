@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-from datetime import datetime
+from odoo.exceptions import ValidationError
 
 class UniversidadCarrera(models.Model):
     _name = 'universidad.carrera'
@@ -8,17 +8,22 @@ class UniversidadCarrera(models.Model):
     _order = 'codigo'
     codigo = fields.Char(string='Código de Carrera', required=True, help='Código único de la carrera')
     nombre = fields.Char(string='Nombre de la Carrera', required=True, help='Nombre completo de la carrera')
+
+    @api.constrains('codigo')
+    def _check_unique_codigo(self):
+        for record in self:
+            if record.codigo:
+                duplicate = self.search([('codigo', '=', record.codigo), ('id', '!=', record.id)], limit=1)
+                if duplicate:
+                    raise ValidationError('El código de carrera debe ser único')
     descripcion = fields.Text(string='Descripción', help='Descripción detallada de la carrera')
 
-    class UniqueCodigoConstraint(models.Constraint):
-        _name = 'unique_codigo_carrera'
-        _sql = [('codigo', 'unique', 'El código de carrera debe ser único')]
     duracion_semestres = fields.Integer(string='Duración (Semestres)', required=True, default=8, help='Número de semestres que dura la carrera')
     creditos_totales = fields.Integer(string='Créditos Totales', required=True, default=240, help='Total de créditos requeridos')
     estado = fields.Selection([('activa', 'Activa'), ('inactiva', 'Inactiva'), ('suspension', 'En Suspensión')], string='Estado', default='activa', tracking=True, help='Estado actual de la carrera')
     facultad = fields.Char(string='Facultad', help='Facultad o departamento')
     decano = fields.Char(string='Decano', help='Nombre del decano responsable')
-    fecha_creacion = fields.Date(string='Fecha de Creación', default=fields.Date.today(), help='Fecha cuando se creó la carrera')
+    fecha_creacion = fields.Date(string='Fecha de Creación', default=fields.Date.context_today, help='Fecha cuando se creó la carrera')
     logo = fields.Binary(string='Logo de la Carrera', help='Logo o imagen representativa')
     porcentaje_aceptacion = fields.Float(string='% Aceptación Estudiantes', help='Porcentaje de aceptación para nuevos estudiantes')
     sitio_web = fields.Char(string='Sitio Web', help='URL del sitio web de la carrera')
@@ -42,19 +47,19 @@ class UniversidadCarrera(models.Model):
     def _validar_duracion(self):
         for record in self:
             if record.duracion_semestres <= 0 or record.duracion_semestres > 16:
-                raise models.ValidationError('La duración debe estar entre 1 y 16 semestres')
+                raise ValidationError('La duración debe estar entre 1 y 16 semestres')
 
     @api.constrains('creditos_totales')
     def _validar_creditos(self):
         for record in self:
             if record.creditos_totales < 60 or record.creditos_totales > 500:
-                raise models.ValidationError('Los créditos deben estar entre 60 y 500')
+                raise ValidationError('Los créditos deben estar entre 60 y 500')
 
     @api.constrains('porcentaje_aceptacion')
     def _validar_porcentaje(self):
         for record in self:
             if record.porcentaje_aceptacion and (record.porcentaje_aceptacion < 0 or record.porcentaje_aceptacion > 100):
-                raise models.ValidationError('El porcentaje de aceptación debe estar entre 0 y 100')
+                raise ValidationError('El porcentaje de aceptación debe estar entre 0 y 100')
 
     def obtener_informacion(self):
         return {'codigo': self.codigo, 'nombre': self.nombre, 'duracion': f'{self.duracion_semestres} semestres', 'creditos': self.creditos_totales, 'estudiantes': self.cantidad_estudiantes, 'materias': self.cantidad_materias, 'estado': self.estado}

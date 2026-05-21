@@ -5,7 +5,6 @@ from odoo.exceptions import ValidationError
 class TeacherUTE(models.Model):
     _name = 'ou.teacher'
     _description = 'Docentes de la UTE'
-    # _rec_name = 'last_name'
 
     name = fields.Char(string="Nombre", required=True)
     last_name = fields.Char(string="Apellido", required=True)
@@ -37,14 +36,11 @@ class TeacherUTE(models.Model):
             if rec.vat and len(rec.vat) < 10:
                 raise ValidationError("La CI/RUC debe tener 10 o 13 caracteres")
     
-    # @api.model
     def generar_reporte(self):
         self.ensure_one()
-        variable = None
-        print("REPORTE GENERADO")
-        variable = 100
-        print(variable)
-
-    # def _compute_display_name(self):
-    #     for rec in self:
-    #         rec.display_name = rec.last_name + rec.vat
+        # Método de ejemplo para generar un reporte de docente
+        return {
+            'name': self.name,
+            'email': self.email,
+            'signature_primary': self.signature_primary.name if self.signature_primary else None,
+        }

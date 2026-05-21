@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class UniversidadEstudiante(models.Model):
     _name = 'universidad.estudiante'
@@ -7,15 +8,19 @@ class UniversidadEstudiante(models.Model):
     _order = 'numero_matricula'
     numero_matricula = fields.Char(string='Número de Matrícula', required=True, help='Identificador único del estudiante')
 
-    class UniqueNumeroMatriculaConstraint(models.Constraint):
-        _name = 'unique_numero_matricula'
-        _sql = [('numero_matricula', 'unique', 'El número de matrícula debe ser único')]
+    @api.constrains('numero_matricula')
+    def _check_unique_numero_matricula(self):
+        for record in self:
+            if record.numero_matricula:
+                duplicate = self.search([('numero_matricula', '=', record.numero_matricula), ('id', '!=', record.id)], limit=1)
+                if duplicate:
+                    raise ValidationError('El número de matrícula debe ser único')
     carrera_id = fields.Many2one(comodel_name='universidad.carrera', string='Carrera', required=True, help='Carrera en la que está inscrito')
     semestre_actual = fields.Integer(string='Semestre Actual', required=True, default=1, help='Semestre en el que se encuentra')
     promedio_academico = fields.Float(string='Promedio Académico', compute='_compute_promedio_academico', store=True, help='Promedio de todas las calificaciones')
     total_creditos_aprobados = fields.Integer(string='Créditos Aprobados', compute='_compute_creditos_aprobados', store=True, help='Total de créditos aprobados')
     estado_estudiante = fields.Selection([('activo', 'Activo'), ('inactivo', 'Inactivo'), ('graduado', 'Graduado'), ('expulsado', 'Expulsado'), ('suspension_temporal', 'Suspensión Temporal')], string='Estado del Estudiante', default='activo', tracking=True, help='Estado académico actual')
-    fecha_ingreso = fields.Date(string='Fecha de Ingreso', required=True, default=fields.Date.today(), help='Fecha cuando ingresó a la universidad')
+    fecha_ingreso = fields.Date(string='Fecha de Ingreso', required=True, default=fields.Date.context_today, help='Fecha cuando ingresó a la universidad')
     matricula_ids = fields.One2many(comodel_name='universidad.matricula', inverse_name='estudiante_id', string='Matrículas', help='Historial de matrículas en materias')
     materia_ids = fields.Many2many(comodel_name='universidad.materia', relation='estudiante_materia_rel', column1='estudiante_id', column2='materia_id', string='Materias Inscritas', help='Materias en las que está inscrito')
     monto_deuda = fields.Monetary(string='Monto de Deuda', currency_field='currency_id', default=0.0, help='Deuda pendiente del estudiante')
@@ -45,13 +50,13 @@ class UniversidadEstudiante(models.Model):
             if record.carrera_id:
                 max_semestres = record.carrera_id.duracion_semestres
                 if record.semestre_actual < 1 or record.semestre_actual > max_semestres:
-                    raise models.ValidationError(f'El semestre debe estar entre 1 y {max_semestres}')
+                    raise ValidationError(f'El semestre debe estar entre 1 y {max_semestres}')
 
     @api.constrains('promedio_academico')
     def _validar_promedio_para_graduacion(self):
         for record in self:
             if record.estado_estudiante == 'graduado' and record.promedio_academico < 70:
-                raise models.ValidationError('Un estudiante graduado debe tener promedio mínimo de 70')
+                raise ValidationError('Un estudiante graduado debe tener promedio mínimo de 70')
 
     @api.onchange('carrera_id')
     def _onchange_carrera(self):

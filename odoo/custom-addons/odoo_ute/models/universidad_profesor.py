@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class UniversidadProfesor(models.Model):
     _name = 'universidad.profesor'
@@ -9,16 +10,24 @@ class UniversidadProfesor(models.Model):
     titulo_academico = fields.Selection([('licenciatura', 'Licenciatura'), ('maestria', 'Maestría'), ('doctorado', 'Doctorado'), ('postdoctorado', 'Postdoctorado')], string='Título Académico Máximo', required=True, help='Máximo título académico obtenido')
     especialidad = fields.Char(string='Especialidad', required=True, help='Área de especialización del profesor')
     tipo_contrato = fields.Selection([('tiempo_completo', 'Tiempo Completo'), ('medio_tiempo', 'Medio Tiempo'), ('por_horas', 'Por Horas'), ('temporal', 'Temporal')], string='Tipo de Contrato', required=True, default='tiempo_completo', help='Modalidad de contratación')
-    fecha_contratacion = fields.Date(string='Fecha de Contratación', required=True, default=fields.Date.today(), help='Fecha cuando fue contratado')
+    fecha_contratacion = fields.Date(string='Fecha de Contratación', required=True, default=fields.Date.context_today, help='Fecha cuando fue contratado')
     numero_empleado = fields.Char(string='Número de Empleado', help='Identificador de empleado')
 
-    class UniqueCodigoProfesorConstraint(models.Constraint):
-        _name = 'unique_codigo_profesor'
-        _sql = [('codigo_profesor', 'unique', 'El código de profesor debe ser único')]
+    @api.constrains('codigo_profesor')
+    def _check_unique_codigo_profesor(self):
+        for record in self:
+            if record.codigo_profesor:
+                duplicate = self.search([('codigo_profesor', '=', record.codigo_profesor), ('id', '!=', record.id)], limit=1)
+                if duplicate:
+                    raise ValidationError('El código de profesor debe ser único')
 
-    class UniqueNumeroEmpleadoConstraint(models.Constraint):
-        _name = 'unique_numero_empleado'
-        _sql = [('numero_empleado', 'unique', 'El número de empleado debe ser único')]
+    @api.constrains('numero_empleado')
+    def _check_unique_numero_empleado(self):
+        for record in self:
+            if record.numero_empleado:
+                duplicate = self.search([('numero_empleado', '=', record.numero_empleado), ('id', '!=', record.id)], limit=1)
+                if duplicate:
+                    raise ValidationError('El número de empleado debe ser único')
     departamento = fields.Char(string='Departamento', help='Departamento donde trabaja')
     despacho = fields.Char(string='Despacho/Oficina', help='Ubicación de la oficina')
     extension_telefonica = fields.Char(string='Extensión Telefónica', help='Extensión dentro de la universidad')
@@ -63,22 +72,22 @@ class UniversidadProfesor(models.Model):
     def _validar_horas_semanales(self):
         for record in self:
             if record.tipo_contrato == 'tiempo_completo' and record.horas_semanales < 20:
-                raise models.ValidationError('Un profesor de tiempo completo debe tener mínimo 20 horas semanales')
+                raise ValidationError('Un profesor de tiempo completo debe tener mínimo 20 horas semanales')
             if record.tipo_contrato == 'medio_tiempo' and record.horas_semanales > 20:
-                raise models.ValidationError('Un profesor de medio tiempo no puede exceder 20 horas semanales')
+                raise ValidationError('Un profesor de medio tiempo no puede exceder 20 horas semanales')
 
     @api.constrains('salario_base')
     def _validar_salario(self):
         for record in self:
             if record.salario_base and record.salario_base < 0:
-                raise models.ValidationError('El salario no puede ser negativo')
+                raise ValidationError('El salario no puede ser negativo')
 
     @api.constrains('titulo_academico')
     def _validar_titulo_salario(self):
         for record in self:
             if record.titulo_academico == 'doctorado' and record.salario_base:
                 if record.salario_base < 2000:
-                    raise models.ValidationError('Profesores con doctorado deben tener salario mínimo de $2000')
+                    raise ValidationError('Profesores con doctorado deben tener salario mínimo de $2000')
 
     @api.onchange('titulo_academico')
     def _onchange_titulo_academico(self):

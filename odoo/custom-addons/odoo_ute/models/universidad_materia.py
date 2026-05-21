@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class UniversidadMateria(models.Model):
     _name = 'universidad.materia'
@@ -7,9 +8,13 @@ class UniversidadMateria(models.Model):
     _order = 'codigo'
     codigo = fields.Char(string='Código de Materia', required=True, help='Código único de la materia')
 
-    class UniqueCodigoMateriaConstraint(models.Constraint):
-        _name = 'unique_codigo_materia'
-        _sql = [('codigo', 'unique', 'El código de materia debe ser único')]
+    @api.constrains('codigo')
+    def _check_unique_codigo_materia(self):
+        for record in self:
+            if record.codigo:
+                duplicate = self.search([('codigo', '=', record.codigo), ('id', '!=', record.id)], limit=1)
+                if duplicate:
+                    raise ValidationError('El código de la materia debe ser único')
     nombre = fields.Char(string='Nombre de la Materia', required=True, help='Nombre completo de la materia')
     descripcion = fields.Text(string='Descripción', help='Descripción del contenido de la materia')
     creditos = fields.Integer(string='Créditos', required=True, default=3, help='Cantidad de créditos académicos')
@@ -60,25 +65,25 @@ class UniversidadMateria(models.Model):
     def _validar_creditos(self):
         for record in self:
             if record.creditos <= 0 or record.creditos > 10:
-                raise models.ValidationError('Los créditos deben estar entre 1 y 10')
+                raise ValidationError('Los créditos deben estar entre 1 y 10')
 
     @api.constrains('horas_semanales')
     def _validar_horas_semanales(self):
         for record in self:
             if record.horas_semanales < 2 or record.horas_semanales > 10:
-                raise models.ValidationError('Las horas semanales deben estar entre 2 y 10')
+                raise ValidationError('Las horas semanales deben estar entre 2 y 10')
 
     @api.constrains('semestre')
     def _validar_semestre(self):
         for record in self:
             if record.semestre < 1 or record.semestre > 16:
-                raise models.ValidationError('El semestre debe estar entre 1 y 16')
+                raise ValidationError('El semestre debe estar entre 1 y 16')
 
     @api.constrains('profesor_id')
     def _validar_profesor_activo(self):
         for record in self:
             if record.profesor_id and record.profesor_id.estado_profesor != 'activo':
-                raise models.ValidationError('El profesor debe estar activo para imparta materias')
+                raise ValidationError('El profesor debe estar activo para imparta materias')
 
     @api.onchange('creditos')
     def _onchange_creditos_horas(self):

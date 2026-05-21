@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class UniversidadMatricula(models.Model):
     _name = 'universidad.matricula'
@@ -9,10 +10,14 @@ class UniversidadMatricula(models.Model):
     materia_id = fields.Many2one(comodel_name='universidad.materia', string='Materia', required=True, ondelete='cascade', help='Materia en la cual se inscribe')
     numero_matricula = fields.Char(string='Número de Inscripción', required=True, help='Identificador único de la inscripción')
 
-    class UniqueNumeroMatriculaMatriculaConstraint(models.Constraint):
-        _name = 'unique_numero_matricula_matricula'
-        _sql = [('numero_matricula', 'unique', 'El número de inscripción debe ser único')]
-    fecha_inscripcion = fields.Date(string='Fecha de Inscripción', required=True, default=fields.Date.today(), help='Fecha cuando se realizó la inscripción')
+    @api.constrains('numero_matricula')
+    def _check_unique_numero_matricula_inscripcion(self):
+        for record in self:
+            if record.numero_matricula:
+                duplicate = self.search([('numero_matricula', '=', record.numero_matricula), ('id', '!=', record.id)], limit=1)
+                if duplicate:
+                    raise ValidationError('El número de inscripción debe ser único')
+    fecha_inscripcion = fields.Date(string='Fecha de Inscripción', required=True, default=fields.Date.context_today, help='Fecha cuando se realizó la inscripción')
     fecha_retiro = fields.Date(string='Fecha de Retiro', help='Fecha si se retira de la materia')
     calificacion = fields.Float(string='Calificación Final', default=0.0, help='Calificación final (0-100)', tracking=True)
     participacion = fields.Float(string='Participación (%)', default=0.0, help='Porcentaje de participación en clase')
@@ -31,28 +36,28 @@ class UniversidadMatricula(models.Model):
     def _validar_calificacion(self):
         for record in self:
             if record.calificacion < 0 or record.calificacion > 100:
-                raise models.ValidationError('La calificación debe estar entre 0 y 100')
+                raise ValidationError('La calificación debe estar entre 0 y 100')
 
     @api.constrains('participacion', 'asistencia')
     def _validar_porcentajes(self):
         for record in self:
             if record.participacion and (record.participacion < 0 or record.participacion > 100):
-                raise models.ValidationError('La participación debe estar entre 0 y 100%')
+                raise ValidationError('La participación debe estar entre 0 y 100%')
             if record.asistencia and (record.asistencia < 0 or record.asistencia > 100):
-                raise models.ValidationError('La asistencia debe estar entre 0 y 100%')
+                raise ValidationError('La asistencia debe estar entre 0 y 100%')
 
     @api.constrains('asistencia')
     def _validar_asistencia_minima(self):
         for record in self:
             if record.asistencia and record.asistencia < 60:
                 if record.resultado == 'aprobado':
-                    raise models.ValidationError('La asistencia mínima debe ser 60% para aprobar')
+                    raise ValidationError('La asistencia mínima debe ser 60% para aprobar')
 
     @api.constrains('fecha_retiro')
     def _validar_fecha_retiro(self):
         for record in self:
             if record.fecha_retiro and record.fecha_retiro < record.fecha_inscripcion:
-                raise models.ValidationError('La fecha de retiro debe ser posterior a la inscripción')
+                raise ValidationError('La fecha de retiro debe ser posterior a la inscripción')
 
     @api.onchange('calificacion')
     def _onchange_calificacion(self):

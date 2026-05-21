@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-from datetime import datetime, timedelta
+from odoo.exceptions import ValidationError
 
 class UniversidadPersona(models.AbstractModel):
     _name = 'universidad.persona'
@@ -31,15 +31,15 @@ class UniversidadPersona(models.AbstractModel):
     def _validar_cedula(self):
         for record in self:
             if not record.cedula or len(record.cedula) < 5:
-                raise models.ValidationError('La cédula debe tener al menos 5 caracteres')
+                raise ValidationError('La cédula debe tener al menos 5 caracteres')
             if not record.cedula.replace('-', '').isalnum():
-                raise models.ValidationError('La cédula solo puede contener números y guiones')
+                raise ValidationError('La cédula solo puede contener números y guiones')
 
     @api.constrains('correo')
     def _validar_correo(self):
         for record in self:
             if record.correo and '@' not in record.correo:
-                raise models.ValidationError('El correo electrónico debe contener el símbolo @')
+                raise ValidationError('El correo electrónico debe contener el símbolo @')
 
     @api.constrains('fecha_nacimiento')
     def _validar_fecha_nacimiento(self):
@@ -47,9 +47,9 @@ class UniversidadPersona(models.AbstractModel):
             if record.fecha_nacimiento:
                 today = fields.Date.today()
                 if record.fecha_nacimiento > today:
-                    raise models.ValidationError('La fecha de nacimiento no puede ser posterior a hoy')
+                    raise ValidationError('La fecha de nacimiento no puede ser posterior a hoy')
             if record.edad < 18:
-                raise models.ValidationError('La persona debe ser mayor de 18 años')
+                raise ValidationError('La persona debe ser mayor de 18 años')
 
     @api.onchange('name')
     def _onchange_name(self):
