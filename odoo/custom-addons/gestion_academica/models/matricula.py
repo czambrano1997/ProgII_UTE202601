@@ -31,8 +31,16 @@ class GestionMatricula(models.Model):
         ('cancelada', 'Cancelada'),
     ], string='Estado', default='borrador')
 
-    costo = fields.Float(string='Costo')
-    descuento = fields.Float(string='Descuento')
+    costo = fields.Float(
+        string='Costo',
+        required=True,
+        default=0.0
+    )
+
+    descuento = fields.Float(
+        string='Descuento',
+        default=0.0
+    )
 
     total = fields.Float(
         string='Total',
@@ -55,8 +63,12 @@ class GestionMatricula(models.Model):
         if self.curso_id:
             self.materia_ids = self.curso_id.materia_ids
 
-    @api.constrains('descuento', 'costo')
-    def _check_descuento(self):
+    @api.constrains('costo', 'descuento')
+    def _check_valores_matricula(self):
         for record in self:
+            if record.costo < 0:
+                raise ValidationError('El costo no puede ser negativo.')
+            if record.descuento < 0:
+                raise ValidationError('El descuento no puede ser negativo.')
             if record.descuento > record.costo:
                 raise ValidationError('El descuento no puede ser mayor que el costo.')
