@@ -5,11 +5,11 @@
         <field name="name">cliente.tree</field>
         <field name="model">choco.cliente</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="nombre"/>
                 <field name="telefono"/>
                 <field name="correo"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -33,7 +33,7 @@
     <record id="action_cliente" model="ir.actions.act_window">
         <field name="name">Clientes</field>
         <field name="res_model">choco.cliente</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
 </odoo>

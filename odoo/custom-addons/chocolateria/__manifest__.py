@@ -7,16 +7,17 @@
     'category': 'Sales',
     'depends': ['base'],
     'data': [
-        'security/security.xml',
-        'security/ir.model.access.csv',
+        #'security/security.xml',
+        #'security/ir.model.access.csv',
 
-        'views/menu.xml',
 
         'views/cliente_views.xml',
         'views/producto_views.xml',
         'views/pedido_views.xml',
         'views/detalle_views.xml',
         'views/empleado_views.xml',
+
+        'views/menu.xml',
     ],
     'installable': True,
     'application': True,

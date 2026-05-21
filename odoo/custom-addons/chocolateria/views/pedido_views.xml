@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_pedido_list" model="ir.ui.view">
+        <field name="name">pedido.list</field>
+        <field name="model">choco.pedido</field>
+        <field name="arch" type="xml">
+            <list string="Pedidos">
+                <field name="name"/>
+                <field name="cliente_id"/>
+                <field name="fecha"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pedido_form" model="ir.ui.view">
+        <field name="name">pedido.form</field>
+        <field name="model">choco.pedido</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="cliente_id"/>
+                        <field name="empleado_id"/>
+                        <field name="fecha"/>
+                    </group>
+                    <notebook>
+                        <page string="Productos del Pedido">
+                            <field name="detalle_ids">
+                                <list editable="bottom">
+                                    <field name="producto_id"/>
+                                    <field name="cantidad"/>
+                                    <field name="precio_unitario"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pedido" model="ir.actions.act_window">
+        <field name="name">Pedidos</field>
+        <field name="res_model">choco.pedido</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
