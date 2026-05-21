@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="empleado_view_form" model="ir.ui.view">
+            <field name="name">empleado.view.form</field>
+            <field name="model">empleado.view</field>
+            <field name="arch" type="xml">
+                <form string="Empleado View">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <!-- Add your fields here -->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- List View -->
+        <record id="empleado_view_list" model="ir.ui.view">
+            <field name="name">empleado.view.list</field>
+            <field name="model">empleado.view</field>
+            <field name="arch" type="xml">
+                <list string="Empleado View">
+                    <field name="name"/>
+                    <!-- Add your fields here -->
+                </list>
+            </field>
+        </record>
+        
+        <!-- Action -->
+        <record id="action_empleado_view" model="ir.actions.act_window">
+            <field name="name">Empleado View</field>
+            <field name="res_model">empleado.view</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first empleado view!
+                </p>
+            </field>
+        </record>
+        
+        <!-- Menu -->
+        <menuitem id="menu_empleado_view"
+                  name="Empleado View"
+                  action="action_empleado_view"
+                  sequence="10"/>
+    </data>
+</odoo>
