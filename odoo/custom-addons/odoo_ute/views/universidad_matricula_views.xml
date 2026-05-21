@@ -2,8 +2,8 @@
 <odoo>
     <data>
         
-        <record id="universidad_matricula_view_tree" model="ir.ui.view">
-            <field name="name">Matrícula Tree</field>
+        <record id="universidad_matricula_view_list" model="ir.ui.view">
+            <field name="name">Matrícula List</field>
             <field name="model">universidad.matricula</field>
             <field name="arch" type="xml">
                 <list string="Matrículas">
@@ -163,7 +163,7 @@
             <field name="name">Matrículas</field>
             <field name="res_model">universidad.matricula</field>
             <field name="view_mode">list,form</field>
-            <field name="view_id" ref="universidad_matricula_view_tree" />
+            <field name="view_id" ref="universidad_matricula_view_list" />
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Cree su primera matrícula

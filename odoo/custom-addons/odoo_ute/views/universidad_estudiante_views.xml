@@ -2,8 +2,8 @@
 <odoo>
     <data>
         
-        <record id="universidad_estudiante_view_tree" model="ir.ui.view">
-            <field name="name">Estudiante Tree</field>
+        <record id="universidad_estudiante_view_list" model="ir.ui.view">
+            <field name="name">Estudiante List</field>
             <field name="model">universidad.estudiante</field>
             <field name="arch" type="xml">
                 <list string="Estudiantes">
@@ -26,7 +26,7 @@
             <field name="arch" type="xml">
                 <form string="Estudiante">
                     <header>
-                        <field name="estado_estudiante" widget="statusbar" options="{'clickable': True}" />
+                     <field name="estado_estudiante" widget="statusbar" options="{'clickable': True}" />
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
@@ -210,7 +210,7 @@
             <field name="name">Estudiantes</field>
             <field name="res_model">universidad.estudiante</field>
             <field name="view_mode">list,form</field>
-            <field name="view_id" ref="universidad_estudiante_view_tree" />
+            <field name="view_id" ref="universidad_estudiante_view_list" />
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Cree su primer estudiante

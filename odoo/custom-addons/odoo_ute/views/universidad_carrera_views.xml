@@ -2,8 +2,8 @@
 <odoo>
     <data>
         
-        <record id="universidad_carrera_view_tree" model="ir.ui.view">
-            <field name="name">Carrera Tree</field>
+        <record id="universidad_carrera_view_list" model="ir.ui.view">
+            <field name="name">Carrera List</field>
             <field name="model">universidad.carrera</field>
             <field name="arch" type="xml">
                 <list string="Carreras">
@@ -173,7 +173,6 @@
             <field name="name">Carreras</field>
             <field name="res_model">universidad.carrera</field>
             <field name="view_mode">list,form</field>
-            <field name="view_id" ref="universidad_carrera_view_tree" />
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Cree su primera carrera

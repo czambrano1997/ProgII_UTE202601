@@ -2,8 +2,8 @@
 <odoo>
     <data>
         
-        <record id="universidad_materia_view_tree" model="ir.ui.view">
-            <field name="name">Materia Tree</field>
+        <record id="universidad_materia_view_list" model="ir.ui.view">
+            <field name="name">Materia List</field>
             <field name="model">universidad.materia</field>
             <field name="arch" type="xml">
                 <list string="Materias">
@@ -186,7 +186,7 @@
             <field name="name">Materias</field>
             <field name="res_model">universidad.materia</field>
             <field name="view_mode">list,form</field>
-            <field name="view_id" ref="universidad_materia_view_tree" />
+            <field name="view_id" ref="universidad_materia_view_list" />
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Cree su primera materia

@@ -24,16 +24,16 @@ class UniversidadEstudiante(models.Model):
     matricula_ids = fields.One2many(comodel_name='universidad.matricula', inverse_name='estudiante_id', string='Matrículas', help='Historial de matrículas en materias')
     materia_ids = fields.Many2many(comodel_name='universidad.materia', relation='estudiante_materia_rel', column1='estudiante_id', column2='materia_id', string='Materias Inscritas', help='Materias en las que está inscrito')
     monto_deuda = fields.Monetary(string='Monto de Deuda', currency_field='currency_id', default=0.0, help='Deuda pendiente del estudiante')
-    currency_id = fields.Many2one(comodel_name='res.currency', string='Moneda', default=lambda self: self.env.company.currency_id, help='Moneda para transacciones')
+    currency_id = fields.Many2one(comodel_name='res.currency', string='Moneda', default=lambda self: self.env.company.currency_id.id, help='Moneda para transacciones')
     especialidad = fields.Char(string='Especialidad o Concentración', help='Especialización dentro de la carrera')
     numero_expediente = fields.Char(string='Número de Expediente', help='Número del expediente administrativo')
 
     @api.depends('matricula_ids.calificacion')
     def _compute_promedio_academico(self):
         for record in self:
-            matrículas = record.matricula_ids.filtered(lambda m: m.calificacion and m.calificacion > 0)
-            if matrículas:
-                promedio = sum((m.calificacion for m in matrículas)) / len(matrículas)
+            matriculas = record.matricula_ids.filtered(lambda m: m.calificacion and m.calificacion > 0)
+            if matriculas:
+                promedio = sum((m.calificacion for m in matriculas)) / len(matriculas)
                 record.promedio_academico = round(promedio, 2)
             else:
                 record.promedio_academico = 0.0
@@ -73,6 +73,7 @@ class UniversidadEstudiante(models.Model):
         return f'Estudiante de {carrera} (Semestre {self.semestre_actual}) - Matricula: {self.numero_matricula}'
 
     def puede_graduarse(self):
+        self.ensure_one()
         if self.estado_estudiante == 'expulsado':
             return False
         if not self.carrera_id:
@@ -89,5 +90,6 @@ class UniversidadEstudiante(models.Model):
         return {'nombre': self.name, 'carrera': self.carrera_id.nombre if self.carrera_id else 'N/A', 'semestre': self.semestre_actual, 'promedio': self.promedio_academico, 'creditos_aprobados': self.total_creditos_aprobados, 'estado': self.estado_estudiante, 'puede_graduarse': self.puede_graduarse(), 'deuda': self.monto_deuda}
 
     def inscribir_en_materia(self, materia_id):
-        self.write({'materia_ids': [(4, materia_id)]})
-        self.env['universidad.matricula'].create({'estudiante_id': self.id, 'materia_id': materia_id, 'calificacion': 0})
+        for student in self:
+            student.write({'materia_ids': [(4, materia_id)]})
+            self.env['universidad.matricula'].create({'estudiante_id': student.id, 'materia_id': materia_id, 'calificacion': 0})

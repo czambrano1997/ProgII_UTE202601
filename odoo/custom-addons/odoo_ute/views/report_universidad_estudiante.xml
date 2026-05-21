@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_universidad_estudiante_document">
+        <t t-call="web.external_layout">
+            <t t-set="title">Ficha de Estudiante - UTE</t>
+            <div class="page">
+                <h2>Ficha de Estudiante</h2>
+                <table class="table table-sm">
+                    <tr>
+                        <td><strong>Nombre</strong></td>
+                        <td t-esc="doc.name"/>
+                        <td><strong>Cédula</strong></td>
+                        <td t-esc="doc.cedula"/>
+                    </tr>
+                    <tr>
+                        <td><strong>Correo</strong></td>
+                        <td t-esc="doc.correo"/>
+                        <td><strong>Teléfono</strong></td>
+                        <td t-esc="doc.telefono"/>
+                    </tr>
+                    <tr>
+                        <td><strong>Carrera</strong></td>
+                        <td t-esc="doc.carrera_id.nombre if doc.carrera_id else 'N/A'"/>
+                        <td><strong>Semestre Actual</strong></td>
+                        <td t-esc="doc.semestre_actual"/>
+                    </tr>
+                    <tr>
+                        <td><strong>Fecha de Ingreso</strong></td>
+                        <td t-esc="doc.fecha_ingreso"/>
+                        <td><strong>Matrícula</strong></td>
+                        <td t-esc="doc.numero_matricula"/>
+                    </tr>
+                    <tr>
+                        <td><strong>Promedio</strong></td>
+                        <td t-esc="doc.promedio_academico"/>
+                        <td><strong>Créditos Aprobados</strong></td>
+                        <td t-esc="doc.total_creditos_aprobados"/>
+                    </tr>
+                </table>
+
+                <h3>Materias Inscritas</h3>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Materia</th>
+                            <th>Créditos</th>
+                            <th>Profesor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="doc.materia_ids" t-as="m">
+                            <tr>
+                                <td t-esc="m.nombre"/>
+                                <td t-esc="m.creditos"/>
+                                <td t-esc="m.profesor_id.name if m.profesor_id else 'N/A'"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <record id="action_report_universidad_estudiante" model="ir.actions.report">
+        <field name="name">Ficha de Estudiante - UTE</field>
+        <field name="model">universidad.estudiante</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">odoo_ute.report_universidad_estudiante_document</field>
+        <field name="report_file">odoo_ute.report_universidad_estudiante_document</field>
+        <field name="binding_model_id" ref="model_universidad_estudiante"/>
+    </record>
+</odoo>

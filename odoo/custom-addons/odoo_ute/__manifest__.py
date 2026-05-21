@@ -34,6 +34,7 @@
         'views/universidad_estudiante_views.xml',
         'views/universidad_matricula_views.xml',
         'views/menu.xml',
+        'views/report_universidad_estudiante.xml',
         'data/demo.xml',
     ],
     # only loaded in demonstration mode

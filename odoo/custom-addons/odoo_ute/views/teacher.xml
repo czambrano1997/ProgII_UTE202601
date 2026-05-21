@@ -32,8 +32,8 @@
             </field>
         </record>
 
-        <record id="ou_teacher_tree" model="ir.ui.view">
-            <field name="name">ou.teacher.tree</field>
+        <record id="ou_teacher_list" model="ir.ui.view">
+            <field name="name">ou.teacher.list</field>
             <field name="model">ou.teacher</field>
             <field name="arch" type="xml">
                 <list string="Docente">
@@ -47,7 +47,7 @@
         <record id="ou_teacher_action" model="ir.actions.act_window">
             <field name="name">Docentes</field>
             <field name="res_model">ou.teacher</field>
-            <field name="view_mode">list,form</field> <!-- Se eliminó el punto inicial -->
+            <field name="view_mode">list,form</field>
         </record> <!-- Se eliminó el punto inicial -->
 
     </data>
