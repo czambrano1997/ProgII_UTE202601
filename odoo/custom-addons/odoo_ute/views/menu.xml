@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!--raiz-->
     <menuitem
             id="menu_odoo_ute_root"
             name="UTE"
             groups="odoo_ute.group_ute_user"
             sequence="10"/>
 
-    <!-- academico -->
+    <!-- parte acdemicaa -->
     <menuitem
             id="menu_ute_academic"
             name="Académico"
@@ -40,7 +39,15 @@
             groups="odoo_ute.group_ute_user"
             sequence="30"/>
 
-    <!-- configuracion -->
+    <menuitem
+            id="menu_authority"
+            name="Autoridades"
+            action="odoo_ute.action_ou_authority"
+            parent="menu_ute_academic"
+            groups="odoo_ute.group_ute_user"
+            sequence="40"/>
+
+    <!-- para la configuracion -->
     <menuitem
             id="menu_ute_config"
             name="Configuracion"

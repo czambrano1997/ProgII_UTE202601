@@ -11,21 +11,24 @@
         Proyecto base desarrollado por Ing.Ceider Zambrano.
         Finalizado, actualizado y mantenido por Mathias Rochina.
 
+        Se agregó un nuevo modelo: authority
+
         Ahora permite administrar:
+        - Auroridades de la institución y funciones
         - Docentes y sus materias asignadas
-        - Estudiantes y matrículas
+        - Estudiantes y matrículas respectivas en cada Sede
         - Carreras universitarias
         - Materias por carrera
         - Cursos, horarios y cupos
     """,
 
-    'author': "Ceider Zambrano",
+    'author': "Mathias Rochina",
     'maintainer': "Mathias Rochina",
     'website': "https://github.com/czambrano1997/ProgII_UTE202601",
     'license': 'LGPL-3',
 
     'category': 'Education',
-    'version': '0.3',
+    'version': '0.5',
 
     'depends': ['base'],
 
@@ -38,6 +41,7 @@
         'views/career.xml',
         'views/student.xml',
         'views/course.xml',
+        'views/authority.xml',
         'views/menu.xml',
     ],
 
