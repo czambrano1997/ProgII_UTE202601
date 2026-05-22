@@ -10,9 +10,9 @@
     "website": 'https://www.plastinew.com',
     "depends": ["base"],
     "data": [
-          'security/plasticos_security.xml',   
+          'security/plasticos_group.xml',      
+          'security/plasticos_rule.xml',       
           'security/ir.model.access.csv',       
-          'views/producto_views.xml',
           'views/cliente_views.xml',
           'views/venta_views.xml',
           'views/inventario_views.xml',

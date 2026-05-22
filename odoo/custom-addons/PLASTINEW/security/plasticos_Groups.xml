@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.module.category" id="plasticos_category">
+            <field name="name">Plásticos</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="res_groups_privilege_plasticos" model="res.groups.privilege">
+            <field name="name">Acceso Plásticos</field>
+            <field name="category_id" ref="plasticos_category"/>
+        </record>
+
+        <record id="group_plasticos_user" model="res.groups">
+            <field name="name">Usuario</field>
+            <field name="privilege_id" ref="res_groups_privilege_plasticos"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_plasticos_manager" model="res.groups">
+            <field name="name">Administrador</field>
+            <field name="privilege_id" ref="res_groups_privilege_plasticos"/>
+            <field name="implied_ids" eval="[(4, ref('group_plasticos_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+    </data>
+</odoo>
