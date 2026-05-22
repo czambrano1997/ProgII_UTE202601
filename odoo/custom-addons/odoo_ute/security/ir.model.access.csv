@@ -1,7 +1,13 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-ou_teacher_base_user,access_base_user_ou_teacher_user,model_ou_teacher,odoo_ute.group_ute_user,1,1,0,0
+ou_teacher_base_user,access_base_user_ou_teacher_user,model_ou_teacher,odoo_ute.group_ute_user,1,1,1,1
 ou_teacher_base_manager,access_base_user_ou_teacher_manager,model_ou_teacher,odoo_ute.group_ute_manager,1,1,1,1
-
-
 ou_signature_base_user,access_base_user_ou_signature_user,model_ou_signature,odoo_ute.group_ute_user,1,1,1,1
 ou_signature_base_manager,access_base_user_ou_signature_manager,model_ou_signature,odoo_ute.group_ute_manager,1,1,1,1
+ute_estudiante_base_user,access_ute_estudiante_user,model_ute_estudiante,odoo_ute.group_ute_user,1,1,1,1
+ute_estudiante_base_manager,access_ute_estudiante_manager,model_ute_estudiante,odoo_ute.group_ute_manager,1,1,1,1
+ute_carrera_base_user,access_ute_carrera_user,model_ute_carrera,base.group_user,1,1,1,1
+ute_matricula_base_user,access_ute_matricula_user,model_ute_matricula,base.group_user,1,1,1,1
+ute_orden_pago_user,access_ute_orden_pago_user,model_ute_orden_pago,odoo_ute.group_ute_user,1,1,1,1
+ute_orden_pago_manager,access_ute_orden_pago_manager,model_ute_orden_pago,odoo_ute.group_ute_manager,1,1,1,1
+ute_matricula_pagada_user,access_ute_matricula_pagada_user,model_ute_matricula_pagada,odoo_ute.group_ute_user,1,1,1,1
+ute_matricula_pagada_manager,access_ute_matricula_pagada_manager,model_ute_matricula_pagada,odoo_ute.group_ute_manager,1,1,1,1

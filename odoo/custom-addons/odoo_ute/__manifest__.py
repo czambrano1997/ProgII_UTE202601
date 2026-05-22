@@ -7,7 +7,7 @@
 	Funcionalidades del módulo de gestión de la UTE.
     """,
 
-    'author': "Ceider Zambrano",
+    'author': "ALex",
     'website': "https://gezaforge.com",
 
     # Categories can be used to filter modules in modules listing
@@ -26,6 +26,11 @@
         'security/ute_rule.xml',
         'views/teacher.xml',
         'views/signature.xml',
+        "views/estudiante.xml",
+        "views/carrera.xml",
+        "views/matricula.xml",
+        'views/orden_pago.xml',
+        'views/matricula_pagada.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode
