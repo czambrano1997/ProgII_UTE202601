@@ -1,13 +1,13 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_producto_user,Producto Usuario,model_plasticos_producto,plasticos_empresa.group_plasticos_user,1,0,0,0
-access_producto_manager,Producto Admin,model_plasticos_producto,plasticos_empresa.group_plasticos_manager,1,1,1,1
-access_cliente_user,Cliente Usuario,model_plasticos_cliente,plasticos_empresa.group_plasticos_user,1,0,0,0
-access_cliente_manager,Cliente Admin,model_plasticos_cliente,plasticos_empresa.group_plasticos_manager,1,1,1,1
-access_venta_user,Venta Usuario,model_plasticos_venta,plasticos_empresa.group_plasticos_user,1,0,0,0
-access_venta_manager,Venta Admin,model_plasticos_venta,plasticos_empresa.group_plasticos_manager,1,1,1,1
-access_venta_line_user,Venta Line Usuario,model_plasticos_venta_line,plasticos_empresa.group_plasticos_user,1,0,0,0
-access_venta_line_manager,Venta Line Admin,model_plasticos_venta_line,plasticos_empresa.group_plasticos_manager,1,1,1,1
-access_inventario_user,Inventario Usuario,model_plasticos_inventario,plasticos_empresa.group_plasticos_user,1,0,0,0
-access_inventario_manager,Inventario Admin,model_plasticos_inventario,plasticos_empresa.group_plasticos_manager,1,1,1,1
-access_produccion_user,Produccion Usuario,model_plasticos_produccion,plasticos_empresa.group_plasticos_user,1,0,0,0
-access_produccion_manager,Produccion Admin,model_plasticos_produccion,plasticos_empresa.group_plasticos_manager,1,1,1,1
+access_producto_user,Producto Usuario,model_plasticos_producto,plasticos_PLASTINEW.group_plasticos_user,1,0,0,0
+access_producto_manager,Producto Admin,model_plasticos_producto,plasticos_PLASTINEW.group_plasticos_manager,1,1,1,1
+access_cliente_user,Cliente Usuario,model_plasticos_cliente,plasticos_PLASTINEW.group_plasticos_user,1,0,0,0
+access_cliente_manager,Cliente Admin,model_plasticos_cliente,plasticos_PLASTINEW.group_plasticos_manager,1,1,1,1
+access_venta_user,Venta Usuario,model_plasticos_venta,plasticos_PLASTINEW.group_plasticos_user,1,0,0,0
+access_venta_manager,Venta Admin,model_plasticos_venta,plasticos_PLASTINEW.group_plasticos_manager,1,1,1,1
+access_venta_line_user,Venta Line Usuario,model_plasticos_venta_line,plasticos_PLASTINEW.group_plasticos_user,1,0,0,0
+access_venta_line_manager,Venta Line Admin,model_plasticos_venta_line,plasticos_PLASTINEW.group_plasticos_manager,1,1,1,1
+access_inventario_user,Inventario Usuario,model_plasticos_inventario,plasticos_PLASTINEW.group_plasticos_user,1,0,0,0
+access_inventario_manager,Inventario Admin,model_plasticos_inventario,plasticos_PLASTINEW.group_plasticos_manager,1,1,1,1
+access_produccion_user,Produccion Usuario,model_plasticos_produccion,plasticos_PLASTINEW.group_plasticos_user,1,0,0,0
+access_produccion_manager,Produccion Admin,model_plasticos_produccion,plasticos_PLASTINEW.group_plasticos_manager,1,1,1,1
