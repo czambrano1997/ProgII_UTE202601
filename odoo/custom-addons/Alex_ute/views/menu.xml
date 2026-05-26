@@ -1,0 +1,60 @@
+<odoo>
+
+  <menuitem
+    id="menu_odoo_ute_root"
+    name="UTE"
+    groups="group_ute_user"
+    sequence="10"/>
+
+  <menuitem
+    id="teacher_menu"
+    name="Docentes"
+    parent="menu_odoo_ute_root"
+    action="ou_teacher_action"
+    groups="group_ute_user"
+    sequence="10"/>
+
+  <menuitem
+    id="menu_signature"
+    name="Materia"
+    parent="menu_odoo_ute_root"
+    action="action_ou_signature"
+    sequence="20"/>
+
+  <menuitem
+    id="menu_students"
+    name="Estudiante"
+    parent="menu_odoo_ute_root"
+    action="action_estudiante"
+    sequence="30"/>
+
+  <menuitem
+    id="menu_carrera"
+    name="Carreras"
+    parent="menu_odoo_ute_root"
+    action="action_carrera"
+    sequence="40"/>
+
+  <menuitem
+    id="menu_matricula"
+    name="Matrículas"
+    parent="menu_odoo_ute_root"
+    action="action_matricula"
+    sequence="50"/>
+
+  <menuitem 
+    id="menu_orden_pago" 
+    name="Órdenes de Pago"
+    parent="menu_odoo_ute_root"
+    action="action_orden_pago" 
+    sequence="60"/>
+
+  <menuitem 
+    id="menu_matricula_pagada" 
+    name="Matrículas Pagadas"
+    parent="menu_odoo_ute_root"
+    action="action_matricula_pagada" 
+    sequence="70"/>
+
+</odoo>
+
