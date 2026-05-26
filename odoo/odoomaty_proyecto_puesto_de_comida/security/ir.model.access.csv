@@ -1,2 +1,15 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_odoomaty_proyecto_puesto_de_comida,access_odoomaty_proyecto_puesto_de_comida,model_odoomaty_proyecto_puesto_de_comida,base.group_user,1,1,1,1
+access_odoomaty_pedido_user,odoomaty.pedido.user,model_odoomaty_proyecto_puesto_de_comida,group_comida_user,1,0,0,0
+access_odoomaty_pedido_admin,odoomaty.pedido.admin,model_odoomaty_proyecto_puesto_de_comida,group_comida_admin,1,1,1,1
+
+access_comida_linea_user,comida.linea.user,model_comida_pedido_linea,group_comida_user,1,0,0,0
+access_comida_linea_admin,comida.linea.admin,model_comida_pedido_linea,group_comida_admin,1,1,1,1
+
+access_comida_platillo_user,comida.platillo.user,model_comida_platillo,group_comida_user,1,0,0,0
+access_comida_platillo_admin,comida.platillo.admin,model_comida_platillo,group_comida_admin,1,1,1,1
+
+access_comida_cliente_user,comida.cliente.user,model_comida_cliente,group_comida_user,1,0,0,0
+access_comida_cliente_admin,comida.cliente.admin,model_comida_cliente,group_comida_admin,1,1,1,1
+
+access_comida_ingrediente_user,comida.ingrediente.user,model_comida_ingrediente,group_comida_user,1,0,0,0
+access_comida_ingrediente_admin,comida.ingrediente.admin,model_comida_ingrediente,group_comida_admin,1,1,1,1

@@ -10,8 +10,9 @@
     "website": 'https://www.yourcompany.com',
     "depends": ["base"],
     "data": [
-    "security/ir.model.access.csv",
-    "views/odoomaty_proyecto_puesto_de_comida_views.xml"
+        "security/comida_security.xml",
+        "security/ir.model.access.csv",
+        "views/odoomaty_proyecto_puesto_de_comida_views.xml"
     ],
     "assets": {},
     "license": "LGPL-3",
