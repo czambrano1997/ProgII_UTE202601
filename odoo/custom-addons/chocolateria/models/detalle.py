@@ -18,6 +18,7 @@ class Detalle(models.Model):
     cantidad = fields.Integer(string='Cantidad')
 
     precio = fields.Float(string='Precio')
+    precio_unitario = fields.Float(string='Precio Unitario')
 
     subtotal = fields.Float(
         string='Subtotal',

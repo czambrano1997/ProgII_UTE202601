@@ -1,13 +1,13 @@
-from odoo import models, fields
+from odoo import models, fields, api
 from odoo.exceptions import ValidationError
-from odoo import api
 
 class Empleado(models.Model):
     _name = 'choco.empleado'
     _description = 'Empleados'
 
-    nombre = fields.Char(string='Nombre')
-    cargo = fields.Char(string='Cargo')
+    # Se cambia 'nombre' a 'name' para que Odoo lo reconozca automáticamente
+    name = fields.Char(string='Nombre', required=True)
+    puesto = fields.Char(string='Puesto')
     salario = fields.Float(string='Salario')
     activo = fields.Boolean(string='Activo', default=True)
 

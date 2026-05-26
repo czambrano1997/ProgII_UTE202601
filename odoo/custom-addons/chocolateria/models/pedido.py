@@ -4,9 +4,13 @@ class Pedido(models.Model):
     _name = 'choco.pedido'
     _description = 'Pedidos'
 
+    name = fields.Char(string='Referencia de Pedido', required=True, default='Nuevo')
+
     cliente_id = fields.Many2one('choco.cliente', string='Cliente')
     fecha = fields.Date(string='Fecha')
-
+    
+    empleado_id = fields.Many2one('hr.employee', string='Empleado')
+    
     detalle_ids = fields.One2many(
         'choco.detalle',
         'pedido_id',

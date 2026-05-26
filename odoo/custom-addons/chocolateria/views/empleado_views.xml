@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_empleado_list" model="ir.ui.view">
         <field name="name">empleado.list</field>
@@ -8,6 +8,7 @@
                 <field name="name"/>
                 <field name="puesto"/>
                 <field name="salario"/>
+                <field name="activo"/>
             </list>
         </field>
     </record>
@@ -16,19 +17,20 @@
         <field name="name">empleado.form</field>
         <field name="model">choco.empleado</field>
         <field name="arch" type="xml">
-            <form>
+            <form string="Empleado">
                 <sheet>
                     <group>
                         <field name="name"/>
                         <field name="puesto"/>
                         <field name="salario"/>
+                        <field name="activo"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <record id="action_empleado" model="ir.actions.act_window">
+    <record id="action_choco_empleado" model="ir.actions.act_window">
         <field name="name">Empleados</field>
         <field name="res_model">choco.empleado</field>
         <field name="view_mode">list,form</field>

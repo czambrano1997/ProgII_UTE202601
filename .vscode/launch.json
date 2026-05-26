@@ -8,7 +8,9 @@
             "program": "${workspaceFolder}/odoo-19.0/odoo-bin",
             "args": [
                 "-c", "${workspaceFolder}/odoo.conf",
-                "-u", "odoo_ute",
+                // "-i", "base",
+                // "-d", "erick",
+                // "-u", "odoo_ute",
                 "--dev=all" // Habilita la recarga en caliente de vistas y assets
             ],
             "console": "integratedTerminal",
