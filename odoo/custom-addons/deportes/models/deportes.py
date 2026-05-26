@@ -1,13 +1,26 @@
 # -*- coding: utf-8 -*-
-from odoo import api,fields,models
+from odoo import api, fields, models
 
-class TipoDeComida(models.Model):
-    _name = 'tipo.de.comida'
-    _description = 'Tipo De Comida'
+class Deportes(models.Model):
+    _name = 'deportes'
+    _description = 'Deportes'
 
     name = fields.Char(string="Name", required=True)
-    state = fields.Selection([('draft', 'Draft'),('confirmed', 'Confirmed'),('done', 'Done')],
-     default='draft', string="State")
+    sport_type = fields.Selection(
+        [
+            ('futbol', 'Fútbol'),
+            ('basket', 'Basket'),
+            ('voley', 'Vóley'),
+            ('padel', 'Padel'),
+        ],
+        string='Deporte',
+        default='futbol',
+        required=True,
+    )
+    state = fields.Selection(
+        [('reservar', 'Reservar'), ('Reservada', 'reservada'), ('done', 'Done')],
+        default='reservar', string="Estado"
+    )
     description = fields.Text(string="Description")
     amount = fields.Float(string="Amount")
     active = fields.Boolean(default=True)

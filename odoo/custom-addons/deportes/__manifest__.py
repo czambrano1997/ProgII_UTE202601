@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "Horario Comida",
+    "name": "Deportes",
     "version": "19.0.1.0.0",
     "category": "Tools",
     "summary": "Auto-generated module",
@@ -11,11 +11,11 @@
     "depends": ["base"],
     "data": [
     "security/ir.model.access.csv",
-    "views/horario_comida_views.xml"
+    "views/deportes_views.xml"
     ],
     "assets": {},
     "license": "LGPL-3",
     "installable": True,
-    "auto_install": False,
+    "auto_install": True,
     "application": True
 }
