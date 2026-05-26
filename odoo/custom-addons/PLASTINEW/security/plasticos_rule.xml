@@ -2,7 +2,7 @@
 <odoo>
     <data>
 
-        <!-- Regla para Usuario: solo ve productos activos -->
+        
         <record id="rule_plasticos_user_active" model="ir.rule">
             <field name="name">Plásticos: El usuario solo ve productos activos</field>
             <field name="model_id" ref="model_plasticos_producto"/>
@@ -14,7 +14,7 @@
             <field name="perm_unlink" eval="False"/>
         </record>
 
-        <!-- Regla para Administrador: ve todos los productos -->
+        
         <record id="rule_plasticos_manager_all" model="ir.rule">
             <field name="name">Plásticos: El administrador ve todos los productos</field>
             <field name="model_id" ref="model_plasticos_producto"/>
