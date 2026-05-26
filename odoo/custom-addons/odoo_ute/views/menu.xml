@@ -1,0 +1,36 @@
+<odoo>
+    <menuitem id="menu_gestion_academica_root"
+              name="Gestión Académica"
+              web_icon="gestion_academica,static/description/icon.png"
+              sequence="10"/>
+
+    <menuitem id="menu_gestion_estudiante"
+              name="Estudiantes"
+              parent="menu_gestion_academica_root"
+              action="action_gestion_estudiante"
+              sequence="10"/>
+
+    <menuitem id="menu_gestion_profesor"
+              name="Profesores"
+              parent="menu_gestion_academica_root"
+              action="action_gestion_profesor"
+              sequence="20"/>
+
+    <menuitem id="menu_gestion_curso"
+              name="Cursos"
+              parent="menu_gestion_academica_root"
+              action="action_gestion_curso"
+              sequence="30"/>
+
+    <menuitem id="menu_gestion_materia"
+              name="Materias"
+              parent="menu_gestion_academica_root"
+              action="action_gestion_materia"
+              sequence="40"/>
+
+    <menuitem id="menu_gestion_matricula"
+              name="Matrículas"
+              parent="menu_gestion_academica_root"
+              action="action_gestion_matricula"
+              sequence="50"/>
+</odoo>

@@ -1,0 +1,12 @@
+<odoo>
+    <record id="group_gestion_academica_user" model="res.groups">
+        <field name="name">Gestión Académica Usuario</field>
+        <field name="category_id" ref="base.module_category_services"/>
+    </record>
+
+    <record id="group_gestion_academica_admin" model="res.groups">
+        <field name="name">Gestión Académica Administrador</field>
+        <field name="category_id" ref="base.module_category_services"/>
+        <field name="implied_ids" eval="[(4, ref('group_gestion_academica_user'))]"/>
+    </record>
+</odoo>
