@@ -1,50 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-        <!-- Form View -->
-        <record id="registro_clientes_view_form" model="ir.ui.view">
-            <field name="name">registro.clientes.view.form</field>
-            <field name="model">registro.clientes.view</field>
-            <field name="arch" type="xml">
-                <form string="Registro Clientes View">
-                    <sheet>
-                        <group>
-                            <field name="name"/>
-                            <!-- Add your fields here -->
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        
-        <!-- List View -->
-        <record id="registro_clientes_view_list" model="ir.ui.view">
-            <field name="name">registro.clientes.view.list</field>
-            <field name="model">registro.clientes.view</field>
-            <field name="arch" type="xml">
-                <list string="Registro Clientes View">
-                    <field name="name"/>
-                    <!-- Add your fields here -->
-                </list>
-            </field>
-        </record>
-        
-        <!-- Action -->
-        <record id="action_registro_clientes_view" model="ir.actions.act_window">
-            <field name="name">Registro Clientes View</field>
-            <field name="res_model">registro.clientes.view</field>
-            <field name="view_mode">list,form</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Create your first registro clientes_view!
-                </p>
-            </field>
-        </record>
-        
-        <!-- Menu -->
-        <menuitem id="menu_registro_clientes_view"
-                  name="Registro Clientes View"
-                  action="action_registro_clientes_view"
-                  sequence="10"/>
-    </data>
+    <record id="view_comida_cliente_list" model="ir.ui.view">
+        <field name="name">comida.cliente.list</field>
+        <field name="model">comida.cliente</field>
+        <field name="arch" type="xml">
+            <list string="Clientes Registrados">
+                <field name="name"/>
+                <field name="telefono"/>
+                <field name="email"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_comida_cliente_form" model="ir.ui.view">
+        <field name="name">comida.cliente.form</field>
+        <field name="model">comida.cliente</field>
+        <field name="arch" type="xml">
+            <form string="Cliente">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="telefono"/>
+                        <field name="email"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_comida_cliente" model="ir.actions.act_window">
+        <field name="name">Clientes del Local</field>
+        <field name="res_model">comida.cliente</field>
+        <field name="view_mode">list,form</field>
+    </record>
 </odoo>

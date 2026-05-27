@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 from odoo import fields, models,api
-from odoo.exceptions import ValidationError
+
 
 class OdoomatyProyectoPuestoDeComida(models.Model):
     _name = 'odoomaty.proyecto.puesto.de.comida'
     _description = 'Pedidos del Puesto de Comida'
-
     name = fields.Char(string="Código de Pedido", required=True, default="Nuevo")
     state = fields.Selection([
         ('draft', 'Borrador'),

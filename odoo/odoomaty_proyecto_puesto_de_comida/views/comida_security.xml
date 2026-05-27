@@ -1,50 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <!-- Form View -->
-        <record id="comida_security_form" model="ir.ui.view">
-            <field name="name">comida.security.form</field>
-            <field name="model">comida.security</field>
-            <field name="arch" type="xml">
-                <form string="Comida Security">
-                    <sheet>
-                        <group>
-                            <field name="name"/>
-                            <!-- Add your fields here -->
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        
-        <!-- List View -->
-        <record id="comida_security_list" model="ir.ui.view">
-            <field name="name">comida.security.list</field>
-            <field name="model">comida.security</field>
-            <field name="arch" type="xml">
-                <list string="Comida Security">
-                    <field name="name"/>
-                    <!-- Add your fields here -->
-                </list>
-            </field>
-        </record>
-        
-        <!-- Action -->
-        <record id="action_comida_security" model="ir.actions.act_window">
-            <field name="name">Comida Security</field>
-            <field name="res_model">comida.security</field>
-            <field name="view_mode">list,form</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Create your first comida security!
-                </p>
-            </field>
-        </record>
-        
-        <!-- Menu -->
-        <menuitem id="menu_comida_security"
-                  name="Comida Security"
-                  action="action_comida_security"
-                  sequence="10"/>
-    </data>
+    <record id="module_category_puesto_comida" model="ir.module.category">
+        <field name="name">Puesto de Comida (Odoomaty)</field>
+        <field name="description">Categoría de accesos para el puesto de comida</field>
+    </record>
+
+    <record id="group_comida_user" model="res.groups">
+        <field name="name">Usuario (Solo Lectura)</field>
+        <field name="category_id" ref="module_category_puesto_comida"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_comida_admin" model="res.groups">
+        <field name="name">Administrador (Todos los permisos)</field>
+        <field name="category_id" ref="module_category_puesto_comida"/>
+        <field name="implied_ids" eval="[(4, ref('group_comida_user'))]"/>
+    </record>
 </odoo>

@@ -1,50 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-        <!-- Form View -->
-        <record id="pedidos_principales_view_form" model="ir.ui.view">
-            <field name="name">pedidos.principales.view.form</field>
-            <field name="model">pedidos.principales.view</field>
-            <field name="arch" type="xml">
-                <form string="Pedidos Principales View">
-                    <sheet>
+    <record id="odoomaty_proyecto_puesto_de_comida_view_list" model="ir.ui.view">
+        <field name="name">odoomaty.proyecto.puesto.de.comida.view.list</field>
+        <field name="model">odoomaty.proyecto.puesto.de.comida</field>
+        <field name="arch" type="xml">
+            <list string="Lista de Pedidos">
+                <field name="name"/>
+                <field name="fecha"/>
+                <field name="cliente_id"/>
+                <field name="amount" sum="Total Recaudado"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="odoomaty_proyecto_puesto_de_comida_view_form" model="ir.ui.view">
+        <field name="name">odoomaty.proyecto.puesto.de.comida.view.form</field>
+        <field name="model">odoomaty.proyecto.puesto.de.comida</field>
+        <field name="arch" type="xml">
+            <form string="Formulario de Pedido">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done"/>
+                </header>
+                <sheet>
+                    <group>
                         <group>
                             <field name="name"/>
-                            <!-- Add your fields here -->
+                            <field name="cliente_id"/>
                         </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        
-        <!-- List View -->
-        <record id="pedidos_principales_view_list" model="ir.ui.view">
-            <field name="name">pedidos.principales.view.list</field>
-            <field name="model">pedidos.principales.view</field>
-            <field name="arch" type="xml">
-                <list string="Pedidos Principales View">
-                    <field name="name"/>
-                    <!-- Add your fields here -->
-                </list>
-            </field>
-        </record>
-        
-        <!-- Action -->
-        <record id="action_pedidos_principales_view" model="ir.actions.act_window">
-            <field name="name">Pedidos Principales View</field>
-            <field name="res_model">pedidos.principales.view</field>
-            <field name="view_mode">list,form</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Create your first pedidos principales_view!
-                </p>
-            </field>
-        </record>
-        
-        <!-- Menu -->
-        <menuitem id="menu_pedidos_principales_view"
-                  name="Pedidos Principales View"
-                  action="action_pedidos_principales_view"
-                  sequence="10"/>
-    </data>
+                        <group>
+                            <field name="fecha"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Platillos Ordenados">
+                            <field name="linea_ids">
+                                <list editable="bottom">
+                                    <field name="platillo_id"/>
+                                    <field name="cantidad"/>
+                                    <field name="precio_unitario"/>
+                                    <field name="subtotal"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="amount" class="oe_subtotal_footer_separator"/>
+                            </group>
+                        </page>
+                        <page string="Comentarios">
+                            <field name="description" placeholder="Ejemplo: Sin aderezos..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_odoomaty_proyecto_puesto_de_comida" model="ir.actions.act_window">
+        <field name="name">Pedidos Rápidos</field>
+        <field name="res_model">odoomaty.proyecto.puesto.de.comida</field>
+        <field name="view_mode">list,form</field>
+    </record>
 </odoo>

@@ -1,50 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-        <!-- Form View -->
-        <record id="pedidos_view_form" model="ir.ui.view">
-            <field name="name">pedidos.view.form</field>
-            <field name="model">pedidos.view</field>
-            <field name="arch" type="xml">
-                <form string="Pedidos View">
-                    <sheet>
-                        <group>
-                            <field name="name"/>
-                            <!-- Add your fields here -->
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        
-        <!-- List View -->
-        <record id="pedidos_view_list" model="ir.ui.view">
-            <field name="name">pedidos.view.list</field>
-            <field name="model">pedidos.view</field>
-            <field name="arch" type="xml">
-                <list string="Pedidos View">
-                    <field name="name"/>
-                    <!-- Add your fields here -->
-                </list>
-            </field>
-        </record>
-        
-        <!-- Action -->
-        <record id="action_pedidos_view" model="ir.actions.act_window">
-            <field name="name">Pedidos View</field>
-            <field name="res_model">pedidos.view</field>
-            <field name="view_mode">list,form</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Create your first pedidos view!
-                </p>
-            </field>
-        </record>
-        
-        <!-- Menu -->
-        <menuitem id="menu_pedidos_view"
-                  name="Pedidos View"
-                  action="action_pedidos_view"
-                  sequence="10"/>
-    </data>
+    <record id="view_comida_platillo_list" model="ir.ui.view">
+        <field name="name">comida.platillo.list</field>
+        <field name="model">comida.platillo</field>
+        <field name="arch" type="xml">
+            <list string="Menú de Platillos">
+                <field name="name"/>
+                <field name="categoria"/>
+                <field name="precio"/>
+                <field name="disponible"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_comida_platillo_form" model="ir.ui.view">
+        <field name="name">comida.platillo.form</field>
+        <field name="model">comida.platillo</field>
+        <field name="arch" type="xml">
+            <form string="Platillo">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="precio"/>
+                        <field name="categoria"/>
+                        <field name="disponible"/>
+                        <field name="ingrediente_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_comida_platillo" model="ir.actions.act_window">
+        <field name="name">Carta de Platillos</field>
+        <field name="res_model">comida.platillo</field>
+        <field name="view_mode">list,form</field>
+    </record>
 </odoo>
