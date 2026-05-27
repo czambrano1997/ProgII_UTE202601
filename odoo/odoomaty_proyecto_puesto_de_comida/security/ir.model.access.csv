@@ -13,3 +13,6 @@ access_comida_cliente_admin,comida.cliente.admin,model_comida_cliente,group_comi
 
 access_comida_ingrediente_user,comida.ingrediente.user,model_comida_ingrediente,group_comida_user,1,0,0,0
 access_comida_ingrediente_admin,comida.ingrediente.admin,model_comida_ingrediente,group_comida_admin,1,1,1,1
+access_comida_security,comida_security access,model_comida_security,base.group_user,1,1,1,1
+access_comida,comida access,model_comida,base.group_user,1,1,1,1
+access_comida,comida access,model_comida,base.group_user,1,1,1,1

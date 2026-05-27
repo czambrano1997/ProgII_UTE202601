@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 from odoo import fields, models,api
-from odoo.from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import ValidationError
 
 class OdoomatyProyectoPuestoDeComida(models.Model):
     _name = 'odoomaty.proyecto.puesto.de.comida'
     _description = 'Pedidos del Puesto de Comida'
 
-    # Tipos de campos aplicados: Char, Selection, Text, Float, Boolean, Date, Many2one, One2many
     name = fields.Char(string="Código de Pedido", required=True, default="Nuevo")
     state = fields.Selection([
         ('draft', 'Borrador'),
@@ -21,7 +20,6 @@ class OdoomatyProyectoPuestoDeComida(models.Model):
     cliente_id = fields.Many2one('comida.cliente', string="Cliente")
     linea_ids = fields.One2many('comida.pedido.linea', 'pedido_id', string="Líneas de Comida")
 
-    # 1. DECORADOR @api.depends obligatorio -> Calcula automáticamente el total sumando las líneas
     @api.depends('linea_ids.subtotal')
     def _compute_amount_total(self):
         for pedido in self:
