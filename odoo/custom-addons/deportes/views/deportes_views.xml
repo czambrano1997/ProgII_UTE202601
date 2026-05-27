@@ -5,9 +5,9 @@
         <field name="model">deportes</field>
         <field name="arch" type="xml">
             <list>
-                <field name="NOMBRE"/>
-                <field name="Estado"/>
-                <field name="TIME"/>
+                <field name="name"/>
+                <field name="sport_type"/>
+                <field name="state"/>
             </list>
         </field>
     </record>

@@ -18,7 +18,7 @@ class Deportes(models.Model):
         required=True,
     )
     state = fields.Selection(
-        [('reservar', 'Reservar'), ('Reservada', 'reservada'), ('done', 'Done')],
+        [('reservar', 'Reservar'), ('Reservada', 'reservada'), ('en_espera', 'En_espera')],
         default='reservar', string="Estado"
     )
     description = fields.Text(string="Description")
