@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Heredamos la vista form de res.partner para clientes -->
+    <record id="view_cliente_papeleria_form" model="ir.ui.view">
+        <field name="name">res.partner.cliente.papeleria.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group[1]" position="after">
+                <group string="Papelería" invisible="not es_cliente_papeleria">
+                    <field name="total_compras" readonly="1" widget="monetary"/>
+                </group>
+                <group>
+                    <field name="es_cliente_papeleria"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Acción solo para clientes de papelería -->
+    <record id="action_cliente_papeleria" model="ir.actions.act_window">
+        <field name="name">Clientes</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('es_cliente_papeleria', '=', True)]</field>
+        <field name="context">{'default_es_cliente_papeleria': True}</field>
+    </record>
+
+</odoo>

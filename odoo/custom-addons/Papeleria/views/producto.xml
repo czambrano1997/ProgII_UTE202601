@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Heredamos la vista form de product.template para agregar nuestros campos -->
+    <record id="view_producto_papeleria_form" model="ir.ui.view">
+        <field name="name">product.template.papeleria.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Agregamos una pestaña nueva "Papelería" dentro del notebook -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Papelería" name="page_papeleria">
+                    <group>
+                        <field name="es_producto_papeleria"/>
+                        <field name="stock_minimo"
+                               invisible="not es_producto_papeleria"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Vista list propia para ver solo productos de papelería -->
+    <record id="view_producto_papeleria_list" model="ir.ui.view">
+        <field name="name">product.template.papeleria.list</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="categ_id"/>
+                <field name="list_price" string="Precio" widget="monetary"/>
+                <field name="stock_minimo"/>
+                <field name="es_producto_papeleria"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Acción que filtra solo productos de papelería -->
+    <record id="action_producto_papeleria" model="ir.actions.act_window">
+        <field name="name">Productos de Papelería</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('es_producto_papeleria', '=', True)]</field>
+        <field name="context">{'default_es_producto_papeleria': True}</field>
+    </record>
+
+</odoo>

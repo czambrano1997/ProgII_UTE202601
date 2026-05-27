@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <!-- Datos demo: se cargan solo en modo desarrollo -->
+
+        <!-- Cliente de ejemplo -->
+        <record id="demo_cliente_papeleria" model="res.partner">
+            <field name="name">María García</field>
+            <field name="es_cliente_papeleria" eval="True"/>
+            <field name="email">maria.garcia@example.com</field>
+        </record>
+
+        <!-- Proveedor de ejemplo -->
+        <record id="demo_proveedor_papeleria" model="res.partner">
+            <field name="name">Distribuidora El Lápiz S.A.</field>
+            <field name="es_proveedor_papeleria" eval="True"/>
+            <field name="ruc">0912345678001</field>
+            <field name="plazo_entrega">3</field>
+        </record>
+
+    </data>
+</odoo>
