@@ -1,3 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Django
+db.sqlite3
+media/
+
+# Editor settings
+.vscode/
+.idea/
+
+# Pytest cache
+.pytest_cache/
+
+# Logs
+*.log
+
 venv/
 .venv/
 __pycache__/
