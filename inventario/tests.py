@@ -1,3 +1,3 @@
-from django.test import TestCase
+# Tests for inventario app.
 
-# Create your tests here.
+# Add tests here when ready.
