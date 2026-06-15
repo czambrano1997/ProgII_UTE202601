@@ -2,7 +2,6 @@
 <odoo>
     <data>
 
-        <!-- forms -->
         <record id="ou_student_form" model="ir.ui.view">
             <field name="name">ou.student.form</field>
             <field name="model">ou.student</field>
@@ -32,6 +31,7 @@
                         <group string="Información Académica">
                             <group>
                                 <field name="career_id"/>
+                                <field name="campus"/>
                                 <field name="enrollment_date"/>
                                 <field name="gpa"/>
                             </group>
@@ -44,7 +44,8 @@
                                 <field name="course_ids" widget="many2many_tags"/>
                             </page>
                             <page string="Observaciones">
-                                <field name="notes" placeholder="Observaciones del estudiante"/>
+                                <field name="notes"
+                                       placeholder="Observaciones del estudiante..."/>
                             </page>
                         </notebook>
                     </sheet>
@@ -52,7 +53,7 @@
             </field>
         </record>
 
-        <!-- listas -->
+        <!-- listass -->
         <record id="ou_student_list" model="ir.ui.view">
             <field name="name">ou.student.list</field>
             <field name="model">ou.student</field>
@@ -62,6 +63,7 @@
                     <field name="vat"/>
                     <field name="email"/>
                     <field name="career_id"/>
+                    <field name="campus"/>
                     <field name="gpa"/>
                     <field name="is_honor_student"/>
                     <field name="state"/>
@@ -70,7 +72,7 @@
             </field>
         </record>
 
-        <!-- actions-->
+        <!-- acciones -->
         <record id="action_ou_student" model="ir.actions.act_window">
             <field name="name">Estudiantes</field>
             <field name="res_model">ou.student</field>

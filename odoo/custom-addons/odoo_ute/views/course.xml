@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-<!-- forms -->
         <record id="ou_course_form" model="ir.ui.view">
             <field name="name">ou.course.form</field>
             <field name="model">ou.course</field>
             <field name="arch" type="xml">
                 <form string="Curso">
                     <header>
+                        <button name="action_open" string="Abrir"
+                                type="object" class="oe_highlight"
+                                invisible="state != 'draft'"/>
+                        <button name="action_start" string="Iniciar Curso"
+                                type="object" class="oe_highlight"
+                                invisible="state != 'open'"/>
+                        <button name="action_finish" string="Finalizar"
+                                type="object"
+                                invisible="state != 'in_progress'"/>
+                        <button name="action_cancel" string="Cancelar"
+                                type="object"
+                                invisible="state in ['finished', 'cancelled']"/>
+                        <button name="action_draft" string="Volver a Borrador"
+                                type="object"
+                                invisible="state != 'cancelled'"/>
                         <field name="state" widget="statusbar"
                                statusbar_visible="draft,open,in_progress,finished,cancelled"/>
                     </header>
@@ -34,7 +48,8 @@
                                 <field name="student_ids" widget="many2many_tags"/>
                             </page>
                             <page string="Horario">
-                                <field name="schedule" placeholder="Ej: Lunes y Miércoles 08:00-10:00"/>
+                                <field name="schedule"
+                                       placeholder="Ej: Lunes y Miércoles 08:00-10:00"/>
                             </page>
                             <page string="Notas del Curso">
                                 <field name="notes"/>
@@ -45,7 +60,7 @@
             </field>
         </record>
 
-<!-- listas -->
+
         <record id="ou_course_list" model="ir.ui.view">
             <field name="name">ou.course.list</field>
             <field name="model">ou.course</field>
@@ -64,7 +79,7 @@
             </field>
         </record>
 
-<!-- actions -->
+<!-- acciones -->
         <record id="action_ou_course" model="ir.actions.act_window">
             <field name="name">Cursos</field>
             <field name="res_model">ou.course</field>

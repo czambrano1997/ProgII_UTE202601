@@ -4,19 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categorias - Inventario UTE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #03031F;
+            border-bottom: 3px solid #6827F5;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #7f8c8d;
+            font-weight: normal;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #6827F5;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #eef7ff;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .footer a {
+            color: #1C1E63;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     
 </body>
 
-    <h1>Panel de Inventario UTE </h1>
-    <h3> {{carrera}}</h3>
+    <div class="container">
 
-    <p>Total de Categorias: {{Categorias/length}}</p>
+        <h1>Panel de Inventario UTE</h1>
+        <h3>{{ carrera }}</h3>
 
-    <table>
-        <tr>
+        <p><strong>Total de categorias:</strong> {{ categorias|length }}</p>
 
-        </tr>
-    </table>
-</html>l
+        <table>
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+            </tr>
+
+            {% for p in categorias %}
+            <tr>
+                <td>{{ p.codigo }}</td>
+                <td>{{ p.nombre }}</td>
+                <td>{{ p.descripcion }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No hay categorias registradas</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <hr>
+        <div class="footer">
+            <a href="/admin/">Panel de administración</a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

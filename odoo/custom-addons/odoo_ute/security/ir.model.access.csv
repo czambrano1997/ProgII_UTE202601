@@ -6,14 +6,15 @@ ou_teacher_manager,access_ou_teacher_manager,model_ou_teacher,odoo_ute.group_ute
 ou_signature_user,access_ou_signature_user,model_ou_signature,odoo_ute.group_ute_user,1,0,0,0
 ou_signature_manager,access_ou_signature_manager,model_ou_signature,odoo_ute.group_ute_manager,1,1,1,1
 
-
 ou_career_user,access_ou_career_user,model_ou_career,odoo_ute.group_ute_user,1,0,0,0
 ou_career_manager,access_ou_career_manager,model_ou_career,odoo_ute.group_ute_manager,1,1,1,1
-
 
 ou_student_user,access_ou_student_user,model_ou_student,odoo_ute.group_ute_user,1,0,0,0
 ou_student_manager,access_ou_student_manager,model_ou_student,odoo_ute.group_ute_manager,1,1,1,1
 
-
 ou_course_user,access_ou_course_user,model_ou_course,odoo_ute.group_ute_user,1,0,0,0
 ou_course_manager,access_ou_course_manager,model_ou_course,odoo_ute.group_ute_manager,1,1,1,1
+
+
+ou_authority_user,access_ou_authority_user,model_ou_authority,odoo_ute.group_ute_user,1,0,0,0
+ou_authority_manager,access_ou_authority_manager,model_ou_authority,odoo_ute.group_ute_manager,1,1,1,1
