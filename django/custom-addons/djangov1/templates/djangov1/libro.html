@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Libros</title>
+</head>
+<body>
+    <h1>Libros</h1>
+    <table border="1" cellpadding="6" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>ISBN</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Páginas</th>
+                <th>Disponible</th>
+                <th>Autores</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for libro in libros %}
+            <tr>
+                <td>{{ libro.titulo }}</td>
+                <td>{{ libro.isbn }}</td>
+                <td>{{ libro.categoria.nombre }}</td>
+                <td>{{ libro.precio }}</td>
+                <td>{{ libro.paginas }}</td>
+                <td>{{ libro.disponible }}</td>
+                <td>{% for autor in libro.autores.all %}{{ autor.nombre }}{% if not forloop.last %}, {% endif %}{% empty %}Sin autores{% endfor %}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="7">No hay libros registrados.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
