@@ -1,14 +1,23 @@
 {% extends 'djangov1/base.html' %}
 {% block content %}
-<h2>Almacenes</h2>
+<div class="dv-title">
+  <h2>Almacenes</h2>
+</div>
 {% if almacenes %}
-<table>
-  <tr><th>Nombre</th><th>Dirección</th></tr>
+<table class="dv-table">
+  <thead>
+    <tr><th>Nombre</th><th>Dirección</th></tr>
+  </thead>
+  <tbody>
   {% for a in almacenes %}
   <tr><td>{{ a.nombre }}</td><td>{{ a.direccion }}</td></tr>
   {% endfor %}
+  </tbody>
 </table>
 {% else %}
 <p>No hay almacenes.</p>
 {% endif %}
+<div style="margin-top:16px;text-align:center">
+  <a class="dv-btn" href="/djangov1/">Regresar al menú</a>
+</div>
 {% endblock %}

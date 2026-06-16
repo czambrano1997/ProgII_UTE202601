@@ -3,26 +3,27 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Djangov1</title>
-    <style>body{font-family:Arial;margin:16px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px}th{background:#f4f4f4}</style>
+    <title>Aplicacion</title>
   </head>
-  <body>
-    <h1>Aplicacion</h1>
-    <nav style="margin-bottom:8px">
-      <button id="btn-regresar" style="margin-right:8px;padding:6px 10px">Regresar</button>
-      <a href="/">Inicio</a> |
-      <a target="_blank" rel="noopener noreferrer" href="/djangov1/categorias/">Categorías</a> |
-      <a target="_blank" rel="noopener noreferrer" href="/djangov1/proveedores/">Proveedores</a> |
-      <a target="_blank" rel="noopener noreferrer" href="/djangov1/productos/">Productos</a> |
-      <a target="_blank" rel="noopener noreferrer" href="/djangov1/almacenes/">Almacenes</a> |
-      <a target="_blank" rel="noopener noreferrer" href="/djangov1/entradas/">Entradas</a>
-    </nav>
-    <script>
-      document.getElementById('btn-regresar').addEventListener('click', function(){
-        window.location.href = '/djangov1/';
-      });
-    </script>
-    <hr>
-    {% block content %}{% endblock %}
+  <body style="background:#f5f6fa">
+    <div class="dv-container">
+      <header style="display:flex;align-items:center;justify-content:space-between">
+        <h1 style="margin:0">Aplicacion</h1>
+        <div style="font-size:0.9rem;color:#666">Tienda de Tecnología</div>
+      </header>
+      <hr>
+      <style>
+        .dv-container{max-width:1100px;margin:18px auto;background:#fff;padding:18px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+        .dv-title{font-family: 'Segoe UI', Roboto, Arial, sans-serif;color:#111}
+        .dv-btn{display:inline-block;padding:8px 12px;background:#007bff;color:#fff;border-radius:4px;text-decoration:none}
+        .dv-table{width:100%;border-collapse:collapse}
+        .dv-table th, .dv-table td{border:1px solid #eee;padding:10px;text-align:left}
+        .dv-footer{margin-top:18px;text-align:center}
+      </style>
+      {% block content %}{% endblock %}
+      <div class="dv-footer">
+        <a class="dv-btn" href="/djangov1/">Menu central</a>
+      </div>
+    </div>
   </body>
 </html>

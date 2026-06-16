@@ -1,14 +1,23 @@
 {% extends 'djangov1/base.html' %}
 {% block content %}
-<h2>Productos</h2>
+<div class="dv-title">
+  <h2>Productos</h2>
+</div>
 {% if productos %}
-<table>
-  <tr><th>SKU</th><th>Nombre</th><th>Categoría</th><th>Precio</th></tr>
+<table class="dv-table">
+  <thead>
+    <tr><th>SKU</th><th>Nombre</th><th>Categoría</th><th>Precio</th></tr>
+  </thead>
+  <tbody>
   {% for p in productos %}
   <tr><td>{{ p.sku }}</td><td>{{ p.nombre }}</td><td>{{ p.categoria.nombre }}</td><td>{{ p.precio }}</td></tr>
   {% endfor %}
+  </tbody>
 </table>
 {% else %}
 <p>No hay productos.</p>
 {% endif %}
+<div style="margin-top:16px;text-align:center">
+  <a class="dv-btn" href="/djangov1/">Regresar al menú</a>
+</div>
 {% endblock %}
