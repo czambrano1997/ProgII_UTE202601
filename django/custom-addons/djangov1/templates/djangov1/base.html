@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Djangov1</title>
+    <style>body{font-family:Arial;margin:16px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px}th{background:#f4f4f4}</style>
+  </head>
+  <body>
+    <h1>Djangov1 App</h1>
+    <nav>
+      <a href="/djangov1/categorias/">Categorías</a> |
+      <a href="/djangov1/proveedores/">Proveedores</a> |
+      <a href="/djangov1/productos/">Productos</a> |
+      <a href="/djangov1/almacenes/">Almacenes</a> |
+      <a href="/djangov1/entradas/">Entradas</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+  </body>
+</html>

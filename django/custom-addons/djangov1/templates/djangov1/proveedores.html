@@ -1,0 +1,14 @@
+{% extends 'djangov1/base.html' %}
+{% block content %}
+<h2>Proveedores</h2>
+{% if proveedores %}
+<table>
+  <tr><th>Nombre</th><th>Email</th><th>Teléfono</th></tr>
+  {% for p in proveedores %}
+  <tr><td>{{ p.nombre }}</td><td>{{ p.email }}</td><td>{{ p.telefono }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No hay proveedores.</p>
+{% endif %}
+{% endblock %}

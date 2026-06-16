@@ -1,0 +1,14 @@
+{% extends 'djangov1/base.html' %}
+{% block content %}
+<h2>Categorías</h2>
+{% if categorias %}
+<table>
+  <tr><th>Código</th><th>Nombre</th><th>Descripción</th></tr>
+  {% for c in categorias %}
+  <tr><td>{{ c.codigo }}</td><td>{{ c.nombre }}</td><td>{{ c.descripcion }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No hay categorías.</p>
+{% endif %}
+{% endblock %}

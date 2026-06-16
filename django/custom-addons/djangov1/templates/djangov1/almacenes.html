@@ -1,0 +1,14 @@
+{% extends 'djangov1/base.html' %}
+{% block content %}
+<h2>Almacenes</h2>
+{% if almacenes %}
+<table>
+  <tr><th>Nombre</th><th>Dirección</th></tr>
+  {% for a in almacenes %}
+  <tr><td>{{ a.nombre }}</td><td>{{ a.direccion }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No hay almacenes.</p>
+{% endif %}
+{% endblock %}
