@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><title>Clientes</title></head>
+<body>
+    <h1>Nuestros Clientes</h1>
+    <ul>
+        {% for cli in clientes %}
+            <li>{{ cli.nombre_completo }} - C.I.: {{ cli.identificacion }} {% if cli.es_vip %}(★ VIP){% endif %}</li>
+        {% empty %}
+            <li>No hay clientes registrados.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><title>Categorías</title></head>
+<body>
+    <h1>Listado de Categorías</h1>
+    <ul>
+        {% for cat in categorias %}
+            <li><strong>{{ cat.nombre }}</strong> - {{ cat.descripcion }}</li>
+        {% empty %}
+            <li>No hay categorías registradas aún.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

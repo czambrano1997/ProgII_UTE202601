@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><title>Productos</title></head>
+<body>
+    <h1>Inventario de Productos</h1>
+    <ul>
+        {% for prod in productos %}
+            <li><strong>{{ prod.nombre }}</strong> - Precio: ${{ prod.precio }} | Stock: {{ prod.stock }} unidades (Categoría: {{ prod.categoria.nombre }})</li>
+        {% empty %}
+            <li>No hay productos en inventario.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
