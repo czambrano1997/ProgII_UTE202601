@@ -208,8 +208,4 @@ class VehiculoMantenimiento(models.Model):
     def _check_fechas_mantenimiento(self):
         for record in self:
             if record.proximo_mantenimiento and record.proximo_mantenimiento <= record.fecha_mantenimiento:
-<<<<<<< HEAD
                 raise ValidationError('La fecha del próximo mantenimiento debe ser posterior a la fecha actual del mantenimiento.')
-=======
-                raise ValidationError('La fecha del próximo mantenimiento debe ser posterior a la fecha actual del mantenimiento.')
->>>>>>> c1b48e8873a20a5a1324a750d1a52238c1f0fcc6

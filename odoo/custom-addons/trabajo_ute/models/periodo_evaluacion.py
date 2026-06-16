@@ -125,10 +125,7 @@ class PeriodoEvaluacion(models.Model):
     def action_cancelar(self):
         for record in self:
             record.state = 'cancelado'
-<<<<<<< HEAD
-=======
 
     _sql_constraints = [
         ('unique_periodo_code', 'UNIQUE(code)', 'El código del período debe ser único.'),
     ]
->>>>>>> c1b48e8873a20a5a1324a750d1a52238c1f0fcc6

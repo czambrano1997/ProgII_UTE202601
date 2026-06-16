@@ -187,9 +187,5 @@ class ReporteCalificacionLinea(models.Model):
     promedio = fields.Float(string='Promedio', default=0.0)
     calificacion = fields.Char(string='Calificación')
     observacion = fields.Text(string='Observación')
-<<<<<<< HEAD
-    ranking = fields.Integer(string='Ranking', default=0)
-=======
     ranking = fields.Integer(string='Ranking', default=0)
     
->>>>>>> c1b48e8873a20a5a1324a750d1a52238c1f0fcc6

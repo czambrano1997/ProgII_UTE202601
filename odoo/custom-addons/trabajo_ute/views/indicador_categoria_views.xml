@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-<<<<<<< HEAD
-
-=======
->>>>>>> c1b48e8873a20a5a1324a750d1a52238c1f0fcc6
         <!-- Form View -->
         <record id="view_indicador_categoria_form" model="ir.ui.view">
             <field name="name">ou.indicador.categoria.form</field>
@@ -26,19 +22,11 @@
                             <group>
                                 <field name="code"/>
                                 <field name="tipo_indicador" widget="radio"/>
-<<<<<<< HEAD
-                                <field name="peso_porcentaje" widget="percentage"/>
-                            </group>
-                            <group>
-                                <field name="total_subcategorias" readonly="1"/>
-                                <field name="color" widget="color_picker"/>
-=======
                                 <field name="peso_porcentaje"/>
                             </group>
                             <group>
                                 <field name="total_subcategorias" readonly="1"/>
                                 <field name="color"/>
->>>>>>> c1b48e8873a20a5a1324a750d1a52238c1f0fcc6
                             </group>
                         </group>
                         <notebook>
@@ -73,44 +61,27 @@
                 <list string="Categorías de Indicadores">
                     <field name="code"/>
                     <field name="name"/>
-<<<<<<< HEAD
-                    <field name="tipo_indicador" decoration-info="tipo_indicador == 'conductor'" decoration-success="tipo_indicador == 'vehiculo'" decoration-warning="tipo_indicador == 'general'"/>
-                    <field name="peso_porcentaje" widget="percentage"/>
-=======
                     <field name="tipo_indicador"/>
                     <field name="peso_porcentaje"/>
->>>>>>> c1b48e8873a20a5a1324a750d1a52238c1f0fcc6
                     <field name="total_subcategorias"/>
                     <field name="active" widget="boolean_toggle"/>
                 </list>
             </field>
         </record>
 
-<<<<<<< HEAD
-        <!-- Search View -->
-=======
         <!-- Search View - CORREGIDA -->
->>>>>>> c1b48e8873a20a5a1324a750d1a52238c1f0fcc6
         <record id="view_indicador_categoria_search" model="ir.ui.view">
             <field name="name">ou.indicador.categoria.search</field>
             <field name="model">ou.indicador.categoria</field>
             <field name="arch" type="xml">
-<<<<<<< HEAD
-                <search string="Buscar Categorías">
-=======
                 <search>
->>>>>>> c1b48e8873a20a5a1324a750d1a52238c1f0fcc6
                     <field name="name"/>
                     <field name="code"/>
                     <filter string="Conductor" name="tipo_conductor" domain="[('tipo_indicador', '=', 'conductor')]"/>
                     <filter string="Vehículo" name="tipo_vehiculo" domain="[('tipo_indicador', '=', 'vehiculo')]"/>
                     <filter string="Archivadas" name="archivadas" domain="[('active', '=', False)]"/>
-<<<<<<< HEAD
-                    <group expand="0" string="Agrupar Por">
-=======
                     <separator/>
                     <group name="group_by">
->>>>>>> c1b48e8873a20a5a1324a750d1a52238c1f0fcc6
                         <filter string="Tipo" name="group_tipo" context="{'group_by': 'tipo_indicador'}"/>
                     </group>
                 </search>
@@ -132,9 +103,5 @@
                 </p>
             </field>
         </record>
-<<<<<<< HEAD
-
-=======
->>>>>>> c1b48e8873a20a5a1324a750d1a52238c1f0fcc6
     </data>
 </odoo>

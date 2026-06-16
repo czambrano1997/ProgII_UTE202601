@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-_g@zb6rd6*jlb4x!dgqv&kfy6atlp-ndn+o&@sweg_-j0&t5ch"
+SECRET_KEY = "django-insecure-y(#%-#qlvk)fl)9prlc1o7slp7patha-110f-ni)64su$8b8hf"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "inventario",
-    'djangov1',
+    "inventario"
 ]
 
 MIDDLEWARE = [
@@ -74,24 +73,23 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
+#DATABASES = {
+#    "default": {
+#        "ENGINE": "django.db.backends.sqlite3",
+#        "NAME": BASE_DIR / "db.sqlite3",
+#    }
+#}
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_lab',
-        'USER': 'django',
+    'default':{
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME':'django_lab',
+        'USER':'django',
         'PASSWORD': 'djangoAdmin',
         'HOST': 'localhost',
-        'PORT': '5432'
+        'PORT':'5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

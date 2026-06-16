@@ -60,3 +60,4 @@ class FichaTecnica(models.Model):
 
     def __str__(self):
         return f"Ficha de {self.producto.nombre}"
+
