@@ -7,14 +7,21 @@
     <style>body{font-family:Arial;margin:16px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px}th{background:#f4f4f4}</style>
   </head>
   <body>
-    <h1>Djangov1 App</h1>
-    <nav>
-      <a href="/djangov1/categorias/">Categorías</a> |
-      <a href="/djangov1/proveedores/">Proveedores</a> |
-      <a href="/djangov1/productos/">Productos</a> |
-      <a href="/djangov1/almacenes/">Almacenes</a> |
-      <a href="/djangov1/entradas/">Entradas</a>
+    <h1>Aplicacion</h1>
+    <nav style="margin-bottom:8px">
+      <button id="btn-regresar" style="margin-right:8px;padding:6px 10px">Regresar</button>
+      <a href="/">Inicio</a> |
+      <a target="_blank" rel="noopener noreferrer" href="/djangov1/categorias/">Categorías</a> |
+      <a target="_blank" rel="noopener noreferrer" href="/djangov1/proveedores/">Proveedores</a> |
+      <a target="_blank" rel="noopener noreferrer" href="/djangov1/productos/">Productos</a> |
+      <a target="_blank" rel="noopener noreferrer" href="/djangov1/almacenes/">Almacenes</a> |
+      <a target="_blank" rel="noopener noreferrer" href="/djangov1/entradas/">Entradas</a>
     </nav>
+    <script>
+      document.getElementById('btn-regresar').addEventListener('click', function(){
+        window.location.href = '/djangov1/';
+      });
+    </script>
     <hr>
     {% block content %}{% endblock %}
   </body>

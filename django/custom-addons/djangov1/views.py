@@ -25,3 +25,8 @@ def lista_almacenes(request):
 def lista_entradas(request):
     qs = EntradaStock.objects.select_related('producto', 'almacen').all()
     return render(request, 'djangov1/entradas.html', {'entradas': qs})
+
+
+def index_menu(request):
+    # central menu page
+    return render(request, 'djangov1/index.html')
