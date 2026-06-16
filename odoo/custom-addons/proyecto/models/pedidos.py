@@ -20,7 +20,6 @@ class Pedidos(models.Model):
         tracking=True,
     )
     fecha_entrega = fields.Date(string='Fecha de Entrega Estimada')
-    fecha_entrega_real = fields.Date(string='Fecha de Entrega Real')
     estado = fields.Selection(
         selection=[
             ('borrador', 'Borrador'),
@@ -89,16 +88,11 @@ class Pedidos(models.Model):
         compute='_compute_cuota_mensual',
         store=True,
     )
-
-    # ── Campos booleanos ────────────────────────────────────────────
     incluye_accesorios = fields.Boolean(string='Incluye Accesorios')
     entrega_a_domicilio = fields.Boolean(string='Entrega a Domicilio')
-
-    # ── Campos texto ────────────────────────────────────────────────
     observaciones = fields.Text(string='Observaciones')
     condiciones_pago = fields.Html(string='Condiciones de Pago')
 
-    # ── Compute ─────────────────────────────────────────────────────
     @api.depends('vehiculo_id')
     def _compute_precio_vehiculo(self):
         for rec in self:
@@ -106,16 +100,6 @@ class Pedidos(models.Model):
                 rec.precio_vehiculo = rec.vehiculo_id.precio_venta
             else:
                 rec.precio_vehiculo = 0.0
-
-    @api.depends('precio_vehiculo', 'descuento')
-    def _compute_descuento_monto(self):
-        for rec in self:
-            rec.descuento_monto = rec.precio_vehiculo * (rec.descuento / 100)
-
-    @api.depends('precio_vehiculo', 'descuento_monto')
-    def _compute_total(self):
-        for rec in self:
-            rec.total = rec.precio_vehiculo - rec.descuento_monto
 
     @api.depends('total', 'meses_financiamiento', 'tipo_pago')
     def _compute_cuota_mensual(self):
@@ -125,7 +109,6 @@ class Pedidos(models.Model):
             else:
                 rec.cuota_mensual = 0.0
 
-    # ── Onchange ────────────────────────────────────────────────────
     @api.onchange('tipo_pago')
     def _onchange_tipo_pago(self):
         if self.tipo_pago != 'financiamiento':
@@ -140,13 +123,6 @@ class Pedidos(models.Model):
     def _onchange_cliente(self):
         if self.cliente_id and self.cliente_id.empleado_asesor_id:
             self.empleado_id = self.cliente_id.empleado_asesor_id
-
-    # ── Constrains ──────────────────────────────────────────────────
-    @api.constrains('descuento')
-    def _check_descuento(self):
-        for rec in self:
-            if rec.descuento < 0 or rec.descuento > 100:
-                raise ValidationError('El descuento debe estar entre 0% y 100%.')
 
     @api.constrains('fecha_entrega', 'fecha_pedido')
     def _check_fechas(self):
@@ -164,7 +140,6 @@ class Pedidos(models.Model):
                     'Debe indicar los meses de financiamiento (mayor a 0).'
                 )
 
-    # ── Acciones ────────────────────────────────────────────────────
     def action_confirmar(self):
         for rec in self:
             rec.estado = 'confirmado'
