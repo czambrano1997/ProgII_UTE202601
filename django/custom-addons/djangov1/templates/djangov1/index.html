@@ -8,27 +8,27 @@
   <div class="dv-card">
     <h3>Categorías</h3>
     <p>Organiza los tipos de productos disponibles en la tienda.</p>
-    <a class="dv-btn" href="/djangov1/categorias/">Ir a categorías</a>
+    <a class="dv-btn" href="{% url 'djangov1:categorias' %}">Ir a categorías</a>
   </div>
   <div class="dv-card">
     <h3>Proveedores</h3>
     <p>Administra la información de tus proveedores de tecnología.</p>
-    <a class="dv-btn" href="/djangov1/proveedores/">Ir a proveedores</a>
+    <a class="dv-btn" href="{% url 'djangov1:proveedores' %}">Ir a proveedores</a>
   </div>
   <div class="dv-card">
     <h3>Productos</h3>
     <p>Visualiza los artículos en venta, sus precios y categorías.</p>
-    <a class="dv-btn" href="/djangov1/productos/">Ir a productos</a>
+    <a class="dv-btn" href="{% url 'djangov1:productos' %}">Ir a productos</a>
   </div>
   <div class="dv-card">
     <h3>Almacenes</h3>
     <p>Controla los espacios físicos donde se guarda el stock.</p>
-    <a class="dv-btn" href="/djangov1/almacenes/">Ir a almacenes</a>
+    <a class="dv-btn" href="{% url 'djangov1:almacenes' %}">Ir a almacenes</a>
   </div>
   <div class="dv-card">
     <h3>Entradas</h3>
     <p>Revisa las últimas entradas de stock registradas.</p>
-    <a class="dv-btn" href="/djangov1/entradas/">Ir a entradas</a>
+    <a class="dv-btn" href="{% url 'djangov1:entradas' %}">Ir a entradas</a>
   </div>
 </div>
 {% endblock %}
