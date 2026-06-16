@@ -60,3 +60,17 @@ class FichaTecnica(models.Model):
 
     def __str__(self):
         return f"Ficha de {self.producto.nombre}"
+    
+#--------------------atre-----------------------------
+class venta_de_atre(models.Model):
+    cliente   = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=100)
+    direccion      = models.CharField(max_digits=20, decimal_places=2)
+    pedido = models.PositiveIntegerField(default=0)
+
+class factura (models.Model):
+    cliente   = models.CharField(max_length=100)
+    telefono  = models.CharField(max_length=10)
+    direccion      = models.DecimalField(max_digits=20, decimal_places=2)
+    pedido = models.PositiveIntegerField(default=0)
+    descuento = models.CharField(max_length=50)
