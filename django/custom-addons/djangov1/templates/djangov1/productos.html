@@ -1,0 +1,21 @@
+{% extends 'djangov1/base.html' %}
+{% block title %}Productos | DjangoV1{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">Modelo 3</p><h1>Productos</h1></div><span class="count">{{ productos|length }} registros</span></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Producto</th><th>SKU</th><th>Categoría</th><th>Proveedor</th><th>Precio</th><th>Stock</th><th>Estado</th></tr></thead>
+<tbody>
+{% for producto in productos %}
+<tr>
+<td><strong>{{ producto.nombre }}</strong><small>{{ producto.descripcion|truncatechars:55 }}</small></td>
+<td><code>{{ producto.sku }}</code></td><td>{{ producto.categoria.nombre }}</td><td>{{ producto.proveedor.nombre }}</td>
+<td>${{ producto.precio|floatformat:2 }}</td>
+<td>{{ producto.stock }}{% if producto.necesita_reposicion %} <span class="badge danger">Reponer</span>{% endif %}</td>
+<td>{% if producto.disponible %}<span class="badge ok">Disponible</span>{% else %}<span class="badge">No disponible</span>{% endif %}</td>
+</tr>
+{% empty %}<tr><td colspan="7" class="empty">No hay productos.</td></tr>{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}

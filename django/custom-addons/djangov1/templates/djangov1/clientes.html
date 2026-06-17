@@ -1,0 +1,135 @@
+{% extends "djangov1/base.html" %}
+
+{% block title %}
+Clientes | DjangoV1
+{% endblock %}
+
+{% block content %}
+
+<section class="page-section">
+
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">Gestión de clientes</p>
+            <h1>Clientes</h1>
+
+            <p>
+                Listado de clientes registrados en el sistema.
+                La edad se calcula automáticamente desde la fecha
+                de nacimiento.
+            </p>
+        </div>
+
+        <span class="count">
+            {{ clientes|length }} registros
+        </span>
+    </div>
+
+    <div class="table-wrap">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Edad</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for cliente in clientes %}
+
+                    <tr>
+                        <td>
+                            <strong>
+                                {{ cliente.nombres }}
+                            </strong>
+                        </td>
+
+                        <td>
+                            {{ cliente.apellidos }}
+                        </td>
+
+                        <td>
+                            <a href="mailto:{{ cliente.correo }}">
+                                {{ cliente.correo }}
+                            </a>
+                        </td>
+
+                        <td>
+                            {% if cliente.telefono %}
+                                {{ cliente.telefono }}
+                            {% else %}
+                                <span class="text-muted">
+                                    Sin teléfono
+                                </span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {{ cliente.direccion }}
+                        </td>
+
+                        <td>
+                            {% if cliente.fecha_nacimiento %}
+                                {{ cliente.fecha_nacimiento|date:"d/m/Y" }}
+                            {% else %}
+                                <span class="text-muted">
+                                    Sin registrar
+                                </span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% with edad_cliente=cliente.edad %}
+
+                                {% if edad_cliente != None %}
+                                    <strong>
+                                        {{ edad_cliente }} años
+                                    </strong>
+                                {% else %}
+                                    <span class="text-muted">
+                                        No disponible
+                                    </span>
+                                {% endif %}
+
+                            {% endwith %}
+                        </td>
+
+                        <td>
+                            {% if cliente.activo %}
+                                <span class="badge ok">
+                                    Activo
+                                </span>
+                            {% else %}
+                                <span class="badge">
+                                    Inactivo
+                                </span>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                {% empty %}
+
+                    <tr>
+                        <td colspan="8" class="empty">
+                            No existen clientes registrados.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'djangov1/base.html' %}
+{% block title %}Proveedores | DjangoV1{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">Modelo 2</p><h1>Proveedores</h1></div><span class="count">{{ proveedores|length }} registros</span></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Nombre</th><th>Correo</th><th>Teléfono</th><th>Sitio web</th><th>Estado</th></tr></thead>
+<tbody>
+{% for proveedor in proveedores %}
+<tr><td><strong>{{ proveedor.nombre }}</strong></td><td>{{ proveedor.correo }}</td><td>{{ proveedor.telefono }}</td><td>{% if proveedor.sitio_web %}<a href="{{ proveedor.sitio_web }}" target="_blank" rel="noopener">Abrir sitio</a>{% else %}-{% endif %}</td><td>{% if proveedor.activo %}<span class="badge ok">Activo</span>{% else %}<span class="badge">Inactivo</span>{% endif %}</td></tr>
+{% empty %}<tr><td colspan="5" class="empty">No hay proveedores.</td></tr>{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}

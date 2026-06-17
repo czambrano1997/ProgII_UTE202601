@@ -1,0 +1,20 @@
+{% extends 'djangov1/base.html' %}
+{% block title %}Pedidos | DjangoV1{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">Modelo 5</p><h1>Pedidos</h1></div><span class="count">{{ pedidos|length }} registros</span></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Código</th><th>Cliente</th><th>Fecha</th><th>Estado</th><th>Productos</th><th>Total</th><th>Entrega</th></tr></thead>
+<tbody>
+{% for pedido in pedidos %}
+<tr>
+<td><strong>{{ pedido.codigo }}</strong></td><td>{{ pedido.cliente.nombre_completo }}</td><td>{{ pedido.fecha|date:'d/m/Y H:i' }}</td>
+<td><span class="badge">{{ pedido.get_estado_display }}</span></td>
+<td><ul class="compact-list">{% for detalle in pedido.detalles.all %}<li>{{ detalle.producto.nombre }} x {{ detalle.cantidad }}</li>{% empty %}<li>Sin productos</li>{% endfor %}</ul></td>
+<td><strong>${{ pedido.total|floatformat:2 }}</strong></td><td>{% if pedido.entregado %}<span class="badge ok">Entregado</span>{% else %}<span class="badge warning-badge">Pendiente</span>{% endif %}</td>
+</tr>
+{% empty %}<tr><td colspan="7" class="empty">No hay pedidos.</td></tr>{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}
