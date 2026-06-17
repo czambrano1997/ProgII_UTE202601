@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><title>Historial de Ventas</title></head>
+<body>
+    <h1>Historial de Transacciones</h1>
+    <ul>
+        {% for v in datos %}
+            <li>Venta #{{ v.id }}: {{ v.cantidad }}x {{ v.producto.nombre }} vendido a {{ v.cliente.nombre }} (Total: ${{ v.total_pago }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

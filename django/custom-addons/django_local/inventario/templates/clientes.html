@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><title>Clientes</title></head>
+<body>
+    <h1>Nuestros Clientes</h1>
+    <ul>
+        {% for cl in datos %}
+            <li>{{ cl.nombre }} - Cédula/RUC: {{ cl.cedula }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

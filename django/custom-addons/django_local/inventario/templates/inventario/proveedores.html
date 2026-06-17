@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><title>Proveedores</title></head>
+<body>
+    <h1>Lista de Proveedores Registrados</h1>
+    <ul>
+        {% for p in datos %}
+            <li><strong>{{ p.nombre_empresa }}</strong> - Correo: {{ p.email }} (Activo: {{ p.activo }})</li>
+        {% empty %}
+            <li>No hay proveedores registrados aún.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
