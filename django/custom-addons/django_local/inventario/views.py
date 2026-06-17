@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Categoria, Producto
+from .models import Categoria, Producto, venta_de_atre
 
 # Funciones para vista categoria
 def lista_categoria(request):
@@ -20,3 +20,7 @@ def lista_productos(request):
         .all()
     )
     return render(request, 'inventario/producto.html', {'productos': productos})
+
+def lista_arte(request):
+    artes = venta_de_atre.objects.all()
+    return render(request, 'inventario/arte.html', {"artes": artes})

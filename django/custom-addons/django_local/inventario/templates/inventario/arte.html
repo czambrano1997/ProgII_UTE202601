@@ -1,0 +1,153 @@
+
+<!-- inventario/templates/inventario/productos.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Arte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+        h1 {
+            color: #08570c;
+            border-bottom: 2px solid #dbeafe;
+            padding-bottom: .5rem;
+        }
+        .resumen {
+            background: #dbeafe;
+            border-radius: 8px;
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            font-size: .9rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,.08);
+        }
+        th {
+            background: #2563eb;
+            color: #fff;
+            padding: 10px 12px;
+            text-align: left;
+            font-size: .8rem;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: .88rem;
+            vertical-align: top;
+        }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: #f1f5f9; }
+
+        .vacia { text-align: center; padding: 2rem; color: #94a3b8; }
+
+        .badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0c4a6e;
+            border-radius: 10px;
+            padding: 2px 9px;
+            font-size: .75rem;
+            margin: 2px 3px 0 0;
+        }
+        .sin-dato { color: #94a3b8; font-style: italic; }
+        .alerta-stock { color: #dc2626; font-weight: bold; }
+
+        a { color: #35eb25; }
+        .nav-links { margin-top: 1.5rem; font-size: .9rem; }
+    </style>
+</head>
+<body>
+
+    <h1>arte de Productos</h1>
+
+    <!-- Variable 'total' enviada desde la vista -->
+    <div class="resumen">
+        Total de productos: <strong>{{ arte }}</strong>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Precio</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for p in productos %}
+            <tr>
+                <td><strong>{{ p.nombre }}</strong></td>
+
+                <!-- ── ForeignKey (1:N): acceso directo al objeto relacionado ── -->
+                <td>{{ p.categoria.nombre }}</td>
+
+                <td>${{ p.precio }}</td>
+
+                <td>
+                    {{ p.existencias }}
+                    {% if p.existencias < 5 %}
+                        <br><span class="alerta-stock">⚠ Stock bajo</span>
+                    {% endif %}
+                </td>
+
+                <!-- ── OneToOneField (1:1): puede no existir ── -->
+                <!-- Django Template Language NO lanza DoesNotExist al acceder,
+                     simplemente evalúa a "falsy" si la relación no existe -->
+                <td>
+                    {% if p.ficha_tecnica %}
+                        {{ p.ficha_tecnica.peso_kg }} kg
+                        {% if p.ficha_tecnica.dimensiones %}
+                            <br>{{ p.ficha_tecnica.dimensiones }}
+                        {% endif %}
+                        <br>Garantía: {{ p.ficha_tecnica.garantia_meses }} meses
+                    {% else %}
+                        <span class="sin-dato">Sin ficha técnica</span>
+                    {% endif %}
+                </td>
+
+                <!-- ── ManyToManyField (N:M): iterar con .all ── -->
+                <td>
+                    {% for prov in p.proveedores.all %}
+                        <span class="badge">{{ prov.nombre }}</span>
+                    {% empty %}
+                        <span class="sin-dato">Sin proveedores</span>
+                    {% endfor %}
+                </td>
+            </tr>
+
+        {% empty %}
+            <tr>
+                <td colspan="6" class="vacia">
+                    No hay productos registrados. Crea uno desde
+                    <a href="/admin/inventario/producto/">el panel Admin</a>.
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <div class="nav-links">
+        <a href="/inventario/categoria/">← Ver categorías</a> |
+        <a href="/admin/">Panel de administración</a>
+    </div>
+
+</body>
+</html>
