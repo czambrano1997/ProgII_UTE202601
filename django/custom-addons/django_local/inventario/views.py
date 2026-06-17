@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .models import Categoria
+from .models import Categoria, Producto
 
-# Create your views here.
+# Funciones para vista categoria
 def lista_categoria(request):
-    categorias = Categoria.objects.all()
+    categorias = {Categoria.objects.all()} 
     return render(request, 'inventario/categoria.html', {'categorias': categorias})
