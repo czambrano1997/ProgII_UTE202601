@@ -19,12 +19,18 @@
                         <group>
                             <field name="name"/>
                             <field name="cliente"></field>
+<<<<<<< HEAD
+                            <field name="direccion"></field>
+                            <field name="correo"></field>
+                            <field name="precio"></field>
+=======
                             <field name="celuda"/>
                              <field name="correo"/>
                              <field name="telefono"/>
                              <field name="direcion"/>
                             <field name="precio"/> 
 
+>>>>>>> 3215ec0fe0e6faa534e39166871ae6060fdfd50c
                             <!-- Add your fields here -->
                         </group>
                     </sheet>
@@ -38,6 +44,13 @@
             <field name="model">arte.pedido</field>
             <field name="arch" type="xml">
                 <list string="Pedido">
+<<<<<<< HEAD
+                    
+                            <field name="cliente"></field>
+                            <field name="direccion"></field>
+                            <field name="correo"></field>
+                            <field name="precio"></field>
+=======
                     <field name="name"/>
                     <field name="cliente"></field>
                     <field name="celuda"/>
@@ -46,6 +59,7 @@
                     <field name="direcion"/>
                     <field name="precio"/>
 
+>>>>>>> 3215ec0fe0e6faa534e39166871ae6060fdfd50c
                     <!-- Add your fields here -->
                 </list>
               

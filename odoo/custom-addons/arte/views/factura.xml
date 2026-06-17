@@ -15,8 +15,12 @@
                             <field name="correo"/>
                             <field name="celuda"/>
                             <field name="telefono"/>
+<<<<<<< HEAD
+                            <field name="direccion"/>
+=======
                             <field name="direcion"/>
                             <field name="precio"/>
+>>>>>>> 3215ec0fe0e6faa534e39166871ae6060fdfd50c
                             <!-- Add your fields here -->
                         </group>
                     </sheet>
@@ -35,7 +39,7 @@
                             <field name="cliente"/>
                             <field name="celuda"/>
                             <field name="correo"/>
-                            <field name="direcion"/>
+                            <field name="direccion"/>
                             <field name="telefono"/>
                             <field name="precio"/>
                     <!-- Add your fields here -->
