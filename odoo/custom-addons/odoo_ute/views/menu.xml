@@ -13,16 +13,40 @@
               groups="odoo_ute.group_ute_user"
               sequence="10"/>
 
-    <menuitem id="menu_ignature"
+    <menuitem id="menu_signature"
               name="Materia"
               parent="menu_odoo_ute_root"
               action="action_ou_signature"
               sequence="20"/>
 
     <menuitem id="menu_students"
-              name="Estudiantes"
+              name="Estudiante"
+              action="odoo_ute.students_action"
               parent="menu_odoo_ute_root"
-              action="odoo_ute.action_ou_students"
-              sequence="10"/>
+              sequence="30"/>
 
+    <menuitem id = "menu_assists"
+              name="Asistencia"
+              action = "odoo_ute.asists_action"
+              parent ="menu_odoo_ute_root"
+              sequence ="40"/>
+
+    <menuitem id = "menu_library"
+              name="Libreria"
+              action = "odoo_ute.library_actions"
+              parent ="menu_odoo_ute_root"
+              sequence ="50"/>
+    
+    <menuitem id = "menu_book_loand"
+              name="Prestamo de libros"
+              action = "odoo_ute.book_loan_action"
+              parent ="menu_odoo_ute_root"
+              sequence ="60"/>
+
+    <menuitem id="menu_grade_line"
+              name="Notas"
+              action="odoo_ute.grade_line_action"
+              parent="menu_odoo_ute_root"
+              sequence="70"/>
+        
 </odoo>

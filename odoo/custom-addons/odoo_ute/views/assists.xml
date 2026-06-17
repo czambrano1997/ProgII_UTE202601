@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="assists_list" model="ir.ui.view">
+            <field name="name">Vista de asistencias</field>
+            <field name="model">assists.ute</field>
+            <field name="arch" type = "xml">
+                <list>
+                    <field name="student"/>
+                    <field name="signature"/>
+                    <field name="teachers"/>
+                    <field name="assists"/>
+                    <field name="attended"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="assists_from" model="ir.ui.view">
+            <field name="name">Vista de asistencias form</field>
+            <field name="model">assists.ute</field>
+            <field name="arch" type = "xml">
+                <form string = "Asistencia">
+                    <shect>
+                        <group string = "Datos de la asistencia">
+                            <field name="student"/>
+                            <field name="signature"/>
+                        </group>
+                        <group>
+                            <field name="teachers"/>
+                            <field name="assists"/>
+                             <field name="attended"/>
+                        </group>
+                    </shect>
+                </form>
+            </field>
+        </record>
+
+        
+        
+        <record id="asists_action" model="ir.actions.act_window">
+            <field name="name">Asistencia</field>
+            <field name = "res_model">assists.ute</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        
+
+
+    </data>
+</odoo>

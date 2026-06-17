@@ -26,8 +26,12 @@
         'security/ute_rule.xml',
         'views/teacher.xml',
         'views/signature.xml',
-        'views/students.xml',  
-        'views/menu.xml',
+        'views/students.xml',
+        'views/assists.xml',
+        'views/library.xml',
+        'views/book_loan.xml',
+        'views/grande_lines.xml',
+        'views/menu.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
