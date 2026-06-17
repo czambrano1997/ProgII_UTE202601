@@ -6,10 +6,7 @@ class Vehiculos(models.Model):
     _name = 'concensionario.vehiculo'
     _description = 'Tabla de Vechiculos'
 
-    brand = fields.Char(string='Marca')
-    model = fields.Char(string= 'Modelo')
     placa = fields.Char(string='Placa')
-    marca = fields.Char(string='Marca')
     year = fields.Integer(string='Año', required=True)
     color = fields.Char(string='Color')
     price= fields.Float(

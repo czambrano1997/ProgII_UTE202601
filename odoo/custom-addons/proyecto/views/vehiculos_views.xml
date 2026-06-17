@@ -1,50 +1,179 @@
-<?xml version="1.0" encoding="utf-8"?>
+<<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <!-- Form View -->
-        <record id="vehiculos_view_form" model="ir.ui.view">
-            <field name="name">vehiculos.view.form</field>
-            <field name="model">vehiculos.view</field>
-            <field name="arch" type="xml">
-                <form string="Vehiculos View">
-                    <sheet>
-                        <group>
-                            <field name="name"/>
-                            <!-- Add your fields here -->
+    <record id="seq_vehiculo" model="ir.sequence">
+        <field name="name">Secuencia Vehículo</field>
+        <field name="code">concesionario.vehiculo</field>
+        <field name="prefix">VEH-</field>
+        <field name="padding">4</field>
+    </record>
+
+    <record id="view_vehiculo_form" model="ir.ui.view">
+        <field name="name">concesionario.vehiculo.form</field>
+        <field name="model">concesionario.vehiculo</field>
+        <field name="arch" type="xml">
+            <form string="Vehículo">
+                <header>
+                    <button name="%(action_vehiculo)d" type="action"
+                            string="Ver Todos" class="btn-secondary"/>
+                    <field name="estado" widget="statusbar"
+                           statusbar_visible="disponible,reservado,vendido"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Descripción del vehículo"/>
+                        </h1>
+                        <h3>
+                            <span class="o_form_label">Código: </span>
+                            <field name="codigo" readonly="1"/>
+                        </h3>
+                    </div>
+                    <group>
+                        <group string="Información Principal">
+                            <field name="marca"/>
+                            <field name="modelo"/>
+                            <field name="año"/>
+                            <field name="tipo_vehiculo"/>
+                            <field name="condicion"/>
+                            <field name="color"/>
+                            <field name="placa"/>
+                            <field name="vin"/>
                         </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        
-        <!-- List View -->
-        <record id="vehiculos_view_list" model="ir.ui.view">
-            <field name="name">vehiculos.view.list</field>
-            <field name="model">vehiculos.view</field>
-            <field name="arch" type="xml">
-                <list string="Vehiculos View">
-                    <field name="name"/>
-                    <!-- Add your fields here -->
-                </list>
-            </field>
-        </record>
-        
-        <!-- Action -->
-        <record id="action_vehiculos_view" model="ir.actions.act_window">
-            <field name="name">Vehiculos View</field>
-            <field name="res_model">vehiculos.view</field>
-            <field name="view_mode">list,form</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Create your first vehiculos view!
-                </p>
-            </field>
-        </record>
-        
-        <!-- Menu -->
-        <menuitem id="menu_vehiculos_view"
-                  name="Vehiculos View"
-                  action="action_vehiculos_view"
-                  sequence="10"/>
-    </data>
+                        <group string="Características Técnicas">
+                            <field name="combustible"/>
+                            <field name="kilometraje"/>
+                            <field name="aire_acondicionado"/>
+                            <field name="tiene_garantia"/>
+                            <field name="es_destacado"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Precios">
+                            <field name="precio_costo"
+                                   groups="concesionario.group_concesionario_administrador"/>
+                            <field name="precio_venta"/>
+                            <field name="total_accesorios"/>
+                            <field name="precio_total"/>
+                            <field name="margen_ganancia"
+                                   groups="concesionario.group_concesionario_administrador"
+                                   widget="percentage"/>
+                        </group>
+                        <group string="Asignación">
+                            <field name="proveedor_id"/>
+                            <field name="empleado_vendedor_id"/>
+                            <field name="fecha_ingreso"/>
+                            <field name="fecha_venta"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Accesorios / Productos">
+                            <field name="producto_ids">
+                                <list>
+                                    <column_invisible>1</column_invisible>
+                                    <field name="name"/>
+                                    <field name="categoria"/>
+                                    <field name="price"/>
+                                    <field name="stock"/>
+                                    <field name="disponible"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Pedidos">
+                            <field name="pedido_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="cliente_id"/>
+                                    <field name="fecha_pedido"/>
+                                    <field name="estado"/>
+                                    <field name="total"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Descripción">
+                            <field name="descripcion" placeholder="Descripción detallada..."/>
+                        </page>
+                        <page string="Notas Internas"
+                              groups="concesionario.group_concesionario_administrador">
+                            <field name="notas_internas"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_vehiculo_list" model="ir.ui.view">
+        <field name="name">concesionario.vehiculo.list</field>
+        <field name="model">concesionario.vehiculo</field>
+        <field name="arch" type="xml">
+            <list string="Vehículos" decoration-success="estado == 'disponible'"
+                  decoration-warning="estado == 'reservado'"
+                  decoration-muted="estado == 'vendido'">
+                <field name="codigo"/>
+                <field name="name"/>
+                <field name="marca"/>
+                <field name="modelo"/>
+                <field name="año"/>
+                <field name="tipo_vehiculo"/>
+                <field name="condicion"/>
+                <field name="precio_venta"/>
+                <field name="estado" widget="badge"
+                       decoration-success="estado == 'disponible'"
+                       decoration-warning="estado == 'reservado'"
+                       decoration-danger="estado == 'vendido'"/>
+                <field name="empleado_vendedor_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_vehiculo_search" model="ir.ui.view">
+        <field name="name">concesionario.vehiculo.search</field>
+        <field name="model">concesionario.vehiculo</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Vehículos">
+                <field name="name"/>
+                <field name="marca"/>
+                <field name="modelo"/>
+                <field name="placa"/>
+                <field name="vin"/>
+                <separator/>
+                <filter name="disponibles" string="Disponibles"
+                        domain="[('estado', '=', 'disponible')]"/>
+                <filter name="reservados" string="Reservados"
+                        domain="[('estado', '=', 'reservado')]"/>
+                <filter name="nuevos" string="Nuevos"
+                        domain="[('condicion', '=', 'nuevo')]"/>
+                <filter name="usados" string="Usados"
+                        domain="[('condicion', '=', 'usado')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_marca" string="Marca"
+                            context="{'group_by': 'marca'}"/>
+                    <filter name="group_tipo" string="Tipo"
+                            context="{'group_by': 'tipo_vehiculo'}"/>
+                    <filter name="group_estado" string="Estado"
+                            context="{'group_by': 'estado'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_vehiculo" model="ir.actions.act_window">
+        <field name="name">Vehículos</field>
+        <field name="res_model">concesionario.vehiculo</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_vehiculo_search"/>
+        <field name="context">{'search_default_disponibles': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                ¡Registra tu primer vehículo!
+            </p>
+            <p>Gestiona el inventario de vehículos de tu concesionario.</p>
+        </field>
+    </record>
 </odoo>
