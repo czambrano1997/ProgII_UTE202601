@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_comida_platillo_list" model="ir.ui.view">
+        <field name="name">comida.platillo.list</field>
+        <field name="model">comida.platillo</field>
+        <field name="arch" type="xml">
+            <list string="Menú de Platillos">
+                <field name="name"/>
+                <field name="categoria"/>
+                <field name="precio"/>
+                <field name="disponible"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_comida_platillo_form" model="ir.ui.view">
+        <field name="name">comida.platillo.form</field>
+        <field name="model">comida.platillo</field>
+        <field name="arch" type="xml">
+            <form string="Platillo">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="precio"/>
+                        <field name="categoria"/>
+                        <field name="disponible"/>
+                        <field name="ingrediente_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_comida_platillo" model="ir.actions.act_window">
+        <field name="name">Carta de Platillos</field>
+        <field name="res_model">comida.platillo</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

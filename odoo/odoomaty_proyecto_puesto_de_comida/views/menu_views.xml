@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Menú Principal -->
+    <menuitem id="menu_odoomaty_proyecto_puesto_de_comida_root" name="Puesto de Comida (Odoomaty)"/>
+
+    <!-- Pestaña Intermedia: Operaciones -->
+    <menuitem id="menu_comida_operaciones" name="Operaciones" parent="menu_odoomaty_proyecto_puesto_de_comida_root" sequence="10"/>
+    
+    <!-- Botones de clic que llaman a los actions -->
+    <menuitem id="menu_odoomaty_pedido_item" name="Pedidos Rápidos" parent="menu_comida_operaciones" action="action_odoomaty_proyecto_puesto_de_comida" sequence="10"/>
+    <menuitem id="menu_comida_cliente_item" name="Clientes del Local" parent="menu_comida_operaciones" action="action_comida_cliente" sequence="20"/>
+    <menuitem id="menu_comida_platillo_item" name="Carta de Comidas" parent="menu_comida_operaciones" action="action_comida_platillo" sequence="30"/>
+    <menuitem id="menu_comida_ingrediente_item" name="Inventario / Insumos" parent="menu_comida_operaciones" action="action_comida_ingrediente" sequence="40"/>
+</odoo>

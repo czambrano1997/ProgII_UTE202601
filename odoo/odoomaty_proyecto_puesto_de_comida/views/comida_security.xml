@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_puesto_comida" model="ir.module.category">
+        <field name="name">Puesto de Comida (Odoomaty)</field>
+        <field name="description">Categoría de accesos para el puesto de comida</field>
+    </record>
+
+    <record id="group_comida_user" model="res.groups">
+        <field name="name">Usuario (Solo Lectura)</field>
+        <field name="category_id" ref="module_category_puesto_comida"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_comida_admin" model="res.groups">
+        <field name="name">Administrador (Todos los permisos)</field>
+        <field name="category_id" ref="module_category_puesto_comida"/>
+        <field name="implied_ids" eval="[(4, ref('group_comida_user'))]"/>
+    </record>
+</odoo>

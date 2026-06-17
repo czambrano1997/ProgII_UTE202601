@@ -1,36 +1,31 @@
+# -*- coding: utf-8 -*-
 {
-    'name': "Administración de la UTE",
+    'name': "Puesto De Comida",
 
-    'summary': "Gestión de docentes y estudiantes de la UTE",
+    'summary': "Gestión integral de un puesto de comida rápida",
 
     'description': """
-	Funcionalidades del módulo de gestión de la UTE.
+    Módulo para el control de pedidos, platillos, clientes e ingredientes.
     """,
 
-    'author': "Ceider Zambrano",
-    'website': "https://gezaforge.com",
+    'author': "maty",
+    'website': "https://Puesto De Comida.com",
 
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
-    'version': '0.1',
+    'category': 'Tools',
+    'version': '19.0.1.0.0',
 
-    # any module necessary for this one to work correctly
+    # Cualquier módulo necesario para que este funcione correctamente
     'depends': ['base'],
 
-    # always loaded
+    # Siempre cargados en este orden estricto (Seguridad primero, luego vistas)
     'data': [
-        'security/ute_group.xml',
+        'security/comida_security.xml',
         'security/ir.model.access.csv',
-        'security/ute_rule.xml',
-        'views/teacher.xml',
-        'views/signature.xml',
-        'views/menu.xml',
+        'views/odoomaty_proyecto_puesto_de_comida_views.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        #'demo/demo.xml',
-    ],
+    'demo': [],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+    'license': 'LGPL-3',
 }
-

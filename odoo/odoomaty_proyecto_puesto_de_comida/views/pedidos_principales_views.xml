@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="odoomaty_proyecto_puesto_de_comida_view_list" model="ir.ui.view">
+        <field name="name">odoomaty.proyecto.puesto.de.comida.view.list</field>
+        <field name="model">odoomaty.proyecto.puesto.de.comida</field>
+        <field name="arch" type="xml">
+            <list string="Lista de Pedidos">
+                <field name="name"/>
+                <field name="fecha"/>
+                <field name="cliente_id"/>
+                <field name="amount" sum="Total Recaudado"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="odoomaty_proyecto_puesto_de_comida_view_form" model="ir.ui.view">
+        <field name="name">odoomaty.proyecto.puesto.de.comida.view.form</field>
+        <field name="model">odoomaty.proyecto.puesto.de.comida</field>
+        <field name="arch" type="xml">
+            <form string="Formulario de Pedido">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="cliente_id"/>
+                        </group>
+                        <group>
+                            <field name="fecha"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Platillos Ordenados">
+                            <field name="linea_ids">
+                                <list editable="bottom">
+                                    <field name="platillo_id"/>
+                                    <field name="cantidad"/>
+                                    <field name="precio_unitario"/>
+                                    <field name="subtotal"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="amount" class="oe_subtotal_footer_separator"/>
+                            </group>
+                        </page>
+                        <page string="Comentarios">
+                            <field name="description" placeholder="Ejemplo: Sin aderezos..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_odoomaty_proyecto_puesto_de_comida" model="ir.actions.act_window">
+        <field name="name">Pedidos Rápidos</field>
+        <field name="res_model">odoomaty.proyecto.puesto.de.comida</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
