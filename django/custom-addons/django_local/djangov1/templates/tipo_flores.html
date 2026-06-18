@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tipos de Flores</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#fff8fc;
+    margin:20px;
+}
+
+h1{
+    color:#880e4f;
+    text-align:center;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th{
+    background:#f6bfd7;
+    padding:12px;
+}
+
+td{
+    padding:10px;
+    border:1px solid #ddd;
+}
+
+tr:hover{
+    background:#ffe6f0;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Tipos de Flores</h1>
+
+<table>
+<tr>
+    <th>Nombre</th>
+    <th>Descripción</th>
+    <th>Activa</th>
+</tr>
+
+{% for tipo in datos %}
+<tr>
+    <td>{{ tipo.nombre }}</td>
+    <td>{{ tipo.descripcion }}</td>
+    <td>{{ tipo.activa }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</body>
+</html>

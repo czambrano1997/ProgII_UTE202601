@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pedidos</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#fff8fc;
+    margin:20px;
+}
+
+h1{
+    color:#ad1457;
+    text-align:center;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th{
+    background:#f8c8dc;
+    padding:12px;
+}
+
+td{
+    padding:10px;
+    border:1px solid #ddd;
+}
+
+tr:nth-child(odd){
+    background:#fff5fa;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Pedidos Realizados</h1>
+
+<table>
+<tr>
+    <th>Cliente</th>
+    <th>Flor</th>
+    <th>Fecha</th>
+</tr>
+
+{% for pedido in datos %}
+<tr>
+    <td>{{ pedido.cliente }}</td>
+    <td>{{ pedido.flor }}</td>
+    <td>{{ pedido.fecha_pedido }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</body>
+</html>

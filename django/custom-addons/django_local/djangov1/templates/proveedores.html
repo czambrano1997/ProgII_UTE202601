@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Proveedores</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#fff8fc;
+    margin:20px;
+}
+
+h1{
+    color:#c2185b;
+    text-align:center;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th{
+    background:#e9b7ce;
+    padding:12px;
+}
+
+td{
+    padding:10px;
+    border:1px solid #ddd;
+}
+
+tr:hover{
+    background:#fce4ec;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Proveedores de Flores</h1>
+
+<table>
+<tr>
+    <th>Nombre</th>
+    <th>Teléfono</th>
+    <th>Correo</th>
+</tr>
+
+{% for proveedor in datos %}
+<tr>
+    <td>{{ proveedor.nombre }}</td>
+    <td>{{ proveedor.telefono }}</td>
+    <td>{{ proveedor.correo }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</body>
+</html>
