@@ -1,0 +1,30 @@
+{% extends "inventario/base.html" %}
+
+{% block title %}Items de Órdenes{% endblock %}
+{% block heading %}Items de Órdenes{% endblock %}
+{% block content %}
+    {% if object_list %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Orden</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in object_list %}
+                    <tr>
+                        <td>#{{ obj.order.id }}</td>
+                        <td>{{ obj.product.name }}</td>
+                        <td>{{ obj.quantity }}</td>
+                        <td>${{ obj.price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty">No hay items de órdenes.</div>
+    {% endif %}
+{% endblock %}

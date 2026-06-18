@@ -1,0 +1,30 @@
+{% extends "inventario/base.html" %}
+
+{% block title %}Productos{% endblock %}
+{% block heading %}Productos{% endblock %}
+{% block content %}
+    {% if object_list %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>SKU</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in object_list %}
+                    <tr>
+                        <td>{{ obj.name }}</td>
+                        <td>{{ obj.sku }}</td>
+                        <td>{{ obj.category.name if obj.category else 'Sin categoría' }}</td>
+                        <td>${{ obj.price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty">No hay productos.</div>
+    {% endif %}
+{% endblock %}

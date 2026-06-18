@@ -1,0 +1,26 @@
+{% extends "inventario/base.html" %}
+
+{% block title %}Categorías{% endblock %}
+{% block heading %}Categorías{% endblock %}
+{% block content %}
+    {% if object_list %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in object_list %}
+                    <tr>
+                        <td>{{ obj.name }}</td>
+                        <td>{{ obj.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty">No hay categorías.</div>
+    {% endif %}
+{% endblock %}

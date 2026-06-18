@@ -1,0 +1,28 @@
+{% extends "inventario/base.html" %}
+
+{% block title %}Proveedores{% endblock %}
+{% block heading %}Proveedores{% endblock %}
+{% block content %}
+    {% if object_list %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in object_list %}
+                    <tr>
+                        <td>{{ obj.name }}</td>
+                        <td>{{ obj.email }}</td>
+                        <td>{{ obj.phone }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty">No hay proveedores.</div>
+    {% endif %}
+{% endblock %}
