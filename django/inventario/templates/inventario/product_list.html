@@ -2,7 +2,14 @@
 
 {% block title %}Productos{% endblock %}
 {% block heading %}Productos{% endblock %}
+{% block page_actions %}
+    <div>
+        <a class="button button-secondary" href="{% url 'inventario:home' %}">← Regresar al menú principal</a>
+        <a class="button button-primary" href="{% url 'inventario:product_create' %}">Agregar producto</a>
+    </div>
+{% endblock %}
 {% block content %}
+    <p class="subtitle">Revisa los productos registrados, junto con su SKU, categoría y precio.</p>
     {% if object_list %}
         <table>
             <thead>
@@ -11,6 +18,7 @@
                     <th>SKU</th>
                     <th>Categoría</th>
                     <th>Precio</th>
+                    <th>Activo</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,8 +26,15 @@
                     <tr>
                         <td>{{ obj.name }}</td>
                         <td>{{ obj.sku }}</td>
-                        <td>{{ obj.category.name if obj.category else 'Sin categoría' }}</td>
+                        <td>
+                            {% if obj.category %}
+                                {{ obj.category.name }}
+                            {% else %}
+                                Sin categoría
+                            {% endif %}
+                        </td>
                         <td>${{ obj.price }}</td>
+                        <td>{{ obj.active|yesno:"Sí,No" }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

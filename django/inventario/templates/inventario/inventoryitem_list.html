@@ -2,7 +2,14 @@
 
 {% block title %}Inventario{% endblock %}
 {% block heading %}Inventario{% endblock %}
+{% block page_actions %}
+    <div>
+        <a class="button button-secondary" href="{% url 'inventario:home' %}">← Regresar al menú principal</a>
+        <a class="button button-primary" href="{% url 'inventario:inventoryitem_create' %}">Agregar inventario</a>
+    </div>
+{% endblock %}
 {% block content %}
+    <p class="subtitle">Visualiza las cantidades y ubicaciones del inventario actual.</p>
     {% if object_list %}
         <table>
             <thead>

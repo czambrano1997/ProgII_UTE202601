@@ -1,0 +1,37 @@
+{% extends "inventario/base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block heading %}{{ page_title }}{% endblock %}
+{% block page_actions %}
+    <a class="button button-secondary" href="{% url 'inventario:home' %}">← Regresar al menú principal</a>
+{% endblock %}
+{% block content %}
+    <p class="subtitle">{{ page_description }}</p>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="form-grid">
+            {% for field in form %}
+                <div class="form-field">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                        <p class="help-text">{{ field.help_text }}</p>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="form-actions">
+            <button class="button button-primary" type="submit">{{ submit_text }}</button>
+        </div>
+        {% if form.non_field_errors %}
+            <div class="error-box">
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </form>
+{% endblock %}

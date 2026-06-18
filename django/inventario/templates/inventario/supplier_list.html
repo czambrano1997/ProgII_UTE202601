@@ -2,7 +2,14 @@
 
 {% block title %}Proveedores{% endblock %}
 {% block heading %}Proveedores{% endblock %}
+{% block page_actions %}
+    <div>
+        <a class="button button-secondary" href="{% url 'inventario:home' %}">← Regresar al menú principal</a>
+        <a class="button button-primary" href="{% url 'inventario:supplier_create' %}">Agregar proveedor</a>
+    </div>
+{% endblock %}
 {% block content %}
+    <p class="subtitle">Revisa los datos de contacto de tus proveedores registrados.</p>
     {% if object_list %}
         <table>
             <thead>
