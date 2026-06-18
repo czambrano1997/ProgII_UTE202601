@@ -1,0 +1,103 @@
+{% extends "posters/poster_base.html" %}
+{% load components %}
+{% block title %}Póster — {{ event.name }}{% endblock %}
+{% block poster_content %}
+
+{# Andean chakana-inspired header band #}
+<div class="bg-indigo-800 px-10 py-8 text-white relative overflow-hidden">
+  {# Chakana (Andean cross) SVG motif #}
+  <svg class="absolute right-8 top-4 opacity-20 h-40 w-40" viewBox="0 0 90 90"
+       fill="currentColor" aria-hidden="true">
+    <!-- Chakana: stepped cross with central circle -->
+    <path d="M30 0h30v20H50v10h20v30H50v10h10v20H30V70H20V60H0V30h20V20H30V0z
+             M35 35h20v20H35z" fill-rule="evenodd"/>
+    <circle cx="45" cy="45" r="6"/>
+  </svg>
+
+  <p class="text-xs uppercase tracking-widest text-indigo-300 mb-1">
+    Tinkuy · <em>«encuentro de mundos»</em>
+  </p>
+  <h1 class="text-4xl font-extrabold leading-tight mb-3">{{ event.name }}</h1>
+  <p class="text-indigo-200 text-base max-w-lg">{{ event.summary }}</p>
+</div>
+
+{# Key stats band #}
+<div class="grid grid-cols-4 divide-x divide-gray-100 bg-indigo-50 text-center">
+  <div class="py-5 px-3">
+    <p class="text-2xl font-bold text-indigo-700">{{ event.start_date }}</p>
+    <p class="text-xs text-gray-500 mt-1">Inicio</p>
+  </div>
+  <div class="py-5 px-3">
+    <p class="text-2xl font-bold text-indigo-700">{{ event.end_date }}</p>
+    <p class="text-xs text-gray-500 mt-1">Fin</p>
+  </div>
+  <div class="py-5 px-3">
+    <p class="text-2xl font-bold text-indigo-700">{{ event.capacity }}</p>
+    <p class="text-xs text-gray-500 mt-1">Capacidad</p>
+  </div>
+  <div class="py-5 px-3">
+    <p class="text-2xl font-bold text-indigo-700">${{ event.ticket_price }}</p>
+    <p class="text-xs text-gray-500 mt-1">Entrada</p>
+  </div>
+</div>
+
+{# Keynotes section #}
+{% if keynotes %}
+<div class="px-10 py-8 border-b border-gray-100">
+  <h2 class="text-xs font-semibold uppercase tracking-widest text-indigo-500 mb-4">
+    Keynotes destacados
+  </h2>
+  <div class="space-y-3">
+    {% for session in keynotes %}
+    <div class="flex items-start gap-4 rounded-xl bg-indigo-50 p-4">
+      <div class="flex-1">
+        <p class="font-bold text-gray-900">{{ session.title }}</p>
+        <p class="text-xs text-gray-500 mt-0.5">
+          {{ session.room }} · {{ session.start_time }}
+        </p>
+      </div>
+      {% badge label="Keynote" color="yellow" %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{# Speaker grid #}
+{% with speakers_seen="" %}
+<div class="px-10 py-8">
+  <h2 class="text-xs font-semibold uppercase tracking-widest text-indigo-500 mb-4">
+    Ponentes
+  </h2>
+  <div class="grid grid-cols-3 gap-4">
+    {% for session in sessions %}
+      {% for speaker in session.speakers.all %}
+      <div class="flex items-center gap-3 rounded-xl border border-gray-100 p-3 bg-white">
+        {% if speaker.photo %}
+        <img src="{{ speaker.photo.url }}" alt="{{ speaker.full_name }}"
+             class="h-10 w-10 rounded-full object-cover flex-shrink-0"/>
+        {% else %}
+        <div class="h-10 w-10 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-700 font-bold text-sm flex-shrink-0">
+          {{ speaker.full_name|slice:":1" }}
+        </div>
+        {% endif %}
+        <div class="min-w-0">
+          <p class="text-sm font-semibold text-gray-900 truncate">{{ speaker.full_name }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    {% empty %}
+    <p class="col-span-3 text-sm text-gray-400">Sin ponentes asignados aún.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endwith %}
+
+{# Footer #}
+<div class="bg-gray-900 text-gray-400 px-10 py-5 flex items-center justify-between text-xs">
+  <span>Tinkuy — plataforma de eventos universitarios</span>
+  {% if event.website %}
+  <a href="{{ event.website }}" class="text-indigo-400 hover:underline">{{ event.website }}</a>
+  {% endif %}
+</div>
+{% endblock %}

@@ -12,6 +12,7 @@ class Level(models.TextChoices):
 
 
 class Event(models.Model):
+    id: int
     name = models.CharField(max_length=200, verbose_name="nombre")
     slug = models.SlugField(unique=True, verbose_name="slug")
     summary = models.TextField(verbose_name="resumen")

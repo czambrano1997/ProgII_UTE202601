@@ -5,6 +5,7 @@ from django.urls import path
 from events.views import (
     attendee_views,
     event_views,
+    poster_views,
     registration_views,
     room_views,
     session_views,
@@ -31,4 +32,7 @@ urlpatterns = [
     path("asistentes/<int:pk>/", attendee_views.attendee_detail, name="attendee_detail"),
     # Registrations
     path("registros/", registration_views.registration_list, name="registration_list"),
+    # Posters
+    path("eventos/<slug:slug>/poster/", poster_views.event_poster, name="event_poster"),
+    path("eventos/<slug:slug>/lineup/", poster_views.lineup_poster, name="lineup_poster"),
 ]
