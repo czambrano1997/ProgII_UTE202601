@@ -20,17 +20,9 @@ Including another URLconf
 """
 
 from django.contrib import admin
-<<<<<<< HEAD
 from django.urls import include, path
-=======
-from django.urls import path, include
->>>>>>> refs/remotes/origin/estudiante/gomez_danny
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     #path("inventario/", include("inventario.urls")),
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/estudiante/gomez_danny
 ]
