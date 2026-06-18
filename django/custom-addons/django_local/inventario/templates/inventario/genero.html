@@ -4,32 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categorias - Inventario UTE</title>
+    <title>Generos - Tienda de Discos</title>
 </head>
 
 <body>
 
-    <h1>Panel de Inventario UTE</h1>
-    <h3>{{carrera}}</h3>
+    <h1>Tienda de Discos</h1>
+    
 
-    <p>Total de categorias: {{ categorias|length }}</p>
+    <p>Total de generos: {{ generos|length }}</p>
 
-    <table>
+    <table border ="1">
         <tr>
             <th>Codigo</th>
-            <th>Nombre</th>
+            <th>Genero</th>
             <th>Descripcion</th>
         </tr>
 
-        {% for p in categorias %}
+        {% for genero in generos %}
         <tr>
-            <td>{{ p.codigo }}</td>
-            <td>{{ p.nombre }}</td>
-            <td>{{ p.descripcion }}</td>
+            <td>{{ genero.id }}</td>
+            <td>{{ genero.nombre }}</td>
+            <td>{{ genero.descripcion }}</td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan="3">No hay categorias registradas</td>
+            <td colspan="3">No hay generos registradas</td>
         </tr>
         {% endfor %}
     </table>
@@ -39,4 +39,4 @@
 
 </body>
 
-</html>l
+</html>

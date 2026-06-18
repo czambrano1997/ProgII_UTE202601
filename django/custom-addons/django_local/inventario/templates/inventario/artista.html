@@ -1,0 +1,26 @@
+<h1>Tienda de Discos</h1>
+<p>Total de artistas:{{artistas|length}}</p>
+
+<table border = "1">
+    <tr>
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Pais</th>
+    </tr>
+    
+    {% for artista in artistas%}
+    <tr>
+        <td>{{ artistas.id}}</td>
+        <td>{{ artista.nombre}}</td>
+        <tb>{{ artista.pais}}</tb>
+    <tr>
+    {%empty%}
+    <tr>
+        <td colspan="3">No hay artistas registrados</td>
+    </tr>
+    {%endfor%}
+</table>
+    
+
+    
+
