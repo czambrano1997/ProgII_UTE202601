@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_comida,access_comida,model_comida,base.group_user,1,1,1,1
+access_deportes,access_deportes,model_deportes,base.group_user,1,1,1,1

@@ -1,5 +1,6 @@
 from django.db import models
 
+<<<<<<< HEAD
 
 # Proveedor
 class Proveedor(models.Model):
@@ -47,3 +48,6 @@ class Pedido(models.Model):
 
     def __str__(self):
         return f"Pedido {self.id} - {self.cliente.nombre_completo}"
+=======
+# Create your models here.
+>>>>>>> refs/remotes/origin/estudiante/gomez_danny
