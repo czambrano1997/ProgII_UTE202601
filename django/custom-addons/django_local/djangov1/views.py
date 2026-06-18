@@ -7,7 +7,7 @@ def clientes(request):
                   {'datos':datos})
 
 def flores(request):
-    datos = Flor,object.all()
+    datos = Flor.objects.all()
     return render(request, 'flores.html',
                   {'datos':datos})
 
