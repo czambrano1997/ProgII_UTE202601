@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 # Modelo Clientes
-class clientes(models.Model):
+class Clientes(models.Model):
     nombre = models.CharField(max_length=100)
     s_nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
@@ -39,10 +39,10 @@ class Reservas(models.Model):
     nota = models.TextField(verbose_name="Nota extra de la reservacion")
 
     def __str__(self):
-        return f"Reservado por :{self.cliente}Numero de reserva :{self.numero_Rs}"
+        return f"{self.cliente}{self.numero_Rs}"
     
 # Modelo paquete
-class paquete(models.Model):
+class Paquete(models.Model):
     nombre_p = models.CharField(max_length=100)
     costo_p =  models.DecimalField(max_digits=10,
                                    decimal_places=2,
@@ -52,7 +52,7 @@ class paquete(models.Model):
     def __str__(self):
         return self.nombre_p
 #Modelo invetario
-class inventario(models.Model):
+class Inventario(models.Model):
     nombre_p = models.CharField(max_length=100,
                                 null=True,
                                 blank=True)
@@ -61,7 +61,7 @@ class inventario(models.Model):
                                    null= True,
                                    blank=True,
                                    verbose_name="Precio unitario")
-    cantida_p = models.IntegerField(verbose_name="Cantidad del producto",
+    cantidad_p = models.IntegerField(verbose_name="Cantidad del producto",
                                     null=True,
                                     blank=True)
     fecha_registro = models.DateTimeField(auto_now_add=True)
@@ -70,7 +70,7 @@ class inventario(models.Model):
         return self.nombre_p
 
 # Modelo gestion de reservas 
-class gestion_reservas(models.Model):
+class Gestion_reservas(models.Model):
     nombre_cli = models.OneToOneField('cliente',on_delete= models.CASCADE)
 
     canchas = models.ManyToManyField('Reservas')
