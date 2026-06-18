@@ -53,3 +53,31 @@ class paquete(models.Model):
         return self.nombre_p
 #Modelo invetario
 class inventario(models.Model):
+    nombre_p = models.CharField(max_length=100,
+                                null=True,
+                                blank=True)
+    precio_p = models.DecimalField(max_digits=10,
+                                   decimal_places=2,
+                                   null= True,
+                                   blank=True,
+                                   verbose_name="Precio unitario")
+    cantida_p = models.IntegerField(verbose_name="Cantidad del producto",
+                                    null=True,
+                                    blank=True)
+    fecha_registro = models.DateTimeField(auto_now_add=True)
+
+    def __set__(self):
+        return self.nombre_p
+
+# Modelo gestion de reservas 
+class gestion_reservas(models.Model):
+    nombre_cli = models.OneToOneField('cliente',on_delete= models.CASCADE)
+
+    canchas = models.ManyToManyField('Reservas')
+
+    reservo = models.BooleanField(verbose_name="Si resesrvo")
+
+    productos_de_consumo = models.ManyToManyField('inventario')
+
+    def __str__(self):
+        return  f"{self.nombre_cli} {self.canchas}"
