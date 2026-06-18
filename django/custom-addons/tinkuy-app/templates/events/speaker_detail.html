@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load components %}
+{% block title %}{{ speaker.full_name }} — Tinkuy{% endblock %}
+{% block content %}
+  {% page_header title=speaker.full_name subtitle=speaker.bio %}
+  <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+    {% stat label="Calificación" value=speaker.rating %}
+    {% if profile %}
+      {% stat label="Empresa" value=profile.company %}
+      {% stat label="Años de experiencia" value=profile.years_experience %}
+    {% endif %}
+  </div>
+  {% if speaker.twitter_url %}
+  <a href="{{ speaker.twitter_url }}" class="text-indigo-600 hover:underline text-sm">Twitter →</a>
+  {% endif %}
+  <h2 class="text-xl font-semibold mt-8 mb-4">Sesiones</h2>
+  {% if speaker.sessions.all %}
+  <ul class="space-y-2">
+    {% for session in speaker.sessions.all %}
+    <li class="border rounded-lg p-3 bg-white">{{ session.title }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    {% empty_state message="Sin sesiones asignadas." %}
+  {% endif %}
+{% endblock %}

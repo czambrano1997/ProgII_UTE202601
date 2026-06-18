@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load components %}
+{% block title %}{{ event.name }} — Tinkuy{% endblock %}
+{% block content %}
+  {% page_header title=event.name subtitle=event.summary %}
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+    {% stat label="Capacidad" value=event.capacity %}
+    {% stat label="Precio entrada" value=event.ticket_price %}
+    {% stat label="Inicio" value=event.start_date %}
+    {% stat label="Fin" value=event.end_date %}
+  </div>
+  {% if event.website %}
+  <a href="{{ event.website }}" class="text-indigo-600 hover:underline text-sm">Sitio web del evento →</a>
+  {% endif %}
+  <h2 class="text-xl font-semibold mt-8 mb-4">Sesiones</h2>
+  {% if event.sessions.all %}
+  <ul class="space-y-2">
+    {% for session in event.sessions.all %}
+    <li class="border rounded-lg p-3 bg-white flex justify-between items-center">
+      <span class="font-medium">{{ session.title }}</span>
+      {% badge label=session.level %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    {% empty_state message="Sin sesiones aún." %}
+  {% endif %}
+{% endblock %}

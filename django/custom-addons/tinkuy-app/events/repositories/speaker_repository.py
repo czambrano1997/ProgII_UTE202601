@@ -12,6 +12,10 @@ def list_all() -> QuerySet[Speaker]:
     return Speaker.objects.all()
 
 
+def get_by_id(pk: int) -> Speaker | None:
+    return Speaker.objects.filter(pk=pk).first()
+
+
 def get_by_email(email: str) -> Speaker | None:
     return Speaker.objects.filter(email=email).first()
 

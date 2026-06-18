@@ -1,0 +1,10 @@
+{# component: nav — props: none #}
+{% load static %}
+<nav class="bg-indigo-700 text-white px-6 py-3 flex gap-6 items-center">
+  <a href="{% url 'events:event_list' %}" class="font-bold text-lg tracking-tight">Tinkuy</a>
+  <a href="{% url 'events:event_list' %}" class="hover:underline text-sm">Eventos</a>
+  <a href="{% url 'events:speaker_list' %}" class="hover:underline text-sm">Ponentes</a>
+  <a href="{% url 'events:room_list' %}" class="hover:underline text-sm">Salas</a>
+  <a href="{% url 'events:attendee_list' %}" class="hover:underline text-sm">Asistentes</a>
+  <a href="{% url 'events:registration_list' %}" class="hover:underline text-sm">Registros</a>
+</nav>

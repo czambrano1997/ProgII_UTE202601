@@ -22,3 +22,7 @@ def get_by_slug(event_id: int, slug: str) -> Session | None:
 
 def list_keynotes(event_id: int) -> QuerySet[Session]:
     return Session.objects.filter(event_id=event_id, is_keynote=True).order_by("scheduled_at")
+
+
+def list_by_room(room_id: int) -> QuerySet[Session]:
+    return Session.objects.filter(room_id=room_id).select_related("event").order_by("scheduled_at")
