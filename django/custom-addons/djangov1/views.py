@@ -10,3 +10,15 @@ def vista_Clientes(request):
 def vista_Reservas(request):
     reservas = Reservas.objects.all()
     return render(request,'resvervas.html',{'reservas':reservas})
+
+def vista_Inventario(request):
+    inventario = Inventario.objects.all()
+    return render(request,'inventario.html',{'inventario':inventario})
+
+def vista_Gestion(request):
+    gestion_reservas = Gestion_reservas.objects.all()
+    return render(request,'gestion_reservas.html',{'gestion_reservas':gestion_reservas})
+
+def vista_paquetes(request):
+    paquete = Paquete.objects.all()
+    return render(request,'paquete.html',{'paquete':paquete})
