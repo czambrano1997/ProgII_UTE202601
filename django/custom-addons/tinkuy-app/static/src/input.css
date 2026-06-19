@@ -1,3 +1,120 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Primario · oro chakana */
+  --color-primary-50: #faf6ed;
+  --color-primary-100: #f4ecdb;
+  --color-primary-200: #eadcbb;
+  --color-primary-300: #dfc793;
+  --color-primary-400: #d3b36b;
+  --color-primary-500: #c9a24b;
+  --color-primary-600: #ab8b45;
+  --color-primary-700: #8d753f;
+  --color-primary-800: #6f5e38;
+  --color-primary-900: #514732;
+
+  /* Secundario */
+  --color-secondary-50: #eaf0f8;
+  --color-secondary-100: #d5e2f0;
+  --color-secondary-200: #b0c8e3;
+  --color-secondary-300: #82a7d2;
+  --color-secondary-400: #5487c2;
+  --color-secondary-500: #2e6db4;
+  --color-secondary-600: #295f9d;
+  --color-secondary-700: #235186;
+  --color-secondary-800: #1e426f;
+  --color-secondary-900: #193458;
+
+  /* Acento */
+  --color-accent-50: #fbecea;
+  --color-accent-100: #f7d9d5;
+  --color-accent-200: #efb6b0;
+  --color-accent-300: #e68c82;
+  --color-accent-400: #dd6254;
+  --color-accent-500: #d6402f;
+  --color-accent-600: #b6392d;
+  --color-accent-700: #96322b;
+  --color-accent-800: #762b2a;
+  --color-accent-900: #552428;
+
+  /* Neutral */
+  --color-neutral-50: #f0f2f5;
+  --color-neutral-100: #e1e4eb;
+  --color-neutral-200: #c7ccd9;
+  --color-neutral-300: #a6afc4;
+  --color-neutral-400: #8692ae;
+  --color-neutral-500: #6b7a9c;
+  --color-neutral-600: #5c6a89;
+  --color-neutral-700: #4d5976;
+  --color-neutral-800: #3e4962;
+  --color-neutral-900: #2f394f;
+
+  /* Ink / Ground · navy */
+  --color-ink-50: #eef1f6;
+  --color-ink-100: #e2e7f0;
+  --color-ink-200: #ccd3e0;
+  --color-ink-300: #9aa6c0;
+  --color-ink-400: #6b7a9c;
+  --color-ink-500: #475370;
+  --color-ink-600: #313c54;
+  --color-ink-700: #20293c;
+  --color-ink-800: #141b2b;
+  --color-ink-900: #0d1424;
+
+  /* Estados semánticos */
+  --color-success-100: #d2ece9;
+  --color-success-500: #1f9e8f;
+  --color-success-700: #19726d;
+  --color-warning-100: #fcf2d4;
+  --color-warning-500: #f2c029;
+  --color-warning-700: #a98927;
+  --color-danger-100: #f7d9d5;
+  --color-danger-500: #d6402f;
+  --color-danger-700: #96322b;
+  --color-info-100: #d5e2f0;
+  --color-info-500: #2e6db4;
+  --color-info-700: #235186;
+
+  /* Tokens semánticos (cambian con el tema) */
+  --color-bg:         var(--bg);
+  --color-surface:    var(--surface);
+  --color-surface-2:  var(--surface-2);
+  --color-border:     var(--border);
+  --color-ink:        var(--fg);
+  --color-ink-muted:  var(--fg-muted);
+  --color-primary:    var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-ring:       var(--ring);
+
+  /* Radio */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+
+  /* Sombra */
+  --shadow-sm: 0 1px 2px rgba(8,13,24,0.08);
+  --shadow-md: 0 4px 12px rgba(8,13,24,0.14);
+  --shadow-lg: 0 12px 28px rgba(8,13,24,0.16);
+  --shadow-xl: 0 24px 50px rgba(8,13,24,0.18);
+
+  /* Tipografía */
+  --font-display: "Archivo Black", system-ui, sans-serif;
+  --font-body:    "Archivo", system-ui, sans-serif;
+  --font-mono:    "Space Mono", ui-monospace, monospace;
+}
+
+/* Tema claro (por defecto) */
+:root {
+  --bg:#eef1f6; --surface:#ffffff; --surface-2:#e2e7f0; --border:#ccd3e0;
+  --fg:#131a2b; --fg-muted:#58627a; --primary:#ab8b45; --on-primary:#ffffff; --ring:#d7b978;
+}
+
+/* Tema oscuro */
+.dark {
+  --bg:#080d18; --surface:#0f1626; --surface-2:#1a2236; --border:#2a3450;
+  --fg:#eef1f6; --fg-muted:#9aa6c0; --primary:#c9a24b; --on-primary:#0d1424; --ring:#dcc38a;
+}

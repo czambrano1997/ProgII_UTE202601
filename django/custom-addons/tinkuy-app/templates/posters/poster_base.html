@@ -3,7 +3,8 @@
 {% block extra_head %}
 <style media="print">
   @page { size: A3 portrait; margin: 0; }
-  nav, .no-print { display: none; }
+  header, aside, nav, .no-print { display: none; }
+  main { margin: 0 !important; padding-top: 0 !important; }
   body { background: white; }
 </style>
 {% endblock %}

@@ -1,0 +1,79 @@
+{# component: drawer — props: current:str="" (active route url_name) #}
+<aside id="app-drawer"
+       class="no-print group fixed inset-y-0 left-0 z-40 flex flex-col overflow-x-hidden w-16 hover:w-64 lg:w-64 bg-ink-900 text-ink-100 shadow-lg transition-[width] duration-200 ease-in-out">
+
+  <div class="flex items-center h-14 px-3 shrink-0">
+    <span class="grid place-items-center h-10 w-10 shrink-0">
+      <svg viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor" fill-rule="evenodd" aria-hidden="true">
+        <path d="M10 2H14V6H18V10H22V14H18V18H14V22H10V18H6V14H2V10H6V6H10V2Z M10.5 10.5H13.5V13.5H10.5Z"/>
+      </svg>
+    </span>
+    <span class="drawer-label ml-2 font-display text-sm tracking-tight whitespace-nowrap opacity-0 transition-opacity duration-200 group-hover:opacity-100 lg:opacity-100">Tinkuy</span>
+  </div>
+
+  <nav class="flex-1 px-2 py-2 space-y-1" aria-label="Navegación principal">
+    <a href="{% url 'events:event_list' %}"
+       class="flex items-center h-11 rounded-lg px-3 {% if current == 'event_list' or current == 'event_detail' or current == 'session_list' or current == 'session_detail' or current == 'event_poster' or current == 'lineup_poster' %}bg-primary-500 text-ink-900{% else %}text-ink-200 hover:bg-ink-700{% endif %}">
+      <svg viewBox="0 0 24 24" class="h-6 w-6 shrink-0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v3M16 3v3"/>
+      </svg>
+      <span class="drawer-label ml-3 text-sm whitespace-nowrap opacity-0 transition-opacity duration-200 group-hover:opacity-100 lg:opacity-100">Eventos</span>
+    </a>
+
+    <a href="{% url 'events:speaker_list' %}"
+       class="flex items-center h-11 rounded-lg px-3 {% if current == 'speaker_list' or current == 'speaker_detail' %}bg-primary-500 text-ink-900{% else %}text-ink-200 hover:bg-ink-700{% endif %}">
+      <svg viewBox="0 0 24 24" class="h-6 w-6 shrink-0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8.5 21h7"/>
+      </svg>
+      <span class="drawer-label ml-3 text-sm whitespace-nowrap opacity-0 transition-opacity duration-200 group-hover:opacity-100 lg:opacity-100">Ponentes</span>
+    </a>
+
+    <a href="{% url 'events:room_list' %}"
+       class="flex items-center h-11 rounded-lg px-3 {% if current == 'room_list' or current == 'room_detail' %}bg-primary-500 text-ink-900{% else %}text-ink-200 hover:bg-ink-700{% endif %}">
+      <svg viewBox="0 0 24 24" class="h-6 w-6 shrink-0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 7h.01M12 7h.01M16 7h.01M8 11h.01M12 11h.01M16 11h.01M10 21v-4h4v4"/>
+      </svg>
+      <span class="drawer-label ml-3 text-sm whitespace-nowrap opacity-0 transition-opacity duration-200 group-hover:opacity-100 lg:opacity-100">Salas</span>
+    </a>
+
+    <a href="{% url 'events:attendee_list' %}"
+       class="flex items-center h-11 rounded-lg px-3 {% if current == 'attendee_list' or current == 'attendee_detail' %}bg-primary-500 text-ink-900{% else %}text-ink-200 hover:bg-ink-700{% endif %}">
+      <svg viewBox="0 0 24 24" class="h-6 w-6 shrink-0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 5.6a3 3 0 0 1 0 5.8M17.5 14.2c2.3.6 4 2.6 4 5.8"/>
+      </svg>
+      <span class="drawer-label ml-3 text-sm whitespace-nowrap opacity-0 transition-opacity duration-200 group-hover:opacity-100 lg:opacity-100">Asistentes</span>
+    </a>
+
+    <a href="{% url 'events:registration_list' %}"
+       class="flex items-center h-11 rounded-lg px-3 {% if current == 'registration_list' %}bg-primary-500 text-ink-900{% else %}text-ink-200 hover:bg-ink-700{% endif %}">
+      <svg viewBox="0 0 24 24" class="h-6 w-6 shrink-0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 4 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-4Z"/><path d="M9 6.5v11" stroke-dasharray="2 2"/>
+      </svg>
+      <span class="drawer-label ml-3 text-sm whitespace-nowrap opacity-0 transition-opacity duration-200 group-hover:opacity-100 lg:opacity-100">Registros</span>
+    </a>
+  </nav>
+
+  <button type="button" data-drawer-toggle aria-controls="app-drawer" aria-expanded="false"
+          class="flex items-center h-12 m-2 rounded-lg px-3 text-ink-200 hover:bg-ink-700">
+    <svg viewBox="0 0 24 24" class="h-6 w-6 shrink-0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 7h16M4 12h16M4 17h16"/>
+    </svg>
+    <span class="drawer-label ml-3 text-sm whitespace-nowrap opacity-0 transition-opacity duration-200 group-hover:opacity-100 lg:opacity-100">Fijar menú</span>
+  </button>
+
+  <style>
+    #app-drawer.is-open { width: 16rem; }
+    #app-drawer.is-open .drawer-label { opacity: 1; }
+  </style>
+  <script>
+    (function () {
+      var d = document.getElementById("app-drawer");
+      var btn = d && d.querySelector("[data-drawer-toggle]");
+      if (!d || !btn) return;
+      btn.addEventListener("click", function () {
+        var open = d.classList.toggle("is-open");
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    })();
+  </script>
+</aside>

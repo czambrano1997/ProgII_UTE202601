@@ -5,9 +5,17 @@ from django import template
 register = template.Library()
 
 
-@register.inclusion_tag("components/nav.html")
-def nav() -> dict[str, str]:
+@register.inclusion_tag("components/app_bar.html")
+def app_bar() -> dict[str, str]:
     return {}
+
+
+@register.inclusion_tag("components/drawer.html", takes_context=True)
+def drawer(context: template.Context) -> dict[str, str]:
+    request = context.get("request")
+    match = getattr(request, "resolver_match", None)
+    current = str(getattr(match, "url_name", "") or "")
+    return {"current": current}
 
 
 @register.inclusion_tag("components/page_header.html")
