@@ -7,7 +7,7 @@ class Genero(models.Model):
 
     def __str__(self):
         # ordering = ['codigo']
-        return f"{self.codigo} - {self.nombre}"
+        return self.nombre
     
 
 class Artista(models.Model):
@@ -40,7 +40,7 @@ class Disco(models.Model):
 class Cliente (models.Model):
     nombre = models.CharField(max_length = 80)
     correo = models.CharField(max_length=70)
-    telefono = models.IntegerField()
+    telefono = models.CharField()
 
     def __str__(self):
         return self.nombre

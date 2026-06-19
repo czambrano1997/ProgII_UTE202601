@@ -1,42 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
+<h1>Lista de Generos</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generos - Tienda de Discos</title>
-</head>
-
-<body>
-
-    <h1>Tienda de Discos</h1>
-    
-
-    <p>Total de generos: {{ generos|length }}</p>
-
-    <table border ="1">
-        <tr>
-            <th>Codigo</th>
-            <th>Genero</th>
-            <th>Descripcion</th>
-        </tr>
-
-        {% for genero in generos %}
-        <tr>
-            <td>{{ genero.id }}</td>
-            <td>{{ genero.nombre }}</td>
-            <td>{{ genero.descripcion }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="3">No hay generos registradas</td>
-        </tr>
-        {% endfor %}
-    </table>
-
-    <hr>
-    <a href="/admin/">Panel de administración</a>
-
-</body>
-
-</html>
+{%for genero in generos%}
+<p>{{genero.titulo}}</p>
+{%endfor%}
