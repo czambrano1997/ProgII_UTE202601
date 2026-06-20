@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load components %}
+{% block title %}Eventos — Tinkuy{% endblock %}
+{% block content %}
+  {% page_header title="Eventos" subtitle="Conferencias y encuentros publicados" %}
+  {% if events %}
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {% for event in events %}
+      {% card title=event.name subtitle=event.summary href=event.get_absolute_url %}
+    {% endfor %}
+  </div>
+  {% else %}
+    {% empty_state message="No hay eventos publicados por el momento." %}
+  {% endif %}
+{% endblock %}

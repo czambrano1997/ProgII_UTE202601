@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load components %}
+{% block title %}{{ room.name }} — Tinkuy{% endblock %}
+{% block content %}
+  {% page_header title=room.name %}
+  <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+    {% stat label="Piso" value=room.floor %}
+    {% stat label="Aforo" value=room.seating_capacity %}
+    {% if room.has_projector %}{% badge label="Proyector" color="green" %}{% endif %}
+  </div>
+  <h2 class="text-xl font-semibold mt-8 mb-4">Sesiones en esta sala</h2>
+  {% if sessions %}
+  <ul class="space-y-2">
+    {% for session in sessions %}
+    <li class="border rounded-lg p-3 bg-white flex justify-between">
+      <span>{{ session.title }}</span>
+      <span class="text-sm text-gray-400">{{ session.start_time }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    {% empty_state message="Sin sesiones asignadas a esta sala." %}
+  {% endif %}
+{% endblock %}

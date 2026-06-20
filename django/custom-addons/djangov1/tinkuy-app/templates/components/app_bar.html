@@ -1,0 +1,17 @@
+{# component: app_bar — props: brand_name:str, home_url:str, brand_icon:str #}
+{% load static %}
+<header class="no-print fixed top-0 right-0 left-16 lg:left-64 z-30 h-14 bg-surface border-b border-border flex items-center justify-between px-4">
+  <a href="{% url home_url %}"
+     class="flex items-center gap-2 font-display text-sm tracking-tight text-primary-700">
+    <span class="h-6 w-6">{{ brand_icon|safe }}</span>
+    {{ brand_name }}
+  </a>
+  <a href="{% url home_url %}"
+     class="inline-flex items-center gap-1.5 text-sm text-ink-muted hover:text-primary-700">
+    <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/>
+    </svg>
+    Inicio
+  </a>
+</header>

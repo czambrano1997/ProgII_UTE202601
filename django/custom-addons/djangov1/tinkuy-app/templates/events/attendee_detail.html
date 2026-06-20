@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load components %}
+{% block title %}{{ attendee.full_name }} — Tinkuy{% endblock %}
+{% block content %}
+  {% page_header title=attendee.full_name subtitle=attendee.email %}
+  <div class="flex gap-2 mb-6">
+    {% if attendee.is_student %}{% badge label="Estudiante" color="green" %}{% endif %}
+  </div>
+  <h2 class="text-xl font-semibold mt-6 mb-4">Registros</h2>
+  {% if registrations %}
+  <ul class="space-y-2">
+    {% for reg in registrations %}
+    <li class="border rounded-lg p-3 bg-white flex justify-between items-center">
+      <span>{{ reg.session.title }}</span>
+      {% if reg.confirmed %}
+        {% badge label="Confirmado" color="green" %}
+      {% else %}
+        {% badge label="Pendiente" color="yellow" %}
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    {% empty_state message="Sin registros." %}
+  {% endif %}
+{% endblock %}

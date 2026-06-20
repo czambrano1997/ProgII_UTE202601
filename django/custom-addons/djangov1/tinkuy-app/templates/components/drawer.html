@@ -1,0 +1,73 @@
+{# component: drawer — props: current:str="" (active route url_name), brand_name:str, brand_icon:str, nav_items:list[dict] #}
+<aside
+  id="app-drawer"
+  class="no-print group fixed inset-y-0 left-0 z-40 flex flex-col overflow-x-hidden w-16 hover:w-64 lg:w-64 bg-ink-900 text-ink-100 shadow-lg transition-[width] duration-200 ease-in-out"
+>
+  <div class="flex items-center h-14 px-3 shrink-0">
+    <span class="grid place-items-center h-10 w-10 shrink-0">{{ brand_icon|safe }}</span>
+    <span
+      class="drawer-label ml-2 font-display text-sm tracking-tight whitespace-nowrap opacity-0 transition-opacity duration-200 group-hover:opacity-100 lg:opacity-100"
+      >{{ brand_name }}</span
+    >
+  </div>
+
+  <nav class="flex-1 px-2 py-2 space-y-1" aria-label="Navegación principal">
+    {% for item in nav_items %}
+    <a
+      href="{% url item.url %}"
+      class="flex items-center h-11 rounded-lg px-3 {% if current in item.active_urls %}bg-primary-500 text-ink-900{% else %}text-ink-200 hover:bg-ink-700{% endif %}"
+    >
+      <span class="h-6 w-6 shrink-0">{{ item.icon|safe }}</span>
+      <span
+        class="drawer-label ml-3 text-sm whitespace-nowrap opacity-0 transition-opacity duration-200 group-hover:opacity-100 lg:opacity-100"
+        >{{ item.label }}</span
+      >
+    </a>
+    {% endfor %}
+  </nav>
+
+  <button
+    type="button"
+    data-drawer-toggle
+    aria-controls="app-drawer"
+    aria-expanded="false"
+    class="flex items-center h-12 m-2 rounded-lg px-3 text-ink-200 hover:bg-ink-700"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      class="h-6 w-6 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.7"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </svg>
+    <span
+      class="drawer-label ml-3 text-sm whitespace-nowrap opacity-0 transition-opacity duration-200 group-hover:opacity-100 lg:opacity-100"
+      >Fijar menú</span
+    >
+  </button>
+
+  <style>
+    #app-drawer.is-open {
+      width: 16rem;
+    }
+    #app-drawer.is-open .drawer-label {
+      opacity: 1;
+    }
+  </style>
+  <script>
+    (function () {
+      var d = document.getElementById("app-drawer");
+      var btn = d && d.querySelector("[data-drawer-toggle]");
+      if (!d || !btn) return;
+      btn.addEventListener("click", function () {
+        var open = d.classList.toggle("is-open");
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    })();
+  </script>
+</aside>

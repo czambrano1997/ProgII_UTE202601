@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_head %}
+<style media="print">
+  @page { size: A3 portrait; margin: 0; }
+  header, aside, nav, .no-print { display: none; }
+  main { margin: 0 !important; padding-top: 0 !important; }
+  body { background: white; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+  {% block poster_content %}{% endblock %}
+</div>
+<div class="no-print mt-6 text-center">
+  <button onclick="window.print()"
+    class="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-5 py-2.5 text-white text-sm font-medium hover:bg-primary-700 transition">
+    Imprimir / Guardar PDF
+  </button>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+{# component: page_header — props: title:str, subtitle:str="" #}
+<div class="mb-6">
+  <h1 class="text-3xl font-bold text-gray-900">{{ title }}</h1>
+  {% if subtitle %}
+  <p class="mt-1 text-gray-500 text-sm">{{ subtitle }}</p>
+  {% endif %}
+</div>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load components %}
+{% block title %}Utilización de Salas — Tinkuy{% endblock %}
+{% block content %}
+  {% page_header title="Utilización de Salas" subtitle="Reporte de ocupación por sala" %}
+  {% if utilization %}
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm border-collapse bg-white rounded-xl overflow-hidden shadow-sm">
+      <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
+        <tr>
+          <th class="px-4 py-3 text-left">Sala</th>
+          <th class="px-4 py-3 text-left">Piso</th>
+          <th class="px-4 py-3 text-right">Sesiones</th>
+          <th class="px-4 py-3 text-right">Minutos programados</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100">
+        {% for row in utilization %}
+        <tr class="hover:bg-gray-50">
+          <td class="px-4 py-3 font-medium">{{ row.room_name }}</td>
+          <td class="px-4 py-3 text-gray-500">{{ row.floor }}</td>
+          <td class="px-4 py-3 text-right">{{ row.session_count }}</td>
+          <td class="px-4 py-3 text-right">{{ row.total_minutes }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    {% empty_state message="Sin datos de utilización disponibles." %}
+  {% endif %}
+{% endblock %}

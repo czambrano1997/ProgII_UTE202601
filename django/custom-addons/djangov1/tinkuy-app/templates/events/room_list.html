@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load components %}
+{% block title %}Salas — Tinkuy{% endblock %}
+{% block content %}
+  {% page_header title="Salas" subtitle="Espacios disponibles para las sesiones" %}
+  {% if rooms %}
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {% for room in rooms %}
+      {% url 'events:room_detail' room.pk as room_url %}
+      {% card title=room.name subtitle=room.floor|stringformat:"s" href=room_url %}
+    {% endfor %}
+  </div>
+  {% else %}
+    {% empty_state message="No hay salas registradas." %}
+  {% endif %}
+{% endblock %}
