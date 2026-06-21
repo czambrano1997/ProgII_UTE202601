@@ -1,0 +1,6 @@
+<h1>Lista de Clientes</h1>
+<ul>
+{% for c in clientes %}
+    <li>{{ c.nombre }} - {{ c.correo }}</li>
+{% endfor %}
+</ul>

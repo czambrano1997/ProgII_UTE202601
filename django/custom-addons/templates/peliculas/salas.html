@@ -1,0 +1,6 @@
+<h1>Lista de Salas</h1>
+<ul>
+{% for s in salas %}
+    <li>{{ s.nombre }} - Capacidad: {{ s.capacidad }}</li>
+{% endfor %}
+</ul>

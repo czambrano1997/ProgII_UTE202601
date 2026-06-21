@@ -1,0 +1,6 @@
+<h1>Lista de Funciones</h1>
+<ul>
+{% for f in funciones %}
+    <li>{{ f.pelicula }} - {{ f.sala }} - {{ f.fecha }} - ${{ f.precio }}</li>
+{% endfor %}
+</ul>

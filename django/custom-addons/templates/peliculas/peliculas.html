@@ -1,0 +1,6 @@
+<h1>Lista de Películas</h1>
+<ul>
+{% for p in peliculas %}
+    <li>{{ p.titulo }} - {{ p.genero }} - {{ p.duracion }} min</li>
+{% endfor %}
+</ul>

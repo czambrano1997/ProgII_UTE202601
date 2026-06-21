@@ -1,0 +1,7 @@
+
+<h1>Lista de Boletos</h1>
+<ul>
+{% for b in boletos %}
+    <li>{{ b.cliente }} - Asiento {{ b.asiento }} - Pagado: {{ b.pagado }}</li>
+{% endfor %}
+</ul>
