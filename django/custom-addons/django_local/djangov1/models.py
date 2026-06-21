@@ -3,10 +3,14 @@ from django.db import models
 class TipoFlor(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
-    activa = models.BooleanField(default=True)
+    disponibilidad = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nombre
+    
+    class Meta:
+        verbose_name = "Tipo Flor"
+        verbose_name_plural = "Tipo Flores"
 
 class Proveedor(models.Model):
     nombre = models.CharField(max_length=100)
@@ -15,6 +19,10 @@ class Proveedor(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+    class Meta:
+        verbose_name = "Proveedor"
+        verbose_name_plural = "Proveedores"
     
 
 class Flor(models.Model):
@@ -27,9 +35,12 @@ class Flor(models.Model):
     tipo = models.ForeignKey(TipoFlor, on_delete=models.CASCADE)
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
 
-    def __str_(self):
+    def __str__(self):
         return self.nombre
     
+    class Meta:
+        verbose_name = "Flor"
+        verbose_name_plural = "Flores"
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100)
@@ -39,6 +50,10 @@ class Cliente(models.Model):
     def __str__(self):
         return self.nombre
     
+    class Meta:
+        verbose_name = "Cliente"
+        verbose_name_plural = "Clientes"
+    
 
 class Pedido(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
@@ -46,6 +61,10 @@ class Pedido(models.Model):
     fecha_pedido = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Pedido {self.id}"
+        return f"{self.cliente} - {self.flor}"
+    
+    class Meta:
+        verbose_name = "Pedido"
+        verbose_name_plural = "Pedidos"
         
 

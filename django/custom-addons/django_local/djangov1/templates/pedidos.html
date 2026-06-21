@@ -2,62 +2,129 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Pedidos</title>
+<title>Pedidos de Flores</title>
 
 <style>
+
 body{
     font-family: Arial, sans-serif;
-    background:#fff8fc;
-    margin:20px;
+    background-color:#fff8fc;
+    margin:0;
+    padding:0;
 }
 
-h1{
-    color:#ad1457;
+/* Encabezado */
+header{
+    background: linear-gradient(
+        135deg,
+        #ffe6f0,
+        #ffd6e7,
+        #fff0f6
+    );
+    padding:30px;
     text-align:center;
+    border-bottom:4px solid #d63384;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom:30px;
 }
 
+header h1{
+    color:#c2185b;
+    margin:0;
+    font-size:40px;
+}
+
+.decoracion{
+    color:#d63384;
+    font-size:18px;
+    margin:10px 0;
+}
+
+header p{
+    color:#7a2c52;
+    font-size:18px;
+}
+
+/* Contenedor */
+.contenedor{
+    width:90%;
+    margin:auto;
+}
+
+/* Tabla */
 table{
     width:100%;
     border-collapse:collapse;
     background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 th{
     background:#f8c8dc;
-    padding:12px;
+    color:#6d214f;
+    padding:14px;
 }
 
 td{
-    padding:10px;
-    border:1px solid #ddd;
+    padding:12px;
+    border-bottom:1px solid #eee;
+    text-align:center;
 }
 
-tr:nth-child(odd){
-    background:#fff5fa;
+tr:hover{
+    background:#fff0f6;
 }
+
+/* Pie de página */
+footer{
+    margin-top:30px;
+    text-align:center;
+    background:#f8c8dc;
+    padding:15px;
+    color:#6d214f;
+    font-weight:bold;
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>Pedidos Realizados</h1>
+<header>
+    <h1>Floristería Primavera</h1>
+    <div class="decoracion">
+        ❀ ───── ✿ ───── ❀ ───── ✿ ───── ❀
+    </div>
+    <p>Pedidos de flores</p>
+</header>
+
+<div class="contenedor">
 
 <table>
+
 <tr>
     <th>Cliente</th>
-    <th>Flor</th>
-    <th>Fecha</th>
+    <th>Flores</th>
+    <th>Fecha del pedido</th>
 </tr>
 
-{% for pedido in datos %}
+{% for Pedido in datos %}
 <tr>
-    <td>{{ pedido.cliente }}</td>
-    <td>{{ pedido.flor }}</td>
-    <td>{{ pedido.fecha_pedido }}</td>
+    <td>{{ Pedido.cliente }}</td>
+    <td>{{ Pedido.flor }}</td>
+    <td>{{ Pedido.fecha_pedido }}</td>
 </tr>
 {% endfor %}
 
 </table>
+
+</div>
+
+<footer>
+    Sistema de Gestión de Floristería Primavera © 2026
+</footer>
 
 </body>
 </html>
