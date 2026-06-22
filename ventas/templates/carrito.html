@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+
+{% block title %}Tu Selección - La Ideal{% endblock title %}
+
+{% block content %}
+<style>
+    /* 1. RESTAURADO: Fondo animado de lujo completo */
+    body {
+        background-color: #120a07;
+        margin: 0;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .bg-pattern {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        z-index: -1;
+        background-image: 
+            radial-gradient(circle, rgba(212, 163, 115, 0.1) 1px, transparent 1px),
+            url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23d4a373' stroke-opacity='0.1' stroke-width='1'%3E%3Cpath d='M10 10l5 5m-5 0l5-5'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: 80px 80px, 120px 120px;
+        animation: subtleFlow 40s linear infinite;
+    }
+
+    @keyframes subtleFlow {
+        from { background-position: 0 0; }
+        to { background-position: 500px 500px; }
+    }
+
+    .main-card {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(25px);
+        border: 1px solid rgba(212, 163, 115, 0.1);
+        border-radius: 40px;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+        padding: 40px;
+        margin-top: 20px;
+    }
+
+    /* 2. RESTAURADO: Estilos de imagen y hover */
+    .product-img-cart {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 15px;
+        border: 2px solid rgba(212, 163, 115, 0.3);
+        transition: transform 0.3s ease;
+    }
+
+    .item-box {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 15px 25px;
+        margin-bottom: 15px;
+        transition: all 0.4s ease;
+    }
+
+    .item-box:hover {
+        background: rgba(212, 163, 115, 0.08);
+        transform: scale(1.02) translateX(10px);
+    }
+
+    .item-box:hover .product-img-cart {
+        transform: rotate(-5deg) scale(1.1);
+        border-color: #d4a373;
+    }
+
+    /* 3. RESTAURADO: Botón de confirmación (ahora como botón de envío) */
+    .btn-confirm {
+        background: #d4a373;
+        color: #120a07;
+        width: 100%;
+        padding: 18px;
+        border-radius: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border: none;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    .btn-confirm:hover {
+        background: #fff;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(212, 163, 115, 0.4);
+    }
+
+    .text-gold { color: #d4a373; }
+
+    /* NUEVO: Input de teléfono integrado al diseño */
+    .input-telefono {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(212, 163, 115, 0.3);
+        color: white;
+        border-radius: 12px;
+        padding: 15px;
+        width: 100%;
+        margin-bottom: 25px;
+        transition: 0.3s;
+    }
+    .input-telefono:focus {
+        border-color: #d4a373;
+        background: rgba(255, 255, 255, 0.1);
+        outline: none;
+        box-shadow: 0 0 15px rgba(212, 163, 115, 0.2);
+    }
+</style>
+
+<div class="bg-pattern"></div>
+
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4 text-white fw-bold">Tu Canasta Gourmet<span class="text-gold">.</span></h1>
+    </div>
+
+    <div class="main-card">
+        {% if detalles %}
+        <div class="row g-5">
+            <div class="col-lg-7">
+                {% for item in detalles %}
+                <div class="item-box d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        {% if item.producto.imagen %}
+                            <img src="{{ item.producto.imagen.url }}" alt="{{ item.producto.nombre }}" class="product-img-cart me-3">
+                        {% else %}
+                            <div class="product-img-cart me-3 d-flex align-items-center justify-content-center bg-dark">
+                                <i class="bi bi-image text-muted"></i>
+                            </div>
+                        {% endif %}
+                        
+                        <div>
+                            <h5 class="mb-0 text-white fw-bold">{{ item.producto.nombre }}</h5>
+                            <small class="text-muted">Cantidad: {{ item.cantidad }} &middot; ${{ item.precio_unitario }} c/u</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="fs-4 text-gold fw-bold me-4">${{ item.subtotal }}</span>
+                        <a href="{% url 'eliminar_del_carrito' item.id %}" class="text-danger opacity-50 hover-opacity-100" style="transition: 0.3s;">
+                            <i class="bi bi-trash3-fill fs-5"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="col-lg-5">
+                <div class="p-4 rounded-4" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(212,163,115,0.05);">
+                    <h5 class="text-white mb-4 fw-bold text-uppercase small" style="letter-spacing: 2px;">Resumen de Compra</h5>
+                    
+                    <form action="{% url 'finalizar_compra' %}" method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="mb-2">
+                            <label class="text-gold small fw-bold mb-2">TELÉFONO DE CONTACTO</label>
+                            <input type="text" name="telefono" class="input-telefono" 
+                                   value="{{ telefono_sugerido }}" 
+                                   placeholder="Ej: 0998877665" required>
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-3 text-muted">
+                            <span>Subtotal</span>
+                            <span>${{ pedido.total }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-5">
+                            <span class="text-muted">Envío</span>
+                            <span class="text-success small fw-bold">SIN CARGO</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-5">
+                            <span class="h2 text-white mb-0 fw-light">Total</span>
+                            <span class="display-5 text-gold fw-bold">${{ pedido.total }}</span>
+                        </div>
+
+                        <button type="submit" class="btn-confirm">
+                            FINALIZAR ORDEN
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <h2 class="text-white-50">Tu canasta está vacía</h2>
+            <a href="{% url 'lista_productos' %}" class="btn btn-outline-warning mt-4 px-5">Regresar a la Tienda</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

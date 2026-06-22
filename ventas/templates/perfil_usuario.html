@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% block title %}Mi Perfil | La Ideal{% endblock title %}
+
+{% block content %}
+<style>
+    body { background-color: #050505; font-family: 'Inter', sans-serif; color: #fff; }
+    
+    /* Contenedor de la Tarjeta */
+    .profile-header { padding: 40px 0; }
+    
+    .loyalty-card {
+        background: linear-gradient(145deg, #111 0%, #000 100%);
+        border: 1px solid #d4a373;
+        border-radius: 20px;
+        padding: 30px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(212, 163, 115, 0.1);
+    }
+
+    /* Brillo de fondo para la tarjeta */
+    .loyalty-card::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: radial-gradient(circle, rgba(212, 163, 115, 0.05) 0%, transparent 70%);
+    }
+
+    .rank-badge {
+        background: #d4a373;
+        color: #000;
+        font-size: 10px;
+        font-weight: 800;
+        padding: 5px 15px;
+        border-radius: 50px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .card-chip {
+        width: 45px; height: 35px;
+        background: linear-gradient(135deg, #d4a373 0%, #8b6e4d 100%);
+        border-radius: 6px;
+        margin-bottom: 20px;
+        opacity: 0.8;
+    }
+
+    /* Barra de Progreso */
+    .progress-container { margin-top: 25px; }
+    .progress-bar-bg {
+        height: 6px;
+        background: #1a1a1a;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #d4a373, #ffddb0);
+        box-shadow: 0 0 15px rgba(212, 163, 115, 0.5);
+    }
+
+    /* Historial de Pedidos */
+    .timeline-item {
+        border-left: 2px solid #1a1a1a;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        position: relative;
+    }
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -7px; top: 0;
+        width: 12px; height: 12px;
+        background: #d4a373;
+        border-radius: 50%;
+    }
+    .order-card {
+        background: #0a0a0a;
+        border: 1px solid #1a1a1a;
+        padding: 15px;
+        transition: 0.3s;
+    }
+    .order-card:hover { border-color: #d4a373; }
+</style>
+
+<div class="container">
+    <div class="profile-header">
+        <div class="row align-items-center">
+            <div class="col-md-5">
+                <div class="loyalty-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="card-chip"></div>
+                        <span class="rank-badge">Rango {{ perfil.rango|default:"Bronce" }}</span>
+                    </div>
+                    
+                    <h2 class="mb-1 fw-bold" style="letter-spacing: 1px;">{{ user.username|upper }}</h2>
+                    <p class="text-muted small">MIEMBRO DESDE {{ user.date_joined|date:"Y" }}</p>
+
+                    <div class="progress-container">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="small text-muted">Puntos Acumulados</span>
+                            <span class="small fw-bold">{{ perfil.puntos }} / 500</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-fill" style="width: {{ perfil.puntos_porcentaje|default:'10' }}%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-7 ps-md-5">
+                <div class="d-flex align-items-center mb-4">
+                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed={{ user.username }}" 
+                         alt="Avatar" class="rounded-circle me-4" style="width: 100px; border: 3px solid #1a1a1a;">
+                    <div>
+                        <h1 class="m-0">Hola, <span style="color: #d4a373;">{{ user.first_name|default:user.username }}</span>!</h1>
+                        <p class="text-muted">Gestiona tus pedidos y revisa tus beneficios.</p>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-6">
+                        <div class="p-3 border border-secondary text-center">
+                            <h4 class="m-0">{{ pedidos.count }}</h4>
+                            <small class="text-muted text-uppercase">Pedidos Totales</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 border border-secondary text-center">
+                            <h4 class="m-0" style="color: #25D366;">$ {{ total_gastado|default:"0.00" }}</h4>
+                            <small class="text-muted text-uppercase">Inversión en Pan</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-8">
+            <h4 class="mb-4 fw-light"><span style="color: #d4a373;">#</span> Historial de Compras</h4>
+            
+            <div class="timeline mt-4">
+                {% for pedido in pedidos %}
+                <div class="timeline-item">
+                    <div class="order-card">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-bold">Pedido #{{ pedido.id }}</span>
+                            <span class="badge {% if pedido.estado == 'Entregado' %}bg-success{% else %}bg-warning text-dark{% endif %}">
+                                {{ pedido.estado|upper }}
+                            </span>
+                        </div>
+                        <div class="small text-muted mb-3">{{ pedido.fecha_pedido|date:"d F, Y - H:i" }}</div>
+                        <div class="text-white-50">
+                            {% for detalle in pedido.detalles.all %}
+                                {{ detalle.cantidad }}x {{ detalle.producto.nombre }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="mt-3 pt-2 border-top border-secondary d-flex justify-content-between">
+                            <span class="small">Total Pagado:</span>
+                            <span class="fw-bold text-white">$ {{ pedido.total }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="text-center py-5 border border-secondary border-dashed">
+                    <p class="text-muted">Aún no has realizado pedidos. ¡El horno está listo!</p>
+                    <a href="{% url 'lista_productos' %}" class="btn btn-outline-warning btn-sm">Ver Catálogo</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="p-4" style="background: #0a0a0a; border: 1px solid #1a1a1a;">
+                <h6 class="text-uppercase mb-3 small fw-bold" style="color: #d4a373;">Ajustes de Cuenta</h6>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2"><a href="{% url 'perfil_usuario' %}" class="text-decoration-none text-white-50 small">Editar Perfil</a></li>
+                    <li class="mb-2"><a href="#" class="text-decoration-none text-white-50 small">Cambiar Contraseña</a></li>
+                    <hr class="border-secondary">
+                    <li><a href="{% url 'logout' %}" class="text-decoration-none text-danger small">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

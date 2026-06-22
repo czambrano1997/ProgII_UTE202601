@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>{% block title %}Boutique La Ideal{% endblock title %}</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --dark-choco: #2c1810;
+            --gold-bread: #d4a373;
+            --cream-light: #fefae0;
+            --deep-black: #1a0f0a;
+            --whatsapp-green: #25D366;
+            --admin-gold: #FFD700;
+        }
+
+        body { 
+            background-color: var(--dark-choco); 
+            color: var(--cream-light);
+            font-family: 'Garamond', serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navegación Luxury */
+        .navbar {
+            background-color: rgba(0,0,0,0.95) !important;
+            border-bottom: 2px solid var(--gold-bread);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            color: var(--gold-bread) !important;
+            line-height: 1;
+        }
+
+        .nav-link {
+            color: var(--cream-light) !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--gold-bread) !important;
+        }
+
+        /* Botón Admin Maestro Especial para Josué */
+        .nav-admin-master {
+            color: var(--admin-gold) !important;
+            border: 1px solid var(--admin-gold);
+            border-radius: 50px;
+            padding: 5px 15px !important;
+            font-weight: bold !important;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .nav-admin-master:hover {
+            background: var(--admin-gold);
+            color: var(--dark-choco) !important;
+        }
+
+        /* Botón WhatsApp Especial */
+        .nav-whatsapp {
+            color: var(--whatsapp-green) !important;
+            border: 1px solid var(--whatsapp-green);
+            border-radius: 50px;
+            padding: 5px 15px !important;
+            margin-left: 10px;
+            font-size: 0.8rem;
+        }
+
+        .nav-whatsapp:hover {
+            background-color: var(--whatsapp-green);
+            color: white !important;
+        }
+
+        /* Avatar del Usuario en el Menú */
+        .user-avatar-nav {
+            width: 32px;
+            height: 32px;
+            background-color: var(--gold-bread);
+            color: var(--dark-choco);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 8px;
+            border: 1px solid white;
+        }
+
+        .perfil-link {
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            border-radius: 50px;
+            padding: 5px 15px !important;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Carrito */
+        .cart-icon {
+            color: var(--gold-bread) !important;
+            font-size: 1.4rem;
+            position: relative;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(44, 24, 16, 0.6), rgba(44, 24, 16, 0.6)), 
+                        url('https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072') center/cover;
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--gold-bread);
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+        }
+
+        .alert-ideal {
+            background-color: var(--deep-black);
+            color: var(--gold-bread);
+            border: 1px solid var(--gold-bread);
+        }
+
+        footer {
+            background: var(--deep-black);
+            border-top: 1px solid var(--gold-bread);
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'lista_productos' %}">
+                LA IDEAL 
+                <small style="font-size: 0.4em; display: block; letter-spacing: 2px;">BOUTIQUE ARTESANAL</small>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lista_productos' %}">Inicio</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-whatsapp" href="https://wa.me/593XXXXXXXXX?text=Hola%20La%20Ideal!" target="_blank">
+                            <i class="bi bi-whatsapp"></i> ESPECIALES
+                        </a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                        
+                        {% if user.is_superuser %}
+                            <li class="nav-item">
+                                <a class="nav-link nav-admin-master" href="{% url 'dashboard_admin' %}">
+                                    <i class="bi bi-cpu-fill me-1"></i> CONTROL MAESTRO
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if user.is_staff %}
+                            <li class="nav-item">
+                                <a class="nav-link text-warning fw-bold" href="{% url 'panel_vendedor' %}">
+                                    <i class="bi bi-shop-window me-1"></i> PANEL VENTAS
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'mis_pedidos' %}">Mis Compras</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link p-0" href="{% url 'ver_carrito' %}">
+                                    <i class="bi bi-cart3 cart-icon"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        <li class="nav-item ms-lg-3">
+                            <a class="nav-link perfil-link d-flex align-items-center" href="{% url 'perfil_usuario' %}">
+                                <span class="user-avatar-nav">{{ user.username|first|upper }}</span>
+                                <span style="color: var(--gold-bread);">{{ user.username|upper }}</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ms-2">
+                            <form action="{% url 'logout' %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="nav-link btn btn-link border-0 p-0 text-white-50 small" style="font-size: 0.8rem;">SALIR</button>
+                            </form>
+                        </li>
+
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <a class="nav-link btn btn-outline-warning px-3 rounded-pill" href="{% url 'registro' %}" style="border-color: var(--gold-bread); color: var(--gold-bread) !important;">
+                                REGISTRARME
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-3 fw-bold" style="color: var(--gold-bread); text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">El Arte del Trigo</h1>
+            <p class="lead text-white" style="letter-spacing: 1px;">Pasión por lo dulce, respeto por lo tradicional.</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-ideal alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="bi bi-info-circle-fill me-2"></i> {{ message }}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="py-4 text-center mt-5">
+        <div class="container">
+            <p class="mb-1" style="color: var(--gold-bread); letter-spacing: 2px;">LA IDEAL - DESDE 2026</p>
+            <p class="text-white-50 small mb-0">Horneando momentos inolvidables todos los días.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    {% block extra_js %}
+    {% endblock extra_js %}
+</body>
+</html>
