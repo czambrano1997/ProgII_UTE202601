@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Categorías — Inventario UTE</title>
+    <title>Bodegas — Inventario UTE</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 700px;
+        body { font-family: Arial, sans-serif; max-width: 800px;
                margin: 2rem auto; padding: 0 1rem; background: #f8fafc; }
         h1   { color: #1d4ed8; border-bottom: 2px solid #dbeafe; padding-bottom: .5rem; }
         .resumen { background: #dbeafe; border-radius: 8px;
@@ -20,17 +20,16 @@
         .activa   { color: #059669; font-weight: 700; }
         .inactiva { color: #dc2626; font-weight: 700; }
         .vacia    { text-align: center; padding: 2rem; color: #94a3b8; }
-        a { display: inline-block; margin-top: 1.5rem; color: #2563eb; }
+        .nav-links { margin-top: 1.5rem; font-size: .9rem; }
+        a { color: #2563eb; }
     </style>
 </head>
 <body>
 
-    <h1>{{carrera}}</h1>
-    <h1>Categorías del Sistema</h1>
+    <h1>Bodegas</h1>
 
-    <!-- Variable 'total' enviada desde la vista -->
     <div class="resumen">
-        Total de categorías registradas: <strong>{{ total }}</strong>
+        Total de bodegas registradas: <strong>{{ total }}</strong>
     </div>
 
     <table>
@@ -38,49 +37,43 @@
             <tr>
                 <th>#</th>
                 <th>Nombre</th>
-                <th>Descripción</th>
+                <th>Ubicación</th>
+                <th>Capacidad</th>
                 <th>Estado</th>
                 <th>Creada</th>
             </tr>
         </thead>
         <tbody>
 
-        {# Iterar sobre el queryset 'categorias' del contexto #}
-        {% for cat in categorias %}
+        {% for b in bodegas %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><strong>{{ cat.nombre }}</strong></td>
-
-                {# Filtro 'default' si descripcion está vacía #}
-                <td>{{ cat.descripcion|default:"—" }}</td>
-
-                {# Lógica condicional sobre el campo booleano #}
+                <td><strong>{{ b.nombre }}</strong></td>
+                <td>{{ b.ubicacion }}</td>
+                <td>{{ b.capacidad }} unidades</td>
                 <td>
-                    {% if cat.activa %}
+                    {% if b.activa %}
                         <span class="activa">✔ Activa</span>
                     {% else %}
                         <span class="inactiva">✖ Inactiva</span>
                     {% endif %}
                 </td>
-
-                {# Filtro 'date' para formatear DateTimeField #}
-                <td>{{ cat.creada_en|date:"d/m/Y" }}</td>
+                <td>{{ b.creada_en|date:"d/m/Y" }}</td>
             </tr>
-
-        {# Bloque 'empty': se muestra si el queryset está vacío #}
         {% empty %}
             <tr>
-                <td colspan="5" class="vacia">
-                    No hay categorías registradas. Crea una desde
-                    <a href="/admin/">el panel Admin</a>.
-                </td>
+                <td colspan="6" class="vacia">No hay bodegas registradas.</td>
             </tr>
         {% endfor %}
 
         </tbody>
     </table>
 
-    <a href="/admin/inventario/categoria/">→ Gestionar categorías en Admin</a>
+    <div class="nav-links">
+        <a href="/inventario/producto/">← Productos</a> |
+        <a href="/inventario/descuento/">Ver descuentos</a> |
+        <a href="/admin/">Panel Admin</a>
+    </div>
 
 </body>
 </html>
