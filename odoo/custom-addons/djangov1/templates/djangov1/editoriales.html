@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editoriales</title>
+</head>
+<body>
+    <h1>Editoriales</h1>
+    <nav>
+        <a href="/autores/">Autores</a> |
+        <a href="/editoriales/">Editoriales</a> |
+        <a href="/categorias/">Categorías</a> |
+        <a href="/libros/">Libros</a> |
+        <a href="/prestamos/">Préstamos</a>
+    </nav>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Activo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for editorial in editoriales %}
+            <tr>
+                <td>{{ editorial.nombre }}</td>
+                <td>{{ editorial.email }}</td>
+                <td>{{ editorial.telefono }}</td>
+                <td>{{ editorial.activo }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4">No hay editoriales registradas.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
