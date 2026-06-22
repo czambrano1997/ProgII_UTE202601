@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_teatro_funcion_tree" model="ir.ui.view">
+        <field name="name">teatro.funcion.tree</field>
+        <field name="model">teatro.funcion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="obra_id"/>
+                <field name="fecha"/>
+                <field name="hora_inicio"/>
+                <field name="lugar"/>
+                <field name="capacidad"/>
+                <field name="asientos_disponibles"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_teatro_funcion_form" model="ir.ui.view">
+        <field name="name">teatro.funcion.form</field>
+        <field name="model">teatro.funcion</field>
+        <field name="arch" type="xml">
+            <form string="Función de teatro">
+                <sheet>
+                    <group>
+                        <field name="obra_id"/>
+                        <field name="fecha"/>
+                        <field name="hora_inicio"/>
+                        <field name="lugar"/>
+                        <field name="capacidad"/>
+                        <field name="state"/>
+                    </group>
+                    <group>
+                        <field name="asientos_vendidos" readonly="1"/>
+                        <field name="asientos_disponibles" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Boletos">
+                            <field name="boletos_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="cliente"/>
+                                    <field name="asiento"/>
+                                    <field name="precio"/>
+                                    <field name="estado"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_teatro_funciones" model="ir.actions.act_window">
+        <field name="name">Funciones</field>
+        <field name="res_model">teatro.funcion</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="menu_teatro_funciones_action" model="ir.ui.menu">
+        <field name="name">Funciones</field>
+        <field name="parent_id" ref="menu_teatro_root"/>
+        <field name="action" ref="action_teatro_funciones"/>
+        <field name="sequence">20</field>
+    </record>
+</odoo>
