@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Obras de Teatro</title>
+</head>
+<body>
+    <h1>Obras de Teatro 🎭</h1>
+    <a href="{% url 'crear_obra' %}">Nueva Obra</a><br><br>
+    {% for obra in obras %}
+    <div>
+        <h3>{{ obra.titulo }}</h3>
+        <p>{{ obra.descripcion }}</p>
+        <p>Duración: {{ obra.duracion_min }} minutos</p>
+        <p>Estreno: {{ obra.fecha_estreno }}</p>
+        <hr>
+    </div>
+    {% empty %}
+    <p>No hay obras registradas.</p>
+    {% endfor %}
+    <br>
+    <a href="{% url 'inicio' %}">Volver al Inicio</a>
+</body>
+</html>

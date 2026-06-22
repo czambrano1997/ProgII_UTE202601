@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Participaciones</title>
+</head>
+<body>
+    <h1>Participaciones 🎭</h1>
+    {% for participacion in participaciones %}
+    <div>
+        <h3>{{ participacion.obra.titulo }}</h3>
+        <p>Actor: {{ participacion.actor.nombre }}</p>
+        <p>Personaje: {{ participacion.personaje }}</p>
+        <hr>
+    </div>
+    {% empty %}
+    <p>No hay participaciones registradas.</p>
+    {% endfor %}
+    <a href="{% url 'inicio' %}">Volver al Inicio</a>
+</body>
+</html>

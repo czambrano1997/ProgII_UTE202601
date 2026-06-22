@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Boletos</title>
+</head>
+<body>
+    <h1>Boletos 🎭</h1>
+    {% for boleto in boletos %}
+    <div>
+        <h3>{{ boleto.funcion.obra.titulo }}</h3>
+        <p>Fecha función: {{ boleto.funcion.fecha }}</p>
+        <p>Cliente: {{ boleto.cliente_nombre }}</p>
+        <p>Email: {{ boleto.cliente_email }}</p>
+        <p>Asiento: {{ boleto.asiento }}</p>
+        <p>Precio: {{ boleto.precio }}</p>
+        <p>Confirmado: {{ boleto.confirmado }}</p>
+        <hr>
+    </div>
+    {% empty %}
+    <p>No hay boletos registrados.</p>
+    {% endfor %}
+    <a href="{% url 'inicio' %}">Volver al Inicio</a>
+</body>
+</html>

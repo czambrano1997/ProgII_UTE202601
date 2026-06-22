@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Gestión de Teatro</title>
+</head>
+<body>
+    <h1>Sistema de Gestión de Teatro 🎭</h1>
+    <p>Bienvenido al sistema académico para administrar obras, actores, funciones, participaciones y boletos.</p>
+    <ul>
+        <li><a href="{% url 'lista_obras' %}">Ver obras</a></li>
+        <li><a href="{% url 'crear_obra' %}">Registrar obra</a></li>
+        <li><a href="{% url 'lista_actores' %}">Ver actores</a></li>
+        <li><a href="{% url 'crear_actor' %}">Registrar actor</a></li>
+        <li><a href="{% url 'lista_funciones' %}">Ver funciones</a></li>
+        <li><a href="{% url 'lista_participaciones' %}">Ver participaciones</a></li>
+        <li><a href="{% url 'lista_boletos' %}">Ver boletos</a></li>
+        <li><a href="/admin/">Administración</a></li>
+    </ul>
+</body>
+</html>

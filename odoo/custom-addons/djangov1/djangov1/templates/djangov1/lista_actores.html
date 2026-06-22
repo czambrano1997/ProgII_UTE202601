@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actores</title>
+</head>
+<body>
+    <h1>Actores 🎭</h1>
+    <a href="{% url 'crear_actor' %}">Nuevo Actor</a><br><br>
+    {% for actor in actores %}
+    <div>
+        <h3>{{ actor.nombre }}</h3>
+        <p>Edad: {{ actor.edad }}</p>
+        <p>Nacionalidad: {{ actor.nacionalidad }}</p>
+        <p>Email: {{ actor.email|default:'No registrado' }}</p>
+        <hr>
+    </div>
+    {% empty %}
+    <p>No hay actores registrados.</p>
+    {% endfor %}
+    <br>
+    <a href="{% url 'inicio' %}">Volver al Inicio</a>
+</body>
+</html>
