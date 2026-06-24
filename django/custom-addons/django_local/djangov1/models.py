@@ -46,3 +46,7 @@ class Venta(models.Model):
 
     def __str__(self):
         return f"Venta {self.id} - {self.cliente}"
+    
+class Cantidad_producto (models.Model):
+    cantidad= models.CharField(max_length=15, unique=True)
+    
