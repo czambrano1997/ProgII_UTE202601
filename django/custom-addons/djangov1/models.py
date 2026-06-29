@@ -24,14 +24,21 @@ class Paquete(models.Model):
         return self.nombre_p
 
 
+# Modelo Canchas
+class Canchas(models.Model):
+    Cancha = models.CharField(max_length= 100 ),
+    Costo_por_hora = models.DecimalField(max_digits=10,decimal_places=2,verbose_name= "Por Hora")
+
 # Modelo Reservas
 class Reserva(models.Model):
     cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE)
     numero_Rs = models.AutoField(primary_key=True)
     Hora_ll = models.TimeField(auto_now=False, auto_now_add=False, null=False, blank=False, verbose_name="Hora de llegada")
     Hora_Sa = models.TimeField(auto_now=False, auto_now_add=False, null=False, blank=False, verbose_name="Hora de salida")
+    Canchas = models.ForeignKey('Canchas', on_delete=models.CASCADE)
     Pago = models.DecimalField(max_digits=10, decimal_places=2)
     cantidad_ju = models.IntegerField(verbose_name="Numero de jugadores")
+    
     paquete_incluido = models.ForeignKey('Paquete', on_delete=models.CASCADE, null=True, blank=True)
     nota = models.TextField(verbose_name="Nota extra de la reservacion")
 
