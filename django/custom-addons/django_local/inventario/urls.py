@@ -13,5 +13,7 @@ from . import views
 app_name = 'inventario'
 
 urlpatterns = [
-    path('categorias/', views.lista_categoria, name='categoria'),
+    path('categoria/', views.lista_categoria, name='categoria'),
+    path('producto/', views.lista_productos, name='lista_productos'),  # ← nueva
+
 ]
