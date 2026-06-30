@@ -1,5 +1,13 @@
+
 from django.shortcuts import render
 from .models import *
+from rest_framework.permissions import IsAuthenticateOrReadOnly
+from .models import Genero, Artista, Disco, Cliente, Venta
+from rest_framework import viewsets
+from .serializers import(
+    GeneroSerializer, ArtistaSerializer, DiscoSerializer, ClienteSerializer, VentaSerializer
+    )
+
 
 # Create your views here.
 def lista_generos(request):
@@ -24,3 +32,31 @@ def lista_ventas(request):
 
 
                 
+##views de api rest##
+
+class GeneroViewSet(viewsets.ModelViewSet)
+    queryset = Genero.objects.all()
+    serializer_class = GeneroSerializer
+    permission_classes = [IsAuthenticateOrReadOnly]
+
+
+class ArtistaViewSet(viewsets.ModelViewSet):
+    queryset = Artista.objects.all()
+    serializer_class = ArtistaSerializer
+    permission_classes = [IsAuthenticateOrReadOnly] 
+
+class DiscoViewSet(viewsets.ModelViewSet):
+    queryset = Disco.objects.all()
+    serializer_class = DiscoSerializer
+    permission_classes = [IsAuthenticateOrReadOnly]
+
+class ClienteViewSet(viewsets.ModelViewSet):
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
+    permission_classes = [IsAuthenticateOrReadOnly]
+
+class VentaViewSet(viewsets.ModelViewSeet):
+    queryset = Venta.objects.all()
+    serializer_class = VentaSerializer
+    permission_classes = [IsAuthenticateOrReadOnly]  
+

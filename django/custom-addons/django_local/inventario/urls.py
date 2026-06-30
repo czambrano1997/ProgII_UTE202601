@@ -1,14 +1,7 @@
-# from django.urls import path
-# from . import views
-# 
-# app_name = 'inventario'
-# 
-# urlpatterns = [
-    # path('categorias/', views.lista_categoria, name='categorias'),
-# ]
-# 
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from . import views
+
 
 app_name = 'inventario'
 
@@ -19,3 +12,6 @@ urlpatterns = [
     path('clientes/',views.lista_clientes, name = 'clientes'),
     path('ventas',views.lista_ventas, name = 'ventas'),
 ]
+
+
+
