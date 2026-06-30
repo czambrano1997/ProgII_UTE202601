@@ -1,16 +1,10 @@
 from django.contrib import admin
-from .models import Categoria,Proveedor, FichaTecnica, Producto, Cliente, Pedido, DetallePedido, Bodega, Descuento
+from .models import Categoria, Proveedor, FichaTecnica, Producto
 
 # Registro de modelos en apartado administración
 admin.site.register(Categoria)
 admin.site.register(Proveedor)
 admin.site.register(FichaTecnica)
-admin.site.register(Producto)
-admin.site.register(Cliente)
-admin.site.register(Pedido)
-admin.site.register(DetallePedido)
-admin.site.register(Bodega)
-admin.site.register(Descuento)
 
 @admin.register(Producto)
 class ProductoAdmin(admin.ModelAdmin):

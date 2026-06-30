@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pedidos — Inventario UTE</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px;
+               margin: 2rem auto; padding: 0 1rem; background: #f8fafc; }
+        h1   { color: #1d4ed8; border-bottom: 2px solid #dbeafe; padding-bottom: .5rem; }
+        .resumen { background: #dbeafe; border-radius: 8px;
+                   padding: .6rem 1rem; margin: 1rem 0; font-size: .9rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem;
+                background: #fff; border-radius: 10px; overflow: hidden;
+                box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+        th    { background: #2563eb; color: #fff; padding: 10px 14px;
+                text-align: left; font-size: .85rem; }
+        td    { padding: 9px 14px; border-bottom: 1px solid #e2e8f0; font-size: .9rem; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td      { background: #f1f5f9; }
+        .vacia { text-align: center; padding: 2rem; color: #94a3b8; }
+        .pendiente  { color: #d97706; font-weight: 700; }
+        .enviado    { color: #2563eb; font-weight: 700; }
+        .entregado  { color: #059669; font-weight: 700; }
+        .cancelado  { color: #dc2626; font-weight: 700; }
+        .nav-links { margin-top: 1.5rem; font-size: .9rem; }
+        a { color: #2563eb; }
+    </style>
+</head>
+<body>
+
+    <h1>Pedidos</h1>
+
+    <div class="resumen">
+        Total de pedidos: <strong>{{ total }}</strong>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Cliente</th>
+                <th>Estado</th>
+                <th>Total</th>
+                <th>Notas</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for p in pedidos %}
+            <tr>
+                <td>{{ p.id }}</td>
+                <td><strong>{{ p.cliente.nombre }}</strong></td>
+                <td>
+                    <span class="{{ p.estado }}">{{ p.get_estado_display }}</span>
+                </td>
+                <td>${{ p.total }}</td>
+                <td>{{ p.notas|default:"—" }}</td>
+                <td>{{ p.fecha|date:"d/m/Y" }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="6" class="vacia">No hay pedidos registrados.</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <div class="nav-links">
+        <a href="/inventario/cliente/">← Clientes</a> |
+        <a href="/inventario/detalle/">Ver detalles de pedidos</a> |
+        <a href="/admin/">Panel Admin</a>
+    </div>
+
+</body>
+</html>
