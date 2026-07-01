@@ -1,7 +1,7 @@
 
 from django.shortcuts import render
 from .models import *
-from rest_framework.permissions import IsAuthenticateOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Genero, Artista, Disco, Cliente, Venta
 from rest_framework import viewsets
 from .serializers import(
@@ -34,29 +34,29 @@ def lista_ventas(request):
                 
 ##views de api rest##
 
-class GeneroViewSet(viewsets.ModelViewSet)
+class GeneroViewSet(viewsets.ModelViewSet):
     queryset = Genero.objects.all()
     serializer_class = GeneroSerializer
-    permission_classes = [IsAuthenticateOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class ArtistaViewSet(viewsets.ModelViewSet):
     queryset = Artista.objects.all()
     serializer_class = ArtistaSerializer
-    permission_classes = [IsAuthenticateOrReadOnly] 
+    permission_classes = [IsAuthenticatedOrReadOnly] 
 
 class DiscoViewSet(viewsets.ModelViewSet):
     queryset = Disco.objects.all()
     serializer_class = DiscoSerializer
-    permission_classes = [IsAuthenticateOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 class ClienteViewSet(viewsets.ModelViewSet):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
-    permission_classes = [IsAuthenticateOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
-class VentaViewSet(viewsets.ModelViewSeet):
+class VentaViewSet(viewsets.ModelViewSet):
     queryset = Venta.objects.all()
     serializer_class = VentaSerializer
-    permission_classes = [IsAuthenticateOrReadOnly]  
+    permission_classes = [IsAuthenticatedOrReadOnly]  
 
