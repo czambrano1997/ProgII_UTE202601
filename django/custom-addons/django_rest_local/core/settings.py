@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "rest_framework.authtoken",
-    "tienda"
+    'tienda',
 ]
 
 MIDDLEWARE = [
@@ -78,9 +78,9 @@ WSGI_APPLICATION = "core.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_lab',
+        'NAME': 'django_mod',
         'USER': 'django',
-        'PASSWORD': 'djangoAdmin',
+        'PASSWORD': 'admin1313',
         'HOST': 'localhost',
         'PORT': '5432'
     }
