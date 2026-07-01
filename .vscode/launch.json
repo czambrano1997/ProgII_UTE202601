@@ -5,7 +5,7 @@
             "name": "Odoo: Update & Auto-Reload",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/odoo-19.0/odoo-bin",
+            "program": "${workspaceFolder}/odoo-source/odoo-bin",
             "args": [
                 "-c", "${workspaceFolder}/odoo.conf",
                 "-u", "Programacion",
