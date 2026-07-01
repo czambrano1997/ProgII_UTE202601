@@ -1,0 +1,53 @@
+<odoo>
+    <record id="view_gestion_profesor_list" model="ir.ui.view">
+        <field name="name">gestion.profesor.list</field>
+        <field name="model">gestion.profesor</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="cedula"/>
+                <field name="especialidad"/>
+                <field name="email"/>
+                <field name="telefono"/>
+                <field name="salario"/>
+                <field name="activo"/>
+                <field name="total_materias"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_gestion_profesor_form" model="ir.ui.view">
+        <field name="name">gestion.profesor.form</field>
+        <field name="model">gestion.profesor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="nombres"/>
+                        <field name="apellidos"/>
+                        <field name="name" readonly="1"/>
+                        <field name="cedula"/>
+                        <field name="especialidad"/>
+                        <field name="email"/>
+                        <field name="telefono"/>
+                        <field name="salario"/>
+                        <field name="activo"/>
+                        <field name="total_materias"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Materias">
+                            <field name="materia_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gestion_profesor" model="ir.actions.act_window">
+        <field name="name">Profesores</field>
+        <field name="res_model">gestion.profesor</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,15 @@
+{% extends 'djangov1/base.html' %}
+{% block title %}Categorías | DjangoV1{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">Modelo 1</p><h1>Categorías</h1></div><span class="count">{{ categorias|length }} registros</span></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Nombre</th><th>Descripción</th><th>Slug</th><th>Estado</th><th>Creación</th></tr></thead>
+<tbody>
+{% for categoria in categorias %}
+<tr><td><strong>{{ categoria.nombre }}</strong></td><td>{{ categoria.descripcion|default:'Sin descripción' }}</td><td><code>{{ categoria.slug }}</code></td><td>{% if categoria.activa %}<span class="badge ok">Activa</span>{% else %}<span class="badge">Inactiva</span>{% endif %}</td><td>{{ categoria.creada_en|date:'d/m/Y H:i' }}</td></tr>
+{% empty %}<tr><td colspan="5" class="empty">No hay categorías. Ejecuta <code>python manage.py cargar_datos_demo</code>.</td></tr>{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}

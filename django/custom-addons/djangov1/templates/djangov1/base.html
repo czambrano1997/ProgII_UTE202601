@@ -1,0 +1,32 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}DjangoV1 Inventario{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'djangov1/css/estilos.css' %}">
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-content">
+        <a class="brand" href="{% url 'djangov1:inicio' %}">DjangoV1 Inventario</a>
+        <nav aria-label="Navegación principal">
+            <a href="{% url 'djangov1:categorias' %}">Categorías</a>
+            <a href="{% url 'djangov1:proveedores' %}">Proveedores</a>
+            <a href="{% url 'djangov1:productos' %}">Productos</a>
+            <a href="{% url 'djangov1:clientes' %}">Clientes</a>
+            <a href="{% url 'djangov1:pedidos' %}">Pedidos</a>
+            <a href="{% url 'djangov1:detalles_pedido' %}">Detalles</a>
+            <a class="admin-link" href="/admin/">Admin</a>
+        </nav>
+    </div>
+</header>
+<main class="container">
+    {% block content %}{% endblock %}
+</main>
+<footer>
+    <div class="container">Proyecto individual - Programación II</div>
+</footer>
+</body>
+</html>

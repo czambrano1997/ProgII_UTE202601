@@ -1,0 +1,15 @@
+{% extends 'djangov1/base.html' %}
+{% block title %}Detalles de pedido | DjangoV1{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">Modelo 6 - tabla intermedia</p><h1>Detalles de pedido</h1></div><span class="count">{{ detalles|length }} registros</span></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Pedido</th><th>Cliente</th><th>Producto</th><th>Cantidad</th><th>Precio unitario</th><th>Descuento</th><th>Subtotal</th></tr></thead>
+<tbody>
+{% for detalle in detalles %}
+<tr><td><strong>{{ detalle.pedido.codigo }}</strong></td><td>{{ detalle.pedido.cliente.nombre_completo }}</td><td>{{ detalle.producto.nombre }}</td><td>{{ detalle.cantidad }}</td><td>${{ detalle.precio_unitario|floatformat:2 }}</td><td>{{ detalle.descuento|floatformat:2 }}%</td><td><strong>${{ detalle.subtotal|floatformat:2 }}</strong></td></tr>
+{% empty %}<tr><td colspan="7" class="empty">No hay detalles de pedido.</td></tr>{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}

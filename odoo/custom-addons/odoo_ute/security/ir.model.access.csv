@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_estudiante_user,gestion.estudiante.user,model_gestion_estudiante,gestion_academica.group_gestion_academica_user,1,0,0,0
+access_estudiante_admin,gestion.estudiante.admin,model_gestion_estudiante,gestion_academica.group_gestion_academica_admin,1,1,1,1
+access_profesor_user,gestion.profesor.user,model_gestion_profesor,gestion_academica.group_gestion_academica_user,1,0,0,0
+access_profesor_admin,gestion.profesor.admin,model_gestion_profesor,gestion_academica.group_gestion_academica_admin,1,1,1,1
+access_curso_user,gestion.curso.user,model_gestion_curso,gestion_academica.group_gestion_academica_user,1,0,0,0
+access_curso_admin,gestion.curso.admin,model_gestion_curso,gestion_academica.group_gestion_academica_admin,1,1,1,1
+access_materia_user,gestion.materia.user,model_gestion_materia,gestion_academica.group_gestion_academica_user,1,0,0,0
+access_materia_admin,gestion.materia.admin,model_gestion_materia,gestion_academica.group_gestion_academica_admin,1,1,1,1
+access_matricula_user,gestion.matricula.user,model_gestion_matricula,gestion_academica.group_gestion_academica_user,1,0,0,0
+access_matricula_admin,gestion.matricula.admin,model_gestion_matricula,gestion_academica.group_gestion_academica_admin,1,1,1,1

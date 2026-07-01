@@ -1,0 +1,22 @@
+{% extends 'djangov1/base.html' %}
+{% block title %}Inicio | DjangoV1{% endblock %}
+{% block content %}
+<section class="hero">
+    <p class="eyebrow">Sistema de inventario y ventas</p>
+    <h1>Control de productos, clientes y pedidos</h1>
+    <p>Aplicación Django con seis modelos relacionados, administración, vistas, plantillas, datos de demostración y pruebas automatizadas.</p>
+    <a class="button" href="{% url 'djangov1:productos' %}">Ver productos</a>
+</section>
+<section class="cards" aria-label="Resumen del sistema">
+    <article class="card"><span>Categorías</span><strong>{{ total_categorias }}</strong></article>
+    <article class="card"><span>Proveedores</span><strong>{{ total_proveedores }}</strong></article>
+    <article class="card"><span>Productos</span><strong>{{ total_productos }}</strong></article>
+    <article class="card"><span>Clientes</span><strong>{{ total_clientes }}</strong></article>
+    <article class="card"><span>Pedidos</span><strong>{{ total_pedidos }}</strong></article>
+    <article class="card warning"><span>Stock bajo</span><strong>{{ productos_stock_bajo }}</strong></article>
+</section>
+<section class="panel">
+    <h2>Relaciones implementadas</h2>
+    <p>Categoría y proveedor se relacionan con producto. Cliente se relaciona con pedido. Pedido y producto forman una relación muchos a muchos mediante DetallePedido.</p>
+</section>
+{% endblock %}
