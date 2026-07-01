@@ -1,0 +1,7 @@
+from django.apps import AppConfig
+
+
+class Djangov2Config(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "djangov2"
+    verbose_name = "Proyecto Django REST Framework"

@@ -1,12 +1,17 @@
+import sys
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+sys.path.append(str(BASE_DIR.parent))
 SECRET_KEY = "django-insecure-desarrollo-local-cambiar-en-produccion"
 DEBUG = True
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 INSTALLED_APPS = [
+    'djangov2',
+    'rest_framework',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
