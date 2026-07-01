@@ -6,3 +6,6 @@ admin.site.register(Proveedor)
 admin.site.register(Flor)
 admin.site.register(Cliente)
 admin.site.register(Pedido)
+
+
+
