@@ -6,3 +6,4 @@ admin.site.register(Artista)
 admin.site.register(Disco)
 admin.site.register(Cliente)
 admin.site.register(Venta)
+

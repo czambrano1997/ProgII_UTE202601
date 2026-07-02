@@ -25,3 +25,8 @@ class VentaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Venta
         fields = '__all__'
+
+
+
+#api rest
+
