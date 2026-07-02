@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ categoria.nombre }}</title>
+</head>
+<body>
+    <h1>{{ categoria.nombre }}</h1>
+    <p>{{ categoria.descripcion }}</p>
+    <h2>Productos</h2>
+    <ul>
+        {% for producto in categoria.productos.all %}
+            <li><a href="/productos/{{ producto.pk }}/">{{ producto.nombre }}</a></li>
+        {% empty %}
+            <li>No hay productos en esta categoría.</li>
+        {% endfor %}
+    </ul>
+    <p><a href="/categorias/">Volver a categorías</a></p>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorías</title>
+</head>
+<body>
+    <h1>Categorías</h1>
+    <p><a href="/">Inicio</a> | <a href="/productos/">Ver productos</a></p>
+    <ul>
+        {% for categoria in categorias %}
+            <li><a href="/categorias/{{ categoria.pk }}/">{{ categoria.nombre }}</a> - {{ categoria.descripcion }}</li>
+        {% empty %}
+            <li>No hay categorías aún.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
