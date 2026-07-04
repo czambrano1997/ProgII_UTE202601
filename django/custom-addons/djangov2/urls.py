@@ -22,4 +22,3 @@ urlpatterns = [
 
 # API routes
 urlpatterns += router.urls
-]
