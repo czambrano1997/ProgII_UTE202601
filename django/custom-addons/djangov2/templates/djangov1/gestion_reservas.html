@@ -1,0 +1,19 @@
+{% extends 'djangov1/base.html' %}
+
+{% block title %}Gestión de Reservas{% endblock %}
+
+{% block content %}
+<h1>Gestión de Reservas</h1>
+<table border="1">
+  <tr><th>Cliente</th><th>Reserva</th><th>Llegó</th></tr>
+  {% for g in gestion_reservas %}
+  <tr>
+    <td>{{ g.nombre_cli }}</td>
+    <td>{{ g.canchas.numero_Rs }}</td>
+    <td>{% if g.reservo %}Sí{% else %}No{% endif %}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="3">No hay gestiones</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

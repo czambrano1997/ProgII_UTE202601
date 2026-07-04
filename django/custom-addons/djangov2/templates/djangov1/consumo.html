@@ -1,0 +1,27 @@
+{% extends 'djangov1/base.html' %}
+
+{% block title %}Consumo{% endblock %}
+
+{% block content %}
+<h1>Consumo</h1>
+<form method="post">
+  {% csrf_token %}
+  <input name="gestion" type="text" placeholder="Cliente/Gestión" required>
+  <input name="producto" type="text" placeholder="Producto" required>
+  <input name="cantidad" type="number" placeholder="Cantidad" required>
+  <button type="submit">Registrar</button>
+</form>
+
+<table border="1">
+  <tr><th>Gestión</th><th>Producto</th><th>Cantidad</th></tr>
+  {% for c in consumo %}
+  <tr>
+    <td>{{ c.gestion.nombre_cli }}</td>
+    <td>{{ c.producto.nombre_p }}</td>
+    <td>{{ c.cantidad }}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="3">No hay consumos</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

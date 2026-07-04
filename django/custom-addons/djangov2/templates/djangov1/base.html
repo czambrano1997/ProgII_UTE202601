@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Django V1{% endblock %}</title>
+</head>
+<body>
+  <nav>
+    <a href="{% url 'home_futbol' %}">Inicio</a>
+    <a href="{% url 'clientes_futbol' %}">Clientes</a>
+    <a href="{% url 'hacer_reservas' %}">Reservas</a>
+    <a href="{% url 'paquetes_futbol' %}">Paquetes</a>
+    <a href="{% url 'inventario_canchas' %}">Inventario</a>
+    <a href="{% url 'gestionar_reservas' %}">Gestión</a>
+    <a href="{% url 'consumo_cliente' %}">Consumo</a>
+  </nav>
+  <hr>
+  {% block content %}{% endblock %}
+</body>
+</html>

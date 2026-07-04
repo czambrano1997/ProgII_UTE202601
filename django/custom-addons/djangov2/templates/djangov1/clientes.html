@@ -1,0 +1,30 @@
+{% extends 'djangov1/base.html' %}
+
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+<h1>Clientes</h1>
+<form method="post">
+  {% csrf_token %}
+  <input name="nombre" type="text" placeholder="Nombre" required>
+  <input name="apellido" type="text" placeholder="Apellido" required>
+  <input name="email" type="email" placeholder="Email" required>
+  <input name="telefono" type="text" placeholder="Teléfono" required>
+  <button type="submit">Agregar</button>
+</form>
+
+<table border="1">
+  <tr><th>Nombre</th><th>Apellido</th><th>Email</th><th>Teléfono</th><th>Fecha</th></tr>
+  {% for c in clientes %}
+  <tr>
+    <td>{{ c.nombre }}</td>
+    <td>{{ c.apellido }}</td>
+    <td>{{ c.email }}</td>
+    <td>{{ c.telefono }}</td>
+    <td>{{ c.fecha_registro }}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="5">No hay clientes</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'djangov1/base.html' %}
+
+{% block title %}Inventario{% endblock %}
+
+{% block content %}
+<h1>Inventario</h1>
+<form method="post">
+  {% csrf_token %}
+  <input name="nombre_p" type="text" placeholder="Nombre producto" required>
+  <input name="precio_p" type="number" step="0.01" placeholder="Precio" required>
+  <input name="cantidad_p" type="number" placeholder="Cantidad" required>
+  <button type="submit">Agregar</button>
+</form>
+
+<table border="1">
+  <tr><th>Producto</th><th>Precio</th><th>Cantidad</th><th>Fecha</th></tr>
+  {% for inv in inventario %}
+  <tr>
+    <td>{{ inv.nombre_p }}</td>
+    <td>{{ inv.precio_p }}</td>
+    <td>{% if inv.cantidad_p and inv.cantidad_p <= 5 %}{{ inv.cantidad_p }} (bajo){% else %}{{ inv.cantidad_p }}{% endif %}</td>
+    <td>{{ inv.fecha_registro }}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="4">No hay productos</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

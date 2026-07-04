@@ -1,0 +1,16 @@
+{% extends 'djangov1/base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h1>Cancha Manager</h1>
+<p>Clientes: {{ total_clientes }} | Reservas: {{ total_reservas }} | Paquetes: {{ total_paquetes }} | Stock: {{ productos_stock }}</p>
+<ul>
+  <li><a href="{% url 'clientes_futbol' %}">Clientes</a></li>
+  <li><a href="{% url 'hacer_reservas' %}">Reservas</a></li>
+  <li><a href="{% url 'paquetes_futbol' %}">Paquetes</a></li>
+  <li><a href="{% url 'inventario_canchas' %}">Inventario</a></li>
+  <li><a href="{% url 'gestionar_reservas' %}">Gestión</a></li>
+  <li><a href="{% url 'consumo_cliente' %}">Consumo</a></li>
+</ul>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'djangov1/base.html' %}
+
+{% block title %}Reservas{% endblock %}
+
+{% block content %}
+<h1>Reservas</h1>
+<form method="post">
+  {% csrf_token %}
+  <input name="cliente" type="text" placeholder="Cliente" required>
+  <input name="hora_ll" type="time" required>
+  <input name="hora_sa" type="time" required>
+  <input name="jugadores" type="number" placeholder="Jugadores" required>
+  <input name="pago" type="number" placeholder="Pago" required>
+  <button type="submit">Crear</button>
+</form>
+
+<table border="1">
+  <tr><th>N°</th><th>Cliente</th><th>Llegada</th><th>Salida</th><th>Pago</th><th>Jugadores</th></tr>
+  {% for r in reservas %}
+  <tr>
+    <td>{{ r.numero_Rs }}</td>
+    <td>{{ r.cliente }}</td>
+    <td>{{ r.Hora_ll }}</td>
+    <td>{{ r.Hora_Sa }}</td>
+    <td>{{ r.Pago }}</td>
+    <td>{{ r.cantidad_ju }}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="6">No hay reservas</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}
