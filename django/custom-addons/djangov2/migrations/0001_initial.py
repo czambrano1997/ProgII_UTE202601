@@ -57,7 +57,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('reservo', models.BooleanField(default=False, verbose_name='Si llego')),
-                ('nombre_cli', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='djangov1.cliente')),
+                ('nombre_cli', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='djangov2.cliente')),
             ],
         ),
         migrations.CreateModel(
@@ -65,14 +65,14 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('cantidad', models.PositiveIntegerField(default=1, verbose_name='Cantidad')),
-                ('gestion', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='djangov1.gestion_reserva')),
-                ('producto', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='djangov1.inventario')),
+                ('gestion', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='djangov2.gestion_reserva')),
+                ('producto', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='djangov2.inventario')),
             ],
         ),
         migrations.AddField(
             model_name='gestion_reserva',
             name='productos_de_consumo',
-            field=models.ManyToManyField(through='djangov1.DetalleConsumo', to='djangov1.inventario', verbose_name='Productos consumidos'),
+            field=models.ManyToManyField(through='djangov2.DetalleConsumo', to='djangov2.inventario', verbose_name='Productos consumidos'),
         ),
         migrations.CreateModel(
             name='Reserva',
@@ -83,14 +83,14 @@ class Migration(migrations.Migration):
                 ('Pago', models.DecimalField(decimal_places=2, max_digits=10)),
                 ('cantidad_ju', models.IntegerField(verbose_name='Numero de jugadores')),
                 ('nota', models.TextField(verbose_name='Nota extra de la reservacion')),
-                ('Canchas', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='djangov1.canchas')),
-                ('cliente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='djangov1.cliente')),
-                ('paquete_incluido', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='djangov1.paquete')),
+                ('Canchas', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='djangov2.canchas')),
+                ('cliente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='djangov2.cliente')),
+                ('paquete_incluido', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='djangov2.paquete')),
             ],
         ),
         migrations.AddField(
             model_name='gestion_reserva',
             name='canchas',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='djangov1.reserva'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='djangov2.reserva'),
         ),
     ]
