@@ -15,8 +15,24 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
     "events",
 ]
+
+# Django REST Framework — demo CRUD API (ADR-0006).
+# Open by design: no authentication and AllowAny permissions, so the frontend,
+# scripts and the demo can drive the data without login/CSRF handling. Revisit
+# (add auth + per-route guards) before exposing this beyond the demo.
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [],
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"],
+    "EXCEPTION_HANDLER": "events.api.exceptions.exception_handler",
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ],
+    "DEFAULT_PARSER_CLASSES": ["rest_framework.parsers.JSONParser"],
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

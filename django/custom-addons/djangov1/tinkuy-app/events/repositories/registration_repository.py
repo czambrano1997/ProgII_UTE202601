@@ -3,10 +3,23 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 
+from django.db import transaction
 from django.db.models import QuerySet
 
 from events.models import Registration
 from events.repositories._sql import fetchall
+
+# ---------------------------------------------------------------------------
+# Reads
+# ---------------------------------------------------------------------------
+
+
+def list_all() -> QuerySet[Registration]:
+    return Registration.objects.select_related("attendee", "session").all()
+
+
+def get_by_id(pk: int) -> Registration | None:
+    return Registration.objects.filter(pk=pk).first()
 
 
 def list_by_attendee(attendee_id: int) -> QuerySet[Registration]:
@@ -21,9 +34,86 @@ def list_by_session(session_id: int) -> QuerySet[Registration]:
     return Registration.objects.filter(session_id=session_id).select_related("attendee")
 
 
+# ---------------------------------------------------------------------------
+# Writes — the only ORM write path for Registration.
+# ``unique_together(attendee, session)`` is the natural key (ADR-0006).
+# ---------------------------------------------------------------------------
+
+
+def create(
+    *,
+    attendee_id: int,
+    session_id: int,
+    confirmed: bool = False,
+    seat_number: int | None = None,
+    amount_paid: Decimal = Decimal("0"),
+) -> Registration:
+    # atomic savepoint so a unique_together(attendee, session) violation rolls
+    # back cleanly and the caller's transaction stays usable (API -> 409).
+    with transaction.atomic():
+        return Registration.objects.create(
+            attendee_id=attendee_id,
+            session_id=session_id,
+            confirmed=confirmed,
+            seat_number=seat_number,
+            amount_paid=amount_paid,
+        )
+
+
+def update(
+    registration_id: int,
+    *,
+    confirmed: bool | None = None,
+    seat_number: int | None = None,
+    amount_paid: Decimal | None = None,
+) -> Registration | None:
+    """Partial update: only the fields passed (non-``None``) are written."""
+    registration = Registration.objects.filter(pk=registration_id).first()
+    if registration is None:
+        return None
+    if confirmed is not None:
+        registration.confirmed = confirmed
+    if seat_number is not None:
+        registration.seat_number = seat_number
+    if amount_paid is not None:
+        registration.amount_paid = amount_paid
+    registration.save()
+    return registration
+
+
+def delete(registration_id: int) -> bool:
+    deleted, _ = Registration.objects.filter(pk=registration_id).delete()
+    return deleted > 0
+
+
+def get_or_create(
+    *,
+    attendee_id: int,
+    session_id: int,
+    confirmed: bool = False,
+    seat_number: int | None = None,
+    amount_paid: Decimal = Decimal("0"),
+) -> tuple[Registration, bool]:
+    """Idempotent create keyed on ``(attendee, session)`` (seeding path)."""
+    return Registration.objects.get_or_create(
+        attendee_id=attendee_id,
+        session_id=session_id,
+        defaults={
+            "confirmed": confirmed,
+            "seat_number": seat_number,
+            "amount_paid": amount_paid,
+        },
+    )
+
+
 def confirm(registration_id: int) -> bool:
     updated = Registration.objects.filter(pk=registration_id, confirmed=False).update(confirmed=True)
     return updated > 0
+
+
+# ---------------------------------------------------------------------------
+# Reports (raw SQL → DTOs)
+# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)

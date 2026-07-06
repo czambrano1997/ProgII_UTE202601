@@ -1,0 +1,1 @@
+Always ask before writing any file

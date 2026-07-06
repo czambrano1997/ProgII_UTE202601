@@ -52,6 +52,7 @@ class Event(models.Model):
 
 
 class Room(models.Model):
+    id: int
     name = models.CharField(max_length=100, verbose_name="nombre")
     floor = models.IntegerField(verbose_name="piso")
     seating_capacity = models.PositiveIntegerField(verbose_name="aforo")
@@ -68,6 +69,7 @@ class Room(models.Model):
 
 
 class Speaker(models.Model):
+    id: int
     full_name = models.CharField(max_length=200, verbose_name="nombre completo")
     email = models.EmailField(unique=True, verbose_name="correo electrónico")
     bio = models.TextField(verbose_name="biografía")
@@ -85,6 +87,8 @@ class Speaker(models.Model):
 
 
 class SpeakerProfile(models.Model):
+    id: int
+    speaker_id: int
     speaker = models.OneToOneField(Speaker, on_delete=models.CASCADE, related_name="profile", verbose_name="ponente")
     company = models.CharField(max_length=200, blank=True, verbose_name="empresa")
     years_experience = models.PositiveSmallIntegerField(default=0, verbose_name="años de experiencia")
@@ -100,6 +104,9 @@ class SpeakerProfile(models.Model):
 
 
 class Session(models.Model):
+    id: int
+    event_id: int
+    room_id: int
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="sessions", verbose_name="evento")
     room = models.ForeignKey(Room, on_delete=models.PROTECT, related_name="sessions", verbose_name="sala")
     speakers: models.ManyToManyField[Speaker, Speaker] = models.ManyToManyField(Speaker, related_name="sessions", verbose_name="ponentes")
@@ -125,6 +132,7 @@ class Session(models.Model):
 
 
 class Attendee(models.Model):
+    id: int
     full_name = models.CharField(max_length=200, verbose_name="nombre completo")
     email = models.EmailField(unique=True, verbose_name="correo electrónico")
     phone = models.CharField(max_length=20, blank=True, verbose_name="teléfono")
@@ -141,6 +149,9 @@ class Attendee(models.Model):
 
 
 class Registration(models.Model):
+    id: int
+    attendee_id: int
+    session_id: int
     attendee = models.ForeignKey(Attendee, on_delete=models.CASCADE, related_name="registrations", verbose_name="asistente")
     session = models.ForeignKey(Session, on_delete=models.CASCADE, related_name="registrations", verbose_name="sesión")
     confirmed = models.BooleanField(default=False, verbose_name="confirmado")
