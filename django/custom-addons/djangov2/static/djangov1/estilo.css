@@ -61,6 +61,18 @@ body {
   padding: 0 24px;
 }
 
+.page-header {
+  margin-bottom: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
 .page-title {
   font-size: 1.6rem;
   margin: 0 0 4px;
