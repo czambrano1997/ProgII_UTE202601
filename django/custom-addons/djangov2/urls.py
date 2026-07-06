@@ -1,9 +1,20 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include  # 1. Agregamos 'include'
 from django.conf import settings 
 from django.conf.urls.static import static 
 from django.contrib.auth import views as auth_views 
 from ventas import views 
+
+# 2. Importamos el router de DRF
+from rest_framework.routers import DefaultRouter
+
+# 3. Configuramos el router
+router = DefaultRouter()
+router.register(r'productos', views.ProductoViewSet)
+router.register(r'pedidos', views.PedidoViewSet)
+router.register(r'detalle-pedidos', views.DetallePedidoViewSet)
+router.register(r'usuarios', views.UserViewSet)
+router.register(r'categorias', views.CategoriaViewSet, basename='categoria')
 
 urlpatterns = [
     # --- ADMIN Y PÁGINA PRINCIPAL ---
@@ -24,9 +35,6 @@ urlpatterns = [
 
     # --- COMPRAS ---
     path('comprar/<int:producto_id>/', views.agregar_al_pedido, name='agregar_al_pedido'),
-    
-    # --- SOLUCIÓN AL ERROR 404 ---
-    # Esta línea acepta la URL que el buscador está enviando actualmente
     path('pedido/agregar/<int:producto_id>/', views.agregar_al_pedido), 
 
     path('carrito/', views.ver_carrito, name='ver_carrito'),
@@ -48,6 +56,9 @@ urlpatterns = [
     # --- APIS ---
     path('api/buscar/', views.api_buscar_productos, name='api_buscar'),
     path('api/estado-pedido/', views.api_estado_pedido, name='api_estado_pedido'),
+    
+    # 4. AGREGAMOS LAS RUTAS DE LOS VIEWSETS (API REST)
+    path('api/', include(router.urls)),
 ]
 
 if settings.DEBUG:
