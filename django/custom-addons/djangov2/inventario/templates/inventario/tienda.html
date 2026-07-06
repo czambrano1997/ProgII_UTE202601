@@ -1,0 +1,46 @@
+{% extends 'inventario/base.html' %}
+{% block title %}Tienda - Django Store{% endblock %}
+
+{% block content %}
+<section class="page-title">
+    <p class="badge">Tienda</p>
+    <h1>Catálogo de productos</h1>
+    <p>Vista visual de los productos registrados en la base de datos.</p>
+</section>
+
+<form class="filter-bar" method="get">
+    <input type="text" name="buscar" value="{{ buscar }}" placeholder="Buscar producto...">
+    <select name="categoria">
+        <option value="">Todas las categorías</option>
+        {% for categoria in categorias %}
+            <option value="{{ categoria.id }}" {% if categoria_id == categoria.id|stringformat:'s' %}selected{% endif %}>{{ categoria.nombre }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Filtrar</button>
+    <a href="{% url 'tienda' %}">Limpiar</a>
+</form>
+
+<section class="product-grid">
+    {% for producto in productos %}
+        <article class="product-card">
+            <div class="product-image">{{ producto.nombre|first }}</div>
+            <p class="category">{{ producto.categoria.nombre }}</p>
+            <h3>{{ producto.nombre }}</h3>
+            <p>{{ producto.descripcion|default:'Producto disponible en inventario.' }}</p>
+            <div class="product-footer">
+                <span class="price">${{ producto.precio }}</span>
+                <span class="stock">Stock: {{ producto.stock }}</span>
+            </div>
+            <div class="card-actions">
+                <a class="small-btn" href="/api/productos/{{ producto.id }}/">GET</a>
+                <a class="small-btn ghost" href="/api/productos/">POST</a>
+            </div>
+        </article>
+    {% empty %}
+        <div class="empty-box">
+            <h3>No se encontraron productos</h3>
+            <p>Agrega productos desde el admin o desde el endpoint <code>/api/productos/</code>.</p>
+        </div>
+    {% endfor %}
+</section>
+{% endblock %}

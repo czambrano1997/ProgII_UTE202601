@@ -1,0 +1,43 @@
+{% extends 'inventario/base.html' %}
+{% block title %}Categorías - Django Store{% endblock %}
+
+{% block content %}
+<section class="page-title">
+    <p class="badge">Modelo Categoria</p>
+    <h1>Panel de categorías</h1>
+    <p>Cada categoría organiza los productos de la tienda.</p>
+</section>
+
+<section class="table-card">
+    <div class="table-head">
+        <h2>Listado</h2>
+        <a class="small-btn" href="/api/categorias/">Endpoint API</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Productos</th>
+                <th>Activo</th>
+                <th>API</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in categorias %}
+                <tr>
+                    <td>{{ categoria.id }}</td>
+                    <td>{{ categoria.nombre }}</td>
+                    <td>{{ categoria.descripcion|default:'Sin descripción' }}</td>
+                    <td>{{ categoria.total_productos }}</td>
+                    <td>{% if categoria.activo %}Sí{% else %}No{% endif %}</td>
+                    <td><a href="/api/categorias/{{ categoria.id }}/">Abrir</a></td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="6">No hay categorías registradas.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

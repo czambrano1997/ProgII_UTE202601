@@ -1,0 +1,45 @@
+{% extends 'inventario/base.html' %}
+{% block title %}Clientes - Django Store{% endblock %}
+
+{% block content %}
+<section class="page-title">
+    <p class="badge">Modelo Cliente</p>
+    <h1>Panel de clientes</h1>
+    <p>Información de compradores registrados para los pedidos.</p>
+</section>
+
+<section class="table-card">
+    <div class="table-head">
+        <h2>Listado</h2>
+        <a class="small-btn" href="/api/clientes/">Endpoint API</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Cédula</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Pedidos</th>
+                <th>API</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.id }}</td>
+                    <td>{{ cliente.nombres }} {{ cliente.apellidos }}</td>
+                    <td>{{ cliente.cedula }}</td>
+                    <td>{{ cliente.correo }}</td>
+                    <td>{{ cliente.telefono|default:'No registrado' }}</td>
+                    <td>{{ cliente.total_pedidos }}</td>
+                    <td><a href="/api/clientes/{{ cliente.id }}/">Abrir</a></td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="7">No hay clientes registrados.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

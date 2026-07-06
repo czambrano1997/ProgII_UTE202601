@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tienda djangov2{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'inventario/css/tienda.css' %}">
+</head>
+<body>
+    <header class="topbar">
+        <a href="{% url 'inicio' %}" class="logo">
+            <span class="logo-icon">🛒</span>
+            <span>Django Store</span>
+        </a>
+        <nav class="menu">
+            <a href="{% url 'inicio' %}">Inicio</a>
+            <a href="{% url 'tienda' %}">Tienda</a>
+            <a href="{% url 'panel_categorias' %}">Categorías</a>
+            <a href="{% url 'panel_clientes' %}">Clientes</a>
+            <a href="{% url 'panel_pedidos' %}">Pedidos</a>
+            <a href="/api/" class="api-link">API</a>
+            <a href="/admin/" class="admin-link">Admin</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>Proyecto djangov2 · Django MVT + Django REST Framework · Interfaz tipo tienda</p>
+    </footer>
+</body>
+</html>
