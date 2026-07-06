@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h2>Ventas</h2>
+
+<p>Total: {{ datos|length }}</p>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Cliente</th>
+
+<th>Videojuego</th>
+
+<th>Cantidad</th>
+
+<th>Total</th>
+
+</tr>
+
+{% for venta in datos %}
+
+<tr>
+
+<td>{{ venta.id }}</td>
+
+<td>{{ venta.cliente }}</td>
+
+<td>{{ venta.videojuego }}</td>
+
+<td>{{ venta.cantidad }}</td>
+
+<td>${{ venta.total }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

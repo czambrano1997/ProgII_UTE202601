@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h2>Categorías</h2>
+
+<p>Total: {{ datos|length }}</p>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Nombre</th>
+
+</tr>
+
+{% for categoria in datos %}
+
+<tr>
+
+<td>{{ categoria.id }}</td>
+
+<td>{{ categoria.nombre }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

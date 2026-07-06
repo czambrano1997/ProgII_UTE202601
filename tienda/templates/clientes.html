@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h2>Clientes</h2>
+
+<p>Total: {{ datos|length }}</p>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Nombre</th>
+
+<th>Correo</th>
+
+<th>Teléfono</th>
+
+</tr>
+
+{% for cliente in datos %}
+
+<tr>
+
+<td>{{ cliente.id }}</td>
+
+<td>{{ cliente.nombre }}</td>
+
+<td>{{ cliente.correo }}</td>
+
+<td>{{ cliente.telefono }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

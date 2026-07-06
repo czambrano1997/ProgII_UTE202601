@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h2>Plataformas</h2>
+
+<p>Total: {{ datos|length }}</p>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Nombre</th>
+
+</tr>
+
+{% for plataforma in datos %}
+
+<tr>
+
+<td>{{ plataforma.id }}</td>
+
+<td>{{ plataforma.nombre }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

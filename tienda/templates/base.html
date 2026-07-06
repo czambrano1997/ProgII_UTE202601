@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda de Videojuegos</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<header>
+    <h1>Tienda de Videojuegos UTE</h1>
+    <h2>Proyecto Final - Programación II</h2>
+</header>
+
+<nav>
+
+    <a href="/">🏠 Inicio</a>
+
+    <a href="/videojuegos/">🎮 Videojuegos</a>
+
+    <a href="/categorias/">📂 Categorías</a>
+
+    <a href="/plataformas/">🕹️ Plataformas</a>
+
+    <a href="/clientes/">👤 Clientes</a>
+
+    <a href="/ventas/">💰 Ventas</a>
+
+    <a href="/admin/" class="boton-admin">⚙ Panel de Administración</a>
+
+</nav>
+
+<div class="contenido">
+
+{% block contenido %}
+
+{% endblock %}
+
+</div>
+
+<footer>
+
+Proyecto Final Django | Universidad UTE
+
+</footer>
+
+</body>
+</html>

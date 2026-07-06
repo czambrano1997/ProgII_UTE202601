@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h2>Lista de Videojuegos</h2>
+
+<p>Total registrados: {{ datos|length }}</p>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Título</th>
+
+<th>Descripción</th>
+
+<th>Precio</th>
+
+<th>Stock</th>
+
+<th>Categoría</th>
+
+<th>Plataforma</th>
+
+</tr>
+
+{% for juego in datos %}
+
+<tr>
+
+<td>{{ juego.id }}</td>
+
+<td>{{ juego.titulo }}</td>
+
+<td>{{ juego.descripcion }}</td>
+
+<td>${{ juego.precio }}</td>
+
+<td>{{ juego.stock }}</td>
+
+<td>{{ juego.categoria }}</td>
+
+<td>{{ juego.plataforma }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
