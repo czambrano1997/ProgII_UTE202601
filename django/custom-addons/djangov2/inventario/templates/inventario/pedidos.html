@@ -1,0 +1,45 @@
+{% extends 'inventario/base.html' %}
+{% block title %}Pedidos - Django Store{% endblock %}
+
+{% block content %}
+<section class="page-title">
+    <p class="badge">Modelos Pedido y DetallePedido</p>
+    <h1>Panel de pedidos</h1>
+    <p>Resumen visual de ventas y productos incluidos en cada pedido.</p>
+</section>
+
+<section class="orders-grid">
+    {% for pedido in pedidos %}
+        <article class="order-card">
+            <div class="order-top">
+                <div>
+                    <p class="badge">Pedido #{{ pedido.id }}</p>
+                    <h3>{{ pedido.cliente }}</h3>
+                </div>
+                <span class="estado">{{ pedido.estado }}</span>
+            </div>
+            <p class="date">{{ pedido.fecha|date:'d/m/Y H:i' }}</p>
+            <div class="order-details">
+                {% for detalle in pedido.detalles.all %}
+                    <div class="list-item">
+                        <span>{{ detalle.producto.nombre }} x {{ detalle.cantidad }}</span>
+                        <strong>${{ detalle.subtotal }}</strong>
+                    </div>
+                {% empty %}
+                    <p>Este pedido no tiene detalles.</p>
+                {% endfor %}
+            </div>
+            <div class="order-total">
+                <span>Total</span>
+                <strong>${{ pedido.total }}</strong>
+            </div>
+            <a class="small-btn" href="/api/pedidos/{{ pedido.id }}/">Ver endpoint</a>
+        </article>
+    {% empty %}
+        <div class="empty-box">
+            <h3>No hay pedidos registrados</h3>
+            <p>Registra clientes, productos y detalles desde la API o ejecuta los datos de prueba.</p>
+        </div>
+    {% endfor %}
+</section>
+{% endblock %}

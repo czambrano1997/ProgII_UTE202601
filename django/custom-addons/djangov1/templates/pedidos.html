@@ -1,0 +1,5 @@
+<h1>Lista de Pedidos</h1>
+
+{% for item in datos %}
+    <p>Pedido {{ item.id }} - {{ item.fecha }} - ${{ item.total }}</p>
+{% endfor %}

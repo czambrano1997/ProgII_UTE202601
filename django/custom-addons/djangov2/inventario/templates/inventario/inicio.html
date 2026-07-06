@@ -1,0 +1,83 @@
+{% extends 'inventario/base.html' %}
+{% block title %}Inicio - Django Store{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-text">
+        <p class="badge">Proyecto Django MVT + API REST</p>
+        <h1>Panel de tienda para gestionar productos, clientes y pedidos</h1>
+        <p class="hero-description">
+            Esta interfaz muestra el inventario como una tienda real, conectada con los 5 modelos del proyecto y con acceso directo a los endpoints CRUD de la API.
+        </p>
+        <div class="hero-actions">
+            <a class="btn primary" href="{% url 'tienda' %}">Ver tienda</a>
+            <a class="btn secondary" href="/api/">Probar API CRUD</a>
+        </div>
+    </div>
+    <div class="hero-card">
+        <h3>Resumen general</h3>
+        <div class="stats-grid">
+            <div><strong>{{ estadisticas.productos }}</strong><span>Productos</span></div>
+            <div><strong>{{ estadisticas.categorias }}</strong><span>Categorías</span></div>
+            <div><strong>{{ estadisticas.clientes }}</strong><span>Clientes</span></div>
+            <div><strong>{{ estadisticas.pedidos }}</strong><span>Pedidos</span></div>
+        </div>
+        <p class="money">Total registrado: ${{ estadisticas.ventas }}</p>
+    </div>
+</section>
+
+<section class="section-head">
+    <div>
+        <p class="badge">Catálogo</p>
+        <h2>Productos destacados</h2>
+    </div>
+    <a href="{% url 'tienda' %}">Ver todos →</a>
+</section>
+
+<section class="product-grid">
+    {% for producto in productos %}
+        <article class="product-card">
+            <div class="product-image">{{ producto.nombre|first }}</div>
+            <p class="category">{{ producto.categoria.nombre }}</p>
+            <h3>{{ producto.nombre }}</h3>
+            <p>{{ producto.descripcion|default:'Producto disponible en inventario.' }}</p>
+            <div class="product-footer">
+                <span class="price">${{ producto.precio }}</span>
+                <span class="stock">Stock: {{ producto.stock }}</span>
+            </div>
+            <a class="small-btn" href="/api/productos/{{ producto.id }}/">Ver endpoint</a>
+        </article>
+    {% empty %}
+        <div class="empty-box">
+            <h3>No hay productos todavía</h3>
+            <p>Ejecuta <code>python manage.py cargar_datos_demo</code> para llenar la tienda con datos de ejemplo.</p>
+        </div>
+    {% endfor %}
+</section>
+
+<section class="dashboard-row">
+    <div class="panel">
+        <h2>Categorías activas</h2>
+        {% for categoria in categorias %}
+            <div class="list-item">
+                <span>{{ categoria.nombre }}</span>
+                <strong>{{ categoria.total_productos }} productos</strong>
+            </div>
+        {% empty %}
+            <p>No existen categorías registradas.</p>
+        {% endfor %}
+    </div>
+
+    <div class="panel">
+        <h2>Pedidos recientes</h2>
+        {% for pedido in pedidos_recientes %}
+            <div class="list-item">
+                <span>#{{ pedido.id }} · {{ pedido.cliente }}</span>
+                <strong>${{ pedido.total }}</strong>
+            </div>
+        {% empty %}
+            <p>No existen pedidos registrados.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
