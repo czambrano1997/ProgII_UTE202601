@@ -9,7 +9,7 @@ from .serializers import ProductoSerializer
 @api_view(["GET"])
 @permission_classes([IsAuthenticatedOrReadOnly])
 def lista_productos(request):
-    productos = Producto.objects.all()
+    productos = Producto.objects.all()          
     serializer = ProductoSerializer(productos, many=True)
     return Response(serializer.data)
 
