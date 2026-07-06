@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Préstamos</title>
+</head>
+<body>
+    <h1>Préstamos</h1>
+    <nav>
+        <a href="/autores/">Autores</a> |
+        <a href="/editoriales/">Editoriales</a> |
+        <a href="/categorias/">Categorías</a> |
+        <a href="/libros/">Libros</a> |
+        <a href="/prestamos/">Préstamos</a>
+    </nav>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Libro</th>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Fecha préstamo</th>
+                <th>Fecha devolución</th>
+                <th>Devuelto</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prestamo in prestamos %}
+            <tr>
+                <td>{{ prestamo.libro }}</td>
+                <td>{{ prestamo.usuario_nombre }}</td>
+                <td>{{ prestamo.usuario_email }}</td>
+                <td>{{ prestamo.fecha_prestamo }}</td>
+                <td>{{ prestamo.fecha_devolucion|default:'-' }}</td>
+                <td>{{ prestamo.devuelto }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6">No hay préstamos registrados.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
