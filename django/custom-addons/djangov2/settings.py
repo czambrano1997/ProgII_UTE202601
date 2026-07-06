@@ -34,7 +34,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'panaderia_root.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATES = [
     {
@@ -53,7 +53,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'panaderia_root.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 # Database
 DATABASES = {
