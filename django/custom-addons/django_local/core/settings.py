@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "inventario",
+    "djangov1",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -83,7 +85,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_maty',
+        'NAME': 'django_lab',
         'USER': 'django',
         'PASSWORD': 'djangoAdmin',
         'HOST': 'localhost',
