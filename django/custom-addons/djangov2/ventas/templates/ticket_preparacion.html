@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket de Preparación #{{ pedido.id }}</title>
+    <style>
+        /* Estilo tipo ticket de impresora térmica (80mm) */
+        body { 
+            font-family: 'Courier New', Courier, monospace; 
+            width: 280px; 
+            margin: 0 auto; 
+            padding: 10px;
+            color: #000;
+        }
+        .text-center { text-align: center; }
+        .linea { border-top: 1px dashed black; margin: 10px 0; }
+        table { width: 100%; border-collapse: collapse; }
+        th { border-bottom: 1px solid black; }
+        td, th { padding: 5px 0; font-size: 14px; }
+        .total { font-weight: bold; font-size: 1.2em; margin-top: 10px; }
+        .info { font-size: 13px; margin-bottom: 5px; }
+
+        /* Ocultar botones al imprimir */
+        @media print {
+            .no-print { display: none; }
+            body { width: 100%; margin: 0; }
+        }
+    </style>
+</head>
+<body onload="window.print()"> <div class="text-center">
+        <h2 style="margin:0;">LA IDEAL</h2>
+        <p style="margin:0;">Panadería y Pastelería</p>
+        <div class="linea"></div>
+        <strong>ORDEN DE PREPARACIÓN</strong><br>
+        Pedido #{{ pedido.id }}
+    </div>
+    
+    <div class="linea"></div>
+    
+    <div class="info">
+        <strong>Cliente:</strong> {{ pedido.cliente.username }}<br>
+        {% if pedido.telefono %}
+        <strong>Teléfono:</strong> {{ pedido.telefono }}<br>
+        {% endif %}
+        <strong>Fecha:</strong> {{ fecha|date:"d/m/Y H:i" }}
+    </div>
+    
+    <div class="linea"></div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th align="left">Cant.</th>
+                <th align="left">Producto</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in detalles %}
+            <tr>
+                <td>{{ d.cantidad }}</td>
+                <td>{{ d.producto.nombre }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="linea"></div>
+    
+    <div class="text-center total">
+        TOTAL A COBRAR: ${{ pedido.total }}
+    </div>
+    
+    <div class="linea"></div>
+    
+    <p class="text-center" style="font-size: 12px;">
+        *** Uso Interno / Preparación ***
+    </p>
+
+    <div class="text-center no-print">
+        <button onclick="window.close()" style="cursor:pointer; padding: 10px; background: #333; color: white; border: none; border-radius: 5px; width: 100%;">
+            Cerrar Ventana
+        </button>
+    </div>
+
+</body>
+</html>

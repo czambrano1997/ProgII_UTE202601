@@ -1,0 +1,273 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    :root {
+        --primary-dark: #212529;
+        --accent-gold: #ffc107;
+    }
+
+    /* Mejora de Cards */
+    .card {
+        border: none;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+    .shadow-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
+    /* Estilo para la tabla de Abastecimiento */
+    .table-modern thead {
+        background-color: var(--primary-dark);
+        color: white;
+    }
+    .table-modern td { vertical-align: middle; }
+    
+    .input-quantity {
+        border-radius: 20px 0 0 20px;
+        border: 1px solid #ced4da;
+        text-align: center;
+        font-weight: bold;
+    }
+    .btn-add-stock {
+        border-radius: 0 20px 20px 0;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    /* Ranking decorativo */
+    .rank-number {
+        width: 30px;
+        height: 30px;
+        background: var(--accent-gold);
+        color: black;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.8rem;
+    }
+
+    @media print {
+        .no-print, .navbar, .btn, footer, #buscadorClientes, .form-abastecer { display: none !important; }
+        .card { border: 1px solid #ddd !important; box-shadow: none !important; }
+        body { background-color: white !important; }
+    }
+</style>
+
+<div class="container mt-4 pb-5">
+    <div class="row align-items-center mb-4 no-print">
+        <div class="col-md-7">
+            <h1 class="fw-bold"><i class="fas fa-chart-line text-warning me-2"></i>{{ titulo }}</h1>
+            <p class="text-muted">Panel de control estratégico y gestión de inventario maestro.</p>
+        </div>
+        <div class="col-md-5 text-md-end">
+            <button onclick="window.print();" class="btn btn-dark btn-lg shadow-sm">
+                <i class="fas fa-file-export me-2"></i>Exportar Reporte
+            </button>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-dark text-white shadow-sm p-3 mb-3 border-start border-success border-5">
+                <small class="text-uppercase opacity-75 fw-bold">Ventas Totales</small>
+                <h2 class="mb-0 mt-1">${{ total_dinero }}</h2>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-dark text-white shadow-sm p-3 mb-3 border-start border-info border-5">
+                <small class="text-uppercase opacity-75 fw-bold">Ticket Promedio</small>
+                <h2 class="mb-0 mt-1">${{ promedio }}</h2>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-dark text-white shadow-sm p-3 mb-3 border-start border-primary border-5">
+                <small class="text-uppercase opacity-75 fw-bold">Pedidos</small>
+                <h2 class="mb-0 mt-1">{{ cantidad_pedidos }}</h2>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-dark text-white shadow-sm p-3 mb-3 border-start border-warning border-5">
+                <small class="text-uppercase opacity-75 fw-bold">Récord Venta</small>
+                <h2 class="mb-0 mt-1">${{ venta_record|floatformat:0 }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <h5 class="mb-0 fw-bold"><i class="fas fa-box-open me-2 text-warning"></i>Cargar Stock a Vitrina</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-modern mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="ps-4">Producto</th>
+                                    <th>Stock Actual</th>
+                                    <th class="text-center">Añadir Cantidad</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for p in todos_productos %}
+                                <tr>
+                                    <td class="ps-4">
+                                        <span class="fw-bold text-dark">{{ p.nombre }}</span><br>
+                                        <small class="text-muted">{{ p.categoria.nombre }}</small>
+                                    </td>
+                                    <td>
+                                        <span class="badge {% if p.stock <= 5 %}bg-danger{% else %}bg-light text-dark border{% endif %} rounded-pill px-3">
+                                            {{ p.stock }} disponibles
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <form action="{% url 'admin_reabastecer' p.id %}" method="POST" class="d-flex justify-content-center no-print">
+                                            {% csrf_token %}
+                                            <input type="number" name="cantidad" value="12" min="1" class="form-control form-control-sm input-quantity" style="width: 70px;">
+                                            <button type="submit" class="btn btn-warning btn-sm btn-add-stock fw-bold">
+                                                Cargar
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="fas fa-users me-2 text-primary"></i>Directorio de Clientes</h5>
+                    <div class="input-group input-group-sm w-50 no-print">
+                        <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
+                        <input type="text" id="buscadorClientes" class="form-control border-start-0 shadow-none" placeholder="Buscar por nombre o usuario...">
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0" id="tablaClientes">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="ps-4">Nombre / Perfil</th>
+                                    <th>WhatsApp</th>
+                                    <th class="text-end pe-4 no-print">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% regroup contactos by cliente__username as contactos_agrupados %}
+                                {% for u in usuarios %}
+                                <tr>
+                                    <td class="ps-4">
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm me-3 bg-light rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                                <i class="fas fa-user text-secondary"></i>
+                                            </div>
+                                            <div>
+                                                <div class="fw-bold">{{ u.nombre_completo|default:u.username }}</div>
+                                                <small class="text-muted">@{{ u.username }}</small>
+                                                {% if u.is_superuser %}
+                                                    <span class="badge bg-danger-soft text-danger border border-danger" style="font-size: 0.6rem;">ADMIN</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {% for grupo in contactos_agrupados %}
+                                            {% if grupo.grouper == u.username %}
+                                                <span class="text-success fw-bold"><i class="fab fa-whatsapp me-1"></i>{{ grupo.list.0.telefono }}</span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td class="text-end pe-4 no-print">
+                                        {% for grupo in contactos_agrupados %}
+                                            {% if grupo.grouper == u.username and grupo.list.0.telefono %}
+                                                <a href="https://wa.me/{{ grupo.list.0.telefono }}?text=Hola%20{{ u.username }},%20te%20saludamos%20de%20la%20Boutique%20La%20Ideal." 
+                                                   target="_blank" class="btn btn-outline-success btn-sm rounded-pill px-3">
+                                                   Enviar Mensaje
+                                                </a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <h5 class="mb-0 fw-bold text-center"><i class="fas fa-trophy text-warning me-2"></i>Top 5 Más Vendidos</h5>
+                </div>
+                <div class="card-body">
+                    {% for item in top_productos %}
+                    <div class="d-flex align-items-center mb-3 p-2 bg-light rounded shadow-sm border-start border-warning border-3">
+                        <div class="rank-number me-3">{{ forloop.counter }}</div>
+                        <div class="flex-grow-1">
+                            <div class="fw-bold text-truncate" style="max-width: 150px;">{{ item.producto__nombre }}</div>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-dark">{{ item.total_vendido }} ventas</span>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-center text-muted py-3 small">No hay datos suficientes.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="card shadow-sm border-0 bg-danger text-white">
+                <div class="card-header bg-transparent border-bottom border-white border-opacity-25 py-3">
+                    <h5 class="mb-0 fw-bold text-center"><i class="fas fa-exclamation-circle me-2"></i>Stock Crítico</h5>
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush rounded-bottom overflow-hidden">
+                        {% for p in productos_alerta %}
+                        <li class="list-group-item bg-danger text-white d-flex justify-content-between align-items-center border-white border-opacity-10 py-3">
+                            <div>
+                                <i class="fas fa-angle-right me-2"></i>{{ p.nombre }}
+                            </div>
+                            <span class="badge bg-white text-danger fw-bold rounded-pill">Solo {{ p.stock }}</span>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item bg-white text-success text-center py-4">
+                            <i class="fas fa-check-circle fs-3 d-block mb-2"></i>
+                            Inventario en orden.
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    // Buscador Dinámico
+    document.getElementById('buscadorClientes').addEventListener('keyup', function() {
+        let filtro = this.value.toUpperCase();
+        let filas = document.getElementById("tablaClientes").getElementsByTagName('tr');
+
+        for (let i = 1; i < filas.length; i++) {
+            let textoFila = filas[i].innerText.toUpperCase();
+            filas[i].style.display = textoFila.indexOf(filtro) > -1 ? "" : "none";
+        }
+    });
+</script>
+
+{% endblock %}

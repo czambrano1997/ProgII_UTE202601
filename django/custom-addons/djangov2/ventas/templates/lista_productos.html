@@ -1,0 +1,373 @@
+{% extends 'base.html' %}
+
+{% block title %}Catálogo Gourmet - La Ideal{% endblock title %}
+
+{% block content %}
+<style>
+    /* 1. FONDO Y ESTRUCTURA GENERAL */
+    body {
+        margin: 0;
+        padding: 0;
+        background: #1a0f0a;
+        overflow-x: hidden;
+    }
+
+    .background-animated {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        z-index: -1;
+        background: linear-gradient(45deg, #1a0f0a, #2c1810);
+    }
+
+    .bubble {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(212, 163, 115, 0.1);
+        animation: move 25s infinite linear;
+    }
+    @keyframes move {
+        from { transform: translateY(100vh) scale(0); opacity: 0; }
+        50% { opacity: 0.5; }
+        to { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+
+    /* 2. ESTILOS DE LOS ANUNCIOS LATERALES */
+    .anuncio-lateral {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(212, 163, 115, 0.2);
+        border-radius: 20px;
+        color: white;
+        text-align: center;
+        backdrop-filter: blur(8px);
+        margin-bottom: 25px;
+        position: sticky;
+        top: 20px;
+        transition: 0.3s;
+        overflow: hidden;
+    }
+    .anuncio-lateral:hover {
+        border-color: var(--gold-bread);
+        transform: translateY(-5px);
+    }
+    
+    .btn-postres-lateral:hover img {
+        transform: scale(1.1);
+        filter: brightness(1.2);
+    }
+    .btn-postres-lateral img {
+        transition: 0.5s ease;
+    }
+
+    .anuncio-icon { font-size: 2.5rem; color: var(--gold-bread); margin-bottom: 10px; }
+
+    .coupon-box {
+        background: white;
+        color: #1a0f0a;
+        padding: 8px;
+        border-radius: 10px;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+        letter-spacing: 2px;
+        border: 2px dashed #1a0f0a;
+        display: inline-block;
+        width: 100%;
+    }
+
+    /* 3. TARJETAS DE PRODUCTO */
+    .product-card {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+        transition: 0.4s ease;
+        overflow: hidden;
+    }
+    .product-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--gold-bread);
+        background: rgba(255, 255, 255, 0.08);
+    }
+    .price-badge {
+        position: absolute; top: 15px; right: 15px;
+        background: var(--gold-bread); color: #1a0f0a;
+        padding: 5px 15px; border-radius: 50px; font-weight: bold;
+        z-index: 10;
+    }
+
+    /* CANTIDAD INPUT */
+    .qty-input {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(212, 163, 115, 0.3) !important;
+        color: white !important;
+        text-align: center;
+        border-radius: 10px !important;
+    }
+
+    /* 4. CATEGORÍAS Y BUSCADOR */
+    .offcanvas { background: #1a0f0a !important; border-right: 2px solid var(--gold-bread); }
+    .category-link {
+        color: #d4a373 !important;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid rgba(212, 163, 115, 0.1) !important;
+        display: flex; align-items: center; gap: 15px;
+        padding: 20px 30px !important;
+        text-decoration: none;
+    }
+    .category-link:hover {
+        background: rgba(212, 163, 115, 0.1) !important;
+        color: white !important;
+        padding-left: 40px !important;
+        box-shadow: inset 5px 0 0 var(--gold-bread);
+    }
+
+    .search-container { position: relative; max-width: 500px; }
+    #inputBuscador {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid var(--gold-bread);
+        color: white;
+        border-radius: 30px;
+        padding: 10px 25px;
+        padding-right: 45px;
+    }
+
+    @media (max-width: 991px) { .col-anuncio { display: none; } }
+
+    /* ANIMACIONES DE NOTIFICACIÓN */
+    @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+</style>
+
+<div class="background-animated">
+    <div class="bubble" style="width: 80px; height: 80px; left: 10%; animation-duration: 20s;"></div>
+    <div class="bubble" style="width: 120px; height: 120px; left: 30%; animation-duration: 28s;"></div>
+    <div class="bubble" style="width: 100px; height: 100px; left: 75%; animation-duration: 30s;"></div>
+</div>
+
+<div class="container-fluid px-4 py-4">
+    <div class="row">
+        <div class="col-lg-2 col-anuncio">
+            <div class="anuncio-lateral p-0" style="border: 2px dashed var(--gold-bread);">
+                <div class="position-relative">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=400" class="img-fluid" style="height: 160px; width: 100%; object-fit: cover;">
+                    <div class="position-absolute top-0 start-0 bg-danger text-white px-3 py-1 fw-bold" style="border-radius: 0 0 15px 0; font-size: 12px;">OFERTA</div>
+                </div>
+                <div class="p-3 text-center">
+                    <h4 class="fw-bold" style="color: var(--gold-bread);">20% OFF</h4>
+                    <p class="small opacity-75 text-white">Código:</p>
+                    <div class="coupon-box mb-2">IDEAL2026</div>
+                </div>
+            </div>
+
+            <div class="anuncio-lateral p-3 text-white">
+                <i class="bi bi-whatsapp anuncio-icon text-success"></i>
+                <h6 class="fw-bold">¿Pedidos Especiales?</h6>
+                <a href="https://wa.me/593993486821" target="_blank" class="btn btn-success btn-sm w-100 rounded-pill fw-bold">CHATEAR AHORA</a>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 gap-3">
+                <div>
+                    <h1 class="display-5 fw-bold text-white mb-0">{{ titulo|default:"Nuestra Vitrina" }}</h1>
+                    <p class="text-muted">El arte de la repostería artesanal</p>
+                </div>
+                
+                <div class="search-container">
+                    <input type="text" id="inputBuscador" class="form-control" placeholder="Buscar pan, pasteles...">
+                    <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3 text-warning"></i>
+                </div>
+
+                <button class="btn btn-outline-warning rounded-pill px-4" data-bs-toggle="offcanvas" data-bs-target="#menuCategorias">
+                    <i class="bi bi-grid-3x3-gap me-2"></i>CATEGORÍAS
+                </button>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4" id="gridProductos">
+                {% for producto in productos %}
+                <div class="col product-item-box">
+                    <div class="product-card h-100 position-relative text-white text-center">
+                        <div class="overflow-hidden">
+                            {% if producto.imagen %}
+                                <img src="{{ producto.imagen.url }}" class="card-img-top" style="height: 250px; object-fit: cover;">
+                            {% else %}
+                                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=400" class="card-img-top" style="height: 250px; object-fit: cover;">
+                            {% endif %}
+                            <div class="price-badge">${{ producto.precio }}</div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h4 class="fw-bold mb-2">{{ producto.nombre }}</h4>
+                            <p class="small opacity-75 mb-3">{{ producto.descripcion|truncatewords:8 }}</p>
+                            <span class="badge border border-secondary mb-3">Stock: {{ producto.stock }}</span>
+                            
+                            {% if producto.stock > 0 %}
+                                <form action="{% url 'agregar_al_pedido' producto.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="input-group mb-3 px-3">
+                                        <span class="input-group-text bg-transparent text-white border-secondary small">Cant:</span>
+                                        <input type="number" name="cantidad" value="1" min="1" max="{{ producto.stock }}" class="form-control qty-input">
+                                    </div>
+                                    <button type="submit" class="btn btn-warning w-100 fw-bold py-2 rounded-3">AÑADIR AL CARRITO</button>
+                                </form>
+                            {% else %}
+                                <button class="btn btn-secondary w-100 rounded-3" disabled>AGOTADO</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center text-white mt-5">
+                    <i class="bi bi-search fs-1 mb-3 d-block text-warning"></i>
+                    <h3>No hay productos disponibles</h3>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-anuncio">
+            <a href="{% url 'catalogo_postres' %}" class="text-decoration-none">
+                <div class="anuncio-lateral p-0 overflow-hidden btn-postres-lateral">
+                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=300" class="img-fluid" alt="Postres">
+                    <div class="p-3 text-warning">
+                        <h6 class="fw-bold m-0">Postres del Día</h6>
+                        <small class="text-white opacity-50">Click para ver →</small>
+                    </div>
+                </div>
+            </a>
+
+            <div class="anuncio-lateral p-3 text-white">
+                <i class="bi bi-clock anuncio-icon"></i>
+                <h6 class="fw-bold">Horarios</h6>
+                <div class="text-start x-small mt-2" style="font-size: 0.85rem;">
+                    <div class="d-flex justify-content-between border-bottom border-secondary pb-1 mb-1">
+                        <span>Lun-Sáb:</span> <span class="text-warning">6am-8pm</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Dom:</span> <span class="text-warning">7am-2pm</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="menuCategorias">
+    <div class="offcanvas-header bg-dark border-bottom border-secondary">
+        <h5 class="offcanvas-title text-white fw-bold">Menú Gourmet</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+        <a href="{% url 'lista_productos' %}" class="category-link"><i class="bi bi-collection"></i> Todo el Catálogo</a>
+        <a href="{% url 'panaderia' %}" class="category-link"><i class="bi bi-egg-fried"></i> Panadería</a>
+        <a href="{% url 'pasteleria' %}" class="category-link"><i class="bi bi-cake2"></i> Pastelería</a>
+        <a href="{% url 'catalogo_postres' %}" class="category-link"><i class="bi bi-cup-straw"></i> Postres</a>
+    </div>
+</div>
+
+<script>
+    // --- LÓGICA DE BÚSQUEDA DINÁMICA ---
+    const inputBuscador = document.getElementById('inputBuscador');
+    const gridProductos = document.getElementById('gridProductos');
+    const contenidoOriginal = gridProductos.innerHTML;
+
+    inputBuscador.addEventListener('input', async (e) => {
+        const query = e.target.value.trim();
+        if (query.length === 0) { gridProductos.innerHTML = contenidoOriginal; return; }
+
+        try {
+            const response = await fetch(`/api/buscar/?q=${query}`);
+            const productos = await response.json();
+            gridProductos.innerHTML = '';
+
+            if (productos.length === 0) {
+                gridProductos.innerHTML = `<div class="col-12 text-center text-white mt-5"><p>No encontramos nada con "${query}"</p></div>`;
+                return;
+            }
+
+            productos.forEach(p => {
+                // RUTA CORREGIDA: /comprar/ en lugar de /pedido/agregar/
+                gridProductos.innerHTML += `
+                    <div class="col">
+                        <div class="product-card h-100 position-relative text-white text-center">
+                            <div class="overflow-hidden">
+                                <img src="${p.imagen}" class="card-img-top" style="height: 250px; object-fit: cover;">
+                                <div class="price-badge">$${p.precio}</div>
+                            </div>
+                            <div class="card-body p-4">
+                                <h4 class="fw-bold mb-2">${p.nombre}</h4>
+                                <p class="small opacity-75 mb-3">${p.categoria}</p>
+                                <form action="/comprar/${p.id}/" method="POST">
+                                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                                    <div class="input-group mb-3 px-3">
+                                        <input type="number" name="cantidad" value="1" min="1" class="form-control qty-input">
+                                    </div>
+                                    <button type="submit" class="btn btn-warning w-100 fw-bold py-2 rounded-3">AÑADIR</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+        } catch (error) { console.error("Error búsqueda:", error); }
+    });
+
+    // --- NOTIFICACIONES DE ESTADO (MONITOREO DE ENTREGA) ---
+    async function chequearEstadoPedido() {
+        try {
+            const response = await fetch("{% url 'api_estado_pedido' %}");
+            const data = await response.json();
+            
+            if (data.estado === 'Entregado') { 
+                mostrarNotificacion(data.id, data.mensaje); 
+            }
+        } catch (error) { 
+            console.log("Error al consultar estado del pedido.");
+        }
+    }
+
+    function mostrarNotificacion(id, mensaje) {
+        if (localStorage.getItem('ultimo_notificado_id') == id) return;
+
+        const alerta = document.createElement('div');
+        alerta.style = `
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            background: #d4a373; 
+            color: #1a0f0a; 
+            padding: 25px; 
+            border-radius: 20px; 
+            z-index: 10000; 
+            font-weight: bold; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6); 
+            border: 3px solid #ffffff; 
+            animation: slideIn 0.5s ease-out;
+            max-width: 350px;
+        `;
+        
+        alerta.innerHTML = `
+            <div class="d-flex align-items-center gap-3">
+                <i class="bi bi-check-circle-fill fs-1 text-white"></i>
+                <div>
+                    <div style="font-size: 1.1rem;">${mensaje}</div>
+                    <small class="opacity-75">Orden #${id} procesada con éxito</small>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(alerta);
+        
+        const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
+        audio.play().catch(e => console.log("El navegador bloqueó el audio automático."));
+
+        localStorage.setItem('ultimo_notificado_id', id);
+
+        setTimeout(() => {
+            alerta.style.animation = "fadeOut 1s forwards";
+            setTimeout(() => alerta.remove(), 1000);
+        }, 10000);
+    }
+
+    {% if user.is_authenticated %}
+        setInterval(chequearEstadoPedido, 12000);
+    {% endif %}
+</script>
+{% endblock content %}

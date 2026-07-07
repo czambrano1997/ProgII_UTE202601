@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+
+{% block title %}Terminal de Gestión | La Ideal{% endblock title %}
+
+{% block content %}
+<style>
+    body { background-color: #050505; font-family: 'Inter', sans-serif; }
+    .top-bar { border-bottom: 1px solid #1a1a1a; padding: 40px 0 15px 0; margin-bottom: 30px; }
+    .system-label { font-size: 10px; letter-spacing: 4px; color: #d4a373; text-transform: uppercase; font-weight: 700; }
+    
+    /* Paneles laterales y Tarjetas Nuevas */
+    .stat-card { background: #0a0a0a; border: 1px solid #1a1a1a; padding: 20px; margin-bottom: 20px; }
+    .label-muted { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 8px; }
+    
+    .card-intel {
+        background: linear-gradient(145deg, #0a0a0a 0%, #111 100%);
+        border: 1px solid #1a1a1a;
+        padding: 15px;
+        border-radius: 4px;
+    }
+    
+    /* Estilo de la tabla de stock */
+    .stock-list { font-size: 0.85rem; color: #999; width: 100%; }
+    .stock-list td { padding: 12px 0; border-bottom: 1px solid #111; }
+    
+    /* AUMENTO: Indicadores de Stock Crítico */
+    .stock-number { font-family: monospace; font-weight: bold; padding: 2px 6px; border-radius: 3px; margin-right: 5px; }
+    .stock-critical { background: rgba(255, 68, 68, 0.2); color: #ff4444; border: 1px solid #ff4444; animation: pulse-red 2s infinite; }
+    .stock-low { background: rgba(212, 163, 115, 0.2); color: #d4a373; border: 1px solid #d4a373; }
+    .stock-ok { color: #25D366; }
+
+    @keyframes pulse-red {
+        0% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(255, 68, 68, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0); }
+    }
+
+    /* Botones de Stock y Acciones Rápidas */
+    .btn-stock { font-size: 9px; padding: 2px 8px; text-transform: uppercase; border-radius: 0; border: 1px solid #333; text-decoration: none; display: inline-block; }
+    .btn-disponible { color: #25D366; border-color: #25D366; }
+    .btn-agotado { color: #ff4444; border-color: #ff4444; }
+
+    /* AUMENTO: Estilos para Venta Rápida y Merma */
+    .btn-action-fast { font-size: 10px; padding: 3px 7px; border: 1px solid #333; text-decoration: none; margin-right: 4px; transition: all 0.2s ease; display: inline-block; }
+    .btn-sell { color: #FFD700; border-color: #FFD700; } 
+    .btn-sell:hover { background: #FFD700; color: #000; }
+    .btn-waste { color: #ff4d4d; border-color: #ff4d4d; }
+    .btn-waste:hover { background: #ff4d4d; color: #000; }
+
+    /* Ordenes */
+    .order-entry { border-bottom: 1px solid #1a1a1a; padding: 20px 0; transition: background 0.2s ease; }
+    .order-entry:hover { background-color: #0a0a0a; }
+    .data-primary { color: #fff; font-size: 1rem; font-weight: 500; }
+    .product-item { color: #999; font-size: 0.9rem; display: flex; justify-content: space-between; border-bottom: 1px dotted #222; }
+    
+    /* Buscador Interno */
+    .input-terminal {
+        background: #000;
+        border: 1px solid #333;
+        color: #d4a373;
+        font-family: monospace;
+        font-size: 12px;
+        padding: 8px 15px;
+        width: 100%;
+        outline: none;
+    }
+    .input-terminal:focus { border-color: #d4a373; }
+
+    /* Botones de Acción */
+    .btn-minimal { 
+        border: 1px solid #333; 
+        color: #fff; 
+        padding: 8px 15px; 
+        font-size: 11px; 
+        text-transform: uppercase; 
+        text-decoration: none; 
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+        transition: all 0.3s ease;
+    }
+    .btn-minimal:hover { background: #fff; color: #000; }
+    
+    .btn-ticket { border-color: #d4a373; color: #d4a373; }
+    .btn-ticket:hover { background: #d4a373; color: #000; }
+
+    /* Indicador Live */
+    .live-dot {
+        height: 8px; width: 8px; background-color: #25D366;
+        border-radius: 50%; display: inline-block;
+        margin-right: 5px; animation: blink 1.5s infinite;
+    }
+    @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+</style>
+
+<div class="container">
+    <div class="top-bar d-flex justify-content-between align-items-end">
+        <div>
+            <span class="system-label"><span class="live-dot"></span>Live Dispatch Terminal</span>
+            <h1 class="text-white fw-light m-0">Panel de <span style="color: #d4a373; font-weight: 600;">Control</span></h1>
+        </div>
+        <div class="text-end">
+            <span class="label-muted">Cierre de Caja Hoy</span>
+            <span style="font-size: 1.5rem; color: #25D366; font-family: monospace;">$ {{ total_caja }}</span>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card-intel">
+                <span class="label-muted">Ingreso Total Bruto</span>
+                <h4 class="text-white m-0">$ {{ total_caja|default:"0" }}</h4>
+                <small class="text-white-50 small">Sincronizado con base de datos</small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-intel">
+                <span class="label-muted">Eficiencia</span>
+                <h4 class="text-white m-0">{{ ventas_hoy.count }} <small class="text-muted">Despachos</small></h4>
+                <small class="text-success small">Sistema Operativo</small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-intel">
+                <span class="label-muted">Estado Servidor</span>
+                <div class="d-flex align-items-center">
+                    <span class="text-info small fw-bold">API NOTIFICACIONES: ACTIVA</span>
+                </div>
+                <small class="text-white-50">Escuchando pedidos entrantes...</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <span class="label-muted mb-3">Pedidos por Entregar ({{ pedidos.count }})</span>
+            
+            {% if pedidos %}
+                {% for pedido in pedidos %}
+                <div class="order-entry">
+                    <div class="row align-items-center">
+                        <div class="col-md-2">
+                            <span style="color: #d4a373; font-family: monospace;">#{{ pedido.id }}</span>
+                            <div class="text-muted small">{{ pedido.fecha_pedido|date:"H:i" }}</div>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="data-primary">{{ pedido.cliente.username|upper }}</span>
+                            {% if pedido.telefono %}
+                                <br><a href="https://wa.me/593{{ pedido.telefono }}" target="_blank" class="text-success small text-decoration-none">WhatsApp</a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4">
+                            {% for detalle in pedido.detalles.all %}
+                            <div class="product-item">
+                                <span>{{ detalle.producto.nombre }}</span>
+                                <strong class="text-white">x{{ detalle.cantidad }}</strong>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-3 text-end">
+                            <span class="d-block text-white mb-2">$ {{ pedido.total }}</span>
+                            
+                            <a href="{% url 'imprimir_ticket' pedido.id %}" target="_blank" class="btn-minimal btn-ticket">
+                                📄 Ticket
+                            </a>
+
+                            <a href="{% url 'entregar_pedido' pedido.id %}" class="btn-minimal">
+                                Entregar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center py-5 border border-secondary" style="border-style: dashed !important;">
+                    <span class="text-muted small">ESPERANDO NUEVOS PEDIDOS...</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="col-md-4">
+            <div class="stat-card">
+                <span class="label-muted">Inventario Express</span>
+                <div class="my-3">
+                    <input type="text" id="busquedaStock" class="input-terminal" placeholder="FILTRAR PRODUCTO...">
+                </div>
+                
+                <div style="max-height: 400px; overflow-y: auto;">
+                    <table class="stock-list">
+                        <tbody id="tabla-productos">
+                            {% for producto in productos %}
+                            <tr>
+                                <td class="nombre-prod">
+                                    {{ producto.nombre }}
+                                    <br>
+                                    <span class="stock-number {% if producto.stock <= 5 %}stock-critical{% elif producto.stock <= 15 %}stock-low{% else %}stock-ok{% endif %}">
+                                        {{ producto.stock }} und.
+                                    </span>
+                                </td>
+                                <td class="text-end" style="min-width: 140px;">
+                                    <a href="{% url 'venta_rapida' producto.id %}" class="btn-action-fast btn-sell" title="Venta rápida +1">⚡</a>
+                                    <a href="{% url 'registrar_merma' producto.id %}" class="btn-action-fast btn-waste" title="Merma -1">🗑️</a>
+                                    
+                                    <a href="{% url 'toggle_stock' producto.id %}" 
+                                       class="btn-stock {% if producto.disponible %}btn-disponible{% else %}btn-agotado{% endif %}">
+                                       {% if producto.disponible %}On{% else %}Off{% endif %}
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <span class="label-muted">Rendimiento Operativo</span>
+                <div class="mt-3">
+                    <h3 class="text-white">{{ ventas_hoy.count }} <small class="text-muted" style="font-size: 12px;">ENTREGAS EXITOSAS</small></h3>
+                    <div class="progress" style="height: 2px; background: #1a1a1a;">
+                        <div class="progress-bar bg-success" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 1. FILTRO DE BÚSQUEDA RÁPIDA EN TABLA
+    document.getElementById('busquedaStock').addEventListener('keyup', function() {
+        let valor = this.value.toLowerCase();
+        let filas = document.querySelectorAll("#tabla-productos tr");
+        
+        filas.forEach(fila => {
+            let nombre = fila.querySelector(".nombre-prod").textContent.toLowerCase();
+            fila.style.display = nombre.includes(valor) ? "" : "none";
+        });
+    });
+
+    // 2. RECARGA AUTOMÁTICA CADA 30 SEG
+    setTimeout(function(){
+       location.reload();
+    }, 30000);
+</script>
+{% endblock content %}
