@@ -19,6 +19,10 @@ uv run python manage.py migrate
 uv run python manage.py runserver
 ```
 
+> `.env` se carga automáticamente desde `tinkuy/settings.py`. Sin uv también
+> funciona: `pip install -r requirements.txt` en un `.venv` y `python manage.py ...`.
+> Guía paso a paso para un entorno nuevo: [GUIA_INSTALACION.md](GUIA_INSTALACION.md).
+
 ## Tailwind CSS
 
 Compilar una vez:

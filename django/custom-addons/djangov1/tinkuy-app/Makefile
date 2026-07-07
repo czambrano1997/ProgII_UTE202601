@@ -1,5 +1,9 @@
 .PHONY: typecheck tailwind tailwind-watch migrate superuser run seed seed-flush test
 
+## uv no carga .env por sí solo; esto lo inyecta en todos los `uv run`
+## (solo si el archivo existe, para no romper targets sin .env)
+export UV_ENV_FILE := $(wildcard .env)
+
 ## Tipado estricto (CI gate)
 typecheck:
 	uv run pyright
