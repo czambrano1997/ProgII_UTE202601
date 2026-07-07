@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Préstamos</title>
+</head>
+<body>
+    <h1>Lista de Préstamos</h1>
+
+    {% for p in datos %}
+        <p>{{ p.usuario }} - {{ p.libro }}</p>
+    {% endfor %}
+</body>
+</html>
