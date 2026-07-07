@@ -1,0 +1,23 @@
+{% extends 'djangov1/base.html' %}
+{% block content %}
+<div class="dv-title">
+  <h2>Categorías</h2>
+</div>
+{% if categorias %}
+<table class="dv-table">
+  <thead>
+    <tr><th>Código</th><th>Nombre</th><th>Descripción</th></tr>
+  </thead>
+  <tbody>
+  {% for c in categorias %}
+  <tr><td>{{ c.codigo }}</td><td>{{ c.nombre }}</td><td>{{ c.descripcion }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No hay categorías.</p>
+{% endif %}
+<div style="margin-top:16px;text-align:center">
+  <a class="dv-btn" href="{% url 'djangov1:index' %}">Regresar al menú</a>
+</div>
+{% endblock %}

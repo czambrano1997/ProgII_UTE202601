@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aplicacion</title>
+    <style>
+      body { margin: 0; font-family: 'Segoe UI', Roboto, Arial, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #111; }
+      .dv-container { max-width: 1100px; margin: 30px auto; background: #f8fafc; padding: 28px; border-radius: 24px; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.18); }
+      .dv-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+      .dv-title { margin: 0; font-size: 2.4rem; letter-spacing: -0.04em; color: #0f172a; }
+      .dv-subtitle { margin: 8px 0 0; color: #475569; font-size: 1rem; }
+      .dv-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: 28px; }
+      .dv-card { background: #ffffff; border-radius: 18px; padding: 22px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08); transition: transform .2s ease, box-shadow .2s ease; }
+      .dv-card:hover { transform: translateY(-4px); box-shadow: 0 18px 35px rgba(15, 23, 42, 0.12); }
+      .dv-card h3 { margin: 0 0 12px; font-size: 1.1rem; color: #0f172a; }
+      .dv-card p { margin: 0; color: #64748b; font-size: 0.95rem; line-height: 1.6; }
+      .dv-btn { display: inline-flex; align-items: center; justify-content: center; padding: 10px 18px; background: #0f172a; color: #fff; border-radius: 999px; text-decoration: none; font-weight: 600; transition: background .2s ease; }
+      .dv-btn:hover { background: #1e293b; }
+      .dv-table { width: 100%; border-collapse: collapse; margin-top: 18px; }
+      .dv-table th, .dv-table td { border: 1px solid #e2e8f0; padding: 14px 12px; text-align: left; }
+      .dv-table th { background: #f1f5f9; color: #1e293b; font-weight: 700; }
+      .dv-table tbody tr:nth-child(even) { background: #f8fafc; }
+      .dv-footer { margin-top: 28px; text-align: center; }
+      .dv-footer a { color: #0f172a; }
+      .dv-section { padding: 5px 0 0; }
+      .dv-banner { background: linear-gradient(135deg, #0f172a, #1e293b); border-radius: 18px; color: #fff; padding: 26px; margin: 14px 0 28px; }
+      .dv-banner h2 { margin: 0 0 8px; font-size: 1.7rem; }
+      .dv-banner p { margin: 0; font-size: 1rem; color: #cbd5e1; }
+    </style>
+  </head>
+  <body>
+    <div class="dv-container">
+      <div class="dv-header">
+        <div>
+          <h1 class="dv-title">Aplicacion</h1>
+          <p class="dv-subtitle">Sistema de tienda de tecnología para administrar productos, proveedores, inventario y stock.</p>
+        </div>
+      </div>
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

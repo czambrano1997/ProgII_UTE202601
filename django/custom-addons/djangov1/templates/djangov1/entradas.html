@@ -1,0 +1,23 @@
+{% extends 'djangov1/base.html' %}
+{% block content %}
+<div class="dv-title">
+  <h2>Entradas de Stock</h2>
+</div>
+{% if entradas %}
+<table class="dv-table">
+  <thead>
+    <tr><th>Producto</th><th>Almacén</th><th>Cantidad</th><th>Fecha</th></tr>
+  </thead>
+  <tbody>
+  {% for e in entradas %}
+  <tr><td>{{ e.producto.nombre }}</td><td>{{ e.almacen.nombre }}</td><td>{{ e.cantidad }}</td><td>{{ e.fecha }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No hay entradas de stock.</p>
+{% endif %}
+<div style="margin-top:16px;text-align:center">
+  <a class="dv-btn" href="{% url 'djangov1:index' %}">Regresar al menú</a>
+</div>
+{% endblock %}

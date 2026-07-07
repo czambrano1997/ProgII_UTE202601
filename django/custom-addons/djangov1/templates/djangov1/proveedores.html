@@ -1,0 +1,23 @@
+{% extends 'djangov1/base.html' %}
+{% block content %}
+<div class="dv-title">
+  <h2>Proveedores</h2>
+</div>
+{% if proveedores %}
+<table class="dv-table">
+  <thead>
+    <tr><th>Nombre</th><th>Email</th><th>Teléfono</th></tr>
+  </thead>
+  <tbody>
+  {% for p in proveedores %}
+  <tr><td>{{ p.nombre }}</td><td>{{ p.email }}</td><td>{{ p.telefono }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No hay proveedores.</p>
+{% endif %}
+<div style="margin-top:16px;text-align:center">
+  <a class="dv-btn" href="{% url 'djangov1:index' %}">Regresar al menú</a>
+</div>
+{% endblock %}
