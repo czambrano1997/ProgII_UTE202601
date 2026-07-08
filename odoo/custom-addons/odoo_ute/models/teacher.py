@@ -3,7 +3,7 @@ from odoo.exceptions import ValidationError
 
 
 class TeacherUTE(models.Model):
-    _name = 'ou.teacher'
+    _name = 'sistema.usuarios'
     _description = 'Docentes de la UTE'
 
     name = fields.Char(string="Apodo", required=True)

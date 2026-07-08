@@ -2,6 +2,16 @@ from django.shortcuts import render
 from .models import Categoria, Producto, Proveedor, FichaTecnica
 from .models import Cliente, Pedido, DetallePedido, Bodega, Descuento
 
+from django.shortcuts import render
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
+from .serializers import (
+    CategoriaSerializer, ProveedorSerializer, FichaTecnicaSerializer, ProductoSerializer,
+    ClienteSerializer, PedidoSerializer, DetallePedidoSerializer, BodegaSerializer,
+    DescuentoSerializer,
+)
+
 # Funciones para vista categoria
 def lista_categoria(request):
     categorias = Categoria.objects.all()
@@ -66,3 +76,63 @@ def lista_descuentos(request):
         'total':      descuentos.count(),
     }
     return render(request, 'inventario/descuento.html', contexto)
+
+
+#Apis
+class CategoriaViewSet(viewsets.ModelViewSet):
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+ 
+ 
+class ProveedorViewSet(viewsets.ModelViewSet):
+    queryset = Proveedor.objects.all()
+    serializer_class = ProveedorSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+ 
+ 
+class FichaTecnicaViewSet(viewsets.ModelViewSet):
+    queryset = FichaTecnica.objects.all()
+    serializer_class = FichaTecnicaSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+ 
+ 
+class ProductoViewSet(viewsets.ModelViewSet):
+    queryset = (
+        Producto.objects
+        .select_related('categoria', 'ficha_tecnica')
+        .prefetch_related('proveedores')
+        .all()
+    )
+    serializer_class = ProductoSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+ 
+ 
+class ClienteViewSet(viewsets.ModelViewSet):
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+ 
+ 
+class PedidoViewSet(viewsets.ModelViewSet):
+    queryset = Pedido.objects.select_related('cliente').all()
+    serializer_class = PedidoSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+ 
+ 
+class DetallePedidoViewSet(viewsets.ModelViewSet):
+    queryset = DetallePedido.objects.select_related('pedido', 'producto').all()
+    serializer_class = DetallePedidoSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+ 
+ 
+class BodegaViewSet(viewsets.ModelViewSet):
+    queryset = Bodega.objects.all()
+    serializer_class = BodegaSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+ 
+ 
+class DescuentoViewSet(viewsets.ModelViewSet):
+    queryset = Descuento.objects.select_related('producto').all()
+    serializer_class = DescuentoSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
