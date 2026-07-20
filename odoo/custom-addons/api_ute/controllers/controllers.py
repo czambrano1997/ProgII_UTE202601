@@ -26,22 +26,3 @@ class ApiUte(http.Controller):
         })
         return request.make_response(json.dumps({'status': 'success', 'new_record': new_record.id}), 
                                          headers=[('Content-Type', 'application/json')])
-        # data = request.httprequest
-        # print(data)
-        # signatures_data = request.env['ou.signature'].sudo().search_read([], ['id', 'name'])
-        # return request.make_response(
-        #     json.dumps({'signatures': signatures_data}),
-        #     headers=[('Content-Type', 'application/json')]
-        # )
-
-        # return http.request.render('api_ute.listing', {
-        #     'root': '/api_ute/api_ute',
-        #     'objects': http.request.env['api_ute.api_ute'].search([]),
-        # })
-
-#     @http.route('/api_ute/api_ute/objects/<model("api_ute.api_ute"):obj>', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('api_ute.object', {
-#             'object': obj
-#         })
-
