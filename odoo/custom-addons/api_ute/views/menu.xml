@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+
+    <menuitem
+        id="menu_api_ute_root"
+        name="API"/>
+
+    <menuitem id="menu_ou_api_consume"
+                  name="Api Consume"
+                  action="action_ou_api_consume"
+                  parent="menu_api_ute_root"
+                  sequence="10"/>
+
+</odoo>
+
+        

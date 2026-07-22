@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="ou_api_consume_form" model="ir.ui.view">
+            <field name="name">ou.api.consume.form</field>
+            <field name="model">ou.api.consume</field>
+            <field name="arch" type="xml">
+                <form string="Api Consume">
+                <header>
+                    <button name="check_status" string="Consultar estado" type="object" class="btn-primary"/>
+                    <!-- <button name="action_cancel" string="Cancel" type="object" states="confirmed"/>-->
+                    <field name="status" widget="statusbar"/>
+                </header>
+                    <sheet>
+                        <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="url"/>
+                        </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- List View -->
+        <record id="ou_api_consume_list" model="ir.ui.view">
+            <field name="name">ou.api.consume.list</field>
+            <field name="model">ou.api.consume</field>
+            <field name="arch" type="xml">
+                <list string="Api Consume">
+                    <field name="name"/>
+                    <field name="url"/>
+                    <!-- Add your fields here -->
+                </list>
+            </field>
+        </record>
+        
+        <!-- Action -->
+        <record id="action_ou_api_consume" model="ir.actions.act_window">
+            <field name="name">Api Consume</field>
+            <field name="res_model">ou.api.consume</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first api consume!
+                </p>
+            </field>
+        </record>
+        
+        
+    </data>
+</odoo>
