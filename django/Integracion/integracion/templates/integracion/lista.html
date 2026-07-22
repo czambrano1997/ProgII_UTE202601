@@ -1,0 +1,78 @@
+{% load dict_extras %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de {{ nombre_display }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-4">
+
+    <!-- Menú con los botones de tus controladores reales -->
+    <div class="mb-4">
+        <h4>Opciones Disponibles:</h4>
+        <div class="btn-group flex-wrap" role="group">
+            {% for key, conf in modelos_disponibles.items %}
+                <a href="{% url 'integracion:lista' modelo=key %}" 
+                   class="btn {% if key == modelo %}btn-primary{% else %}btn-outline-primary{% endif %} m-1">
+                    {{ conf.nombre_display }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Listado de {{ nombre_display }}</h2>
+        <a href="{% url 'integracion:crear' modelo=modelo %}" class="btn btn-success">+ Nuevo Registro</a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-striped table-hover m-0">
+                <thead class="table-dark">
+                    <tr>
+                        {% for campo in campos %}
+                            <th class="text-capitalize">{{ campo }}</th>
+                        {% endfor %}
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reg in registros %}
+                        <tr>
+                            {% for campo in campos %}
+                                <td>
+                                    {{ reg|get_item:campo }}
+                                </td>
+                            {% endfor %}
+                            <td class="text-center">
+                                <a href="{% url 'integracion:confirmar_eliminar' modelo=modelo registro_id=reg.id %}" 
+                                   class="btn btn-danger btn-sm">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="{{ campos|length|add:1 }}" class="text-center py-4 text-muted">
+                                No se encontraron registros.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

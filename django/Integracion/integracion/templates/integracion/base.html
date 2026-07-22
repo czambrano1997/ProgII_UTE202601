@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Integración Odoo-Django</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        nav {
+            margin-bottom: 15px;
+        }
+        nav a {
+            margin-right: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        .msg-error {
+            color: red;
+        }
+        .msg-success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <strong>Módulos:</strong>
+        {% for key, config in modelos_disponibles.items %}
+            <a href="{% url 'integracion:lista' modelo=key %}">{{ config.nombre_display }}</a> |
+        {% endfor %}
+    </nav>
+    <hr>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p class="msg-{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    {% block content %}{% endblock %}
+</body>
+</html>
