@@ -1,26 +1,32 @@
 from django.shortcuts import render
-from .models import Categoria, Producto, venta_de_atre
+
+import xmlrpc.client
+from django.shortcuts import render, redirect
 
 # Funciones para vista categoria
-def lista_categoria(request):
-    categorias = Categoria.objects.all()
-    contexto = {
-        'carrera': 'PROGRAMACION II',
-        'categorias': categorias,
-        'total': categorias.count(),
-    }
-    return render(request, 'inventario/categoria.html', contexto)
 
-# Funciones para vista productos
-def lista_productos(request):
-    productos = (
-        Producto.objects
-        .select_related('categoria', 'ficha_tecnica')  # FK y 1:1
-        .prefetch_related('proveedores')                # N:M
-        .all()
+def crear_cliente(request):
+
+    url = 'http://localhost:8001'
+    db = 'mi_base'
+    username = 'xavier1707'
+    password = 'xavier1707'
+
+    common = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/common')
+
+    uid = common.authenticate(db, username, password, {})
+
+    models = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/object')
+
+    models.execute_kw(
+        db,
+        uid,
+        password,
+        'res.partner',
+        'create',
+        [{
+            'name': 'Cliente Django'
+        }]
     )
-    return render(request, 'inventario/producto.html', {'productos': productos})
 
-def lista_arte(request):
-    artes = venta_de_atre.objects.all()
-    return render(request, 'inventario/arte.html', {"artes": artes})
+    return redirect('/')

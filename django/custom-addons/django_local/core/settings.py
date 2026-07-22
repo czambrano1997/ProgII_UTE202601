@@ -84,8 +84,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'django_lab',
-        'USER': 'django',
-        'PASSWORD': 'djangoAdmin',
+        'USER': 'odoo',
+        'PASSWORD': 'odoopwd',
         'HOST': 'localhost',
         'PORT': '5432'
     }

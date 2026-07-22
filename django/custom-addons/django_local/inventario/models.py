@@ -1,5 +1,5 @@
 from django.db import models
-
+import requests
 
 # ─── Modelo existente ───────────────────────────────────────────
 class Categoria(models.Model):
@@ -79,3 +79,7 @@ class factura(models.Model):
     direccion = models.CharField(max_length=255)
     pedido    = models.PositiveIntegerField(default=0)
     descuento = models.CharField(max_length=50)
+
+
+    def obtener_materias(self):
+        requests.get("http://localhost:8069/api_ute/signature/all")
