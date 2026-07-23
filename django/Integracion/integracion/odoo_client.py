@@ -1,56 +1,58 @@
-import requests
 import logging
+import requests
 
-_logger = logging.getLogger(__name__)
+# Configuración del logger para capturar errores en consola
+logger = logging.getLogger(__name__)
 
+# Configuración base de la API de Odoo
 ODOO_BASE_URL = "http://localhost:8069"
 TIMEOUT = 5
 
 
 def obtener_todos(modelo):
-    """Consulta registros enviando un GET a /api_ute/{modelo}/all"""
+    """GET /api_ute/<modelo>/all -> retorna (registros: list, error: str/None)"""
     url = f"{ODOO_BASE_URL}/api_ute/{modelo}/all"
     try:
         response = requests.get(url, timeout=TIMEOUT)
         response.raise_for_status()
         data = response.json()
-        
+
         if data.get('status') == 'success':
             return data.get('data', []), None
-        return [], data.get('message', 'Error al obtener registros')
+        return [], data.get('message', 'Error desconocido en Odoo')
 
     except requests.exceptions.ConnectionError:
-        _logger.error(f"No se pudo conectar con Odoo en {url}")
+        logger.error(f"No se pudo conectar a la URL: {url}")
         return [], "No se pudo conectar con Odoo"
     except requests.exceptions.Timeout:
-        return [], "Odoo tardó demasiado en responder"
+        return [], "Tiempo de espera agotado al conectar con Odoo"
     except Exception as e:
-        _logger.exception("Error inesperado consultando Odoo")
+        logger.exception("Error inesperado consultando Odoo")
         return [], str(e)
 
 
 def crear_registro(modelo, data):
-    """Crea un registro enviando un POST con JSON puro a /api_ute/{modelo}/create"""
+    """POST /api_ute/<modelo>/create -> retorna (ok: bool, mensaje: str)"""
     url = f"{ODOO_BASE_URL}/api_ute/{modelo}/create"
     try:
-        # Petición POST REST enviando json nativo
         response = requests.post(url, json=data, timeout=TIMEOUT)
         response.raise_for_status()
         result = response.json()
 
         if result.get('status') == 'success':
-            return True, result.get('message', 'Registro creado exitosamente')
-        return False, result.get('message', 'Error al crear en Odoo')
+            return True, result.get('message', 'Registro creado con éxito')
+        else:
+            return False, result.get('message', 'Error al crear en Odoo')
 
     except requests.exceptions.ConnectionError:
         return False, "No se pudo conectar con Odoo"
     except Exception as e:
-        _logger.exception("Error creando registro en Odoo")
+        logger.exception("Error creando registro en Odoo")
         return False, str(e)
 
 
 def eliminar_registro(modelo, registro_id):
-    """Elimina un registro enviando un DELETE a /api_ute/{modelo}/delete/{id}"""
+    """DELETE /api_ute/<modelo>/delete/<id> -> retorna (ok: bool, mensaje: str)"""
     url = f"{ODOO_BASE_URL}/api_ute/{modelo}/delete/{registro_id}"
     try:
         response = requests.delete(url, timeout=TIMEOUT)
@@ -58,11 +60,12 @@ def eliminar_registro(modelo, registro_id):
         result = response.json()
 
         if result.get('status') == 'success':
-            return True, result.get('message', 'Registro eliminado')
-        return False, result.get('message', 'Error al eliminar')
+            return True, result.get('message', 'Registro eliminado con éxito')
+        else:
+            return False, result.get('message', 'Error al eliminar en Odoo')
 
     except requests.exceptions.ConnectionError:
         return False, "No se pudo conectar con Odoo"
     except Exception as e:
-        _logger.exception("Error eliminando registro en Odoo")
+        logger.exception("Error eliminando registro en Odoo")
         return False, str(e)

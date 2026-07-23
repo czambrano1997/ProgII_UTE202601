@@ -5,6 +5,7 @@ from odoo.http import request
 
 _logger = logging.getLogger(__name__)
 
+
 class TeacherController(http.Controller):
 
     @http.route('/api_ute/techers/all', type='http', auth='public', methods=['GET'], csrf=False)
@@ -22,29 +23,68 @@ class TeacherController(http.Controller):
             _logger.exception('Error obteniendo docentes')
             return request.make_response(
                 json.dumps({'status': 'error', 'message': str(e)}, default=str),
-                status=500, headers=[('Content-Type', 'application/json')]
+                status=500,
+                headers=[('Content-Type', 'application/json')]
             )
 
     @http.route('/api_ute/techers/create', type='http', auth='public', methods=['POST'], csrf=False)
     def create_teacher(self, **kwargs):
         try:
-            body = json.loads(request.httprequest.data)
+            # Captura flexible para JSON o Form Data (kwargs)
+            raw_data = request.httprequest.data
+            if raw_data:
+                body = json.loads(raw_data.decode('utf-8'))
+            else:
+                body = kwargs
+
+            # Manejo del ID para el Many2one (signature_primary)
+            sig_primary = body.get('signature_primary')
+            if sig_primary and str(sig_primary).isdigit():
+                sig_primary_val = int(sig_primary)
+            else:
+                sig_primary_val = False
+
             vals = {
                 'name': body.get('name'),
-                'last_name': body.get('last_name'),
-                'email': body.get('email'),
-                'phone': body.get('phone'),
-                'vat': body.get('vat'),
-                'signature_primary': int(body.get('signature_primary')) if body.get('signature_primary') else False,
+                'last_name': body.get('last_name', ''),
+                'email': body.get('email', ''),
+                'phone': body.get('phone', ''),
+                'vat': body.get('vat', ''),
+                'signature_primary': sig_primary_val,
             }
+
             record = request.env['ou.teacher'].sudo().create(vals)
             return request.make_response(
-                json.dumps({'status': 'success', 'message': 'Docente creado', 'id': record.id}, default=str),
+                json.dumps({'status': 'success', 'message': 'Docente creado exitosamente', 'id': record.id}, default=str),
                 headers=[('Content-Type', 'application/json')]
             )
         except Exception as e:
-            _logger.exception('Error creando docente')
+            _logger.exception('Error creando docente en Odoo')
             return request.make_response(
                 json.dumps({'status': 'error', 'message': str(e)}, default=str),
-                status=500, headers=[('Content-Type', 'application/json')]
+                status=500,
+                headers=[('Content-Type', 'application/json')]
+            )
+
+    @http.route('/api_ute/techers/delete/<int:teacher_id>', type='http', auth='public', methods=['DELETE'], csrf=False)
+    def delete_teacher(self, teacher_id, **kwargs):
+        try:
+            record = request.env['ou.teacher'].sudo().browse(teacher_id)
+            if not record.exists():
+                return request.make_response(
+                    json.dumps({'status': 'error', 'message': 'Docente no encontrado'}),
+                    status=404,
+                    headers=[('Content-Type', 'application/json')]
+                )
+            record.unlink()
+            return request.make_response(
+                json.dumps({'status': 'success', 'message': f'Docente {teacher_id} eliminado exitosamente'}),
+                headers=[('Content-Type', 'application/json')]
+            )
+        except Exception as e:
+            _logger.exception('Error eliminando docente')
+            return request.make_response(
+                json.dumps({'status': 'error', 'message': str(e)}, default=str),
+                status=500,
+                headers=[('Content-Type', 'application/json')]
             )
