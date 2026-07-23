@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- MATERIAS -->
+
+    <record id="view_ou_signature_list" model="ir.ui.view">
+        <field name="name">ou.signature.list</field>
+        <field name="model">ou.signature</field>
+        <field name="arch" type="xml">
+            <list string="Materias">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ou_signature_form" model="ir.ui.view">
+        <field name="name">ou.signature.form</field>
+        <field name="model">ou.signature</field>
+        <field name="arch" type="xml">
+            <form string="Materia">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ou_signature" model="ir.actions.act_window">
+        <field name="name">Materias</field>
+        <field name="res_model">ou.signature</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- DOCENTES -->
+
+    <record id="view_sistema_usuarios_list" model="ir.ui.view">
+        <field name="name">sistema.usuarios.list</field>
+        <field name="model">sistema.usuarios</field>
+        <field name="arch" type="xml">
+            <list string="Docentes">
+                <field name="name"/>
+                <field name="last_name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="vat"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sistema_usuarios_form" model="ir.ui.view">
+        <field name="name">sistema.usuarios.form</field>
+        <field name="model">sistema.usuarios</field>
+        <field name="arch" type="xml">
+            <form string="Docente">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="last_name"/>
+                            <field name="email"/>
+                        </group>
+                        <group>
+                            <field name="phone"/>
+                            <field name="vat"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sistema_usuarios" model="ir.actions.act_window">
+        <field name="name">Docentes</field>
+        <field name="res_model">sistema.usuarios</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- CARRERAS -->
+
+    <record id="view_ou_carrera_list" model="ir.ui.view">
+        <field name="name">ou.carrera.list</field>
+        <field name="model">ou.carrera</field>
+        <field name="arch" type="xml">
+            <list string="Carreras">
+                <field name="name"/>
+                <field name="codigo"/>
+                <field name="modalidad"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ou_carrera_form" model="ir.ui.view">
+        <field name="name">ou.carrera.form</field>
+        <field name="model">ou.carrera</field>
+        <field name="arch" type="xml">
+            <form string="Carrera">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="codigo"/>
+                        <field name="modalidad"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ou_carrera" model="ir.actions.act_window">
+        <field name="name">Carreras</field>
+        <field name="res_model">ou.carrera</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- PERIODOS -->
+
+    <record id="view_ou_periodo_list" model="ir.ui.view">
+        <field name="name">ou.periodo.list</field>
+        <field name="model">ou.periodo</field>
+        <field name="arch" type="xml">
+            <list string="Periodos académicos">
+                <field name="name"/>
+                <field name="fecha_inicio"/>
+                <field name="fecha_fin"/>
+                <field name="activo"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ou_periodo_form" model="ir.ui.view">
+        <field name="name">ou.periodo.form</field>
+        <field name="model">ou.periodo</field>
+        <field name="arch" type="xml">
+            <form string="Periodo académico">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="fecha_inicio"/>
+                        <field name="fecha_fin"/>
+                        <field name="activo"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ou_periodo" model="ir.actions.act_window">
+        <field name="name">Periodos</field>
+        <field name="res_model">ou.periodo</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- AULAS -->
+
+    <record id="view_ou_aula_list" model="ir.ui.view">
+        <field name="name">ou.aula.list</field>
+        <field name="model">ou.aula</field>
+        <field name="arch" type="xml">
+            <list string="Aulas">
+                <field name="name"/>
+                <field name="edificio"/>
+                <field name="capacidad"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ou_aula_form" model="ir.ui.view">
+        <field name="name">ou.aula.form</field>
+        <field name="model">ou.aula</field>
+        <field name="arch" type="xml">
+            <form string="Aula">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="edificio"/>
+                        <field name="capacidad"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ou_aula" model="ir.actions.act_window">
+        <field name="name">Aulas</field>
+        <field name="res_model">ou.aula</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- MENÚ PRINCIPAL -->
+
+    <menuitem
+        id="menu_ute_academico_root"
+        name="UTE Académico V2"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_ou_signature"
+        name="Materias"
+        parent="menu_ute_academico_root"
+        action="action_ou_signature"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_sistema_usuarios"
+        name="Docentes"
+        parent="menu_ute_academico_root"
+        action="action_sistema_usuarios"
+        sequence="20"
+    />
+
+    <menuitem
+        id="menu_ou_carrera"
+        name="Carreras"
+        parent="menu_ute_academico_root"
+        action="action_ou_carrera"
+        sequence="30"
+    />
+
+    <menuitem
+        id="menu_ou_periodo"
+        name="Periodos"
+        parent="menu_ute_academico_root"
+        action="action_ou_periodo"
+        sequence="40"
+    />
+
+    <menuitem
+        id="menu_ou_aula"
+        name="Aulas"
+        parent="menu_ute_academico_root"
+        action="action_ou_aula"
+        sequence="50"
+    />
+</odoo>

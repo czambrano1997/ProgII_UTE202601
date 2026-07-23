@@ -1,0 +1,15 @@
+{% extends "integracion/base.html" %}
+{% block title %}Eliminar {{ config.singular }} · Integración UTE{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>Confirmar eliminación</h1>
+    <p>Se eliminará de Odoo el registro <strong>#{{ registro_id }}</strong> de {{ config.titulo|lower }}. Esta acción no se puede deshacer.</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="actions">
+            <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+            <a class="btn btn-secondary" href="{% url 'integracion:lista' modelo %}">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Integración UTE{% endblock %}</title>
+    <style>
+        :root { --primary:#124e78; --primary-dark:#0d3958; --accent:#f39c12; --bg:#f4f7fb; --text:#1d2733; --danger:#b42318; --success:#067647; --border:#d8e0e8; }
+        * { box-sizing:border-box; }
+        body { margin:0; font-family:Arial, Helvetica, sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+        nav { background:var(--primary); color:#fff; box-shadow:0 2px 10px rgba(0,0,0,.15); }
+        .nav-inner { max-width:1180px; margin:auto; display:flex; align-items:center; gap:20px; padding:0 18px; min-height:64px; flex-wrap:wrap; }
+        .brand { color:#fff; text-decoration:none; font-size:1.2rem; font-weight:700; margin-right:auto; }
+        .nav-links { display:flex; gap:4px; flex-wrap:wrap; }
+        .nav-links a { color:#eaf5ff; text-decoration:none; padding:10px 12px; border-radius:6px; }
+        .nav-links a:hover, .nav-links a.active { background:rgba(255,255,255,.17); }
+        main { max-width:1180px; margin:32px auto; padding:0 18px 40px; }
+        .header-row { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:20px; flex-wrap:wrap; }
+        h1 { margin:0; color:var(--primary-dark); font-size:2rem; }
+        h2 { color:var(--primary-dark); }
+        .subtitle { color:#52606d; margin-top:5px; }
+        .card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:24px; box-shadow:0 4px 14px rgba(12,44,70,.06); }
+        .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:18px; }
+        .model-card { text-decoration:none; color:inherit; transition:transform .15s, box-shadow .15s; }
+        .model-card:hover { transform:translateY(-2px); box-shadow:0 9px 22px rgba(12,44,70,.12); }
+        .model-card strong { display:block; color:var(--primary); font-size:1.2rem; margin-bottom:7px; }
+        .btn { display:inline-block; border:0; border-radius:7px; padding:10px 15px; font-weight:700; cursor:pointer; text-decoration:none; font-size:.95rem; }
+        .btn-primary { color:#fff; background:var(--primary); }
+        .btn-primary:hover { background:var(--primary-dark); }
+        .btn-secondary { background:#e8edf2; color:#263642; }
+        .btn-danger { background:var(--danger); color:#fff; }
+        .table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:10px; background:#fff; }
+        table { width:100%; border-collapse:collapse; min-width:680px; }
+        th, td { padding:13px 14px; text-align:left; border-bottom:1px solid var(--border); vertical-align:middle; }
+        th { background:#eef5fa; color:var(--primary-dark); font-size:.9rem; }
+        tbody tr:hover { background:#f9fbfd; }
+        tbody tr:last-child td { border-bottom:0; }
+        .empty { text-align:center; padding:34px; color:#657686; }
+        .messages { display:grid; gap:10px; margin-bottom:18px; }
+        .message { padding:12px 15px; border-radius:8px; border:1px solid; }
+        .message.success { color:var(--success); background:#ecfdf3; border-color:#abefc6; }
+        .message.error { color:var(--danger); background:#fef3f2; border-color:#fecdca; }
+        .form-group { margin-bottom:17px; }
+        label { display:block; font-weight:700; margin-bottom:6px; }
+        .form-control { display:block; width:100%; border:1px solid #b9c4cf; border-radius:7px; padding:10px 11px; font:inherit; background:#fff; }
+        .form-control:focus { outline:3px solid rgba(18,78,120,.13); border-color:var(--primary); }
+        .form-check-input { width:20px; height:20px; }
+        .errorlist { color:var(--danger); margin:5px 0 0; padding-left:20px; }
+        .actions { display:flex; gap:10px; margin-top:22px; flex-wrap:wrap; }
+        .badge { display:inline-block; padding:3px 8px; border-radius:999px; background:#e8f1f7; color:var(--primary-dark); font-size:.82rem; }
+        footer { text-align:center; color:#637381; padding:20px; font-size:.9rem; }
+        @media (max-width:760px) { .nav-inner { padding:12px 16px; } .brand { width:100%; } main { margin-top:22px; } h1 { font-size:1.6rem; } }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="nav-inner">
+        <a class="brand" href="{% url 'integracion:inicio' %}">UTE · Django ↔ Odoo</a>
+        <div class="nav-links">
+            {% for slug, item in modelos_navbar.items %}
+                <a href="{% url 'integracion:lista' slug %}" class="{% if modelo == slug %}active{% endif %}">{{ item.titulo }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</nav>
+<main>
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}<div class="message {{ message.tags }}">{{ message }}</div>{% endfor %}
+        </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+</main>
+<footer>Proyecto Integrador · Programación II · UTE</footer>
+</body>
+</html>

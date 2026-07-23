@@ -1,0 +1,15 @@
+{% extends "integracion/base.html" %}
+{% block title %}Inicio · Integración UTE{% endblock %}
+{% block content %}
+<div class="header-row">
+    <div><h1>Integración académica</h1><p class="subtitle">Administra en Django los registros almacenados en Odoo.</p></div>
+</div>
+<div class="cards">
+    {% for slug, item in modelos.items %}
+        <a class="card model-card" href="{% url 'integracion:lista' slug %}">
+            <strong>{{ item.titulo }}</strong>
+            <span>Listar, crear y eliminar registros</span>
+        </a>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="demo_signature_programacion" model="ou.signature"><field name="name">Programación II</field></record>
+    <record id="demo_usuario_docente" model="sistema.usuarios">
+        <field name="name">Ceider</field><field name="last_name">Zambrano</field><field name="email">docente@ute.edu.ec</field><field name="phone">0990000000</field><field name="vat">0000000000</field>
+    </record>
+    <record id="demo_carrera_software" model="ou.carrera"><field name="name">Tecnología Superior en Desarrollo de Software</field><field name="codigo">TDS</field><field name="modalidad">Presencial</field></record>
+    <record id="demo_periodo_2025_2" model="ou.periodo"><field name="name">2025-2</field><field name="fecha_inicio">2025-10-01</field><field name="fecha_fin">2026-02-28</field><field name="activo">True</field></record>
+    <record id="demo_aula_101" model="ou.aula"><field name="name">Aula 101</field><field name="edificio">Bloque A</field><field name="capacidad">30</field></record>
+</odoo>

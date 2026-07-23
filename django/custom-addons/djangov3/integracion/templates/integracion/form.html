@@ -1,0 +1,22 @@
+{% extends "integracion/base.html" %}
+{% block title %}Nuevo {{ config.singular }} · Integración UTE{% endblock %}
+{% block content %}
+<div class="header-row"><div><h1>Nuevo {{ config.singular }}</h1><p class="subtitle">Django enviará este formulario al controlador HTTP de Odoo.</p></div></div>
+<div class="card">
+<form method="post" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}{{ form.non_field_errors }}{% endif %}
+    {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} *{% endif %}</label>
+            {{ field }}
+            {{ field.errors }}
+        </div>
+    {% endfor %}
+    <div class="actions">
+        <button class="btn btn-primary" type="submit">Guardar</button>
+        <a class="btn btn-secondary" href="{% url 'integracion:lista' modelo %}">Cancelar</a>
+    </div>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ou_signature_user,ou.signature user,model_ou_signature,base.group_user,1,1,1,1
+access_sistema_usuarios_user,sistema.usuarios user,model_sistema_usuarios,base.group_user,1,1,1,1
+access_ou_carrera_user,ou.carrera user,model_ou_carrera,base.group_user,1,1,1,1
+access_ou_periodo_user,ou.periodo user,model_ou_periodo,base.group_user,1,1,1,1
+access_ou_aula_user,ou.aula user,model_ou_aula,base.group_user,1,1,1,1

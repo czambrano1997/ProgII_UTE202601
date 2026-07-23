@@ -1,0 +1,24 @@
+{% extends "integracion/base.html" %}
+{% block title %}{{ config.titulo }} · Integración UTE{% endblock %}
+{% block content %}
+<div class="header-row">
+    <div><h1>{{ config.titulo }}</h1><p class="subtitle">Datos consultados en tiempo real desde Odoo.</p></div>
+    <a class="btn btn-primary" href="{% url 'integracion:crear' modelo %}">+ Nuevo {{ config.singular }}</a>
+</div>
+<div class="table-wrap">
+<table>
+    <thead><tr><th>ID</th>{% for campo in config.campos %}<th>{{ campo.label }}</th>{% endfor %}<th>Acciones</th></tr></thead>
+    <tbody>
+    {% for fila in filas %}
+        <tr>
+            <td><span class="badge">{{ fila.id }}</span></td>
+            {% for valor in fila.valores %}<td>{{ valor }}</td>{% endfor %}
+            <td><a class="btn btn-danger" href="{% url 'integracion:eliminar' modelo fila.id %}">Eliminar</a></td>
+        </tr>
+    {% empty %}
+        <tr><td class="empty" colspan="20">No hay registros para mostrar.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
