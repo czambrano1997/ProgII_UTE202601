@@ -1,24 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Se eliminó 'string' y se dejó solo 'name' -->
-    <menuitem
-            id="menu_odoo_ute_root"
+    <data>
+        <menuitem id="menu_odoo_ute_root"
             groups="odoo_ute.group_ute_user"
             name="UTE"/>
 
-    <menuitem
-            id="teacher_menu"
+        <menuitem id="teacher_menu"
             name="Docentes"
             action="odoo_ute.ou_teacher_action"
             parent="menu_odoo_ute_root"
             groups="odoo_ute.group_ute_user"
             sequence="10"/>
 
-    <menuitem id="menu_ignature"
-              name="Materia"
-              action="action_ou_signature"
-              parent="menu_odoo_ute_root"
-              sequence="20"/>
+        <menuitem id="menu_signature"
+            name="Materias"
+            action="action_ou_signature"
+            parent="menu_odoo_ute_root"
+            sequence="20"/>
 
+        <menuitem id="menu_config_academica"
+            name="Configuración Académica"
+            parent="menu_odoo_ute_root"
+            sequence="30"/>
+
+        <menuitem id="menu_carrera"
+            name="Carreras"
+            action="action_carrera"
+            parent="menu_config_academica"
+            sequence="10"/>
+
+        <menuitem id="menu_periodo"
+            name="Períodos Académicos"
+            action="action_periodo"
+            parent="menu_config_academica"
+            sequence="20"/>
+
+        <menuitem id="menu_aula"
+            name="Aulas"
+            action="action_aula"
+            parent="menu_config_academica"
+            sequence="30"/>
+    </data>
 </odoo>

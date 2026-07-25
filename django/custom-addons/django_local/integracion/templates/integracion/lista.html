@@ -1,0 +1,57 @@
+{% extends 'integracion/base.html' %}
+{% block title %}{{ titulo }} — Integración Odoo{% endblock %}
+{% block content %}
+<h1>{{ titulo }}</h1>
+<a href="{% url 'integracion:'|add:modelo|add:'_crear' %}" class="btn btn-nuevo">+ Nuevo</a>
+
+<table>
+    <thead>
+        <tr>
+            {% for campo in campos %}
+                <th>{{ campo|title }}</th>
+            {% endfor %}
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reg in registros %}
+        <tr>
+            {% for campo in campos %}
+                <td>
+                    {% if campo == 'modalidad' %}
+                        {% if reg|get_item:campo == 'presencial' %}
+                            <span class="badge badge-presencial">Presencial</span>
+                        {% elif reg|get_item:campo == 'virtual' %}
+                            <span class="badge badge-virtual">Virtual</span>
+                        {% elif reg|get_item:campo == 'hibrida' %}
+                            <span class="badge badge-hibrida">Híbrida</span>
+                        {% else %}
+                            {{ reg|get_item:campo|default:"—" }}
+                        {% endif %}
+                    {% elif campo == 'activo' %}
+                        {% if reg|get_item:campo %}
+                            <span class="badge badge-activo">✓ Activo</span>
+                        {% else %}
+                            <span class="badge badge-inactivo">✗ Inactivo</span>
+                        {% endif %}
+                    {% else %}
+                        {{ reg|get_item:campo|default:"—" }}
+                    {% endif %}
+                </td>
+            {% endfor %}
+            <td>
+                <a href="{% url 'integracion:'|add:modelo|add:'_eliminar' reg.id %}"
+                   class="btn btn-eliminar">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="{{ campos|length|add:1 }}" class="vacia">
+                No hay registros disponibles.<br>
+                <small>Verifique que Odoo esté corriendo en http://localhost:8069</small>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

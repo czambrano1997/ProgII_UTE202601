@@ -1,0 +1,33 @@
+{% extends 'integracion/base.html' %}
+{% block title %}{{ titulo }} — Integración Odoo{% endblock %}
+{% block content %}
+<h1>{{ titulo }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {% for campo in campos %}
+        <div class="form-group">
+            <label for="id_{{ campo.name }}">{{ campo.label }}</label>
+            {% if campo.tipo == 'select' %}
+                <select name="{{ campo.name }}" id="id_{{ campo.name }}">
+                    {% for val, label in campo.opciones %}
+                        <option value="{{ val }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            {% elif campo.tipo == 'checkbox' %}
+                <input type="checkbox" name="{{ campo.name }}" id="id_{{ campo.name }}" checked>
+            {% elif campo.tipo == 'date' %}
+                <input type="date" name="{{ campo.name }}" id="id_{{ campo.name }}" required>
+            {% elif campo.tipo == 'number' %}
+                <input type="number" name="{{ campo.name }}" id="id_{{ campo.name }}" required>
+            {% elif campo.tipo == 'email' %}
+                <input type="email" name="{{ campo.name }}" id="id_{{ campo.name }}" required>
+            {% else %}
+                <input type="text" name="{{ campo.name }}" id="id_{{ campo.name }}" required>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-nuevo">💾 Guardar</button>
+    <a href="{% url 'integracion:'|add:modelo|add:'_lista' %}" class="btn btn-cancelar">Cancelar</a>
+</form>
+{% endblock %}
