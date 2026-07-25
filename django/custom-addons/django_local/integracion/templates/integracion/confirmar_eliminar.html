@@ -1,0 +1,11 @@
+{% extends 'integracion/base.html' %}
+{% block title %}Eliminar {{ label }}{% endblock %}
+{% block content %}
+<h1>Eliminar {{ label }}</h1>
+<p>¿Está seguro que desea eliminar el {{ label }} con ID {{ registro.id }}?</p>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Eliminar</button>
+    <a class="btn btn-secondary" href="/integracion/{{ model }}/">Cancelar</a>
+</form>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'integracion/base.html' %}
+{% block title %}Listado de {{ label }}{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Listado de {{ label }}s</h1>
+    <a class="btn btn-primary" href="/integracion/{{ model }}/crear/">Nuevo {{ label }}</a>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            {% for field in fields %}
+                <th>{{ field.label }}</th>
+            {% endfor %}
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for registro in registros %}
+            <tr>
+                <td>{{ registro.id }}</td>
+                {% for field in fields %}
+                    <td>{{ registro[field.name] }}</td>
+                {% endfor %}
+                <td>
+                    <a class="btn btn-sm btn-danger" href="/integracion/{{ model }}/eliminar/{{ registro.id }}/">Eliminar</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="{{ fields|length|add:'2' }}">No hay registros disponibles.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

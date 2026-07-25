@@ -1,46 +1,24 @@
 from odoo import models, fields, api
-<<<<<<< HEAD
-
-
-class odoo_ute(models.Model):
-    name = 'odoo_ute.odoo_ute'
-    _description = 'odoo_ute.odoo_ute'
-    
-    name = fields.Char()
-    value = fields.Integer()
-    value2 = fields.Float(compute="_value_pc", store=True)
-    description = fields.Text()
-#
-    @api.depends('value')
-    def _value_pc(self):
-
-       for record in self:
-             record.value2 = float(record.value) / 100
-
-=======
 from odoo.exceptions import ValidationError
 
 
 class TeacherUTE(models.Model):
     _name = 'ou.teacher'
     _description = 'Docentes de la UTE'
-    # _rec_name = 'last_name'
 
-    name = fields.Char(string="Nombre", required=True)
-    last_name = fields.Char(string="Apellido", required=True)
-    email = fields.Char(string="Correo")
-    phone = fields.Char(string="Teléfono")
-    vat = fields.Char(string="CI/RUC", size=13)
-    # subject_ids = fields.One2many('ou.subject.teacher', 'teacher_id')
-    validate_email = fields.Char(string="Validación", compute='_compute_validate_email',)
+    name = fields.Char(string='Nombre', required=True)
+    last_name = fields.Char(string='Apellido', required=True)
+    email = fields.Char(string='Correo')
+    phone = fields.Char(string='Teléfono')
+    vat = fields.Char(string='CI/RUC', size=13)
+    validate_email = fields.Char(string='Validación', compute='_compute_validate_email')
     signature_ids = fields.Many2many(comodel_name='ou.signature', string='Todas las materias')
     signature_primary = fields.Many2one(comodel_name='ou.signature', string='Materia principal')
 
     @api.onchange('vat')
     def onchange_vat(self):
         if self.vat and len(self.vat) < 10:
-            raise ValidationError("La CI/RUC debe tener 10 o 13 caracteres")
-    
+            raise ValidationError('La CI/RUC debe tener 10 o 13 caracteres')
 
     @api.depends('email')
     def _compute_validate_email(self):
@@ -54,17 +32,8 @@ class TeacherUTE(models.Model):
     def _check_vat(self):
         for rec in self:
             if rec.vat and len(rec.vat) < 10:
-                raise ValidationError("La CI/RUC debe tener 10 o 13 caracteres")
-    
-    # @api.model
+                raise ValidationError('La CI/RUC debe tener 10 o 13 caracteres')
+
     def generar_reporte(self):
         self.ensure_one()
-        variable = None
-        print("REPORTE GENERADO")
-        variable = 100
-        print(variable)
-
-    # def _compute_display_name(self):
-    #     for rec in self:
-    #         rec.display_name = rec.last_name + rec.vat
->>>>>>> 429d1272c840b1f1bfce85079b1d2e792e7e9351
+        print('REPORTE GENERADO')

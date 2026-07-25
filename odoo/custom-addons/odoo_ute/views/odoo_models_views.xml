@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Usuarios -->
+        <record id="ou_usuarios_form" model="ir.ui.view">
+            <field name="name">ou.usuarios.form</field>
+            <field name="model">sistema.usuarios</field>
+            <field name="arch" type="xml">
+                <form string="Usuarios">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="last_name"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="vat"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="ou_usuarios_tree" model="ir.ui.view">
+            <field name="name">ou.usuarios.tree</field>
+            <field name="model">sistema.usuarios</field>
+            <field name="arch" type="xml">
+                <tree string="Usuarios">
+                    <field name="name"/>
+                    <field name="last_name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="vat"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_ou_usuarios" model="ir.actions.act_window">
+            <field name="name">Usuarios</field>
+            <field name="res_model">sistema.usuarios</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Carrera -->
+        <record id="ou_carrera_form" model="ir.ui.view">
+            <field name="name">ou.carrera.form</field>
+            <field name="model">ou.carrera</field>
+            <field name="arch" type="xml">
+                <form string="Carrera">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="codigo"/>
+                            <field name="modalidad"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="ou_carrera_tree" model="ir.ui.view">
+            <field name="name">ou.carrera.tree</field>
+            <field name="model">ou.carrera</field>
+            <field name="arch" type="xml">
+                <tree string="Carrera">
+                    <field name="name"/>
+                    <field name="codigo"/>
+                    <field name="modalidad"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_ou_carrera" model="ir.actions.act_window">
+            <field name="name">Carreras</field>
+            <field name="res_model">ou.carrera</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Periodo -->
+        <record id="ou_periodo_form" model="ir.ui.view">
+            <field name="name">ou.periodo.form</field>
+            <field name="model">ou.periodo</field>
+            <field name="arch" type="xml">
+                <form string="Periodo">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="fecha_inicio"/>
+                            <field name="fecha_fin"/>
+                            <field name="activo"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="ou_periodo_tree" model="ir.ui.view">
+            <field name="name">ou.periodo.tree</field>
+            <field name="model">ou.periodo</field>
+            <field name="arch" type="xml">
+                <tree string="Periodo">
+                    <field name="name"/>
+                    <field name="fecha_inicio"/>
+                    <field name="fecha_fin"/>
+                    <field name="activo"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_ou_periodo" model="ir.actions.act_window">
+            <field name="name">Periodos</field>
+            <field name="res_model">ou.periodo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Aula -->
+        <record id="ou_aula_form" model="ir.ui.view">
+            <field name="name">ou.aula.form</field>
+            <field name="model">ou.aula</field>
+            <field name="arch" type="xml">
+                <form string="Aula">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="edificio"/>
+                            <field name="capacidad"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="ou_aula_tree" model="ir.ui.view">
+            <field name="name">ou.aula.tree</field>
+            <field name="model">ou.aula</field>
+            <field name="arch" type="xml">
+                <tree string="Aula">
+                    <field name="name"/>
+                    <field name="edificio"/>
+                    <field name="capacidad"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_ou_aula" model="ir.actions.act_window">
+            <field name="name">Aulas</field>
+            <field name="res_model">ou.aula</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

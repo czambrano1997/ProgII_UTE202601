@@ -1,0 +1,18 @@
+{% extends 'integracion/base.html' %}
+{% block title %}Crear {{ label }}{% endblock %}
+{% block content %}
+<h1>Crear {{ label }}</h1>
+<form method="post" class="row g-3">
+    {% csrf_token %}
+    {% for field in fields %}
+        <div class="col-md-6">
+            <label class="form-label" for="{{ field.name }}">{{ field.label }}</label>
+            <input class="form-control" id="{{ field.name }}" name="{{ field.name }}" type="text" />
+        </div>
+    {% endfor %}
+    <div class="col-12 mt-3">
+        <button class="btn btn-success" type="submit">Guardar</button>
+        <a class="btn btn-secondary" href="/integracion/{{ model }}/">Cancelar</a>
+    </div>
+</form>
+{% endblock %}
