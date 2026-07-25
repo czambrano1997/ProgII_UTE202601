@@ -36,6 +36,8 @@ def crear_registro(modelo, data):
     url = f"{ODOO_BASE_URL}/api_ute/{modelo}/create"
     try:
         response = requests.post(url, json=data, timeout=TIMEOUT)
+        if response.status_code in (301,302):
+            return False , "el servidor intento crear el Post pero fallo {reponse.headers.get('location')}"
         response.raise_for_status()
         result = response.json()
 

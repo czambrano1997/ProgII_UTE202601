@@ -1,47 +1,54 @@
-# Aqui se crea el modelo de lo estudiantes 
-from odoo import models,fields,api
-from odoo.exceptions import UserError, ValidationError
+from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
-
-class students(models.Model):
-    
+class Students(models.Model):
     _name = 'students.ute'
-    _description = 'students.ute'
-    
+    _description = 'Estudiantes UTE'
 
     name = fields.Char(
         string='Nombres',
-        required = True
+        required=True
     )
 
     surnames = fields.Char(
-            string='Apellidos',
-            required=True   
-        )
-        
+        string='Apellidos',
+        required=True
+    )
+
+    full_name = fields.Char(
+        string='Nombre Completo',
+        compute='_compute_full_name',
+        store=True
+    )
+
     age = fields.Integer(
-            string='Edad',
-            required=True
-        )
-        
-    phone = fields.Integer(
-            string='telefono',
-            required=True
-        )
-        
+        string='Edad',
+        required=True,
+        default=18
+    )
+
+    phone = fields.Char(  # Cambiado a Char para conservar el '0' inicial
+        string='Teléfono',
+        required=True
+    )
+
     vat = fields.Char(
-            string="CI/RUC", 
-            required=True,
-            size=13
-        )
+        string="CI/RUC",
+        required=True,
+        size=13
+    )
 
     grade_ids = fields.One2many(
         comodel_name='grade.line',
         inverse_name='student_id',
         string='Notas'
-        )
+    )
 
+    @api.depends('name', 'surnames')  # Corregido: 'name' en lugar de 'names'
+    def _compute_full_name(self):
+        for rec in self:
+            rec.full_name = f"{rec.name or ''} {rec.surnames or ''}".strip()
 
     @api.onchange('vat')
     def _onchange_vat(self):
@@ -49,7 +56,7 @@ class students(models.Model):
             return {
                 'warning': {
                     'title': 'Advertencia',
-                    'message': 'La CI/RUC debe tener mínimo 10 o 13 caracteres'
+                    'message': 'La CI/RUC debe tener al menos 10 o 13 caracteres'
                 }
             }
 
@@ -58,9 +65,3 @@ class students(models.Model):
         for rec in self:
             if rec.age and rec.age < 17:
                 raise ValidationError("El estudiante debe ser mayor de 17 años")
-
-    @api.depends('names', 'surnames')
-    def _compute_full_name(self):
-        for rec in self:
-            rec.full_name = f"{rec.names or ''} {rec.surnames or ''}"
-
