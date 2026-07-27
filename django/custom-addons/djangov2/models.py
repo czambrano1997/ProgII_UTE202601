@@ -9,6 +9,8 @@ class Cliente(models.Model):
     email = models.EmailField(unique=True)
     telefono = models.CharField(max_length=15, verbose_name="Telefono")
     fecha_registro = models.DateField(auto_now_add=True)
+    numero_de_clietnes = models.AutoField(primary_key=True)
+
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"

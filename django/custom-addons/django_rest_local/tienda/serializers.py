@@ -5,3 +5,6 @@ class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
         fields = ['id', 'nombre', 'precio', 'stock']
+    
+    def validate(self, value):
+        return 
