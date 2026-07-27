@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <record id="ou_aula_form" model="ir.ui.view">
+            <field name="name">ou.aula.form</field>
+            <field name="model">ou.aula</field>
+            <field name="arch" type="xml">
+                <form string="Aula">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="edificio"/>
+                            <field name="capacidad"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+      
+        <record id="ou_aula_list" model="ir.ui.view">
+            <field name="name">ou.aula.list</field>
+            <field name="model">ou.aula</field>
+            <field name="arch" type="xml">
+                <list string="Aulas">
+                    <field name="name"/>
+                    <field name="edificio"/>
+                    <field name="capacidad"/>
+                </list>
+            </field>
+        </record>
+
+        
+        <record id="action_ou_aula" model="ir.actions.act_window">
+            <field name="name">Aulas</field>
+            <field name="res_model">ou.aula</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    ¡Crea tu primera aula!
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

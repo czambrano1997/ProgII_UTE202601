@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <data>
+        <!-- 1. Menú Raíz del App (Aparece en el selector de los 9 puntos) -->
+        <menuitem id="menu_odoo_ute_root"
+                  name="UTE"
+                  web_icon="odoo_ute,static/description/icon.png"
+                  sequence="10"/>
 
-    <!-- Se eliminó 'string' y se dejó solo 'name' -->
-    <menuitem
-            id="menu_odoo_ute_root"
-            groups="odoo_ute.group_ute_user"
-            name="UTE"/>
+        <!-- 2. Categoría Superior (Se muestra en la barra superior al entrar a la app) -->
+        <menuitem id="menu_odoo_ute_main"
+                  name="Gestión Académica"
+                  parent="menu_odoo_ute_root"
+                  sequence="10"/>
 
-    <menuitem
-            id="teacher_menu"
-            name="Docentes"
-            action="odoo_ute.ou_teacher_action"
-            parent="menu_odoo_ute_root"
-            groups="odoo_ute.group_ute_user"
-            sequence="10"/>
+        <!-- 3. Submenús desplegables con Acciones -->
+        <menuitem id="menu_ou_carrera"
+                  name="Carreras"
+                  parent="menu_odoo_ute_main"
+                  action="action_ou_carrera"
+                  sequence="10"/>
 
-    <menuitem id="menu_ignature"
-              name="Materia"
-              action="action_ou_signature"
-              parent="menu_odoo_ute_root"
-              sequence="20"/>
+        <menuitem id="menu_ou_aula"
+                  name="Aulas"
+                  parent="menu_odoo_ute_main"
+                  action="action_ou_aula"
+                  sequence="20"/>
 
+        <menuitem id="menu_ou_periodo"
+                  name="Periodos"
+                  parent="menu_odoo_ute_main"
+                  action="action_ou_periodo"
+                  sequence="30"/>
+    </data>
 </odoo>

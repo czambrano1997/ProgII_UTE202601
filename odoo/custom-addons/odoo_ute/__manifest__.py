@@ -17,7 +17,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale_managements'],
+    'depends': ['base', 'sale_management'],
 
     # always loaded
     'data': [
@@ -26,6 +26,9 @@
         'security/ute_rule.xml',
         'views/teacher.xml',
         'views/signature.xml',
+        'views/carrera_views.xml',
+        'views/periodo_views.xml',
+        'views/aula_views.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode

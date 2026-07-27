@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       
+        <!-- Formulario de Carrera -->
+        <record id="ou_carrera_form" model="ir.ui.view">
+            <field name="name">ou.carrera.form</field>
+            <field name="model">ou.carrera</field>
+            <field name="arch" type="xml">
+                <form string="Carrera">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Lista de Carreras -->
+        <record id="ou_carrera_list" model="ir.ui.view">
+            <field name="name">ou.carrera.list</field>
+            <field name="model">ou.carrera</field>
+            <field name="arch" type="xml">
+                <list string="Carreras">
+                    <field name="name"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Acción para Carrera -->
+        <record id="action_ou_carrera" model="ir.actions.act_window">
+            <field name="name">Carreras</field>
+            <field name="res_model">ou.carrera</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    ¡Crea tu primera carrera!
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "inventario",
     "rest_framework",
     "djangov1",
+    "cliente_ute",
 ]
 
 MIDDLEWARE = [
