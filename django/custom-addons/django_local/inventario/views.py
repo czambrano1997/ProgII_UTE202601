@@ -3,7 +3,17 @@ from django.shortcuts import render
 import xmlrpc.client
 from django.shortcuts import render, redirect
 
+# Vista de productos
+def lista_productos(request):
+    return render(request, 'inventario/productos.html')
+
+# Vista de artes
+def lista_arte(request):
+    return render(request, 'inventario/artes.html')
+
 # Funciones para vista categoria
+def lista_categoria(request):
+    return render(request, 'invetanverio/categoria.html')
 
 def crear_cliente(request):
 
