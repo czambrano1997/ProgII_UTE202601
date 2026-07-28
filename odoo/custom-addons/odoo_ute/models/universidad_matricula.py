@@ -9,7 +9,15 @@ class UniversidadMatricula(models.Model):
     estudiante_id = fields.Many2one(comodel_name='universidad.estudiante', string='Estudiante', required=True, ondelete='cascade', help='Estudiante inscrito')
     materia_id = fields.Many2one(comodel_name='universidad.materia', string='Materia', required=True, ondelete='cascade', help='Materia en la cual se inscribe')
     numero_matricula = fields.Char(string='Número de Inscripción', required=True, help='Identificador único de la inscripción')
-
+    periodo_academico = fields.Char(string='Período Académico', required=True, help='Período académico de la inscripción')
+    asignatura = fields.Char(string='Asignatura', related='materia_id.nombre', store=True, help='Nombre de la asignatura')
+    creditos = fields.Integer(string='Créditos', related='materia_id.creditos', store=True, help='Número de créditos de la materia')    
+    costo_credito = fields.Float(string='Costo por Crédito', related='materia_id.costo_credito', store=True, help='Costo por crédito de la materia')    
+    total_costo = fields.Float(string='Costo Total', compute='_compute_total_costo', store=True, help='Costo total de la inscripción')  
+    fecha_inscripcion = fields.Date(string='Fecha de Inscripción', required=True, default=fields.Date.context_today, help='Fecha cuando se realizó la inscripción') 
+    estado = fields.Selection([('inscrito', 'Inscrito'), ('cursando', 'Cursando'), ('calificado', 'Calificado'), ('retirado', 'Retirado'), ('reprobado', 'Reprobado'), ('aprobado', 'Aprobado')], string='Estado', default='inscrito', tracking=True, help='Estado de la matrícula')    
+    observaciones = fields.Text(string='Observaciones', help='Notas adicionales sobre la inscripción')  
+    
     @api.constrains('numero_matricula')
     def _check_unique_numero_matricula_inscripcion(self):
         for record in self:
