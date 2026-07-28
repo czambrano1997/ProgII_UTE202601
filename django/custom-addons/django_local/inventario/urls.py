@@ -14,7 +14,6 @@ urlpatterns = [
     path('discos/', views.lista_discos,name='discos'),
     path('clientes/',views.lista_clientes, name = 'clientes'),
     path('ventas/',views.lista_ventas, name = 'ventas'),
-    path('api-auth/', include ('rest_framework.urls')),
 ]
 
 
