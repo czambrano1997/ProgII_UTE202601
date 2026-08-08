@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Categorías</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#fff8f0;
+    margin:40px;
+}
+
+h1{
+    text-align:center;
+    color:#8B0000;
+}
+
+table{
+    width:80%;
+    margin:auto;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 0 15px rgba(0,0,0,.2);
+}
+
+th{
+    background:#C0392B;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+}
+
+tr:hover{
+    background:#fdebd0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🍽 Categorías de Comida</h1>
+
+<table>
+
+<tr>
+<th>Nombre</th>
+<th>Descripción</th>
+<th>Disponible</th>
+</tr>
+
+{% for categoria in categorias %}
+
+<tr>
+
+<td>{{categoria.nombre}}</td>
+<td>{{categoria.descripcion}}</td>
+<td>{{categoria.disponible}}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
