@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="universidad_profesor_view_list" model="ir.ui.view">
+            <field name="name">Profesor List</field>
+            <field name="model">universidad.profesor</field>
+            <field name="arch" type="xml">
+                <list string="Profesores">
+                    <field name="codigo_profesor" />
+                    <field name="name" />
+                    <field name="cedula" />
+                    <field name="especialidad" />
+                    <field name="titulo_academico" />
+                    <field name="estado_profesor" />
+                    <field name="anos_experiencia" />
+                    <field name="calificacion_docente" avg="Calificación Promedio" />
+                </list>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_profesor_view_form" model="ir.ui.view">
+            <field name="name">Profesor Form</field>
+            <field name="model">universidad.profesor</field>
+            <field name="arch" type="xml">
+                <form string="Profesor">
+                    <header>
+                        <field name="estado_profesor" widget="statusbar" options="{'clickable': True}" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" icon="fa-book" disabled="True">
+                                <field name="materia_ids" widget="statinfo" string="Materias" />
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" class="oe_inline" />
+                            </h1>
+                            <h3>
+                                <field name="especialidad" class="oe_inline" nolabel="1" />
+                            </h3>
+                        </div>
+                        <notebook>
+                            <page string="Información Personal" name="info_personal">
+                                <group>
+                                    <group string="Datos Básicos">
+                                        <field name="codigo_profesor" />
+                                        <field name="numero_empleado" />
+                                        <field name="name" />
+                                        <field name="cedula" />
+                                        <field name="correo" widget="email" />
+                                    </group>
+                                    <group string="Contacto">
+                                        <field name="telefono" />
+                                        <field name="direccion" />
+                                        <field name="fecha_nacimiento" />
+                                        <field name="edad" readonly="1" />
+                                        <field name="genero" />
+                                    </group>
+                                </group>
+                                <group string="Fotografía">
+                                    <field name="foto" widget="image" class="oe_avatar" />
+                                </group>
+                            </page>
+                            
+                            <page string="Información Laboral" name="info_laboral">
+                                <group>
+                                    <group string="Contratación">
+                                        <field name="titulo_academico" />
+                                        <field name="especialidad" />
+                                        <field name="tipo_contrato" />
+                                        <field name="fecha_contratacion" />
+                                        <field name="anos_experiencia" readonly="1" />
+                                    </group>
+                                    <group string="Ubicación">
+                                        <field name="departamento" />
+                                        <field name="despacho" />
+                                        <field name="extension_telefonica" />
+                                    </group>
+                                </group>
+                                <group>
+                                    <group string="Salario">
+                                        <field name="salario_base" />
+                                        <field name="currency_id" />
+                                    </group>
+                                    <group string="Carga Académica">
+                                        <field name="horas_semanales" />
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <page string="Desempeño Académico" name="desempeño">
+                                <group>
+                                    <group>
+                                        <field name="calificacion_docente" widget="gauge" title="Calificación Docente" />
+                                    </group>
+                                    <group>
+                                        <field name="estado_profesor" />
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <page string="Materias que Imparte" name="materias">
+                                <field name="materia_ids" nolabel="1">
+                                    <list>
+                                        <field name="codigo" />
+                                        <field name="nombre" />
+                                        <field name="semestre" />
+                                        <field name="creditos" />
+                                        <field name="cantidad_estudiantes" />
+                                        <field name="promedio_calificaciones" />
+                                    </list>
+                                </field>
+                            </page>
+                            
+                            <page string="Educación y Certificados" name="educacion">
+                                <group>
+                                    <group string="Formación Académica">
+                                        <field name="universidad_educacion" />
+                                        <field name="titulo_academico" />
+                                    </group>
+                                </group>
+                                <group string="Certificaciones">
+                                    <field name="certificaciones" nolabel="1" />
+                                </group>
+                                <group string="Curriculum Vitae">
+                                    <field name="cv" filename="nombre_cv" />
+                                    <field name="nombre_cv" invisible="1" />
+                                </group>
+                            </page>
+                            
+                            <page string="Más Información" name="mas_info">
+                                <group>
+                                    <field name="activo" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" />
+                        <field name="activity_ids" />
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_profesor_view_search" model="ir.ui.view">
+            <field name="name">Profesor Search</field>
+            <field name="model">universidad.profesor</field>
+            <field name="arch" type="xml">
+                <search string="Buscar Profesor">
+                    <field name="name" string="Nombre o Código" filter_domain="['|', ('name', 'ilike', self), ('codigo_profesor', 'ilike', self)]" />
+                    <field name="especialidad" />
+                    <field name="departamento" />
+                    <separator />
+                    <filter name="filter_activos" string="Activos" domain="[('estado_profesor', '=', 'activo')]" />
+                    <filter name="filter_doctorado" string="Con Doctorado" domain="[('titulo_academico', '=', 'doctorado')]" />
+                    <filter name="filter_tiempo_completo" string="Tiempo Completo" domain="[('tipo_contrato', '=', 'tiempo_completo')]" />
+                    <separator />
+                </search>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_profesor_view_kanban" model="ir.ui.view">
+            <field name="name">Profesor Kanban</field>
+            <field name="model">universidad.profesor</field>
+            <field name="arch" type="xml">
+                <kanban string="Profesores" default_group_by="estado_profesor">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="codigo_profesor" />
+                    <field name="especialidad" />
+                    <field name="titulo_academico" />
+                    <field name="estado_profesor" />
+                    <field name="calificacion_docente" />
+                    <field name="foto" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <div class="oe_kanban_avatar">
+                                    <img t-att-src="kanban_image('universidad.profesor', 'foto', record.id.value)" alt="Foto del profesor" />
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <b><t t-esc="record.name.value" /></b>
+                                    <div class="text-muted">
+                                        <t t-esc="record.codigo_profesor.value" />
+                                    </div>
+                                    <div>
+                                        <strong><t t-esc="record.especialidad.value" /></strong>
+                                    </div>
+                                    <div class="text-muted">
+                                        <t t-esc="record.titulo_academico.value" />
+                                    </div>
+                                    <div>
+                                        ⭐ <t t-esc="record.calificacion_docente.value.toFixed(2)" />
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_profesor_action" model="ir.actions.act_window">
+            <field name="name">Profesores</field>
+            <field name="res_model">universidad.profesor</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="universidad_profesor_view_list"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cree su primer profesor
+                </p>
+                <p>
+                    Un profesor es una persona que imparte clases en la universidad.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Odoo: Update & Auto-Reload",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/odoo-19.0/odoo-bin",
+            "args": [
+                "-c", "${workspaceFolder}/odoo.conf",
+                "--http-port=8070",
+                "-u", "odoo_ute",
+                "--dev=all" // Habilita la recarga en caliente de vistas y assets
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false, // Correcto: permite depurar dentro del código de Odoo
+            "python": "${workspaceFolder}/.venv/bin/python",
+            "stopOnEntry": false
+        }
+    ]
+}

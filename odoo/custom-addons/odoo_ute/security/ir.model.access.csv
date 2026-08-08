@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+ou_teacher_base_user,access_base_user_ou_teacher_user,odoo_ute.model_ou_teacher,base.group_user,1,1,0,0
+ou_teacher_base_manager,access_base_user_ou_teacher_manager,odoo_ute.model_ou_teacher,odoo_ute.group_ute_manager,1,1,1,1
+ou_signature_base_user,access_base_user_ou_signature_user,odoo_ute.model_ou_signature,base.group_user,1,1,1,1
+ou_signature_base_manager,access_base_user_ou_signature_manager,odoo_ute.model_ou_signature,odoo_ute.group_ute_manager,1,1,1,1
+
+access_carrera_usuario,carrera_usuario,odoo_ute.model_universidad_carrera,base.group_user,1,1,1,1
+access_carrera_admin,carrera_admin,odoo_ute.model_universidad_carrera,odoo_ute.group_ute_manager,1,1,1,1
+access_profesor_usuario,profesor_usuario,odoo_ute.model_universidad_profesor,base.group_user,1,1,1,1
+access_profesor_admin,profesor_admin,odoo_ute.model_universidad_profesor,odoo_ute.group_ute_manager,1,1,1,1
+access_materia_usuario,materia_usuario,odoo_ute.model_universidad_materia,base.group_user,1,1,1,1
+access_materia_admin,materia_admin,odoo_ute.model_universidad_materia,odoo_ute.group_ute_manager,1,1,1,1
+access_estudiante_usuario,estudiante_usuario,odoo_ute.model_universidad_estudiante,base.group_user,1,1,1,1
+access_estudiante_admin,estudiante_admin,odoo_ute.model_universidad_estudiante,odoo_ute.group_ute_manager,1,1,1,1
+access_matricula_usuario,matricula_usuario,odoo_ute.model_universidad_matricula,base.group_user,1,1,1,1
+access_matricula_admin,matricula_admin,odoo_ute.model_universidad_matricula,odoo_ute.group_ute_manager,1,1,1,1

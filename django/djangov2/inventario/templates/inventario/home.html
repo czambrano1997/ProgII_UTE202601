@@ -1,0 +1,33 @@
+{% extends "inventario/base.html" %}
+
+{% block title %}Inicio{% endblock %}
+{% block heading %}Bienvenido al inventario{% endblock %}
+{% block content %}
+    <p>Elige una sección para ver los datos de tu sistema. Las opciones están organizadas por categorías, proveedores, productos, inventario, órdenes e items de orden.</p>
+    <div class="card-grid">
+        <a class="card" href="{% url 'inventario:category_list' %}">
+            <strong>Categorías</strong>
+            Ver todas las categorías registradas.
+        </a>
+        <a class="card" href="{% url 'inventario:supplier_list' %}">
+            <strong>Proveedores</strong>
+            Revisa tus proveedores con contacto y teléfono.
+        </a>
+        <a class="card" href="{% url 'inventario:product_list' %}">
+            <strong>Productos</strong>
+            Lista de productos con SKU, precio y categoría.
+        </a>
+        <a class="card" href="{% url 'inventario:inventoryitem_list' %}">
+            <strong>Inventario</strong>
+            Consulta la cantidad y ubicación de cada producto.
+        </a>
+        <a class="card" href="{% url 'inventario:order_list' %}">
+            <strong>Órdenes</strong>
+            Revisa órdenes de compra y totales.
+        </a>
+        <a class="card" href="{% url 'inventario:orderitem_list' %}">
+            <strong>Items de Órdenes</strong>
+            Detalle de cada producto en las órdenes.
+        </a>
+    </div>
+{% endblock %}

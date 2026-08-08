@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="universidad_materia_view_list" model="ir.ui.view">
+            <field name="name">Materia List</field>
+            <field name="model">universidad.materia</field>
+            <field name="arch" type="xml">
+                <list string="Materias">
+                    <field name="codigo" />
+                    <field name="nombre" />
+                    <field name="profesor_id" />
+                    <field name="semestre" />
+                    <field name="creditos" />
+                    <field name="cantidad_estudiantes" />
+                    <field name="promedio_calificaciones" />
+                    <field name="estado" />
+                </list>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_materia_view_form" model="ir.ui.view">
+            <field name="name">Materia Form</field>
+            <field name="model">universidad.materia</field>
+            <field name="arch" type="xml">
+                <form string="Materia">
+                    <header>
+                        <field name="estado" widget="statusbar" options="{'clickable': True}" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" icon="fa-users" disabled="True">
+                                <field name="cantidad_estudiantes" widget="statinfo" string="Inscritos" />
+                            </button>
+                            <button class="oe_stat_button" icon="fa-check" disabled="True">
+                                <field name="estudiantes_aprobados" widget="statinfo" string="Aprobados" />
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="codigo" class="oe_inline" />
+                                <span> - </span>
+                                <field name="nombre" class="oe_inline" />
+                            </h1>
+                        </div>
+                        <notebook>
+                            <page string="Información General" name="info_general">
+                                <group>
+                                    <group string="Datos Básicos">
+                                        <field name="codigo" />
+                                        <field name="nombre" />
+                                        <field name="semestre" />
+                                        <field name="estado" />
+                                    </group>
+                                    <group string="Académico">
+                                        <field name="profesor_id" />
+                                        <field name="creditos" />
+                                        <field name="horas_semanales" />
+                                        <field name="semestre_oferta" />
+                                    </group>
+                                </group>
+                                <group string="Descripción">
+                                    <field name="descripcion" nolabel="1" />
+                                </group>
+                                <group string="Prerequisitos">
+                                    <field name="prerequisitos" nolabel="1" />
+                                </group>
+                            </page>
+                            
+                            <page string="Estadísticas Académicas" name="estadisticas">
+                                <group>
+                                    <group string="Información de Estudiantes">
+                                        <field name="cantidad_estudiantes" />
+                                        <field name="estudiantes_aprobados" />
+                                        <field name="porcentaje_aprobacion" widget="progressbar" title="% Aprobación" />
+                                    </group>
+                                    <group string="Calificaciones">
+                                        <field name="promedio_calificaciones" />
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <page string="Estudiantes Inscritos" name="estudiantes">
+                                <field name="estudiante_ids" nolabel="1">
+                                    <list>
+                                        <field name="numero_matricula" />
+                                        <field name="name" />
+                                        <field name="cedula" />
+                                        <field name="carrera_id" />
+                                    </list>
+                                </field>
+                            </page>
+                            
+                            <page string="Carreras" name="carreras">
+                                <field name="carrera_ids" nolabel="1">
+                                    <list>
+                                        <field name="codigo" />
+                                        <field name="nombre" />
+                                        <field name="facultad" />
+                                    </list>
+                                </field>
+                            </page>
+                            
+                            <page string="Matrículas Detalladas" name="matriculas">
+                                <field name="matricula_ids" nolabel="1">
+                                    <list>
+                                        <field name="numero_matricula" />
+                                        <field name="estudiante_id" />
+                                        <field name="calificacion" />
+                                        <field name="nota_letra" />
+                                        <field name="resultado" />
+                                        <field name="estado" />
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" />
+                        <field name="activity_ids" />
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_materia_view_search" model="ir.ui.view">
+            <field name="name">Materia Search</field>
+            <field name="model">universidad.materia</field>
+            <field name="arch" type="xml">
+                <search string="Buscar Materia">
+                    <field name="nombre" string="Nombre o Código" filter_domain="['|', ('nombre', 'ilike', self), ('codigo', 'ilike', self)]" />
+                    <field name="profesor_id" />
+                    <field name="semestre" />
+                    <separator />
+                    <filter name="filter_activa" string="Activas" domain="[('estado', '=', 'activa')]" />
+                    <filter name="filter_alto_desempeño" string="Alto Desempeño" domain="[('promedio_calificaciones', '&gt;', 80)]" />
+                    <filter name="filter_bajo_desempeño" string="Bajo Desempeño" domain="[('promedio_calificaciones', '&lt;', 60)]" />
+                    <separator />
+                </search>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_materia_view_kanban" model="ir.ui.view">
+            <field name="name">Materia Kanban</field>
+            <field name="model">universidad.materia</field>
+            <field name="arch" type="xml">
+                <kanban string="Materias" default_group_by="semestre">
+                    <field name="id" />
+                    <field name="codigo" />
+                    <field name="nombre" />
+                    <field name="profesor_id" />
+                    <field name="semestre" />
+                    <field name="creditos" />
+                    <field name="cantidad_estudiantes" />
+                    <field name="promedio_calificaciones" />
+                    <field name="porcentaje_aprobacion" />
+                    <field name="estado" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <div class="oe_kanban_title">
+                                    <b><t t-esc="record.codigo.value" /></b>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    <h4><t t-esc="record.nombre.value" /></h4>
+                                    <ul>
+                                        <li><strong>Profesor:</strong> <t t-esc="record.profesor_id.value" /></li>
+                                        <li><strong>Estudiantes:</strong> <t t-esc="record.cantidad_estudiantes.value" /></li>
+                                        <li><strong>Créditos:</strong> <t t-esc="record.creditos.value" /></li>
+                                        <li><strong>Promedio:</strong> <t t-esc="record.promedio_calificaciones.value.toFixed(2)" /></li>
+                                        <li><strong>Aprobación:</strong> <t t-esc="record.porcentaje_aprobacion.value.toFixed(1)" />%</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        
+        
+        <record id="universidad_materia_action" model="ir.actions.act_window">
+            <field name="name">Materias</field>
+            <field name="res_model">universidad.materia</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="universidad_materia_view_list" />
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cree su primera materia
+                </p>
+                <p>
+                    Una materia es un curso que ofrece la universidad con estudiantes inscritos.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

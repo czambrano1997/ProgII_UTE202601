@@ -1,0 +1,33 @@
+{% extends "inventario/base.html" %}
+
+{% block title %}Categorías{% endblock %}
+{% block heading %}Categorías{% endblock %}
+{% block page_actions %}
+    <div>
+        <a class="button button-secondary" href="{% url 'inventario:home' %}">← Regresar al menú principal</a>
+        <a class="button button-primary" href="{% url 'inventario:category_create' %}">Agregar categoría</a>
+    </div>
+{% endblock %}
+{% block content %}
+    <p class="subtitle">Consulta las categorías disponibles para organizar tus productos.</p>
+    {% if object_list %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in object_list %}
+                    <tr>
+                        <td>{{ obj.name }}</td>
+                        <td>{{ obj.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty">No hay categorías.</div>
+    {% endif %}
+{% endblock %}

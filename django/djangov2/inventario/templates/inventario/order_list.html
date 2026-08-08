@@ -1,0 +1,37 @@
+{% extends "inventario/base.html" %}
+
+{% block title %}Órdenes{% endblock %}
+{% block heading %}Órdenes{% endblock %}
+{% block page_actions %}
+    <div>
+        <a class="button button-secondary" href="{% url 'inventario:home' %}">← Regresar al menú principal</a>
+        <a class="button button-primary" href="{% url 'inventario:order_create' %}">Agregar orden</a>
+    </div>
+{% endblock %}
+{% block content %}
+    <p class="subtitle">Consulta las órdenes registradas y sus totales.</p>
+    {% if object_list %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Proveedor</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in object_list %}
+                    <tr>
+                        <td>#{{ obj.id }}</td>
+                        <td>{{ obj.supplier.name }}</td>
+                        <td>{{ obj.date }}</td>
+                        <td>${{ obj.total }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty">No hay órdenes.</div>
+    {% endif %}
+{% endblock %}
